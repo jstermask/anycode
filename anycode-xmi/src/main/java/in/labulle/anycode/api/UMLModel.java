@@ -9,4 +9,5 @@ public class UMLModel extends UMLPackage {
 					+ newOwner.getClass().getName());
 		}
 	}
+	
 }

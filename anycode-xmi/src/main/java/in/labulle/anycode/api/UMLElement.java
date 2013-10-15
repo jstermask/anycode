@@ -8,6 +8,9 @@ public abstract class UMLElement {
 	private UMLElement owner;
 	private List<String> stereotypes = new ArrayList<String>();
 	private String id;
+	private boolean root;
+	private boolean leaf;
+	private boolean isabstract;
 
 	public String getId() {
 		return id;
@@ -81,6 +84,30 @@ public abstract class UMLElement {
 			o = o.getOwner();
 		}
 		return w.toString();
+	}
+
+	public boolean isRoot() {
+		return root;
+	}
+
+	public void setRoot(boolean root) {
+		this.root = root;
+	}
+
+	public boolean isLeaf() {
+		return leaf;
+	}
+
+	public void setLeaf(boolean leaf) {
+		this.leaf = leaf;
+	}
+	
+	public boolean isAbstract() {
+		return isabstract;
+	}
+	
+	public void setAbstract(boolean isabstract) {
+		this.isabstract = isabstract;
 	}
 
 }
