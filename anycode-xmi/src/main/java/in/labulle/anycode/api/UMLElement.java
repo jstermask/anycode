@@ -109,5 +109,20 @@ public abstract class UMLElement {
 	public void setAbstract(boolean isabstract) {
 		this.isabstract = isabstract;
 	}
+	
+	public UMLModel getRoot() {
+		if(this instanceof UMLModel) {
+			return (UMLModel)this;
+		} else if(getOwner() != null) {
+			return getOwner().getRoot();
+		} else {
+			throw new RuntimeException(getClass().getName() + " with name " + getName() + " has no root...");
+		}
+	}
+	
+	@Override
+	public String toString() {
+		return getClass().getName() + "|" + getName();
+	}
 
 }

@@ -4,6 +4,8 @@ import in.labulle.anycode.api.UMLElement;
 import in.labulle.anycode.api.UMLModel;
 import in.labulle.anycode.xmi.mapper.UMLMapperFactory;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
@@ -11,6 +13,8 @@ import org.xml.sax.SAXException;
 
 public class XmiContentHandler implements ContentHandler {
 	private UMLElement umlElement;
+	
+	private static final Logger LOG = LoggerFactory.getLogger(XmiContentHandler.class);
 	
 	private boolean done = false;
 
@@ -48,6 +52,9 @@ public class XmiContentHandler implements ContentHandler {
 			UMLElement element = UMLMapperFactory
 					.mapItem(umlElement, tag, atts);
 			this.umlElement = element;
+			if(LOG.isDebugEnabled()) {
+				LOG.debug("startElement " + umlElement);
+			}
 		}
 
 	}
@@ -62,6 +69,9 @@ public class XmiContentHandler implements ContentHandler {
 		if (tag != null && umlElement != null
 				&& tag.getUmlClass().equals(umlElement.getClass()) && !(this.umlElement instanceof UMLModel)) {
 			this.umlElement = this.umlElement.getOwner();
+			if(LOG.isDebugEnabled()) {
+				LOG.debug("endElement " + umlElement);
+			}
 		}
 	}
 

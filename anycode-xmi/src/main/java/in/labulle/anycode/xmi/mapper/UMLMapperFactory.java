@@ -10,9 +10,8 @@ public class UMLMapperFactory {
 	public static UMLElement mapItem(UMLElement owner, XmiTag tag, Attributes atts) {
 
 		try {
-			UMLElement item = (UMLElement) tag.getUmlClass().newInstance();
 			UMLElementMapper mapper = tag.getMapperInstance();
-			mapper.map(item, owner, atts);
+			UMLElement item = mapper.map(tag, owner, atts);
 			return item;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
