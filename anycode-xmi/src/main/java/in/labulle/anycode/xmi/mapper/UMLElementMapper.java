@@ -17,29 +17,22 @@ public class UMLElementMapper {
 
 	public UMLElement map(XmiTag tag, UMLElement owner, Attributes atts) {
 		UMLElement item = getOrCreateElement(tag, owner, atts);
-		
-	
 		String name = atts.getValue(NAME);
 		String root = atts.getValue(IS_ROOT);
 		String leaf = atts.getValue(IS_LEAF);
 		String isAbstract = atts.getValue(IS_ABSTRACT);
-		
 		if(name != null) {
 			item.setName(name);
-		}
-		
+		}	
 		if(root != null) {
 			item.setRoot(Boolean.parseBoolean(root));
-		}
-		
+		}	
 		if(leaf != null) {
 			item.setLeaf(Boolean.parseBoolean(leaf));
-		}
-		
+		}	
 		if(isAbstract != null) {
 			item.setAbstract(Boolean.parseBoolean(isAbstract));
-		}
-		
+		}	
 		return item;
 	}
 
