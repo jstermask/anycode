@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<head>
+		<title>Code generation plugin for Astah UML</title>
+		<meta name="description" content="Code generation plugin for Astah UML Community" />
+		<meta name="keywords"
+			content="mda, code, anycode, generation, generator, astah, plugin, template, freemarker, mofm2t, m2t" />
+		<meta name="author" content="José Carreno" />
+		<meta name="copyright" content="© 2013 LaBulle" />
+	</head>
+	<body>
+		<div id="panel">
+			<div>
+				<p class="slogan right">“Turn UML into source code”</p>
+				<p id="downloadButton" class="right">
+					<a target="_blank" class="btn btn-large btn-warning" href="https://sourceforge.net/projects/anycode/files/latest/download/">Download now</a>
+				</p>
+			</div>
+		</div>
+			<p class="center process-title">How it works</p>
+			<div class="row">
+				<div class="span3">
+					<p class="center">
+						<img alt="Design classes" class="process-img anime" src="images/uml.png" />
+					</p>
+					<p class="center process-step">Design classes</p>
+					<p class="justify">
+						Use Astah Community and design your model through one or
+						more UML class diagrams.
+						You can add custom stereotypes or
+						constraints to flag particular
+						classes, operations, attributes. The
+						latter will act as
+						transformation rules.
+					</p>
+					<p>
+						<a class="btn btn-small pull-right" href="documentation/install-guide.html">Install guide &gt;&gt;
+						</a>
+					</p>
+				</div>
+				<div class="span3 process-tile">
+					<p class="center">
+						<img alt="Customize templates" class="process-img anime" src="images/template.png" />
+					</p>
+					<p class="center process-step">Customize templates</p>
+					<p class="justify">
+						Write as many templates as you need. A template consists in 2 freemarker files that let you customize
+						both the name and
+						the content of target files. It receives a UML
+						class as parameter so
+						that you can turn it into text.
+					</p>
+					<p>
+						<a class="btn btn-small pull-right" href="documentation/reference-documentation.html">Templating guide
+							&gt;&gt;</a>
+					</p>
+				</div>
+				<div class="span3 process-tile">
+					<p class="center">
+						<img alt="Generate code" class="process-img anime" src="images/code.png" />
+					</p>
+					<p class="center process-step">Generate any code</p>
+					<p class="justify">Code generation process iterates over each UML class and
+						each custom template. Any textual language can be generated !
+						To make code generation faster and easier, you can take advantage of
+						built-in functions and macros.
+					</p>
+					<p>
+						<a class="btn btn-small pull-right" href="directives/directives.html">Built-in directives API
+							&gt;&gt;</a>
+					</p>
+				</div>
+			</div>
+	    <div class="news">v1.1.0M2 released !</div>
+	</body>
+</document>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<head>
+		<title>User guide</title>
+	</head>
+	<body>
+		<section name="Prerequisites">
+			<p>In order to generate consistent source code with anycode
+				you’ll
+				have
+				to learn the following things :
+			</p>
+			<ul>
+				<li><a target="_blank" href="http://astah.net/features/astah-api">Astah API</a> : One of Astah’s strength is that it provides an API
+					that describes classes, packages, attributes, operations designed
+					in UML diagrams. anycode directly uses this API in the templates.
+				</li>
+				<li>
+					Freemarker language : anycode templates must be written with
+					freemarker. We
+					chose it because it is a powerful scripting
+					language,
+					reusable thanks to macros.
+					Software
+				</li>
+				<li>
+					Architecture skills : anycode
+					makes code generation from UML
+					Model
+					customizable and easier. But it
+					won’t prevent you from
+					designing a
+					cumbersome architecture. In order
+					to take advantage of
+					this tool,
+					you’ll need to know design patterns
+					and also how they are
+					coded in
+					your favorite language, so that you
+					can have them coded
+					automatically.
+				</li>
+			</ul>
+		</section>
+		<section name="Main concepts">
+			<subsection name="UML Model">
+				<p>
+					When you design UML Classes with Astah, all the classes that you
+					create
+					in a diagram are registered in your project. You can see them
+					in
+					the “Structure” tab on the left of the screen. anycode will
+					expose
+					each class to each template you create.
+				</p>
+			</subsection>
+
+
+			<subsection name="Custom templates">
+				<p>
+					The most important part of anycode is the design of good
+					templates. A
+					template is made of 2 freemarker files that take a UML
+					Class as
+					input and that generates an output file.
+				</p>
+				<p class="pcenter">
+					<img class="screenshot" src="images/image01.png" />
+				</p>
+				<p>
+					We need 2 files as there are 2 things to “customize” in code
+					generation :
+
+					<ul>
+						<li>Output file’s path : this is generated with
+							myclass-name.mda
+							file.
+						</li>
+						<li>Output file’s content : this is generated
+							with
+							myclass-content.mda file.
+							You can write as many templates as
+							you
+							want.
+						</li>
+					</ul>
+
+				</p>
+			</subsection>
+		</section>
+		<section name="Writing your first template">
+			<p>We assume here that you know freemarker language. If so, you must
+				be
+				wondering how the link is made between a UML Class and a template.
+				Actually, each UML class instance (<a target="_blank" href="http://astah.net/features/astah-api">Astah API</a> IClass object) is
+				passed
+				to each template as parameters. It means that it can be
+				manipulated
+				through <a target="_blank" href="http://astah.net/features/astah-api">Astah API</a>.
+			</p>
+			<p>More precisely, 3 parameters are passed to each template : </p>
+			<ul>
+				<li>targetDir : Target directory that you choose from configuration panel</li>
+				<li>templateDir : Template directory that you choose from configuration panel</li>
+				<li>model : wrapper for an UML Class object instance (IClass object). This object can be accessed by method model.getC()</li>
+			</ul>
+			<subsection name="Hello world source code (in java)">
+				<p>Let's create 3 simple classes. I'll
+					generate the code in Java
+					language as it is the one I know best :
+				</p>
+				<p class="pcenter">
+					<img src="images/image04.png" class="screenshot" />
+				</p>
+				<p>Now,
+					let's code your first
+					template, made of 2 files :
+				</p>
+				<p>
+					<b>tutorial-name.mda</b>
+				</p>
+				<p>
+<source>
+${targetDir}/${model.c.getFullName("/")}.java
+</source>
+				</p>
+
+				<p>
+					<b>tutorial-content.mda:</b>
+				</p>
+				<p>
+<source>
+package ${model.c.getFullNamespace(".")};
+/**
+ * This class was generated automatically thanks to any<code/>
+ */
+public class ${model.c.name} {
+	&lt;#list model.c.attributes as anAttribute&gt;
+		&lt;@java.attribute anAttribute/&gt;
+	&lt;/#list>
+	
+	&lt;#list model.c.attributes as anAttribute&gt;
+		&lt;@java.getter anAttribute/&gt;
+	&lt;/#list>
+	
+	&lt;#list model.c.attributes as anAttribute&gt;
+		&lt;@java.setter anAttribute/&gt;
+	&lt;/#list&gt;
+}
+</source>
+				</p>
+				<p>
+					You may have noticed @java keyword. This is a <a href="directives/directives.html">built-in directive</a>. Because Astah API can sometimes be difficult to use, 
+					boilerplate code is added to directives 
+					so that you only have to focus on your custom code generation.
+				</p>
+				<p>Once both files are saved in a
+					directory (let's say "template"
+					directory), you can call the plugin,
+					as shown below :
+				</p>
+				<p class="pcenter">
+					<img src="images/image05.png" class="screenshot" />
+				</p>
+				<p>
+					Finally, look at
+					the target directory. Done !
+				</p>
+				<p class="pcenter">
+					<img src="images/image06.png" class="screenshot" />
+				</p>
+			</subsection>
+		</section>
+	</body>
+</document>
+
+
+
+
+
+
+

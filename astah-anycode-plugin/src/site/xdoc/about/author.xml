@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<head>
+		<title>About the author</title>
+	</head>
+	<body>
+		<h1>About the author</h1>
+		<p>
+			<div class="row">
+				<div class="span4">
+					<table class="table">
+						<tr>
+							<td>
+								<img class="img-polaroid"
+									src="http://www.gravatar.com/avatar/90cd82103490c43777243c31ce4ba4d1.png"></img>
+							</td>
+							<td>
+								<p>
+									<strong>Jose Carreno</strong>
+									<br />
+									<a href="mailto:jose@labulle.in">jose@labulle.in</a>
+									<br />
+									Java EE Software Architect
+									<br />
+									Paris, France
+								</p>
+							</td>
+						</tr>
+					</table>
+
+				</div>
+			</div>
+		</p>
+	</body>
+</document>
+
+
+
+
+
+
+

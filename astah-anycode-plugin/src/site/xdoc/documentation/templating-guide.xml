@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<head>
+		<title>Templating guide</title>
+	</head>
+	<body>
+		<h1>Templating Guide</h1>
+		<a name="s11"></a>
+		<section name="Template overview">
+			<p>
+				A template is a way to carry out a projection of a UML Model
+				subset to text files.
+			</p>
+			<a name="s111"></a>
+			<subsection name="Template structure">
+				<p>For anycode, a template is set of 2 files that describe both the
+					name of the file to be generated and its content.
+					Those files must
+					be created altogether in the same directory and must
+					comply with the
+					following naming convention:
+				</p>
+				<table class="table table-bordered">
+					<tr>
+						<th>Prefix</th>
+						<th>Suffix</th>
+						<th>Extension</th>
+						<th>Description</th>
+						<th>Example</th>
+					</tr>
+					<tr>
+						<td>Any valid filename</td>
+						<td>-name</td>
+						<td>.mda or .mdc</td>
+						<td>Template that is responsible for generating source code file's
+							path
+						</td>
+						<td>foo-name.mda</td>
+					</tr>
+					<tr>
+						<td>Any valid filename</td>
+						<td>-content</td>
+						<td>.mda or .mdc</td>
+						<td>Template that is responsible for generating source code
+							content
+						</td>
+						<td>foo-content.mda</td>
+					</tr>
+				</table>
+				<p>
+					2 files
+					<i>foo</i>
+					-name.mda and
+					<i>foo</i>
+					-content.mda compose one template identified as
+					<i>foo</i>
+					template.
+				</p>
+				<p class="center">
+					<img class="img-polaroid" src="../images/template-structure.png" />
+				</p>
+			</subsection>
+			<a name="s112"></a>
+			<subsection name="Template Programming language">
+				<p>
+					Anycode relies entirely on Freemarker templating engine. The latter
+					is used
+					<i>as is</i>
+					. As a consequence, learning
+					its syntax is a prerequisite to using
+					the plugin.
+				</p>
+				<p>
+					For more information on how to write templates with freemarker,
+					please see
+					<a href="http://freemarker.org/docs/">Freemarker Manual</a>
+				</p>
+			</subsection>
+			<a name="s113"></a>
+			<subsection name="Template Context">
+				<p> To render to a file, a template always receives a context as a
+					parameter. It's a set of 3 variables that you can call from
+					the
+					template:
+				</p>
+				<table class="table table-bordered">
+					<tr>
+						<th>Parameter name</th>
+						<th>Description</th>
+						<th>Type</th>
+					</tr>
+					<tr>
+						<td>c</td>
+						<td>Astah class instance. This variable will help you generate
+							most
+							of the content of your source code.
+						</td>
+						<td>com.change_vision.jude.api.inf.model.IClass (from Astah API)
+						</td>
+					</tr>
+					<tr>
+						<td>targetDir</td>
+						<td>Target directory that you chose from anycode configuration
+							panel. This will be useful to build the name of the
+							generated file
+							(its path).
+						</td>
+						<td>java.lang.String</td>
+					</tr>
+					<tr>
+						<td>templateDir</td>
+						<td>Template directory that you chose from anycode configuration
+							panel. This is where you saved your template(s).
+						</td>
+						<td>java.lang.String</td>
+					</tr>
+				</table>
+				<p>
+					<b>NOTE</b>
+					: IClass is an interface provided by Astah API whose javadoc is
+					available online. It represents a class designed in Astah. From
+					the
+					template, you can therefore access a UML Class information, its
+					name, package, attributes, operations, relations,
+					stereotypes... To
+					sum up, you can have access to (almost?) anything you designed
+					in
+					your diagram. And the good news is that
+					Astah API is quite easy to
+					use. For practical details, please see
+					<i>Language reference section</i>
+					of this guide. It is also recommended to have
+					<a
+						href="http://members.change-vision.com/javadoc/astah-api/6_7_0-43495/api/en/doc/javadoc/index.html">Astah API Javadoc</a>
+					close to you when writing a template.
+				</p>
+			</subsection>
+		</section>
+		<a name="s12"></a>
+		<section name="Code generation process">
+			<p> By default, if you haven't created at least one template, nothing
+				will be generated at all, as a template represents the
+				minimum piece
+				of transformation of your model. If you create one, the later
+				will
+				automatically be passed each of your
+				classes. In other words, the
+				process is a kind of cartesian product between
+				UML Classes and custom
+				templates as it iterates
+				on each UML Class, and for each one, it
+				iterates on each template
+				found in the directory you configure.
+			</p>
+			<p class="center">
+				<img class="img-polaroid" width="800px"
+					src="../images/code-generation-process.png" />
+			</p>
+			<p>
+				Fortunately, it's possible to narrow a template to only specific
+				classes. For further details about this, please see
+				<i>Conditional Rendering section</i>
+				of this guide.
+			</p>
+			<a name="s121"></a>
+			<subsection name="Conditional rendering">
+				<p>As we said before, code generation process generates each class
+					with each template by default. So you may wonder how you
+					can do to
+					write a template that will generate DAO classes, and service
+					classes
+					that only matches a subset of all the classes
+					you modelled.
+				</p>
+				<p>
+					In
+					fact, all you have to do is to code a
+					<code>&lt;#if&gt;[...]&lt;/#if&gt;</code>
+					condition in
+					<code>-content</code>
+					template that surrounds all the template. As a consequence, if this
+					condition is not matched, template output content will be
+					empty.
+					Code
+					generation process will then ignore source code generation and
+					won't
+					write any output file.
+				</p>
+				<p>A very common condition is to check a classes' stereotype. For
+					instance, you could define an &lt;&lt;Entity&gt;&gt;
+					stereotype in
+					Astah, write a persistence class template surrounded by a
+					condition
+					to ensure that class must have this
+					stereotype in order to be
+					generated.
+				</p>
+			</subsection>
+			<a name="s122"></a>
+			<subsection name="Override mechanism">
+				<p>Sometimes you want a class to be overwritten each time you launch
+					code generation. However, this might no always be the best choice,
+					especially if
+					you are willing to generated source code that you want
+					to modify
+					yourself afterwards (skeletons or implementation classes).
+				</p>
+				<p>Template file extension will give you the opportunity to choose
+					whether you must always override the generated source code,
+					or not :
+				</p>
+				<ul>
+					<li>
+						<b>.mda</b>
+						: your template will overwrite any existing target source code and
+						replace its content.
+					</li>
+					<li>
+						<b>.mdc</b>
+						: your template will create the target source file if it doesn't
+						exist but will let the target file unchanged if it
+						already exists.
+					</li>
+				</ul>
+			</subsection>
+		</section>
+	</body>
+</document>

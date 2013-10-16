@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<directive id="java" name="java">
+	<description> This directive provides macros and functions to generate code in java language.
+	</description>
+	<macro name="attribute">
+		<description>Renders and attribute (either simple or part of a relation). If attribute has no name, nothing is rendered.
+		</description>
+		<param>
+			<name>att</name>
+			<description>The attribute to render</description>
+		</param>
+		<code>
+<![CDATA[<#macro attribute att>
+    <#local attName = getAttributeName(att)/>
+	<#if attName?has_content>
+	private <@datatype att/> ${attName};
+	</#if>
+</#macro>]]>
+		</code>
+	</macro>
+	<macro name="getter">
+		<description>Renders attribute's getter. If attribute has no name, nothing is rendered.</description>
+		<param>
+			<name>att</name>
+			<description>The attribute to render</description>
+		</param>
+		<code>
+<![CDATA[<#macro getter att>
+	<#local attName = getAttributeName(att)/>
+	<#if attName?has_content>
+	/**
+     * ${attName}'s getter.
+     */
+	public final <@datatype att/> get${attName?cap_first}() {
+		return this.${attName};
+	}
+	</#if>
+</#macro>]]>
+		</code>
+	</macro>
+	<macro name="setter">
+		<description>Renders attribute's setter. If attribute has no name, nothing is rendered.</description>
+		<param>
+			<name>att</name>
+			<description>The attribute to render</description>
+		</param>
+		<code>
+<![CDATA[<#macro setter att>
+    <#local attName = getAttributeName(att)/>
+	<#if attName?has_content>
+	/**
+     * ${attName}'s setter.
+     */
+	public void set${attName?cap_first}(final <@datatype att/> a${attName?cap_first}) {
+		this.${attName} = a${attName?cap_first};
+	}
+	</#if>
+</#macro>]]>
+		</code>
+	</macro>
+	<macro name="datatype">
+		<description>Renders attribute's datatype in java language.</description>
+		<param>
+			<name>att</name>
+			<description>The attribute to render</description>
+		</param>
+		<code>
+<![CDATA[<#macro datatype att>
+	<@compress>
+	<#if util.isManyToOne(att) || util.isSimple(att)>
+${att.qualifiedTypeExpression?replace("::",".")}
+	</#if>
+	<#if util.isOneToMany(att) || util.isManyToMany(att)>
+java.util.Set<${att.qualifiedTypeExpression?replace("::",".")}>
+	</#if>
+	</@compress>
+</#macro>]]>
+		</code>
+	</macro>
+	
+<function name="getAttributeName">
+		<description>Gets or generates attribute's name</description>
+		<param>
+			<name>att</name>
+			<description>The attribute</description>
+		</param>
+		<return>attribute's name or typeExpression name if it's part of an association</return>
+		<code>
+<![CDATA[<#function getAttributeName att>
+	<#if att.name?has_content>
+		<#return att.name />
+	<#else>
+		<#return att.typeExpression?uncap_first />		
+	</#if>
+</#function>]]>
+		</code>
+		<snippet>
+<![CDATA[]]></snippet>
+	</function>	
+
+	<macro name="custom_code">
+		<description>Adds a merge point to your generated java code. Further generations will merge code inside this tag</description>
+		<param>
+			<name>id</name>
+			<description>Unique identifier for this merge point</description>
+		</param>
+		<code>
+<![CDATA[<#macro custom_code id><@util.custom_code id=id bComment='//'/></#macro>]]>
+		</code>
+	</macro>
+	
+</directive>

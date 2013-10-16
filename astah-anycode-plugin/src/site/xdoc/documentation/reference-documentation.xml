@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w2.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<head>
+		<title>any&lt;code&gt; Reference Documentation</title>
+	</head>
+	<body>
+		<h1>any&lt;code&gt; Reference Documentation</h1>
+		<dl>
+			<dt><a href="templating-guide.html">1. Templating guide</a></dt>
+			<dd>
+				<dl>
+					<dt><a href="templating-guide.html#s11">1.1. Template overview</a></dt>
+					<dd>
+						<dl>
+							<dt><a href="templating-guide.html#s111">1.1.1 Template structure</a></dt>
+							<dt><a href="templating-guide.html#s112">1.1.2. Template programming language</a></dt>
+							<dt><a href="templating-guide.html#s113">1.1.3. Template context</a></dt>
+						</dl>
+					</dd>
+					<dt><a href="templating-guide.html#s12">1.2. Code generation process</a></dt>	
+					<dd>
+						<dl>
+							<dt><a href="templating-guide.html#s121">1.2.1. Conditional rendering</a></dt>
+							<dt><a href="templating-guide.html#s122">1.2.2. Override mechanism</a></dt>
+						</dl>
+					</dd>
+				</dl>
+			</dd>	
+			<dt><a href="language.html">2. Language reference</a></dt>
+			<dd>
+				<dl>
+					<dt><a href="language.html#s21">2.1. Class general information</a></dt>
+					<dt><a href="language.html#s22">2.2. Attributes</a></dt>
+					<dt><a href="language.html#s23">2.3. Operations</a></dt>		
+					<dt><a href="language.html#s24">2.4. Relationship</a></dt>
+					<dt><a href="language.html#s25">2.5. Dependencies</a></dt>
+					<dt><a href="language.html#s26">2.6. Inheritance</a></dt>
+					<dt><a href="language.html#s27">2.7. Stereotypes</a></dt>
+					<dt><a href="language.html#s28">2.8. User Macros</a></dt>
+					<dt><a href="language.html#s29">2.9. User directives</a></dt>
+				</dl>
+			</dd>
+			<dt><a href="../directives/directives.html">3. Built-in Directives</a></dt>
+			<dd>
+				<dl>
+					<dt><a href="../directives/util-utility-module.html">3.1. @util : Utility directive</a></dt>
+					<dt><a href="../directives/java-java-module.html">3.2. @java : Java directive</a></dt>
+					<!-- <dt><a href="directives/directives.html">3.3. @jpa : JPA2.0 directive</a></dt>	-->		
+				</dl>
+			</dd>
+		</dl>
+	</body>
+</document>

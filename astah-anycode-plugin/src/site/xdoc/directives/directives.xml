@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<head>
+		<title>Built-in directives</title>
+	</head>
+	<body>
+		<section name="Built-in directives">
+			<p>
+				Directives are probably the most useful part in anycode generation.
+				Below, you'll find a set of functions and macros that you
+				can use
+				directly in you template code. You can use them directly to in your
+				templates or in your own macros. We will try to
+				offer more and more
+				directives for various languages in the future releases. See the
+				<a href="../roadmap.html">Roadmap</a>
+				for details.
+			</p>
+			<table class="table table-bordered">
+				<tr>
+					<th colspan="2">Summary</th>
+				</tr>
+				<tr>
+					<td>
+						<a href="util-utility-module.html">@util</a>
+					</td>
+					<td>Utility macros and functions to get information about
+						associations, attributes, operations easily.</td>
+				</tr>
+				<tr>
+					<td>
+						<a href="java-java-module.html">@java</a>
+					</td>
+					<td>Automates code generation fragments in java.</td>
+				</tr>
+				<!-- 
+				<tr>
+					<td>
+						<a href="jpa-jpa-module.html">@jpa</a>
+					</td>
+					<td>Automates code generation fragments for JPA2/Hibernate
+						implementation.</td>
+				</tr>
+				-->
+			</table>
+		</section>
+	</body>
+</document>

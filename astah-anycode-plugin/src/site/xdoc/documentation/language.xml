@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<head>
+		<title>Language reference</title>
+	</head>
+	<body>
+		<h1>Language reference</h1>
+		<p>This section will not describe freemarker language, as official <a href="http://freemarker.org/docs/" target="_blank">Freemarker Manual</a> 
+		is already here for that. It will give you practical examples to start generating your own source code. 
+		It will be regularly updated to give you more and more help.
+		</p>
+		<a name="s21"></a>
+		<section name="Class">
+<source>
+&lt;#-- Display class name --&gt;
+${c.name}
+
+&lt;#-- Class fully qualified name (separated by '.') --&gt;
+${c.getFullName(".")}
+
+&lt;#-- Class package (separated by '.') --&gt;
+${c.getFullNamespace(".")}
+
+&lt;#-- A php class source path (common use 
+case for -name template) in target directory --&gt;
+${targetDir}/${c.getFullName("/").php}
+</source>
+		</section>
+		<a name="s22"></a>
+		<section name="Attributes">
+<source>
+&lt;#-- Iterating over attributes --&gt;
+&lt;#list c.attributes as anAttribute&gt;
+	&lt;#-- anAttribute if an IAttribute astah object. --&gt;
+&lt;/#list&gt;
+</source>			
+		</section>
+		<a name="s23"></a>
+		<section name="Operations">
+<source>
+&lt;#-- Iterating over operations --&gt;
+&lt;#list c.operations as anOperation&gt;
+	&lt;#-- anOperation if an IOperation astah object. --&gt;
+&lt;/#list&gt;
+</source>				
+		</section>
+		<a name="s24"></a>
+		<section name="Relationship">
+<p>Simple attributes and relations are both listed in the attributes of the owning class. However you can easily distinguish them by checking 'association' method and also 'multiplicity'.</p>
+<source>
+&lt;#-- We suppose here that you are iterating over 
+attributes, and 'att' is an attribute variable --&gt;
+&lt;#if !att.multiplicity?has_content&gt;
+	&lt;#-- This means this attribute is a not a 
+	relation but a simple attribute --&gt;
+&lt;/#if&gt;
+
+&lt;#if att.multiplicity?has_content &amp;&amp; 
+		att.multiplicity[0].upper == 1 &gt;
+	&lt;#-- This means attribute is a one to one or 
+		many to one relation --&gt;
+&lt;/#if&gt;
+
+&lt;#if att.multiplicity?has_content &amp;&amp; 
+			att.multiplicity[0].upper == -1 &gt;
+	&lt;#-- This means attribute is a part of one to 
+		many or many to many --&gt;
+&lt;/#if&gt;
+
+&lt;#local many = true /&gt;
+&lt;#list att.association.memberEnds as att1&gt;
+	&lt;#if !(att1.multiplicity?has_content &amp;&amp; 
+			att.multiplicity[0].upper == -1)&gt;
+		&lt;#local many = false /&gt;
+	&lt;/#if>
+&lt;/#list&gt;
+&lt;#-- if local variable 'many' is true then relation
+	 is a many to many --&gt;
+</source>		
+			</section>
+			<a name="s25"></a>
+			<section name="Dependencies">
+<source>
+&lt;#list c.clientDependencies as dep&gt;
+	&lt;#-- 'dep' is a IClass object c depends on. --&gt;	
+&lt;/#list&gt;
+</source>
+			</section>
+			<a name="s26"></a>
+			<section name="Inheritance">
+<source>
+&lt;#-- Displays coma separated list of supertypes  --&gt;
+&lt;#list c.generalizations as parent&gt;
+	${parent.superType.name}&lt;#if parent_has_next&gt;, &lt;/#if&gt;	
+&lt;/#list&gt;
+</source>
+			</section>
+			<a name="s27"></a>
+			<section name="Stereotypes">
+<source>
+&lt;#if c.stereotypes?seq_contains("Entity") &gt;
+	&lt;#-- means that class has stereotype 'Entity' --&gt;
+&lt;/#if&gt;
+</source>
+			</section>
+			<a name="s28"></a>
+			<section name="User Macros">
+				<p>
+					As you can imagine, your templates' size will grow a lot if you have to code the above snippets everytime you need them. Freemarker fortunately provides
+					a <a href="http://freemarker.org/docs/ref_directive_macro.html" target="_blank">Macro</a> mechanism that will enable you to create you own re-usable fragments of templates.
+				</p>
+				<p>
+				Let's take a very simple example : suppose you need to generate a PHP attribute of a class as well as its getters and setters. You can then write all the code in the macro as 
+				you can see in the <i>-content.mda</i> template below :
+				</p>
+				<code><b>yetanothertemplate-name.mda</b></code>
+				<source>
+${targetDir}/${c.name}.php
+				</source> 
+				<code><b>yetanothertemplate-content.mda</b></code>
+				<source>
+&lt;#macro attribute att&gt;
+var ${att.name};
+function get${att.name?cap_first}() {
+	return ${att.name};
+}
+	
+function set${att.name?cap_first}($a${att.name?cap_first}) {
+	$this->${att.name} = $a${att.name?cap_first};
+}
+&lt;/#macro&gt;
+&lt;?php
+class ${c.name} {
+	&lt;#list c.attributes as att&gt;
+	&lt;@attribute att/&gt;
+	&lt;/#list&gt;
+}
+?&gt;	
+				</source>
+				<p>And the result below with a simple Person class with 3 attributes :</p>
+				
+				<code><b>Person.php</b></code>
+				<source>
+&lt;?php
+class Person {
+var firstname;
+function getFirstname() {
+	return $this->{att.name};
+}
+	
+function setFirstname($aFirstname) {
+	$this->firstname = $aFirstname;
+}
+var lastname;
+function getLastname() {
+	return $this->{att.name};
+}
+	
+function setLastname($aLastname) {
+	$this->lastname = $aLastname;
+}
+var birthdate;
+function getBirthdate() {
+	return $this->{att.name};
+}
+	
+function setBirthdate($aBirthdate) {
+	$this->birthdate = $aBirthdate;
+}
+}
+?&gt;
+				</source>
+				<p>
+				Well the source code is now more readable but the macro is still in our template file, and therefore it cannot be reused... Don't worry, let's put it  in a separate file and use the latter
+				with a directive !
+				</p>
+			</section>
+			<a name="s29"></a>
+			<section name="User Directives">
+				<p>
+					Another reason why we chose Freemarker for templates is directives. Let's create a directive file, located <b>in the same directory</b> where we put all our previous templates:
+				</p>
+				<code><b>mymacros.mda</b></code>
+				<source>
+&lt;#macro attribute att&gt;
+var ${att.name};
+function get${att.name?cap_first}() {
+	return $this->${att.name};
+}
+	
+function set${att.name?cap_first}($a${att.name?cap_first}) {
+	$this->${att.name} = $a${att.name?cap_first};
+}
+&lt;/#macro&gt;			
+				</source>
+				<p>Now, let's use this macro in our template :</p>
+				<code><b>yetanothertemplate-content.mda</b></code>
+				<source>
+&lt;#import "mymacros.mda" as my/&gt;
+&lt;?php
+class ${c.name} {
+	&lt;#list c.attributes as att&gt;
+	&lt;@my.attribute att/&gt;
+	&lt;/#list&gt;
+}
+?&gt;	
+				</source>
+				<p>Thanks to this process you can define your own directives and make source code generation very easy.</p>
+			</section>
+	</body>
+</document>

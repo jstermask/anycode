@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<head>
+		<title>Download page</title>
+	</head>
+	<body>
+		<section name="Download the plugin">
+			<p>
+				You can download latest version at
+				<a target="_blank" href="https://sourceforge.net/projects/anycode/">anycode on sourceforge.</a>
+			</p>
+		</section>
+		<section name="How to install ?">
+			<p>First install the plugin by copying the jar in Astah* plugins
+				directory.
+			</p>
+			<p class="pcenter">
+				<img alt="Plugin directory" class="screenshot" src="images/image08.png" />
+			</p>
+			<p>Run Astah* Community and check that the plugin is enabled</p>
+			<p class="pcenter">
+				<img alt="Plugin list in Astah" class="screenshot" src="images/image07.png" />
+			</p>
+			<p>
+				Once installed, anycode menu appears in “Tools” option menu.
+			</p>
+			<p class="pcenter">
+				<img alt="anycode menu" class="screenshot" src="images/image02.png" />
+			</p>
+			<p>
+				By clicking on the “Generate the code...” item, you’ll open a
+				configuration panel, that invites you to set 2 path :
+			</p>
+			<ul>
+				<li>
+					Target directory : base path where files are supposed to be
+					generated
+				</li>
+				<li>
+					Template directory : path where all your custom templates are. To
+					start with creating templates, please read
+					<a href="user-guide.html">User Guide</a>
+				</li>
+			</ul>
+
+			<p class="pcenter">
+				<img alt="Configuration panel" class="screenshot" src="images/image03.png" />
+			</p>
+		</section>
+	</body>
+</document>
+
+
+
+
+
+
+

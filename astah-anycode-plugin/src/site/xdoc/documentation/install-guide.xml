@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<head>
+		<title>Installation Guide</title>
+	</head>
+	<body>
+		<h1>Installation Guide</h1>
+		<section name="Prerequisites">
+			<p>
+				You must have Astah Community 6.7 or later already installed on your
+				computer. Please go to
+				<a target="_blank" href="http://astah.net/editions/community">Astah Community website</a>
+				to set it up.
+			</p>
+		</section>
+		<section name="Installation steps">
+			<p>
+				<ol>
+					<li>
+						<a target="_blank"
+							href="http://sourceforge.net/projects/anycode/files/latest/download">Download the latest version</a>
+						of any&lt;code/&gt; from
+						<a target="_blank" href="http://sourceforge.net/projects/anycode">Sourceforge Project Page</a>.
+					</li>
+					<li>
+						Move or copy the downloaded .jar file in the "plugins" folder
+						under Astah Installation folder.
+					</li>
+					<li>
+						Run Astah and click on Help &gt; Plugin list... Plugin should appear
+						on the list with a valid state and it should be enabled.
+					</li>
+					<li>
+						Done. Now create a project or open an existing one. any&lt;code/&gt;
+						panel appears below the main diagram area.
+					</li>
+				</ol>
+			</p>
+		</section>
+	</body>
+</document>
+
+
+
+
+
+
+

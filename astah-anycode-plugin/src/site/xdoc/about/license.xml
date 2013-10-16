@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<head>
+		<title>License</title>
+	</head>
+	<body>
+		<section name="Plugin license">
+			<p>This plugin is free to use with Astah* Community edition v6.7 and
+				above only.</p>
+			<p>
+				For any other use of this plugin, please contact me by mail
+				<a href="mailto:anycode@labulle.in">anycode@labulle.in</a>
+			</p>
+		</section>
+	</body>
+</document>
+
+
+
+
+
+
+

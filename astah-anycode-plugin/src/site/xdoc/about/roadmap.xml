@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<head>
+		<title>Roadmap</title>
+	</head>
+	<body>
+		<section name="Roadmap">			
+			<h3>2013/10 - astah-anycode-plugin-1.1.0</h3>
+			<ul>
+				<li>New features in Utility and Java directives</li>
+				<li>JPA/Spring Data directive</li>
+				<li>Documentation and tutorials</li>
+				<li>Bug fixes</li>
+			</ul>
+			
+			<h3>2014/01 - astah-anycode-plugin-1.2.x</h3>
+			<ul>
+				<li>Support for merging generated and custom code (based on specific template tags)</li>
+				<li>Built-in modules for PHP, C++, C#, Objective-C</li>
+			</ul>
+			
+			<h3>2014/03 - astah-anycode-plugin-1.3.x</h3>
+			<ul>
+				<li>Opportunity to generated other artifacts (not only classes, but also packages, the model itself, diagrams...)</li>
+				<li>XMI Directive</li>
+				<li>SVG Directive</li>
+			</ul>	
+		</section>
+	</body>
+</document>
+
+
+
+
+
+
+

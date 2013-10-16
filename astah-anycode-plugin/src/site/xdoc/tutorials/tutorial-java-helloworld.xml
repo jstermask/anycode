@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<head>
+		<title>Tutorial - Java - Hello World</title>
+	</head>
+	<body>
+		<h1>Hello world tutorial in java</h1>
+		<section name="Design a simple UML model">
+			<p>Let's create 3 simple classes. I'll
+				generate the code in Java
+				language as it is the one I know best :
+			</p>
+			<p class="center">
+				<img src="../images/image04.png" class="img-polaroid" />
+			</p>
+		</section>
+		<section name="Create one java template">
+			<p>Now,
+				let's code your first
+				template, made of 2 files :
+			</p>
+			<p>
+				<b>tutorial-name.mda</b>
+			</p>
+			<p>
+				<source>
+${targetDir}/${c.getFullName("/")}.java
+				</source>
+			</p>
+
+			<p>
+				<b>tutorial-content.mda:</b>
+			</p>
+			<p>
+				<source>
+package ${c.getFullNamespace(".")};
+/**
+* This class was generated automatically thanks to any
+<code />
+*/
+public class ${c.name} {
+	&lt;#list c.attributes as anAttribute&gt;
+	&lt;@java.attribute anAttribute/&gt;
+	&lt;/#list>
+	
+	&lt;#list c.attributes as anAttribute&gt;
+	&lt;@java.getter anAttribute/&gt;
+	&lt;/#list>
+	
+	&lt;#list c.attributes as anAttribute&gt;
+	&lt;@java.setter anAttribute/&gt;
+	&lt;/#list&gt;
+}
+				</source>
+			</p>
+			<p>
+				You may have noticed @java keyword. This is a
+				<a href="directives/directives.html">built-in directive</a>
+				. Because Astah API can sometimes be difficult to use,
+				boilerplate
+				code is added to directives
+				so that you only have to focus on your
+				custom code generation.
+			</p>
+		</section>
+		<section name="Generate your java code">
+			<p>Once both files are saved in a
+				directory (let's say "template"
+				directory), you can call the plugin,
+				as shown below :
+			</p>
+			<p class="center">
+				<img src="../images/image05.png" class="img-polaroid" />
+			</p>
+			<p>
+				Finally, look at
+				the target directory. Done !
+			</p>
+			<p class="center">
+				<img src="../images/image06.png" class="img-polaroid" />
+			</p>
+		</section>
+	</body>
+</document>
+
+
+
+
+
+
+

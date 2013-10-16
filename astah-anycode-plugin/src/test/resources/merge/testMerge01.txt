@@ -1,0 +1,36 @@
+package toto;
+/**
+ * 
+ */
+@Entity
+//<Test-Class>
+@Some configuration done here!!
+//
+//</Test-Class>
+public class Test {
+
+	public void test() {
+		//<test-Method>
+		int test = 0;
+		test++;
+		/*
+		 * We add comment
+		 */
+		//</test-Method>
+	}
+	
+	public void test2() {
+		//<test2-Method>
+		//</test2-Method>
+	}
+	
+	public void testHtml() {
+	<!--<testHtml>
+	Test HTML Successful
+	</testHtml>-->
+	}
+	
+	
+	
+
+}
