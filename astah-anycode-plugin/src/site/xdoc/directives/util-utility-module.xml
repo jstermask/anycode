@@ -21,21 +21,6 @@
 </td>
 <td>
 <p>
-<a href="#isCompositeRelation">isCompositeRelation</a>
-					(att)
-				</p>
-<p class="ml20">Attribute that is not "simple" and that is a composite end of a relation is a composite relation
-		</p>
-</td>
-</tr>
-<tr>
-<td style="width:40px;">
-<p>
-<img src="../images/function-icon.png" alt="Function" title="Function"/>
-</p>
-</td>
-<td>
-<p>
 <a href="#isMandatoryAssociation">isMandatoryAssociation</a>
 					(att)
 				</p>
@@ -114,35 +99,10 @@
 <p class="ml20">Checks whether the given attribute is a simple class attribute and not part of a relation.</p>
 </td>
 </tr>
-<tr>
-<td style="width:40px;">
-<p>
-<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>
-</p>
-</td>
-<td>
-<p>
-<a href="#custom_code">custom_code</a> id</p>
-<p class="ml20">Adds a merge point to your generated code. Further generations will merge code inside this tag</p>
-</td>
-</tr>
 </table>
 </subsection>
 </section>
 <subsection name="Detailed documentation">
-<fieldset>
-<legend>
-<img src="../images/function-icon.png" alt="Function" title="Function"/>isCompositeRelation</legend>
-<div class="docdetail">
-<a name="isCompositeRelation"/>
-<p>Attribute that is not "simple" and that is a composite end of a relation is a composite relation
-		</p>
-<p>Parameters</p>
-<p class="ml20">att : The attribute to check</p>
-<p>Return</p>
-<p class="ml20">true attribute is part of a composite relation</p>
-</div>
-</fieldset>
 <fieldset>
 <legend>
 <img src="../images/function-icon.png" alt="Function" title="Function"/>isMandatoryAssociation</legend>
@@ -222,16 +182,6 @@
 <p class="ml20">att : The attribute to check</p>
 <p>Return</p>
 <p class="ml20">true if attribute does not belong to an association</p>
-</div>
-</fieldset>
-<fieldset>
-<legend>
-<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>custom_code</legend>
-<div class="docdetail">
-<a name="custom_code"/>
-<p>Adds a merge point to your generated code. Further generations will merge code inside this tag</p>
-<p>Parameters</p>
-<p class="ml20">id : Unique identifier for this merge point</p>
 </div>
 </fieldset>
 </subsection>

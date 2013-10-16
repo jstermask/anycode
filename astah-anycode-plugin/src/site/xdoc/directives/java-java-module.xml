@@ -48,18 +48,6 @@
 </td>
 <td>
 <p>
-<a href="#custom_code">custom_code</a> id</p>
-<p class="ml20">Adds a merge point to your generated java code. Further generations will merge code inside this tag</p>
-</td>
-</tr>
-<tr>
-<td style="width:40px;">
-<p>
-<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>
-</p>
-</td>
-<td>
-<p>
 <a href="#datatype">datatype</a> att</p>
 <p class="ml20">Renders attribute's datatype in java language.</p>
 </td>
@@ -115,16 +103,6 @@
 		</p>
 <p>Parameters</p>
 <p class="ml20">att : The attribute to render</p>
-</div>
-</fieldset>
-<fieldset>
-<legend>
-<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>custom_code</legend>
-<div class="docdetail">
-<a name="custom_code"/>
-<p>Adds a merge point to your generated java code. Further generations will merge code inside this tag</p>
-<p>Parameters</p>
-<p class="ml20">id : Unique identifier for this merge point</p>
 </div>
 </fieldset>
 <fieldset>
