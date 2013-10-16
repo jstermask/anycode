@@ -14,7 +14,7 @@
 	<artifactId>astah-anycode-plugin</artifactId>
 	<name>AnyCode plugin for Astah*</name>
 	<description>Code generation plugin for Astah* Community</description>
-	<version>1.1.0M2</version>
+	<version>1.1.0_M3</version>
 	<packaging>jar</packaging>
 	<inceptionYear>2013</inceptionYear>
 	<url>http://anycode.labulle.in</url>
@@ -162,7 +162,7 @@
 						<transformationSet>
 							<dir>src/main/resources/in/labulle/anycode/astah/plugin/template/src</dir>
 							<stylesheet>src/main/resources/in/labulle/anycode/astah/plugin/template/src/javadoc-macro.xsl</stylesheet>
-							<outputDir>src/site/xdoc/directives</outputDir>
+							<outputDir>src/site/xdoc/directives/${project.version}</outputDir>
 							<includes>
 								<include>*.xml</include>
 							</includes>

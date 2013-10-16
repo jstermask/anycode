@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?><document xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd" xmlns:fn="http://www.w3.org/2006/xpath-functions" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/XDOC/2.0">
+<head>
+<title>java - java Directive API</title>
+</head>
+<body>
+<section name="@java : java directive">
+<subsection name="Summary">
+<p> This directive provides macros and functions to generate code in java language.
+	</p>
+<p>Using a <b>function</b> in a template can be done using <code>&lt;java.functionName(att1, ..., atti, ..., attn) /&gt; </code>syntax.</p>
+<p>Using a <b>macro</b> in a template can be done using <code>&lt;@java.macroName att1 atti attn /&gt; </code>syntax.</p>
+<table class="table table-bordered">
+<tr>
+<th colspan="2">API Overview</th>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/function-icon.png" alt="Function" title="Function"/>
+</p>
+</td>
+<td>
+<p>
+<a href="#getAttributeName">getAttributeName</a>
+					(att)
+				</p>
+<p class="ml20">Gets or generates attribute's name</p>
+</td>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>
+</p>
+</td>
+<td>
+<p>
+<a href="#attribute">attribute</a> att</p>
+<p class="ml20">Renders and attribute (either simple or part of a relation). If attribute has no name, nothing is rendered.
+		</p>
+</td>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>
+</p>
+</td>
+<td>
+<p>
+<a href="#custom_code">custom_code</a> id</p>
+<p class="ml20">Adds a merge point to your generated java code. Further generations will merge code inside this tag</p>
+</td>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>
+</p>
+</td>
+<td>
+<p>
+<a href="#datatype">datatype</a> att</p>
+<p class="ml20">Renders attribute's datatype in java language.</p>
+</td>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>
+</p>
+</td>
+<td>
+<p>
+<a href="#getter">getter</a> att</p>
+<p class="ml20">Renders attribute's getter. If attribute has no name, nothing is rendered.</p>
+</td>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>
+</p>
+</td>
+<td>
+<p>
+<a href="#setter">setter</a> att</p>
+<p class="ml20">Renders attribute's setter. If attribute has no name, nothing is rendered.</p>
+</td>
+</tr>
+</table>
+</subsection>
+</section>
+<subsection name="Detailed documentation">
+<fieldset>
+<legend>
+<img src="../images/function-icon.png" alt="Function" title="Function"/>getAttributeName</legend>
+<div class="docdetail">
+<a name="getAttributeName"/>
+<p>Gets or generates attribute's name</p>
+<p>Parameters</p>
+<p class="ml20">att : The attribute</p>
+<p>Return</p>
+<p class="ml20">attribute's name or typeExpression name if it's part of an association</p>
+<p>Code example</p>
+<source/>
+</div>
+</fieldset>
+<fieldset>
+<legend>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>attribute</legend>
+<div class="docdetail">
+<a name="attribute"/>
+<p>Renders and attribute (either simple or part of a relation). If attribute has no name, nothing is rendered.
+		</p>
+<p>Parameters</p>
+<p class="ml20">att : The attribute to render</p>
+</div>
+</fieldset>
+<fieldset>
+<legend>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>custom_code</legend>
+<div class="docdetail">
+<a name="custom_code"/>
+<p>Adds a merge point to your generated java code. Further generations will merge code inside this tag</p>
+<p>Parameters</p>
+<p class="ml20">id : Unique identifier for this merge point</p>
+</div>
+</fieldset>
+<fieldset>
+<legend>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>datatype</legend>
+<div class="docdetail">
+<a name="datatype"/>
+<p>Renders attribute's datatype in java language.</p>
+<p>Parameters</p>
+<p class="ml20">att : The attribute to render</p>
+</div>
+</fieldset>
+<fieldset>
+<legend>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>getter</legend>
+<div class="docdetail">
+<a name="getter"/>
+<p>Renders attribute's getter. If attribute has no name, nothing is rendered.</p>
+<p>Parameters</p>
+<p class="ml20">att : The attribute to render</p>
+</div>
+</fieldset>
+<fieldset>
+<legend>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>setter</legend>
+<div class="docdetail">
+<a name="setter"/>
+<p>Renders attribute's setter. If attribute has no name, nothing is rendered.</p>
+<p>Parameters</p>
+<p class="ml20">att : The attribute to render</p>
+</div>
+</fieldset>
+</subsection>
+<script>
+					function toggleDisplay(divId) {
+						var divObj = document.getElementById(divId);
+						if(divObj) {
+							if(divObj.style.display == "none") {
+								divObj.style.display = "block";
+							} else {
+								divObj.style.display = "none";
+							}
+						}
+					}
+				</script>
+</body>
+</document>
