@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import org.xml.sax.ContentHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
@@ -22,7 +21,7 @@ public class XmiParser {
 		this.handler = handler;
 	}
 
-	public ContentHandler getHandler() {
+	private XmiContentHandler getHandler() {
 		return handler;
 	}
 
@@ -33,7 +32,7 @@ public class XmiParser {
 			InputSource source = new InputSource(new FileInputStream(new File(
 					filename)));
 			reader.parse(source);
-			return handler.getUmlModel();
+			return getHandler().getUmlModel();
 		} catch (Exception e) {
 			throw new IOException(e);
 		}

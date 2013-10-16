@@ -28,5 +28,11 @@ public class XmiParserTest {
 		}
 		assertEquals(2, model.getOwnedElements().size());
 	}
+	
+	@Test(expected = IOException.class)
+	public void testParseNoFile() throws IOException {
+		parser.parse("/grec0.xml");
+		
+	}
 
 }
