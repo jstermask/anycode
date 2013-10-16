@@ -430,7 +430,7 @@
 		</dependency>
 	</dependencies>
 	<issueManagement>
-		<system>GitHub</system>
-		<url>https://github.com/jjbcarreno/astah-anycode-plugin/issues</url>
+		<system>BitBucket</system>
+		<url>https://bitbucket.org/jjbcarreno/anycode/issues</url>
 	</issueManagement>
 </project>
