@@ -63,7 +63,8 @@ public class CompositeTemplate implements ITemplate {
 
 	@Override
 	public String getName() {
-		return fileNameTemplate.getName();
+	    int suffixIdx = fileNameTemplate.getName().lastIndexOf("-");
+		return fileNameTemplate.getName().substring(0, suffixIdx);
 	}
 
 
