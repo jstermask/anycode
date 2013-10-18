@@ -18,6 +18,9 @@ public final class ModelUtils {
 	private static final Logger LOG = LoggerFactory.getLogger(ModelUtils.class);
 
 	public static final List<IClass> getAllClasses(IModel model) {
+	    if(LOG.isDebugEnabled()) {
+	        LOG.debug("getAllClasses(" + model + ")");
+	    }
 		List<IClass> classeList = new ArrayList<IClass>();
 		getAllClasses(model, classeList);
 		return classeList;

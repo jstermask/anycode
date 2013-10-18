@@ -14,6 +14,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.change_vision.jude.api.inf.model.IClass;
 
 /**
@@ -23,121 +26,130 @@ import com.change_vision.jude.api.inf.model.IClass;
  * 
  */
 public class ClassCodeGenerationServiceImpl implements ICodeGenerationService {
-	/**
-	 * Model repository.
-	 */
-	private IModelRepository modelRepository;
+    /**
+     * log.
+     */
+    private static final Logger LOG = LoggerFactory.getLogger(ClassCodeGenerationServiceImpl.class);
 
-	/**
-	 * Template repository.
-	 */
-	private ITemplateRepositoryFactory templateRepositoryFactory;
+    /**
+     * Model repository.
+     */
+    private IModelRepository modelRepository;
 
-	/**
-	 * Code generation report.
-	 */
-	private ICodeGenerationLog codeGenerationReport;
+    /**
+     * Template repository.
+     */
+    private ITemplateRepositoryFactory templateRepositoryFactory;
 
-	/**
-	 * 
-	 * @param modelFactory
-	 * @param templateRepository
-	 */
-	public ClassCodeGenerationServiceImpl(final IModelRepository modelFactory,
-			final ITemplateRepositoryFactory templateRepository) {
-		this.modelRepository = modelFactory;
-		this.templateRepositoryFactory = templateRepository;
-	}
+    /**
+     * Code generation report.
+     */
+    private ICodeGenerationLog codeGenerationReport;
 
-	@Override
-	public void generateCode(final String templatePath, final String outputPath) {
-		Configuration config = Configuration.getConfiguration().clone();
-		config.put(Configuration.CONTEXT_PARAM_TARGET_DIR, outputPath);
-		config.put(Configuration.CONTEXT_PARAM_TEMPLATE_DIR, templatePath);
-		List<IClass> classes = ModelUtils.getAllClasses(getModelRepository()
-				.getModelInstance());
-		List<ITemplate> templates = getTemplates(templatePath);
-		int maxGenerations = classes.size() * templates.size();
-		int achievedGenerations = 0;
-		for (IClass aClass : classes) {
-			for (ITemplate aTemplate : templates) {
-				achievedGenerations++;
-				if (codeGenerationReport != null) {
-					codeGenerationReport.setProgress((int) Math
-							.round(((achievedGenerations * 1.0)
-									/ (maxGenerations * 1.0) * 100.0)));
-				}
-				generate(aClass, aTemplate, config);
-			}
-		}
-	}
+    /**
+     * 
+     * @param modelFactory
+     * @param templateRepository
+     */
+    public ClassCodeGenerationServiceImpl(final IModelRepository modelFactory,
+            final ITemplateRepositoryFactory templateRepository) {
+        this.modelRepository = modelFactory;
+        this.templateRepositoryFactory = templateRepository;
+    }
 
-	/**
-	 * 
-	 * @return template repository
-	 */
-	protected ITemplateRepositoryFactory getTemplateRepositoryFactory() {
-		return templateRepositoryFactory;
-	}
+    @Override
+    public void generateCode(final String templatePath, final String outputPath) {
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("generateCode(" + templatePath + ", " + outputPath + ")");
+        }
+        Configuration config = Configuration.getConfiguration().clone();
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("cloned configuration");
+        }
+        config.put(Configuration.CONTEXT_PARAM_TARGET_DIR, outputPath);
+        config.put(Configuration.CONTEXT_PARAM_TEMPLATE_DIR, templatePath);
+        List<IClass> classes = ModelUtils.getAllClasses(getModelRepository().getModelInstance());
+        List<ITemplate> templates = getTemplates(templatePath);
+        int maxGenerations = classes.size() * templates.size();
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(classes.size() + " classes and " + templates.size() + " templates found !");
+        }
+        int achievedGenerations = 0;
+        for (IClass aClass : classes) {
+            for (ITemplate aTemplate : templates) {
+                achievedGenerations++;
+                if (codeGenerationReport != null) {
+                    codeGenerationReport.setProgress((int) Math.round(((achievedGenerations * 1.0)
+                            / (maxGenerations * 1.0) * 100.0)));
+                }
+                generate(aClass, aTemplate, config);
+            }
+        }
+    }
 
-	/**
-	 * 
-	 * @return model repository
-	 */
-	protected IModelRepository getModelRepository() {
-		return modelRepository;
-	}
+    /**
+     * 
+     * @return template repository
+     */
+    protected ITemplateRepositoryFactory getTemplateRepositoryFactory() {
+        return templateRepositoryFactory;
+    }
 
-	/**
-	 * Call the template to render itself as a file.
-	 * 
-	 * @param aClass
-	 *            class
-	 * @param aTemplate
-	 *            template
-	 * @param config
-	 *            configuration
-	 */
-	private void generate(final IClass aClass, final ITemplate aTemplate,
-			final Configuration config) {
-		config.put(Configuration.CONTEXT_PARAM_CLASS_CURRENT, aClass);
-		try {
-			File f = aTemplate.renderToFile(config);
-			if (this.codeGenerationReport != null) {
-				this.codeGenerationReport.success(f, aTemplate.getName(),
-						aClass.getFullName("."));
-			}
-		} catch (TemplateException e) {
-			if (this.codeGenerationReport != null) {
-				this.codeGenerationReport.failure(aTemplate.getName(),
-						aClass.getFullName("."), e);
-			}
-		}
-	}
+    /**
+     * 
+     * @return model repository
+     */
+    protected IModelRepository getModelRepository() {
+        return modelRepository;
+    }
 
-	@Override
-	public void attachReport(ICodeGenerationLog report) {
-		this.codeGenerationReport = report;
-	}
+    /**
+     * Call the template to render itself as a file.
+     * 
+     * @param aClass
+     *            class
+     * @param aTemplate
+     *            template
+     * @param config
+     *            configuration
+     */
+    private void generate(final IClass aClass, final ITemplate aTemplate, final Configuration config) {
+        config.put(Configuration.CONTEXT_PARAM_CLASS_CURRENT, aClass);
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("generate(" + aClass.getName() + ", " + aTemplate + "," + config + ")");
+        }
+        try {
+            File f = aTemplate.renderToFile(config);
+            if (this.codeGenerationReport != null) {
+                this.codeGenerationReport.success(f, aTemplate.getName(), aClass.getFullName("."));
+            }
+        } catch (TemplateException e) {
+            if (this.codeGenerationReport != null) {
+                this.codeGenerationReport.failure(aTemplate.getName(), aClass.getFullName("."), e);
+            }
+        }
+    }
 
-	private List<ITemplate> getTemplates(String templatePath) {
-		List<ITemplate> templates = new ArrayList<ITemplate>();
-		List<ICodeGenerationArtifact> arts = this.templateRepositoryFactory
-				.newInstance(templatePath).getCodeGenerationArtifacts();
-		for (ICodeGenerationArtifact art : arts) {
-			if (art instanceof ITemplate) {
-				templates.add((ITemplate) art);
-			}
-		}
-		return templates;
-	}
+    @Override
+    public void attachReport(ICodeGenerationLog report) {
+        this.codeGenerationReport = report;
+    }
 
-	@Override
-	public List<ICodeGenerationArtifact> getCodeGenerationArtifacts(
-			String templatePath) {
-		return this.templateRepositoryFactory.newInstance(templatePath)
-				.getCodeGenerationArtifacts();
+    private List<ITemplate> getTemplates(String templatePath) {
+        List<ITemplate> templates = new ArrayList<ITemplate>();
+        List<ICodeGenerationArtifact> arts = this.templateRepositoryFactory.newInstance(templatePath).getCodeGenerationArtifacts();
+        for (ICodeGenerationArtifact art : arts) {
+            if (art instanceof ITemplate) {
+                templates.add((ITemplate) art);
+            }
+        }
+        return templates;
+    }
 
-	}
+    @Override
+    public List<ICodeGenerationArtifact> getCodeGenerationArtifacts(String templatePath) {
+        return this.templateRepositoryFactory.newInstance(templatePath).getCodeGenerationArtifacts();
+
+    }
 
 }

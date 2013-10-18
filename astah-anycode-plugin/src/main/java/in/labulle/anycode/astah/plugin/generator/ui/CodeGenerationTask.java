@@ -26,6 +26,9 @@ public class CodeGenerationTask extends SwingWorker<Integer, String> {
 	@Override
 	protected Integer doInBackground() {
 		try {
+		    if(LOG.isDebugEnabled()) {
+		        LOG.debug("doInBackground");
+		    }
 			setProgress(0);
 			codeGenerationService.generateCode(templatePath, outputPath);
 			return 100;
