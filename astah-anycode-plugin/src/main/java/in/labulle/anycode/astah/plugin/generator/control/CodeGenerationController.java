@@ -81,6 +81,7 @@ public class CodeGenerationController implements IController<ICodeGenerationCont
     @Override
     public void register(ICodeGenerationContext context) {
         this.context = context;
+        this.context.setDefaultBrowsePath(getCodeGenerationService().getModelFilePath());
     }
 
 }

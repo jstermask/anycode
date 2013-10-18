@@ -152,4 +152,9 @@ public class ClassCodeGenerationServiceImpl implements ICodeGenerationService {
 
     }
 
+    @Override
+    public String getModelFilePath() {
+        return getModelRepository().getModelFilePath();
+    }
+
 }

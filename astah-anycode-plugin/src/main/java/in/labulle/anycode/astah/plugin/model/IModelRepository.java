@@ -15,4 +15,9 @@ public interface IModelRepository {
 	 * @return the whole model
 	 */
 	IModel getModelInstance();
+	
+	/**
+	 * @return model file's path.
+	 */
+	String getModelFilePath();
 }

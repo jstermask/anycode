@@ -268,5 +268,12 @@ public class ConfigurationPanel extends JPanel {
 		label.setForeground(new Color(0.2f, 0.2f, 0.2f));
 		label.setFont(f);
 	}
+	
+  
+    public void setDefaultBrowsePath(String defaultBrowsePath) {
+        if(defaultBrowsePath != null) {
+            this.fileChooser.setCurrentDirectory(new File(defaultBrowsePath));
+        }
+    }
 
 }

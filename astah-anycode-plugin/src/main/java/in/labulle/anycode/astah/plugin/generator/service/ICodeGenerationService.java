@@ -2,7 +2,6 @@ package in.labulle.anycode.astah.plugin.generator.service;
 
 import in.labulle.anycode.astah.plugin.report.ICodeGenerationLog;
 import in.labulle.anycode.astah.plugin.template.ICodeGenerationArtifact;
-import in.labulle.anycode.astah.plugin.template.ITemplate;
 
 import java.util.List;
 
@@ -34,5 +33,11 @@ public interface ICodeGenerationService {
 	 * @return internal macros
 	 */
 	List<ICodeGenerationArtifact> getCodeGenerationArtifacts(final String templatePath);
+	
+	/**
+	 * 
+	 * @return the directory were project is stored.
+	 */
+	public String getModelFilePath();
 	
 }

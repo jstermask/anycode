@@ -108,7 +108,7 @@ public class CodeGenerationEvent implements ICodeGenerationEvent {
 		} else {
 			return "[" + (generatedFile.length() / 1024)
 					+ BundleUtils.getMessage("label_kb") + "] "
-					+ generatedFile.getAbsolutePath();
+					+ (generatedFile.exists() ? "skipped" : generatedFile.getAbsolutePath());
 		}
 	}
 

@@ -41,9 +41,9 @@ public class CodeConfigurationTabView extends JPanel implements
 	
 	public CodeConfigurationTabView() {
 		super();
-		CodeGenerationController c = new CodeGenerationController(new ClassCodeGenerationServiceImpl(new ModelRepositoryImpl(), new TemplateRepositoryFactoryImpl()));
-		register(c);
+		CodeGenerationController c = new CodeGenerationController(new ClassCodeGenerationServiceImpl(new ModelRepositoryImpl(), new TemplateRepositoryFactoryImpl()));	
 		initComponents();
+		register(c);
 	}
 	
 	private void initComponents() {
@@ -125,6 +125,13 @@ public class CodeConfigurationTabView extends JPanel implements
 		this.configurationPanel.setTemplatesAndMacrosCount(macros, templates);
 		
 	}
+
+    @Override
+    public void setDefaultBrowsePath(String defaultBrowsePath) {
+        this.configurationPanel.setDefaultBrowsePath(defaultBrowsePath);  
+    }
+	
+
 
 	
 

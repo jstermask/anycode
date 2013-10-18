@@ -8,4 +8,5 @@ public interface ICodeGenerationContext extends IContext {
 	String getOutputPath();
 	ICodeGenerationLog getLog();
 	public void setTemplatesAndMacrosCount(Integer macros, Integer templates);
+	public void setDefaultBrowsePath(String defaultBrowsePath);
 }

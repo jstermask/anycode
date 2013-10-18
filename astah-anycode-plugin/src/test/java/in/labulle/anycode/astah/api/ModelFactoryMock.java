@@ -17,4 +17,10 @@ public class ModelFactoryMock implements IModelRepository {
 		return null;
 	}
 
+    @Override
+    public String getModelFilePath() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }
