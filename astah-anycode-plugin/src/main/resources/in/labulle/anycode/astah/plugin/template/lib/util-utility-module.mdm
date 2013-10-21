@@ -5,7 +5,7 @@
 <#macro custom_code id params...>
 	<@compress>
 	${params['bComment']}<customCode id="${id}">
-	<#if .data_model['customCodes'][id]?? >
+	<#if .data_model['customCodes']?? && .data_model['customCodes'][id]?? >
 		${.data_model['customCodes'][id]}
 	</#if>
 	<#if params['eComment']??>${params['eComment']}<#else>${params['bComment']}</#if></customCode>
