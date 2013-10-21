@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><document xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd" xmlns:fn="http://www.w3.org/2006/xpath-functions" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/XDOC/2.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<document xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd" xmlns:fn="http://www.w3.org/2006/xpath-functions" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/XDOC/2.0">
 <head>
 <title>jpa - jpa Directive API</title>
 </head>
@@ -204,7 +205,7 @@
 <p>Parameters</p>
 <p class="ml20">c : The c to check</p>
 <p>Return</p>
-<p class="ml20">list of attributes not tagged with id stereotype</p>
+<p class="ml20">list of attributes not tagged with id stereotype. Only navigable attributes are returned here.</p>
 <p>Code example</p>
 <source/>
 </div>

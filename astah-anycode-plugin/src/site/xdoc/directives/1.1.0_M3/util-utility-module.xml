@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><document xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd" xmlns:fn="http://www.w3.org/2006/xpath-functions" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/XDOC/2.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<document xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd" xmlns:fn="http://www.w3.org/2006/xpath-functions" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/XDOC/2.0">
 <head>
 <title>util - utility Directive API</title>
 </head>
@@ -12,6 +13,21 @@
 <table class="table table-bordered">
 <tr>
 <th colspan="2">API Overview</th>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/function-icon.png" alt="Function" title="Function"/>
+</p>
+</td>
+<td>
+<p>
+<a href="#getAttributes">getAttributes</a>
+					(att,navigableOnly)
+				</p>
+<p class="ml20">Return class attributes
+		</p>
+</td>
 </tr>
 <tr>
 <td style="width:40px;">
@@ -80,6 +96,21 @@
 </td>
 <td>
 <p>
+<a href="#isNavigable">isNavigable</a>
+					(att)
+				</p>
+<p class="ml20">Return true if attribute is navigable or if it has no specified navigation
+		</p>
+</td>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/function-icon.png" alt="Function" title="Function"/>
+</p>
+</td>
+<td>
+<p>
 <a href="#isOneToMany">isOneToMany</a>
 					(att)
 				</p>
@@ -130,6 +161,20 @@
 </subsection>
 </section>
 <subsection name="Detailed documentation">
+<fieldset>
+<legend>
+<img src="../images/function-icon.png" alt="Function" title="Function"/>getAttributes</legend>
+<div class="docdetail">
+<a name="getAttributes"/>
+<p>Return class attributes
+		</p>
+<p>Parameters</p>
+<p class="ml20">att : The attribute to check</p>
+<p class="ml20">navigableOnly : Only navigable attributes are returned. False by default</p>
+<p>Return</p>
+<p class="ml20">list of attributes</p>
+</div>
+</fieldset>
 <fieldset>
 <legend>
 <img src="../images/function-icon.png" alt="Function" title="Function"/>isCompositeRelation</legend>
@@ -186,6 +231,19 @@
 	@ManyToOne
 	...
 &lt;/#if&gt;</source>
+</div>
+</fieldset>
+<fieldset>
+<legend>
+<img src="../images/function-icon.png" alt="Function" title="Function"/>isNavigable</legend>
+<div class="docdetail">
+<a name="isNavigable"/>
+<p>Return true if attribute is navigable or if it has no specified navigation
+		</p>
+<p>Parameters</p>
+<p class="ml20">att : The attribute to check</p>
+<p>Return</p>
+<p class="ml20">true if attribute if navigable</p>
 </div>
 </fieldset>
 <fieldset>

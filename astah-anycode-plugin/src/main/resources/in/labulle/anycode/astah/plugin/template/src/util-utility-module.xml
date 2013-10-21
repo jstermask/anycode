@@ -143,5 +143,41 @@
 		</code>
 	</macro>
 
+	<function name="isNavigable">
+		<description>Return true if attribute is navigable or if it has no specified navigation
+		</description>
+		<param>
+			<name>att</name>
+			<description>The attribute to check</description>
+		</param>
+		<return>true if attribute if navigable</return>
+		<code>
+<![CDATA[<#function isNavigable att>
+	<#return att.navigability == 'Navigable'/>
+</#function>]]></code>
+	</function>	
 	
+	<function name="getAttributes">
+		<description>Return class attributes
+		</description>
+		<param>
+			<name>att</name>
+			<description>The attribute to check</description>
+		</param>
+		<param>
+			<name>navigableOnly</name>
+			<description>Only navigable attributes are returned. False by default</description>
+		</param>
+		<return>list of attributes</return>
+		<code>
+<![CDATA[<#function getAttributes c navigableOnly=false>
+	<#local listIds = []/>
+	<#list c.attributes as att>
+	<#if (!navigableOnly || isNavigable(att))>
+		<#local listIds = listIds + [att]/>
+	</#if>
+	</#list>
+	<#return listIds/>
+</#function>]]></code>
+	</function>
 </directive>

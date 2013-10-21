@@ -211,11 +211,11 @@ ${a.name}
 			<name>c</name>
 			<description>The c to check</description>
 		</param>
-		<return>list of attributes not tagged with id stereotype</return>
+		<return>list of attributes not tagged with id stereotype. Only navigable attributes are returned here.</return>
 		<code>
 <![CDATA[<#function getNonIdAttributes c>
 	<#local listIds = []/>
-	<#list c.attributes as att>
+	<#list util.getAttributes(c, true) as att>
 	<#if (!isIdAttribute(att))>
 		<#local listIds = listIds + [att]/>
 	</#if>
