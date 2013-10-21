@@ -82,4 +82,19 @@
 <#function isSimple att>
 	<#return !att.association?has_content />
 </#function>
+
+
+<#function getAttributes c navigableOnly=false>
+	<#local listIds = []/>
+	<#list c.attributes as att>
+	<#if (!navigableOnly || isNavigable(att))>
+		<#local listIds = listIds + [att]/>
+	</#if>
+	</#list>
+	<#return listIds/>
+</#function>
+
+<#function isNavigable att>
+	<#return att.navigability == 'Navigable'/>
+</#function>
 		

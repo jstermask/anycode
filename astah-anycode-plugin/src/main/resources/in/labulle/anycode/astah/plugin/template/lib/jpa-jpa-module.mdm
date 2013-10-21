@@ -101,7 +101,7 @@ ${a.name}
 
 <#function getNonIdAttributes c>
 	<#local listIds = []/>
-	<#list c.attributes as att>
+	<#list util.getAttributes(c, true) as att>
 	<#if (!isIdAttribute(att))>
 		<#local listIds = listIds + [att]/>
 	</#if>
