@@ -36,13 +36,11 @@ import org.hibernate.annotations.*;
 		</param>
 		<code>
 <![CDATA[<#macro attribute att>
-<#if !isIdAttribute(att)>
     <@compress>
 	<@attribute_annotations att/>
 	<@java.attribute att/>
 	</@compress>
 	
-</#if>
 </#macro>]]>
 		</code>
 	</macro>	
@@ -127,7 +125,11 @@ ${a.name}
 		<code>
 <![CDATA[<#macro simple_primary_key att>
 	@javax.persistence.Id
+	<#if att.owner.hasStereotype("entity")>@javax.persistence.ManyToOne</#if>
 	<@java.attribute att />
+	<@java.getter att />
+	<@java.setter att />
+	
 </#macro>]]>
 		</code>	
 	</macro>
@@ -177,7 +179,7 @@ ${a.name}
 		<code>
 <![CDATA[<#function getIdAttributes c>
 	<#local listIds = []/>
-	<#list c.attributes as att>
+	<#list util.getAttributes(c, false) as att>
 	<#if isIdAttribute(att)>
 		<#local listIds = listIds + [att]/>
 	</#if>
