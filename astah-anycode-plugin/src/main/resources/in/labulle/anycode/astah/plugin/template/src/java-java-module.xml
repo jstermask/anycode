@@ -130,12 +130,9 @@ java.util.Set<${att.qualifiedTypeExpression?replace("::",".")}>
 		<@compress>
 		<#local idValue="op-${op.name}"/>
 		<#list op.parameters as p>
-			<#local idValue=idValue+p.name/>
-			<#if p_has_next>
-				<#local idValue=idValue+'-'/>
-			</#if>
+			<#local idValue=idValue+"-"+p.name/>
 		</#list>
-		<@custom_code id="op-${op.name}-" />
+		<@custom_code id=idValue />
 		</@compress>
 	
 	}</#if> 
