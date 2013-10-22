@@ -109,4 +109,58 @@ java.util.Set<${att.qualifiedTypeExpression?replace("::",".")}>
 		</code>
 	</macro>
 	
+	<macro name="operation">
+		<description>Renders a java operation</description>
+		<param>
+			<name>op</name>
+			<description>Operation</description>
+		</param>
+		<param>
+			<name>includeExceptions</name>
+			<description>If true, renders an exception. false by default</description>
+		</param>
+		<param>
+			<name>includeBody</name>
+			<description>If true, renders brackets and custom code body. If false, renders signature only. false by default</description>
+		</param>
+		<code>
+<![CDATA[<#macro operation op includeExceptions=false includeBody=false >
+	<#if op.name?has_content>
+	<#if includeBody><@visibility op/></#if> ${op.returnType.name} ${op.name}(<#list op.parameters as p>${p.type.name} ${p.name} <#if p_has_next>,</#if></#list>) <#if includeExceptions>throws ${op.owner.name}Exception</#if><#if !includeBody>;<#else>{
+		<@compress>
+		<#local idValue="op-${op.name}"/>
+		<#list op.parameters as p>
+			<#local idValue=idValue+p.name/>
+			<#if p_has_next>
+				<#local idValue=idValue+'-'/>
+			</#if>
+		</#list>
+		<@custom_code id="op-${op.name}-" />
+		</@compress>
+	
+	}</#if> 
+	</#if>
+</#macro>]]>
+		</code>
+	</macro>
+	
+	<macro name="visibility">
+		<description>Renders a java visibility</description>
+		<param>
+			<name>elt</name>
+			<description>uml element</description>
+		</param>
+		<code>
+<![CDATA[<#macro visibility elt>
+	<@compress>
+	<#if elt.privateVisibility>private
+	<#elseif elt.publicVisibility>public
+	<#elseif elt.protectedVisibility>protected
+	</#if>
+	</@compress>
+</#macro>]]>
+		</code>
+	</macro>
+
+	
 </directive>

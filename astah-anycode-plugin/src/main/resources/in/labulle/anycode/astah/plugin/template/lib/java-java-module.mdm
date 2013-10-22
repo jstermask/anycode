@@ -69,4 +69,31 @@ java.util.Set<${att.qualifiedTypeExpression?replace("::",".")}>
 	}
 	</#if>
 </#macro>
+
+<#macro operation op includeExceptions=false includeBody=false >
+	<#if op.name?has_content>
+	<#if includeBody><@visibility op/></#if> ${op.returnType.name} ${op.name}(<#list op.parameters as p>${p.type.name} ${p.name} <#if p_has_next>,</#if></#list>) <#if includeExceptions>throws ${op.owner.name}Exception</#if><#if !includeBody>;<#else>{
+		<@compress>
+		<#local idValue="op-${op.name}"/>
+		<#list op.parameters as p>
+			<#local idValue=idValue+p.name/>
+			<#if p_has_next>
+				<#local idValue=idValue+'-'/>
+			</#if>
+		</#list>
+		<@custom_code id="op-${op.name}-" />
+		</@compress>
+	
+	}</#if> 
+	</#if>
+</#macro>
+
+<#macro visibility elt>
+	<@compress>
+	<#if elt.privateVisibility>private
+	<#elseif elt.publicVisibility>public
+	<#elseif elt.protectedVisibility>protected
+	</#if>
+	</@compress>
+</#macro>
 		
