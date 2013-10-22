@@ -11,8 +11,8 @@
 		</param>
 		<code>
 <![CDATA[<#macro service_entity_dependency dep>
-<#if java.hasStereotype(dep.supplier, "entity")>
-	    @Autowired
+<#if dep.supplier.hasStereotype("entity")>
+	    @org.springframework.beans.factory.annotation.Autowired
 		private I${dep.supplier.name}Repository ${dep.supplier.name?uncap_first}Repository;
 		
 		public  I${dep.supplier.name}Repository get${dep.supplier.name}Repository() {
