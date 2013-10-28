@@ -204,7 +204,7 @@
 <p>Parameters</p>
 <p class="ml20">c : The c to check</p>
 <p>Return</p>
-<p class="ml20">list of attributes not tagged with id stereotype</p>
+<p class="ml20">list of attributes not tagged with id stereotype. Only navigable attributes are returned here.</p>
 <p>Code example</p>
 <source/>
 </div>

@@ -84,8 +84,32 @@
 </td>
 <td>
 <p>
+<a href="#operation">operation</a> op includeExceptions includeBody</p>
+<p class="ml20">Renders a java operation</p>
+</td>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>
+</p>
+</td>
+<td>
+<p>
 <a href="#setter">setter</a> att</p>
 <p class="ml20">Renders attribute's setter. If attribute has no name, nothing is rendered.</p>
+</td>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>
+</p>
+</td>
+<td>
+<p>
+<a href="#visibility">visibility</a> elt</p>
+<p class="ml20">Renders a java visibility</p>
 </td>
 </tr>
 </table>
@@ -149,12 +173,34 @@
 </fieldset>
 <fieldset>
 <legend>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>operation</legend>
+<div class="docdetail">
+<a name="operation"/>
+<p>Renders a java operation</p>
+<p>Parameters</p>
+<p class="ml20">op : Operation</p>
+<p class="ml20">includeExceptions : If true, renders an exception. false by default</p>
+<p class="ml20">includeBody : If true, renders brackets and custom code body. If false, renders signature only. false by default</p>
+</div>
+</fieldset>
+<fieldset>
+<legend>
 <img src="../images/macro-icon.png" alt="Macro" title="Macro"/>setter</legend>
 <div class="docdetail">
 <a name="setter"/>
 <p>Renders attribute's setter. If attribute has no name, nothing is rendered.</p>
 <p>Parameters</p>
 <p class="ml20">att : The attribute to render</p>
+</div>
+</fieldset>
+<fieldset>
+<legend>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>visibility</legend>
+<div class="docdetail">
+<a name="visibility"/>
+<p>Renders a java visibility</p>
+<p>Parameters</p>
+<p class="ml20">elt : uml element</p>
 </div>
 </fieldset>
 </subsection>
