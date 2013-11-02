@@ -58,9 +58,9 @@ java.util.Set<${att.qualifiedTypeExpression?replace("::",".")}>
 	
 <#--Renders a java operation-->
 
-<#macro operation op alternativeOpName includeExceptions=false includeBody=false>
+<#macro operation op alternativeOpName='' includeExceptions=false includeBody=false>
 	<#if op.name?has_content>
-	<#if includeBody><@visibility op/></#if> ${op.returnType.name} <#if alternativeOpName??>${alternativeOpName}<#else>${op.name}</#if>(<#list op.parameters as p>${p.type.name} ${p.name} <#if p_has_next>,</#if></#list>) <#if includeExceptions>throws ${op.owner.name}Exception</#if><#if !includeBody>;<#else>{
+	<#if includeBody><@visibility op/></#if> ${op.returnType.name}${op.typeModifier} <#if (alternativeOpName?length > 0)>${alternativeOpName}<#else>${op.name}</#if>(<#list op.parameters as p>${p.type.name} ${p.name} <#if p_has_next>,</#if></#list>) <#if includeExceptions>throws ${op.owner.name}Exception</#if><#if !includeBody>;<#else>{
 		<@compress>
 		<#local idValue="op-${op.name}"/>
 		<#list op.parameters as p>

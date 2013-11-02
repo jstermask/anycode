@@ -272,7 +272,7 @@ ${a.name}
 		</param>
 		<code>
 <![CDATA[<#macro finder_operation op>
-<@java.operation includeExceptions=false includeBody=false alternativeOpName=op.substring(1)/>
+<@java.operation op=op includeExceptions=false includeBody=false alternativeOpName=op?substring(1)/>
 </#macro>]]>
 		</code>
 	</macro>
