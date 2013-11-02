@@ -6,7 +6,7 @@
 		<bundle.namespace>in.labulle.anycode.astah.plugin</bundle.namespace>
 		<plugin.install>true</plugin.install>
 		<astah.version>6.7</astah.version>
-		<astah.edition>community</astah.edition>
+		<astah.edition>community,uml,pro</astah.edition>
 		<astahPath>${env.ASTAH_API_HOME}</astahPath>
 	</properties>
 	<modelVersion>4.0.0</modelVersion>
