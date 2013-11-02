@@ -151,7 +151,8 @@ import org.hibernate.annotations.*;
 	@javax.persistence.Id
 	<#if att.association??>@javax.persistence.ManyToOne</#if>
 	<@java.attribute att />
-	<@java.getter att/>
-	<@java.setter att/>
+	<@java.getter att />
+	<@java.setter att />
+	
 </#macro>
 		

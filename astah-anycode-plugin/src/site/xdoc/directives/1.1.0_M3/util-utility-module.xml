@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd" xmlns:fn="http://www.w3.org/2006/xpath-functions" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/XDOC/2.0">
+<?xml version="1.0" encoding="UTF-8"?><document xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd" xmlns:fn="http://www.w3.org/2006/xpath-functions" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/XDOC/2.0">
 <head>
 <title>util - utility Directive API</title>
 </head>

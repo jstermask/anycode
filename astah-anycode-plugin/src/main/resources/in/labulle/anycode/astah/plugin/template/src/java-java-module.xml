@@ -123,10 +123,14 @@ java.util.Set<${att.qualifiedTypeExpression?replace("::",".")}>
 			<name>includeBody</name>
 			<description>If true, renders brackets and custom code body. If false, renders signature only. false by default</description>
 		</param>
+		<param>
+			<name>alternativeOpName</name>
+			<description>Override method name with anotherone.</description>
+		</param>
 		<code>
-<![CDATA[<#macro operation op includeExceptions=false includeBody=false >
+<![CDATA[<#macro operation op includeExceptions=false includeBody=false alternativeOpName>
 	<#if op.name?has_content>
-	<#if includeBody><@visibility op/></#if> ${op.returnType.name} ${op.name}(<#list op.parameters as p>${p.type.name} ${p.name} <#if p_has_next>,</#if></#list>) <#if includeExceptions>throws ${op.owner.name}Exception</#if><#if !includeBody>;<#else>{
+	<#if includeBody><@visibility op/></#if> ${op.returnType.name} <#if alternativeOpName??>${alternativeOpName}<#else>${op.name}</#if>(<#list op.parameters as p>${p.type.name} ${p.name} <#if p_has_next>,</#if></#list>) <#if includeExceptions>throws ${op.owner.name}Exception</#if><#if !includeBody>;<#else>{
 		<@compress>
 		<#local idValue="op-${op.name}"/>
 		<#list op.parameters as p>
