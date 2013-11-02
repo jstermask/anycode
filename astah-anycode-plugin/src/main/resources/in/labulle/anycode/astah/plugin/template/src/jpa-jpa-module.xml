@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <directive id="jpa" name="jpa">
-	<description> This directive provides macros and functions to generate code specific to JPA2/Hibernate implementation.</description>
+	<description> This directive provides macros and functions to generate
+		code specific to JPA2/Hibernate implementation.</description>
 	<macro name="imports">
-		<description>Renders JPA import dependencies (import javax.persistence.*...).</description>
+		<description>Renders JPA import dependencies (import
+			javax.persistence.*...).</description>
 		<code>
 <![CDATA[<#macro imports>
 import javax.persistence.*;
@@ -11,9 +13,11 @@ import org.hibernate.annotations.*;
 </#macro>]]>
 		</code>
 	</macro>
-	
+
 	<macro name="entity_annotations">
-		<description>If entity has no identifier column defined, then a sequence generator will be generated. Otherwise, nothing will be generated</description>
+		<description>If entity has no identifier column defined, then a
+			sequence generator will be generated. Otherwise, nothing will be
+			generated</description>
 		<param>
 			<name>c</name>
 			<description>UML class instance</description>
@@ -27,7 +31,7 @@ import org.hibernate.annotations.*;
 </#macro>]]>
 		</code>
 	</macro>
-	
+
 	<macro name="attribute">
 		<description>Generates JPA attribute</description>
 		<param>
@@ -43,10 +47,11 @@ import org.hibernate.annotations.*;
 	
 </#macro>]]>
 		</code>
-	</macro>	
-	
+	</macro>
+
 	<macro name="attribute_annotations">
-		<description>Generates JPA annotations on each attributes.</description>
+		<description>Generates JPA annotations on each attributes.
+		</description>
 		<param>
 			<name>att</name>
 			<description>UML Attribute instance</description>
@@ -71,10 +76,12 @@ ${a.name}
 </#macro>]]>
 		</code>
 	</macro>
-	
+
 
 	<macro name="primary_key">
-		<description>Generates a primary key. If "id" attributes are present, then classes are generated automatically. Otherwise a default primary key is generated.</description>
+		<description>Generates a primary key. If "id" attributes are present,
+			then classes are generated automatically. Otherwise a default primary
+			key is generated.</description>
 		<param>
 			<name>c</name>
 			<description>UML class instance</description>
@@ -90,9 +97,9 @@ ${a.name}
 	<@default_primary_key c/>
 </#if>
 </#macro>]]>
-		</code>	
+		</code>
 	</macro>
-	
+
 	<macro name="default_primary_key">
 		<description>Generates a primary key named ID.</description>
 		<param>
@@ -113,11 +120,12 @@ ${a.name}
 			this.id = anId;
 		}
 </#macro>]]>
-		</code>	
+		</code>
 	</macro>
 
 	<macro name="simple_primary_key">
-		<description>Generates a primary key based on the unique id attribute of the class.</description>
+		<description>Generates a primary key based on the unique id attribute
+			of the class.</description>
 		<param>
 			<name>att</name>
 			<description>UML attribute</description>
@@ -131,11 +139,12 @@ ${a.name}
 	<@java.setter att />
 	
 </#macro>]]>
-		</code>	
+		</code>
 	</macro>
 
 	<macro name="composite_primary_key">
-		<description>Generates a composite primary key (non composite), based on the given class</description>
+		<description>Generates a composite primary key (non composite), based
+			on the given class</description>
 		<param>
 			<name>c</name>
 			<description>class </description>
@@ -153,11 +162,12 @@ ${a.name}
 			this.id = anId;
 		}
 </#macro>]]>
-		</code>	
+		</code>
 	</macro>
-	
+
 	<macro name="entity_sequence">
-		<description>Generates sequence generator as SQ_{className}.</description>
+		<description>Generates sequence generator as SQ_{className}.
+		</description>
 		<param>
 			<name>c</name>
 			<description>UML class instance</description>
@@ -166,11 +176,12 @@ ${a.name}
 <![CDATA[<#macro entity_sequence c>
 @javax.persistence.SequenceGenerator(name="SQ_${c.name?upper_case}", sequenceName="SQ_${c.name?upper_case}", initialValue=1, allocationSize=1)
 </#macro>]]>
-		</code>	
+		</code>
 	</macro>
-	
+
 	<function name="getIdAttributes">
-		<description>Gets the list of identifier attributes of the entity based on  &lt;&lt;id&gt;&gt; stereotype </description>
+		<description>Gets the list of identifier attributes of the entity
+			based on &lt;&lt;id&gt;&gt; stereotype </description>
 		<param>
 			<name>c</name>
 			<description>The c to check</description>
@@ -188,9 +199,10 @@ ${a.name}
 </#function>]]>
 		</code>
 		<snippet>
-<![CDATA[]]></snippet>
+<![CDATA[]]>
+		</snippet>
 	</function>
-	
+
 	<function name="hasCompositeKey">
 		<description>Checks is class has a composite key </description>
 		<param>
@@ -204,16 +216,19 @@ ${a.name}
 </#function>]]>
 		</code>
 		<snippet>
-<![CDATA[]]></snippet>
+<![CDATA[]]>
+		</snippet>
 	</function>
-	
+
 	<function name="getNonIdAttributes">
-		<description>Gets the list of attributes of the entity that are not "identifiers" (no "id" stereotype) </description>
+		<description>Gets the list of attributes of the entity that are not
+			"identifiers" (no "id" stereotype) </description>
 		<param>
 			<name>c</name>
 			<description>The c to check</description>
 		</param>
-		<return>list of attributes not tagged with id stereotype. Only navigable attributes are returned here.</return>
+		<return>list of attributes not tagged with id stereotype. Only
+			navigable attributes are returned here.</return>
 		<code>
 <![CDATA[<#function getNonIdAttributes c>
 	<#local listIds = []/>
@@ -226,9 +241,10 @@ ${a.name}
 </#function>]]>
 		</code>
 		<snippet>
-<![CDATA[]]></snippet>
+<![CDATA[]]>
+		</snippet>
 	</function>
-	
+
 	<function name="isIdAttribute">
 		<description>Checks if attribute is has "id" stereotype</description>
 		<param>
@@ -242,7 +258,41 @@ ${a.name}
 </#function>]]>
 		</code>
 		<snippet>
-<![CDATA[]]></snippet>
+<![CDATA[]]>
+		</snippet>
 	</function>
-		
+
+
+	<macro name="finder_operation">
+		<description>Generates an operation signature.
+		</description>
+		<param>
+			<name>c</name>
+			<description>UML class instance</description>
+		</param>
+		<code>
+<![CDATA[<#macro finder_operation op>
+<@java.operation includeExceptions=false includeBody=false alternativeOpName=op.substring(1)/>
+</#macro>]]>
+		</code>
+	</macro>
+	
+	<function name="isFinderOperation">
+		<description>Checks if operation is a finder method</description>
+		<param>
+			<name>op</name>
+			<description>The operation to check</description>
+		</param>
+		<return>true operation starts with @</return>
+		<code>
+<![CDATA[<#function isFinderOperation op>
+	<#return (op?starts_with("@")) />
+</#function>]]>
+		</code>
+		<snippet>
+<![CDATA[]]>
+		</snippet>
+	</function>
+
+	
 </directive>
