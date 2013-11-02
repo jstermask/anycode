@@ -211,6 +211,19 @@
 </td>
 <td>
 <p>
+<a href="#primary_key_datatype">primary_key_datatype</a> c</p>
+<p class="ml20">Generates a primary key data type as a string.
+			key is generated.</p>
+</td>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>
+</p>
+</td>
+<td>
+<p>
 <a href="#simple_primary_key">simple_primary_key</a> att</p>
 <p class="ml20">Generates a primary key based on the unique id attribute
 			of the class.</p>
@@ -386,6 +399,17 @@
 <a name="primary_key"/>
 <p>Generates a primary key. If "id" attributes are present,
 			then classes are generated automatically. Otherwise a default primary
+			key is generated.</p>
+<p>Parameters</p>
+<p class="ml20">c : UML class instance</p>
+</div>
+</fieldset>
+<fieldset>
+<legend>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>primary_key_datatype</legend>
+<div class="docdetail">
+<a name="primary_key_datatype"/>
+<p>Generates a primary key data type as a string.
 			key is generated.</p>
 <p>Parameters</p>
 <p class="ml20">c : UML class instance</p>

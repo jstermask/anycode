@@ -99,6 +99,29 @@ ${a.name}
 </#macro>]]>
 		</code>
 	</macro>
+	
+	<macro name="primary_key_datatype">
+		<description>Generates a primary key data type as a string.
+			key is generated.</description>
+		<param>
+			<name>c</name>
+			<description>UML class instance</description>
+		</param>
+		<code>
+<![CDATA[<#macro primary_key_datatype c>
+<@compress>
+<#local atts = getIdAttributes(c) />	
+<#if (atts?size == 1)>
+	<@java.datatype atts[0]/>
+<#elseif (atts?size > 1)>
+	${c.name}PK
+<#else>
+	Integer
+</#if>
+</@compress>
+</#macro>]]>
+		</code>
+	</macro>
 
 	<macro name="default_primary_key">
 		<description>Generates a primary key named ID.</description>
@@ -122,6 +145,8 @@ ${a.name}
 </#macro>]]>
 		</code>
 	</macro>
+	
+	
 
 	<macro name="simple_primary_key">
 		<description>Generates a primary key based on the unique id attribute

@@ -170,6 +170,23 @@ import org.hibernate.annotations.*;
 </#macro>
 		
 	
+<#--Generates a primary key data type as a string.
+			key is generated.-->
+
+<#macro primary_key_datatype c>
+<@compress>
+<#local atts = getIdAttributes(c) />	
+<#if (atts?size == 1)>
+	<@java.datatype atts[0]/>
+<#elseif (atts?size > 1)>
+	${c.name}PK
+<#else>
+	Integer
+</#if>
+</@compress>
+</#macro>
+		
+	
 <#--Generates a primary key based on the unique id attribute
 			of the class.-->
 
