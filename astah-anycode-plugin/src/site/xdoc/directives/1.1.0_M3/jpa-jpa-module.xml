@@ -93,6 +93,32 @@
 </td>
 <td>
 <p>
+<a href="#association_annotation">association_annotation</a> att</p>
+<p class="ml20">Generates JPA annotations on an association attribute.
+		</p>
+</td>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>
+</p>
+</td>
+<td>
+<p>
+<a href="#association_annotation_options">association_annotation_options</a> att</p>
+<p class="ml20">Generates JPA annotation options on an attribute.
+		</p>
+</td>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>
+</p>
+</td>
+<td>
+<p>
 <a href="#attribute">attribute</a> att</p>
 <p class="ml20">Generates JPA attribute</p>
 </td>
@@ -106,7 +132,7 @@
 <td>
 <p>
 <a href="#attribute_annotations">attribute_annotations</a> att</p>
-<p class="ml20">Generates JPA annotations on each attributes.
+<p class="ml20">Generates JPA annotations on an attribute.
 		</p>
 </td>
 </tr>
@@ -308,6 +334,28 @@
 </fieldset>
 <fieldset>
 <legend>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>association_annotation</legend>
+<div class="docdetail">
+<a name="association_annotation"/>
+<p>Generates JPA annotations on an association attribute.
+		</p>
+<p>Parameters</p>
+<p class="ml20">att : UML Attribute instance</p>
+</div>
+</fieldset>
+<fieldset>
+<legend>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>association_annotation_options</legend>
+<div class="docdetail">
+<a name="association_annotation_options"/>
+<p>Generates JPA annotation options on an attribute.
+		</p>
+<p>Parameters</p>
+<p class="ml20">att : UML Attribute instance</p>
+</div>
+</fieldset>
+<fieldset>
+<legend>
 <img src="../images/macro-icon.png" alt="Macro" title="Macro"/>attribute</legend>
 <div class="docdetail">
 <a name="attribute"/>
@@ -321,7 +369,7 @@
 <img src="../images/macro-icon.png" alt="Macro" title="Macro"/>attribute_annotations</legend>
 <div class="docdetail">
 <a name="attribute_annotations"/>
-<p>Generates JPA annotations on each attributes.
+<p>Generates JPA annotations on an attribute.
 		</p>
 <p>Parameters</p>
 <p class="ml20">att : UML Attribute instance</p>
