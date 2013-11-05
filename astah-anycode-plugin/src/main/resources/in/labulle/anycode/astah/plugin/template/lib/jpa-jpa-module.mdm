@@ -1,5 +1,40 @@
 
 	
+<#--Generates JPA annotations on an association attribute.
+		-->
+
+<#macro association_annotation att>
+<#if util.isOneToOne(att)>
+@javax.persistence.OneToOne
+<#elseif util.isManyToMany(att)>
+@javax.persistence.ManyToMany
+<#elseif util.isManyToOne(att)>
+@javax.persistence.ManyToOne
+<#elseif util.isOneToMany(att)>
+@javax.persistence.OneToMany
+</#if>
+</#macro>
+		
+	
+<#--Generates JPA annotation options on an attribute.
+		-->
+
+<#macro association_annotation_options att>
+	<#local options = []/>
+	<#if util.isMandatoryAssociation(att)>
+		<#local anOption = "optional=false" />
+		<#local options = options + [anOption]/>
+	</#if>
+	<#if !util.isOwningSide(att)>
+		<#local anOption = "mappedBy = \"" + java.getAttributeName(att.association.memberEnds[1]) + "\"" />
+		<#local options = options + [anOption]/>
+	</#if>
+	<#list options as opt>
+		<#if opt_index == 0>(</#if>${opt}<#if opt_has_next>,<#else>)</#if>
+	</#list>
+</#macro>
+		
+	
 <#--Generates JPA attribute-->
 
 <#macro attribute att>
@@ -11,25 +46,13 @@
 </#macro>
 		
 	
-<#--Generates JPA annotations on each attributes.
+<#--Generates JPA annotations on an attribute.
 		-->
 
 <#macro attribute_annotations att>
-<#if att.constraints?has_content>
-<#list att.constraints as a>
-${a.name}
-</#list>
-<#elseif util.isSimple(att) && !isIdAttribute(att)>
-
-<#elseif util.isOneToOne(att)>
-@javax.persistence.OneToOne<#if util.isMandatoryAssociation(att)>(optional=false)</#if>
-<#elseif util.isManyToMany(att)>
-@javax.persistence.ManyToMany
-<#elseif util.isManyToOne(att)>
-@javax.persistence.ManyToOne<#if util.isMandatoryAssociation(att)>(optional=false)</#if>
-<#elseif util.isOneToMany(att)>
-@javax.persistence.OneToMany
-</#if>
+	<#if !util.isSimple(att) || isIdAttribute(att)>
+	<@association_annotation att/><@association_annotation_options att/>
+	</#if>
 </#macro>
 		
 	

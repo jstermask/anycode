@@ -36,6 +36,21 @@
 </td>
 <td>
 <p>
+<a href="#isAggregateRelation">isAggregateRelation</a>
+					(att)
+				</p>
+<p class="ml20">Attribute that is not "simple" and that is a aggregate end of a relation is an aggregate relation
+		</p>
+</td>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/function-icon.png" alt="Function" title="Function"/>
+</p>
+</td>
+<td>
+<p>
 <a href="#isCompositeRelation">isCompositeRelation</a>
 					(att)
 				</p>
@@ -138,6 +153,21 @@
 </td>
 <td>
 <p>
+<a href="#isOwningSide">isOwningSide</a>
+					(att)
+				</p>
+<p class="ml20">Attribute that is not "simple" and that owns the relation. In a bidirectional relation an association end is considered as the owning side if it is explicitely set to navigable.
+		</p>
+</td>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/function-icon.png" alt="Function" title="Function"/>
+</p>
+</td>
+<td>
+<p>
 <a href="#isSimple">isSimple</a>
 					(att)
 				</p>
@@ -172,6 +202,19 @@
 <p class="ml20">navigableOnly : Only navigable attributes are returned. False by default</p>
 <p>Return</p>
 <p class="ml20">list of attributes</p>
+</div>
+</fieldset>
+<fieldset>
+<legend>
+<img src="../images/function-icon.png" alt="Function" title="Function"/>isAggregateRelation</legend>
+<div class="docdetail">
+<a name="isAggregateRelation"/>
+<p>Attribute that is not "simple" and that is a aggregate end of a relation is an aggregate relation
+		</p>
+<p>Parameters</p>
+<p class="ml20">att : The attribute to check</p>
+<p>Return</p>
+<p class="ml20">true attribute is part of a aggregate relation</p>
 </div>
 </fieldset>
 <fieldset>
@@ -267,6 +310,19 @@
 <p class="ml20">att : The attribute to check</p>
 <p>Return</p>
 <p class="ml20">true if attribute is part of oneToOne relationship</p>
+</div>
+</fieldset>
+<fieldset>
+<legend>
+<img src="../images/function-icon.png" alt="Function" title="Function"/>isOwningSide</legend>
+<div class="docdetail">
+<a name="isOwningSide"/>
+<p>Attribute that is not "simple" and that owns the relation. In a bidirectional relation an association end is considered as the owning side if it is explicitely set to navigable.
+		</p>
+<p>Parameters</p>
+<p class="ml20">att : The attribute to check</p>
+<p>Return</p>
+<p class="ml20">true is this attribute owns the relation</p>
 </div>
 </fieldset>
 <fieldset>
