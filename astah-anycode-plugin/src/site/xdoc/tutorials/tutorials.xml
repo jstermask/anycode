@@ -9,6 +9,7 @@
 		<section name="Java">
 			<ul>
 				<li><a href="tutorial-java-helloworld.html">Hello world example</a></li>
+				<li><a href="tutorial-jpa-basics.html">JPA 2.0 Basics</a></li>
 			</ul>
 		</section>
 	</body>

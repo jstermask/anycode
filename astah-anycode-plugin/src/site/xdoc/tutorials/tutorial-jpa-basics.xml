@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<head>
+		<title>Tutorial - JPA 2.0 - Basics</title>
+	</head>
+	<body>
+		<h1>JPA 2.0 tutorial - Project Tracker example</h1>
+		<section name="About this tutorial">
+			<p>All the source code described in this tutorial is available on <a href="https://bitbucket.org/jjbcarreno/anycode-sample-projects" target="_blank">anycode tutorials bitbucket repository</a></p>
+		</section>
+		<section name="UML Model">
+			<p>For this tutorial, we consider a very (very) simple project management software
+				model :
+			</p>
+			<ul>
+				<li>
+					A project has a name
+				</li>
+				<li>It is associated with one project leader and a set of project
+					members which are employees
+				</li>
+				<li>Each employee has a user account</li>
+			</ul>
+			<p class="center">
+				<img src="../images/tutorials/pjtracker_entities.png" class="img-polaroid" />
+			</p>
+			
+		</section>
+		<section name="JPA entity template">
+			<p>The most important part of this tutorial is to generate JPA
+				entities in java language. So let's create JPA-ENTITY template as
+				follows :
+			</p>
+			<p>
+				<b>JPA-ENTITY-name.mda</b>
+			</p>
+			<p>
+				<source>
+${targetDir}/${c.getFullName("/")}.java </source>
+			</p>
+
+			<p>
+				<b>JPA-ENTITY-content.mda:</b>
+			</p>
+			<p>
+				<source>
+&lt;#if c.hasStereotype("entity")&gt;
+package ${c.getFullNamespace(".")};
+
+&lt;@jpa.entity_annotations c/&gt;
+public class ${c.name} {
+&lt;@jpa.primary_key c/&gt;
+
+&lt;#list jpa.getNonIdAttributes(c) as att&gt;
+&lt;@jpa.attribute att/&gt;
+&lt;@java.getter att/&gt;
+&lt;@java.setter att/&gt;
+&lt;/#list&gt;
+}
+&lt;/#if&gt; </source>
+			</p>
+			<h4>Conditional rendering</h4>
+			<p>
+				You'll notice that we only generate a content for class with
+				stereotype
+				<b>'entity'</b>
+				. This means that if a class does not have this
+				stereotype, nothing
+				will be generated
+				at all. This is very
+				convenient as you can model JPA
+				and non-JPA
+				classes in the same
+				model.
+			</p>
+			<h4>Entity annotations</h4>
+			<p>
+				The
+				<b>jpa.entity_annotations</b>
+				macro
+				currently generates @Entity annotation. You could
+				hard-code this
+				annotation in the template but this macro might
+				also generate some
+				other useful boilerplate code in the future so
+				it's worth using it.
+			</p>
+
+			<h4>Primary key generation</h4>
+			<p>
+				<b>jpa.primary_key</b>
+				macro detects and generates entity's primary key
+				attribute, getter
+				and setter. Here is how detection works:
+			</p>
+			<ul>
+				<li>If no attribute has "id" stereotype, a default primary key
+					(Integer) is generated with a sequence generator.
+				</li>
+				<li>If one attribute has "id" stereotype, a simple primary key is
+					generated based on that attribute
+				</li>
+				<li>If there are more than one attribute, then a PK class is
+					referenced. In this case, you should add a template to generated
+					PK. This particular case is not demonstrated in this tutorial.
+					Though, it will be shown in another tutorial.
+				</li>
+			</ul>
+
+			<h4>Attributes and relationships</h4>
+			<p>
+				Using
+				<b>jpa.getNonIdAttributes</b>
+				method, we can iterate over
+				attributes and relationships to be persisted in JPA entity. Any
+				navigable (or unspecified navigable)
+				association is included in the
+				attributes. It generates association
+				annotations automatically as
+				well as default annotation options.
+			</p>
+			<p>Navigability is an important point in relationship as it will tell
+				JPA whether it is unidirectional or bidirectional. It will also help
+				determining the owning side for one-to-one, one-to-many and
+				many-to-many relationships. Here are the conditions for 2 classes A
+				and B :</p>
+			<ul>
+				<li>A x-&gt; B : A is the owning side.</li>
+				<li>A -&gt; B : A is the owning side.</li>
+				<li>A x- B : A is the owning side</li>
+			</ul>
+			<p>In our project tracker model, we want Project class to be the
+				owning side for project members. JPA will then generated the adequate 'mappedBy' option.</p>
+		</section>
+		<section name="Service classes">
+			<p>In our uml model, we add a service class with one method, as follows :</p>
+			<p class="center">
+				<img src="../images/tutorials/pjtracker_service.png" class="img-polaroid" />
+			</p>
+			
+			<subsection name="Generate service interface">
+				<p>A service is generally designed as an interface and an
+					implementation class. Let's create 2 templates : SERVICE-INTERFACE
+					and SERVICE-IMPL :</p>
+				<p>
+					<b>SERVICE-INTERFACE-name.mda</b>
+				</p>
+				<p>
+					<source>
+${targetDir}/${c.getFullNamespace("/")}/I${c.name}.java </source>
+				</p>
+				<p>
+					We customized class name with 'I' prefix for
+					<b>I</b>
+					nterface.
+				</p>
+				<p>
+					<b>SERVICE-INTERFACE-content.mda:</b>
+				</p>
+				<p>
+					<source>
+&lt;#if c.hasStereotype("service")&gt;
+package ${c.getFullNamespace(".")};
+import java.util.List;
+import ${c.owner.getFullNamespace(".")}.core.*;
+
+public interface I${c.name} {
+	&lt;#list c.operations as op&gt;
+		&lt;@java.operation op /&gt;
+	&lt;/#list&gt;
+}
+&lt;/#if&gt; </source>
+				</p>
+				<p>
+					Only 'service' stereotyped class will have an interface generated.
+					This interface only consists in a list of operation signatures,
+					generated with
+					<b>java.operation</b>
+					macro.
+				</p>
+			</subsection>
+			<subsection name="Service implementation">
+				<p>Let's proceed to service implementation:</p>
+				<p>
+					<b>SERVICE-IMPL-name.mda</b>
+				</p>
+				<p>
+					<source>
+${targetDir}/${c.getFullNamespace("/")}/impl/${c.name}.java </source>
+				</p>
+				<p>We decided to generate implementation in 'impl' sub-package.</p>
+				<p>
+					<b>SERVICE-IMPL-content.mda:</b>
+				</p>
+				<p>
+					<source>
+&lt;#if c.hasStereotype("service")&gt;
+package ${c.getFullNamespace(".")}.impl;
+import java.util.List;
+import ${c.owner.getFullNamespace(".")}.core.*;
+import ${c.owner.getFullNamespace(".")}.service.*;
+
+public class ${c.name} implements I${c.name} {
+	&lt;#list c.operations as op&gt;
+		&lt;@java.operation op=op includeBody=true /&gt;
+	&lt;/#list&gt;
+}
+&lt;/#if&gt;</source>
+				</p>
+				<p>
+					Only 'service' stereotyped class will have an interface generated.
+					It implements the interface. We reuse
+					<b>java.operation</b>
+					macro but this time we generate a body.
+				</p>
+				<p>
+					This will call an underlying macro called
+					<b>java.custom_code</b>
+					. This macro will generate automatically an opening comment and a
+					closing comment inside method's body. Any code you write within those
+					comments will be kept and included in future code generations.
+				</p>
+			</subsection>
+		</section>
+		<section name="Service dependencies">
+			<subsection name="Generating JPA Repositories">
+			<p>Our service and entities are generated but not wired together. A way to connect them is to create a dependency relation in UML, like this :</p>
+			<p class="center">
+				<img src="../images/tutorials/pjtracker_dependencies.png" class="img-polaroid" />
+			</p>
+			<p>We can use this 'dependency' representation as a transformation rule to generated dao classes. Let's generate them with Spring Data for JPA.
+			 The latter currently adds JpaRepository class generation (see <a href="http://projects.spring.io/spring-data-jpa/">Spring Data JPA</a> for further details)</p>
+				<p>
+					<b>DAO-name.mda</b>
+				</p>
+				<p>
+					<source>
+${targetDir}/${c.owner.getFullNamespace("/")}/dao/${c.name}Repository.java </source>
+				</p>
+				<p>We decided to generate classes in 'dao' sub-package.</p>
+				<p>
+					<b>DAO-content.mda:</b>
+				</p>
+				<p>
+					<source>
+&lt;#if c.hasStereotype("entity")&gt;
+package ${c.owner.getFullNamespace(".")}.dao;
+import java.util.List;
+import ${c.owner.getFullNamespace(".")}.core.*;
+
+@org.springframework.stereotype.Repository
+public interface ${c.name}Repository extends org.springframework.data.jpa.repository.JpaRepository&lt;${c.name},&lt;@jpa.primary_key_datatype c/&gt;&gt; {
+
+}
+&lt;/#if&gt;</source>
+				</p>
+			</subsection>
+			<subsection name="Wiring services and repositories">
+				<p>UML dependency can be used in Astah API through <b>getClientDependencies()</b> method. We just have to add the following piece of code in our SERVICE-IMPL template, using @spring directive :</p>
+				<p><source>
+[...]
+&lt;#list c.clientDependencies as dep&gt;
+	&lt;@spring.service_entity_dependency dep/&gt;
+&lt;/#list&gt;
+[...] </source></p>
+				<p>This will add a reference to the above repository class, as well as a getter and a setter. On top of that spring @AutoWired annotation will be added.</p>			
+			</subsection>
+			<subsection name="Adding query methods to repositories">
+				<p>Spring data make queries easy thanks to query methods. In the above diagram, you may have noticed a method on Project class : @findByName. This notation is inspired by AndroMDA project and can be used as a transformation rule to add query methods
+				on the repository.</p>
+				<p>To do that, just add the following lines in DAO template :</p>
+				<p>
+				<source>
+[...]
+&lt;#list c.operations as op&gt;
+	&lt;#if jpa.isFinderOperation(op)&gt;
+	&lt;@jpa.finder_operation op /&gt;
+	&lt;/#if&gt;
+&lt;/#list&gt;
+[...] </source></p>
+			<p>This will take all methods starting with @ in the entity class and put them in the repository class.</p>
+			</subsection>
+		</section>
+		<section name="Testing your source code">
+			<p>The sources of this tutorial are available online  <a href="https://bitbucket.org/jjbcarreno/anycode-sample-projects" target="_blank">here</a>. It contains a maven project with HSQL unit tests run with Spring tests with custom data load. </p>
+		</section>
+	</body>
+</document>
+
+
+
+
+
+
+

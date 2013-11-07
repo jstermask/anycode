@@ -49,6 +49,8 @@
 			</item>
 			<item name="Tutorials" href="/tutorials/tutorials.html">
 				<item name="Hello World tutorial" href="/tutorials/tutorial-java-helloworld.html"/>
+				<item name="JPA tutorial - Basics" href="/tutorials/tutorial-jpa-basics.html"/>
+				
 			</item>
 		</menu>
 		<menu name="About">
