@@ -11,7 +11,7 @@
 			<p>This release includes the following features</p>
 			<ul>
 				<li>Support for all Astah UML editions</li>
-				<li>Support for custom code insertions. See <a href="../documentation/reference-documentation.html">Reference documentation</a> for further details</li>
+				<li>Support for custom code insertions (@util.custom_code). 
 				<li>JPA2 and Spring Built-in directive. Automates annotation generation. Please read <a href="../tutorials/tutorial-jpa-basics.html">JPA2/Spring-Data tutorial</a></li>			
 			</ul>
 			<p>You can also go the <a href="https://bitbucket.org/jjbcarreno/anycode/issues?milestone=1.1.0_GA&amp;sort=-priority" target="_blank">BitBucket issue tracker</a> to display all changes</p>	
