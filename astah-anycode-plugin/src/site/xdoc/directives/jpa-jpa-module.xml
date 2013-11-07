@@ -5,7 +5,8 @@
 <body>
 <section name="@jpa : jpa directive">
 <subsection name="Summary">
-<p> This directive provides macros and functions to generate code specific to JPA2/Hibernate implementation.</p>
+<p> This directive provides macros and functions to generate
+		code specific to JPA2/Hibernate implementation.</p>
 <p>Using a <b>function</b> in a template can be done using <code>&lt;jpa.functionName(att1, ..., atti, ..., attn) /&gt; </code>syntax.</p>
 <p>Using a <b>macro</b> in a template can be done using <code>&lt;@jpa.macroName att1 atti attn /&gt; </code>syntax.</p>
 <table class="table table-bordered">
@@ -23,7 +24,8 @@
 <a href="#getIdAttributes">getIdAttributes</a>
 					(c)
 				</p>
-<p class="ml20">Gets the list of identifier attributes of the entity based on  &lt;&lt;id&gt;&gt; stereotype </p>
+<p class="ml20">Gets the list of identifier attributes of the entity
+			based on &lt;&lt;id&gt;&gt; stereotype </p>
 </td>
 </tr>
 <tr>
@@ -37,7 +39,8 @@
 <a href="#getNonIdAttributes">getNonIdAttributes</a>
 					(c)
 				</p>
-<p class="ml20">Gets the list of attributes of the entity that are not "identifiers" (no "id" stereotype) </p>
+<p class="ml20">Gets the list of attributes of the entity that are not
+			"identifiers" (no "id" stereotype) </p>
 </td>
 </tr>
 <tr>
@@ -62,10 +65,50 @@
 </td>
 <td>
 <p>
+<a href="#isFinderOperation">isFinderOperation</a>
+					(op)
+				</p>
+<p class="ml20">Checks if operation is a finder method</p>
+</td>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/function-icon.png" alt="Function" title="Function"/>
+</p>
+</td>
+<td>
+<p>
 <a href="#isIdAttribute">isIdAttribute</a>
 					(att)
 				</p>
 <p class="ml20">Checks if attribute is has "id" stereotype</p>
+</td>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>
+</p>
+</td>
+<td>
+<p>
+<a href="#association_annotation">association_annotation</a> att</p>
+<p class="ml20">Generates JPA annotations on an association attribute.
+		</p>
+</td>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>
+</p>
+</td>
+<td>
+<p>
+<a href="#association_annotation_options">association_annotation_options</a> att</p>
+<p class="ml20">Generates JPA annotation options on an attribute.
+		</p>
 </td>
 </tr>
 <tr>
@@ -89,7 +132,8 @@
 <td>
 <p>
 <a href="#attribute_annotations">attribute_annotations</a> att</p>
-<p class="ml20">Generates JPA annotations on each attributes.</p>
+<p class="ml20">Generates JPA annotations on an attribute.
+		</p>
 </td>
 </tr>
 <tr>
@@ -101,7 +145,8 @@
 <td>
 <p>
 <a href="#composite_primary_key">composite_primary_key</a> c</p>
-<p class="ml20">Generates a composite primary key (non composite), based on the given class</p>
+<p class="ml20">Generates a composite primary key (non composite), based
+			on the given class</p>
 </td>
 </tr>
 <tr>
@@ -125,7 +170,9 @@
 <td>
 <p>
 <a href="#entity_annotations">entity_annotations</a> c</p>
-<p class="ml20">If entity has no identifier column defined, then a sequence generator will be generated. Otherwise, nothing will be generated</p>
+<p class="ml20">If entity has no identifier column defined, then a
+			sequence generator will be generated. Otherwise, nothing will be
+			generated</p>
 </td>
 </tr>
 <tr>
@@ -137,7 +184,21 @@
 <td>
 <p>
 <a href="#entity_sequence">entity_sequence</a> c</p>
-<p class="ml20">Generates sequence generator as SQ_{className}.</p>
+<p class="ml20">Generates sequence generator as SQ_{className}.
+		</p>
+</td>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>
+</p>
+</td>
+<td>
+<p>
+<a href="#finder_operation">finder_operation</a> c</p>
+<p class="ml20">Generates an operation signature.
+		</p>
 </td>
 </tr>
 <tr>
@@ -150,7 +211,8 @@
 <p>
 <a href="#imports">imports</a>
 </p>
-<p class="ml20">Renders JPA import dependencies (import javax.persistence.*...).</p>
+<p class="ml20">Renders JPA import dependencies (import
+			javax.persistence.*...).</p>
 </td>
 </tr>
 <tr>
@@ -162,7 +224,22 @@
 <td>
 <p>
 <a href="#primary_key">primary_key</a> c</p>
-<p class="ml20">Generates a primary key. If "id" attributes are present, then classes are generated automatically. Otherwise a default primary key is generated.</p>
+<p class="ml20">Generates a primary key. If "id" attributes are present,
+			then classes are generated automatically. Otherwise a default primary
+			key is generated.</p>
+</td>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>
+</p>
+</td>
+<td>
+<p>
+<a href="#primary_key_datatype">primary_key_datatype</a> c</p>
+<p class="ml20">Generates a primary key data type as a string.
+			key is generated.</p>
 </td>
 </tr>
 <tr>
@@ -174,7 +251,8 @@
 <td>
 <p>
 <a href="#simple_primary_key">simple_primary_key</a> att</p>
-<p class="ml20">Generates a primary key based on the unique id attribute of the class.</p>
+<p class="ml20">Generates a primary key based on the unique id attribute
+			of the class.</p>
 </td>
 </tr>
 </table>
@@ -186,7 +264,8 @@
 <img src="../images/function-icon.png" alt="Function" title="Function"/>getIdAttributes</legend>
 <div class="docdetail">
 <a name="getIdAttributes"/>
-<p>Gets the list of identifier attributes of the entity based on  &lt;&lt;id&gt;&gt; stereotype </p>
+<p>Gets the list of identifier attributes of the entity
+			based on &lt;&lt;id&gt;&gt; stereotype </p>
 <p>Parameters</p>
 <p class="ml20">c : The c to check</p>
 <p>Return</p>
@@ -200,11 +279,13 @@
 <img src="../images/function-icon.png" alt="Function" title="Function"/>getNonIdAttributes</legend>
 <div class="docdetail">
 <a name="getNonIdAttributes"/>
-<p>Gets the list of attributes of the entity that are not "identifiers" (no "id" stereotype) </p>
+<p>Gets the list of attributes of the entity that are not
+			"identifiers" (no "id" stereotype) </p>
 <p>Parameters</p>
 <p class="ml20">c : The c to check</p>
 <p>Return</p>
-<p class="ml20">list of attributes not tagged with id stereotype. Only navigable attributes are returned here.</p>
+<p class="ml20">list of attributes not tagged with id stereotype. Only
+			navigable attributes are returned here.</p>
 <p>Code example</p>
 <source/>
 </div>
@@ -225,6 +306,20 @@
 </fieldset>
 <fieldset>
 <legend>
+<img src="../images/function-icon.png" alt="Function" title="Function"/>isFinderOperation</legend>
+<div class="docdetail">
+<a name="isFinderOperation"/>
+<p>Checks if operation is a finder method</p>
+<p>Parameters</p>
+<p class="ml20">op : The operation to check</p>
+<p>Return</p>
+<p class="ml20">true operation starts with @</p>
+<p>Code example</p>
+<source/>
+</div>
+</fieldset>
+<fieldset>
+<legend>
 <img src="../images/function-icon.png" alt="Function" title="Function"/>isIdAttribute</legend>
 <div class="docdetail">
 <a name="isIdAttribute"/>
@@ -235,6 +330,28 @@
 <p class="ml20">true if attribute has "id" stereotype</p>
 <p>Code example</p>
 <source/>
+</div>
+</fieldset>
+<fieldset>
+<legend>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>association_annotation</legend>
+<div class="docdetail">
+<a name="association_annotation"/>
+<p>Generates JPA annotations on an association attribute.
+		</p>
+<p>Parameters</p>
+<p class="ml20">att : UML Attribute instance</p>
+</div>
+</fieldset>
+<fieldset>
+<legend>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>association_annotation_options</legend>
+<div class="docdetail">
+<a name="association_annotation_options"/>
+<p>Generates JPA annotation options on an attribute.
+		</p>
+<p>Parameters</p>
+<p class="ml20">att : UML Attribute instance</p>
 </div>
 </fieldset>
 <fieldset>
@@ -252,7 +369,8 @@
 <img src="../images/macro-icon.png" alt="Macro" title="Macro"/>attribute_annotations</legend>
 <div class="docdetail">
 <a name="attribute_annotations"/>
-<p>Generates JPA annotations on each attributes.</p>
+<p>Generates JPA annotations on an attribute.
+		</p>
 <p>Parameters</p>
 <p class="ml20">att : UML Attribute instance</p>
 </div>
@@ -262,7 +380,8 @@
 <img src="../images/macro-icon.png" alt="Macro" title="Macro"/>composite_primary_key</legend>
 <div class="docdetail">
 <a name="composite_primary_key"/>
-<p>Generates a composite primary key (non composite), based on the given class</p>
+<p>Generates a composite primary key (non composite), based
+			on the given class</p>
 <p>Parameters</p>
 <p class="ml20">c : class </p>
 </div>
@@ -282,7 +401,9 @@
 <img src="../images/macro-icon.png" alt="Macro" title="Macro"/>entity_annotations</legend>
 <div class="docdetail">
 <a name="entity_annotations"/>
-<p>If entity has no identifier column defined, then a sequence generator will be generated. Otherwise, nothing will be generated</p>
+<p>If entity has no identifier column defined, then a
+			sequence generator will be generated. Otherwise, nothing will be
+			generated</p>
 <p>Parameters</p>
 <p class="ml20">c : UML class instance</p>
 </div>
@@ -292,7 +413,19 @@
 <img src="../images/macro-icon.png" alt="Macro" title="Macro"/>entity_sequence</legend>
 <div class="docdetail">
 <a name="entity_sequence"/>
-<p>Generates sequence generator as SQ_{className}.</p>
+<p>Generates sequence generator as SQ_{className}.
+		</p>
+<p>Parameters</p>
+<p class="ml20">c : UML class instance</p>
+</div>
+</fieldset>
+<fieldset>
+<legend>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>finder_operation</legend>
+<div class="docdetail">
+<a name="finder_operation"/>
+<p>Generates an operation signature.
+		</p>
 <p>Parameters</p>
 <p class="ml20">c : UML class instance</p>
 </div>
@@ -302,7 +435,8 @@
 <img src="../images/macro-icon.png" alt="Macro" title="Macro"/>imports</legend>
 <div class="docdetail">
 <a name="imports"/>
-<p>Renders JPA import dependencies (import javax.persistence.*...).</p>
+<p>Renders JPA import dependencies (import
+			javax.persistence.*...).</p>
 <p>Parameters</p>
 </div>
 </fieldset>
@@ -311,7 +445,20 @@
 <img src="../images/macro-icon.png" alt="Macro" title="Macro"/>primary_key</legend>
 <div class="docdetail">
 <a name="primary_key"/>
-<p>Generates a primary key. If "id" attributes are present, then classes are generated automatically. Otherwise a default primary key is generated.</p>
+<p>Generates a primary key. If "id" attributes are present,
+			then classes are generated automatically. Otherwise a default primary
+			key is generated.</p>
+<p>Parameters</p>
+<p class="ml20">c : UML class instance</p>
+</div>
+</fieldset>
+<fieldset>
+<legend>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>primary_key_datatype</legend>
+<div class="docdetail">
+<a name="primary_key_datatype"/>
+<p>Generates a primary key data type as a string.
+			key is generated.</p>
 <p>Parameters</p>
 <p class="ml20">c : UML class instance</p>
 </div>
@@ -321,7 +468,8 @@
 <img src="../images/macro-icon.png" alt="Macro" title="Macro"/>simple_primary_key</legend>
 <div class="docdetail">
 <a name="simple_primary_key"/>
-<p>Generates a primary key based on the unique id attribute of the class.</p>
+<p>Generates a primary key based on the unique id attribute
+			of the class.</p>
 <p>Parameters</p>
 <p class="ml20">att : UML attribute</p>
 </div>

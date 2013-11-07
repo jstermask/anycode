@@ -14,7 +14,7 @@
 				templates or in your own macros. We will try to
 				offer more and more
 				directives for various languages in the future releases. See the
-				<a href="../roadmap.html">Roadmap</a>
+				<a href="../about/roadmap.html">Roadmap</a>
 				for details.
 			</p>
 			<table class="table table-bordered">
@@ -26,7 +26,8 @@
 						<a href="util-utility-module.html">@util</a>
 					</td>
 					<td>Utility macros and functions to get information about
-						associations, attributes, operations easily.</td>
+						associations, attributes, operations easily.
+					</td>
 				</tr>
 				<tr>
 					<td>
@@ -34,15 +35,22 @@
 					</td>
 					<td>Automates code generation fragments in java.</td>
 				</tr>
-				<!-- 
 				<tr>
 					<td>
 						<a href="jpa-jpa-module.html">@jpa</a>
 					</td>
 					<td>Automates code generation fragments for JPA2/Hibernate
-						implementation.</td>
+						implementation.
+					</td>
 				</tr>
-				-->
+				<tr>
+					<td>
+						<a href="spring-spring-module.html">@spring</a>
+					</td>
+					<td>Automates code generation fragments for spring implementations.
+						At the moment it is only used to inject spring-data dependencies
+						for services and JPA entities.</td>
+				</tr>
 			</table>
 		</section>
 	</body>

@@ -21,6 +21,51 @@
 </td>
 <td>
 <p>
+<a href="#getAttributes">getAttributes</a>
+					(att,navigableOnly)
+				</p>
+<p class="ml20">Return class attributes
+		</p>
+</td>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/function-icon.png" alt="Function" title="Function"/>
+</p>
+</td>
+<td>
+<p>
+<a href="#isAggregateRelation">isAggregateRelation</a>
+					(att)
+				</p>
+<p class="ml20">Attribute that is not "simple" and that is a aggregate end of a relation is an aggregate relation
+		</p>
+</td>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/function-icon.png" alt="Function" title="Function"/>
+</p>
+</td>
+<td>
+<p>
+<a href="#isCompositeRelation">isCompositeRelation</a>
+					(att)
+				</p>
+<p class="ml20">Attribute that is not "simple" and that is a composite end of a relation is a composite relation
+		</p>
+</td>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/function-icon.png" alt="Function" title="Function"/>
+</p>
+</td>
+<td>
+<p>
 <a href="#isMandatoryAssociation">isMandatoryAssociation</a>
 					(att)
 				</p>
@@ -65,6 +110,21 @@
 </td>
 <td>
 <p>
+<a href="#isNavigable">isNavigable</a>
+					(att)
+				</p>
+<p class="ml20">Return true if attribute is navigable or if it has no specified navigation
+		</p>
+</td>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/function-icon.png" alt="Function" title="Function"/>
+</p>
+</td>
+<td>
+<p>
 <a href="#isOneToMany">isOneToMany</a>
 					(att)
 				</p>
@@ -93,16 +153,83 @@
 </td>
 <td>
 <p>
+<a href="#isOwningSide">isOwningSide</a>
+					(att)
+				</p>
+<p class="ml20">Attribute that is not "simple" and that owns the relation. In a bidirectional relation an association end is considered as the owning side if it is explicitely set to navigable.
+		</p>
+</td>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/function-icon.png" alt="Function" title="Function"/>
+</p>
+</td>
+<td>
+<p>
 <a href="#isSimple">isSimple</a>
 					(att)
 				</p>
 <p class="ml20">Checks whether the given attribute is a simple class attribute and not part of a relation.</p>
 </td>
 </tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>
+</p>
+</td>
+<td>
+<p>
+<a href="#custom_code">custom_code</a> id</p>
+<p class="ml20">Adds a merge point to your generated code. Further generations will merge code inside this tag</p>
+</td>
+</tr>
 </table>
 </subsection>
 </section>
 <subsection name="Detailed documentation">
+<fieldset>
+<legend>
+<img src="../images/function-icon.png" alt="Function" title="Function"/>getAttributes</legend>
+<div class="docdetail">
+<a name="getAttributes"/>
+<p>Return class attributes
+		</p>
+<p>Parameters</p>
+<p class="ml20">att : The attribute to check</p>
+<p class="ml20">navigableOnly : Only navigable attributes are returned. False by default</p>
+<p>Return</p>
+<p class="ml20">list of attributes</p>
+</div>
+</fieldset>
+<fieldset>
+<legend>
+<img src="../images/function-icon.png" alt="Function" title="Function"/>isAggregateRelation</legend>
+<div class="docdetail">
+<a name="isAggregateRelation"/>
+<p>Attribute that is not "simple" and that is a aggregate end of a relation is an aggregate relation
+		</p>
+<p>Parameters</p>
+<p class="ml20">att : The attribute to check</p>
+<p>Return</p>
+<p class="ml20">true attribute is part of a aggregate relation</p>
+</div>
+</fieldset>
+<fieldset>
+<legend>
+<img src="../images/function-icon.png" alt="Function" title="Function"/>isCompositeRelation</legend>
+<div class="docdetail">
+<a name="isCompositeRelation"/>
+<p>Attribute that is not "simple" and that is a composite end of a relation is a composite relation
+		</p>
+<p>Parameters</p>
+<p class="ml20">att : The attribute to check</p>
+<p>Return</p>
+<p class="ml20">true attribute is part of a composite relation</p>
+</div>
+</fieldset>
 <fieldset>
 <legend>
 <img src="../images/function-icon.png" alt="Function" title="Function"/>isMandatoryAssociation</legend>
@@ -150,6 +277,19 @@
 </fieldset>
 <fieldset>
 <legend>
+<img src="../images/function-icon.png" alt="Function" title="Function"/>isNavigable</legend>
+<div class="docdetail">
+<a name="isNavigable"/>
+<p>Return true if attribute is navigable or if it has no specified navigation
+		</p>
+<p>Parameters</p>
+<p class="ml20">att : The attribute to check</p>
+<p>Return</p>
+<p class="ml20">true if attribute if navigable</p>
+</div>
+</fieldset>
+<fieldset>
+<legend>
 <img src="../images/function-icon.png" alt="Function" title="Function"/>isOneToMany</legend>
 <div class="docdetail">
 <a name="isOneToMany"/>
@@ -174,6 +314,19 @@
 </fieldset>
 <fieldset>
 <legend>
+<img src="../images/function-icon.png" alt="Function" title="Function"/>isOwningSide</legend>
+<div class="docdetail">
+<a name="isOwningSide"/>
+<p>Attribute that is not "simple" and that owns the relation. In a bidirectional relation an association end is considered as the owning side if it is explicitely set to navigable.
+		</p>
+<p>Parameters</p>
+<p class="ml20">att : The attribute to check</p>
+<p>Return</p>
+<p class="ml20">true is this attribute owns the relation</p>
+</div>
+</fieldset>
+<fieldset>
+<legend>
 <img src="../images/function-icon.png" alt="Function" title="Function"/>isSimple</legend>
 <div class="docdetail">
 <a name="isSimple"/>
@@ -182,6 +335,16 @@
 <p class="ml20">att : The attribute to check</p>
 <p>Return</p>
 <p class="ml20">true if attribute does not belong to an association</p>
+</div>
+</fieldset>
+<fieldset>
+<legend>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>custom_code</legend>
+<div class="docdetail">
+<a name="custom_code"/>
+<p>Adds a merge point to your generated code. Further generations will merge code inside this tag</p>
+<p>Parameters</p>
+<p class="ml20">id : Unique identifier for this merge point</p>
 </div>
 </fieldset>
 </subsection>

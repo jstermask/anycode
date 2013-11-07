@@ -14,7 +14,7 @@
 	<artifactId>astah-anycode-plugin</artifactId>
 	<name>AnyCode plugin for Astah*</name>
 	<description>Code generation plugin for Astah* Community</description>
-	<version>1.1.0_M3</version>
+	<version>1.1.0_GA</version>
 	<packaging>jar</packaging>
 	<inceptionYear>2013</inceptionYear>
 	<url>http://anycode.labulle.in</url>

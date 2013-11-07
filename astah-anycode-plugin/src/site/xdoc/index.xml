@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 	<head>
 		<title>Code generation plugin for Astah UML</title>
-		<meta name="description" content="Code generation plugin for Astah UML Community" />
+		<meta name="description" content="Code generation plugin for Astah UML" />
 		<meta name="keywords"
 			content="mda, code, anycode, generation, generator, astah, plugin, template, freemarker, mofm2t, m2t" />
 		<meta name="author" content="José Carreno" />
@@ -26,7 +26,7 @@
 					</p>
 					<p class="center process-step">Design classes</p>
 					<p class="justify">
-						Use Astah Community and design your model through one or
+						Use Astah software and design your model through one or
 						more UML class diagrams.
 						You can add custom stereotypes or
 						constraints to flag particular
@@ -72,6 +72,6 @@
 					</p>
 				</div>
 			</div>
-	    <div class="news">v1.1.0M2 released !</div>
+	    <div class="news">1.1.0_GA released !</div>
 	</body>
 </document>

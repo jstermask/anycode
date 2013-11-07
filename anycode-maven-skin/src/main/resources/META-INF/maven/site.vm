@@ -486,6 +486,13 @@ $dateFormat.applyPattern( $format )
     </ul>
 #end
 ##
+#macro ( navlinks $links )
+        #foreach( $item in $links )
+            #set ( $currentItemHref = $PathTool.calculateLink( $item.href, $relativePath ) )
+            #set ( $currentItemHref = $currentItemHref.replaceAll( '\\', '/' ) )
+            #link( $currentItemHref $item.name $item.target $item.img $item.position $item.alt $item.border $item.width $item.height $item.title )
+        #end
+#end
 ## Variables
 #set ($frontPage = ($currentFileName == $StringUtils.trim($decoration.custom.getChild("anycode").getChild("frontPage").getValue())))
 <!DOCTYPE html>
@@ -553,6 +560,7 @@ $dateFormat.applyPattern( $format )
     <footer class="navbar-fixed-bottom">
         <div class="container-narrow">
             <p class="pull-right">
+            	#navlinks($decoration.body.links)
             	<a href="$relativePath/index.html"><i class="icon-home icon-white"></i>Home</a>
                 <a href="#"><i class="icon-arrow-up icon-white"></i>Top</a>
             </p>

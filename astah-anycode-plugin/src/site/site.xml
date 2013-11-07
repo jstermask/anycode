@@ -3,7 +3,7 @@
 	<skin>
 		<groupId>in.labulle.maven.skins</groupId>
 		<artifactId>anycode-maven-skin</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>1.0.1-SNAPSHOT</version>
 	</skin>
 	<publishDate position="bottom" />
 	<version position="bottom" />
@@ -36,9 +36,7 @@
 			<item name="Advanced templating" href="/templating-guide.html" />
 		</breadcrumbs>
 		<links>
-			<item name="Home" href="/index.html" />
-			<item name="Documentation" href="/documentation.html"></item>
-			<item name="About" href="/about.html"></item>
+			<item name="Issue Tracker" href="https://bitbucket.org/jjbcarreno/anycode/issues" target="_blank" />
 		</links>
 		<menu name="Documentation">
 			<item name="Install Guide" href="/documentation/install-guide.html"/>
@@ -46,17 +44,18 @@
 			<item name="Built-in directives API" href="/directives/directives.html">
 				<item name="@util" href="/directives/util-utility-module.html" />
 				<item name="@java" href="/directives/java-java-module.html" />
-				<!-- <item name="@jpa" href="/directives/jpa-jpa-module.html" />-->
+				<item name="@jpa" href="/directives/jpa-jpa-module.html" />
+				<item name="@spring" href="/directives/spring-spring-module.html" />		
 			</item>
 			<item name="Tutorials" href="/tutorials/tutorials.html">
 				<item name="Hello World tutorial" href="/tutorials/tutorial-java-helloworld.html"/>
 			</item>
 		</menu>
 		<menu name="About">
-			<item name="Author" href="/about/author.html" />
-			<item name="License" href="/about/license.html" />
 			<item name="Release notes" href="/about/news.html" />
 			<item name="Road Map" href="/about/roadmap.html" />
+			<item name="License" href="/about/license.html" />
+			<item name="Author" href="/about/author.html" />
 		</menu>
 	</body>
 </project>

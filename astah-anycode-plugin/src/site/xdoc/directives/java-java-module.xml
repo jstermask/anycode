@@ -84,7 +84,7 @@
 </td>
 <td>
 <p>
-<a href="#operation">operation</a> op includeExceptions includeBody</p>
+<a href="#operation">operation</a> op includeExceptions includeBody alternativeOpName</p>
 <p class="ml20">Renders a java operation</p>
 </td>
 </tr>
@@ -181,6 +181,7 @@
 <p class="ml20">op : Operation</p>
 <p class="ml20">includeExceptions : If true, renders an exception. false by default</p>
 <p class="ml20">includeBody : If true, renders brackets and custom code body. If false, renders signature only. false by default</p>
+<p class="ml20">alternativeOpName : Override method name with anotherone.</p>
 </div>
 </fieldset>
 <fieldset>
