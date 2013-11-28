@@ -41,6 +41,13 @@
 	<#return (!isSimple(att) && att.composite)/>
 </#function>
 	
+<#--Checks if an element is an enumeration.
+		-->
+
+<#function isEnumeration elt>
+	<#return (elt.hasStereotype("enum"))/>
+</#function>
+	
 <#--Checks whether the given attribute is mandatory, i.e : whether the given attribute is part of a 1-1 or *-1 and not
 			1-[0..1] nor *-[0..1]
 		-->

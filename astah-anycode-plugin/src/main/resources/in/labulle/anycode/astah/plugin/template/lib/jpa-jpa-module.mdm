@@ -4,7 +4,9 @@
 		-->
 
 <#macro association_annotation att>
-<#if util.isOneToOne(att)>
+<#if util.isEnumeration(att.type)>
+@javax.persistence.Enumerated
+<#elseif util.isOneToOne(att)>
 @javax.persistence.OneToOne
 <#elseif util.isManyToMany(att)>
 @javax.persistence.ManyToMany
@@ -21,13 +23,18 @@
 
 <#macro association_annotation_options att>
 	<#local options = []/>
-	<#if util.isMandatoryAssociation(att)>
-		<#local anOption = "optional=false" />
+	<#if util.isEnumeration(att.type)>
+		<#local anOption = "javax.persistence.EnumType.STRING" />
 		<#local options = options + [anOption]/>
-	</#if>
-	<#if !util.isOwningSide(att)>
-		<#local anOption = "mappedBy = \"" + java.getAttributeName(att.association.memberEnds[1]) + "\"" />
-		<#local options = options + [anOption]/>
+	<#else>
+		<#if util.isMandatoryAssociation(att)>
+			<#local anOption = "optional=false" />
+			<#local options = options + [anOption]/>
+		</#if>
+		<#if !util.isOwningSide(att)>
+			<#local anOption = "mappedBy = \"" + java.getAttributeName(att.association.memberEnds[1]) + "\"" />
+			<#local options = options + [anOption]/>
+		</#if>
 	</#if>
 	<#list options as opt>
 		<#if opt_index == 0>(</#if>${opt}<#if opt_has_next>,<#else>)</#if>
@@ -50,7 +57,7 @@
 		-->
 
 <#macro attribute_annotations att>
-	<#if !util.isSimple(att) || isIdAttribute(att)>
+	<#if !util.isSimple(att) && !isIdAttribute(att)>
 	<@association_annotation att/><@association_annotation_options att/>
 	</#if>
 </#macro>

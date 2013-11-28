@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd" xmlns:fn="http://www.w3.org/2006/xpath-functions" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/XDOC/2.0">
+<head>
+<title>jpa - jpa Directive API</title>
+</head>
+<body>
+<section name="@jpa : jpa directive">
+<subsection name="Summary">
+<p> This directive provides macros and functions to generate
+		code specific to Spring Beans / Data implementation.</p>
+<p>Using a <b>function</b> in a template can be done using <code>&lt;jpa.functionName(att1, ..., atti, ..., attn) /&gt; </code>syntax.</p>
+<p>Using a <b>macro</b> in a template can be done using <code>&lt;@jpa.macroName att1 atti attn /&gt; </code>syntax.</p>
+<table class="table table-bordered">
+<tr>
+<th colspan="2">API Overview</th>
+</tr>
+<tr>
+<td style="width:40px;">
+<p>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>
+</p>
+</td>
+<td>
+<p>
+<a href="#service_entity_dependency">service_entity_dependency</a> dep</p>
+<p class="ml20">Renders an entity dependency, i.e. a reference to its corresponding Spring Data repository</p>
+</td>
+</tr>
+</table>
+</subsection>
+</section>
+<subsection name="Detailed documentation">
+<fieldset>
+<legend>
+<img src="../images/macro-icon.png" alt="Macro" title="Macro"/>service_entity_dependency</legend>
+<div class="docdetail">
+<a name="service_entity_dependency"/>
+<p>Renders an entity dependency, i.e. a reference to its corresponding Spring Data repository</p>
+<p>Parameters</p>
+<p class="ml20">dep : a class dependency</p>
+</div>
+</fieldset>
+</subsection>
+<script>
+					function toggleDisplay(divId) {
+						var divObj = document.getElementById(divId);
+						if(divObj) {
+							if(divObj.style.display == "none") {
+								divObj.style.display = "block";
+							} else {
+								divObj.style.display = "none";
+							}
+						}
+					}
+				</script>
+</body>
+</document>

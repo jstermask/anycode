@@ -150,7 +150,21 @@
 </#function>]]></code>
 	</function>	
 	
+	<function name="isEnumeration">
+		<description>Checks if an element is an enumeration.
+		</description>
+		<param>
+			<name>elt</name>
+			<description>The element to check</description>
+		</param>
+		<return>true is this element is an enumeration relation</return>
+		<code>
+<![CDATA[<#function isEnumeration elt>
+	<#return (elt.hasStereotype("enum"))/>
+</#function>]]></code>
+	</function>	
 	
+		
 	<macro name="custom_code">
 		<description>Adds a merge point to your generated code. Further generations will merge code inside this tag</description>
 		<param>
