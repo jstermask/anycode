@@ -142,6 +142,7 @@ java.util.Set<${att.qualifiedTypeExpression?replace("::",".")}>
 		<@compress>
 		<@custom_code id="op-content-"+idValue />
 		</@compress>
+		
 	}</#if> 
 	</#if>
 </#macro>]]>
