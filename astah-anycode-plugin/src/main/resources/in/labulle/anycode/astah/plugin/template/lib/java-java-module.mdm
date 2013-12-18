@@ -67,6 +67,7 @@ java.util.Set<${att.qualifiedTypeExpression?replace("::",".")}>
 		<@compress>
 		<@custom_code id="op-"+idValue />
 		</@compress>
+		
 	<#if includeBody><@visibility op/></#if> ${op.returnType.name}${op.typeModifier} <#if  (alternativeOpName?length > 0)>${alternativeOpName}<#else>${op.name}</#if>(<#list op.parameters as p>${p.type.name} ${p.name} <#if p_has_next>,</#if></#list>) <#if includeExceptions>throws ${op.owner.name}Exception</#if><#if !includeBody>;<#else>{
 		<@compress>
 		<@custom_code id="op-content-"+idValue />
