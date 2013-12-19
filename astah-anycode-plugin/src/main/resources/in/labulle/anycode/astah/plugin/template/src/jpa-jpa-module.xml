@@ -112,7 +112,7 @@ import org.hibernate.annotations.*;
 			<#local anOption = "mappedBy = \"" + java.getAttributeName(att.association.memberEnds[1]) + "\"" />
 			<#local options = options + [anOption]/>
 		</#if>
-		<#if att.association.memberEnds[0].aggregate>
+		<#if util.isOwningSide(att) && att.association.memberEnds[0].aggregate>
 			<#local anOption = "cascade = {javax.persistence.CascadeType.ALL}" />
 			<#local options = options + [anOption]/>
 		</#if>
