@@ -35,6 +35,10 @@
 			<#local anOption = "mappedBy = \"" + java.getAttributeName(att.association.memberEnds[1]) + "\"" />
 			<#local options = options + [anOption]/>
 		</#if>
+		<#if att.association.memberEnds[0].aggregate>
+			<#local anOption = "cascade = {javax.persistence.CascadeType.ALL}" />
+			<#local options = options + [anOption]/>
+		</#if>
 	</#if>
 	<#list options as opt>
 		<#if opt_index == 0>(</#if>${opt}<#if opt_has_next>,<#else>)</#if>
