@@ -1,12 +1,19 @@
 package in.labulle.anycode.editor.ux;
 
+import in.labulle.anycode.editor.context.EditorContext;
+import in.labulle.anycode.editor.context.IEditorContext;
+import in.labulle.anycode.editor.controller.DirectiveFileController;
+import in.labulle.anycode.editor.ux.menu.MenuBar;
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import javax.swing.JFrame;
-import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 public class AnycodeTemplateEditor extends JFrame {
+	private final IEditorContext editorContext;
 
 	/**
 	 * 
@@ -14,29 +21,34 @@ public class AnycodeTemplateEditor extends JFrame {
 	private static final long serialVersionUID = 7036826508150802814L;
 
 	public static void main(String[] args) {
-		JFrame frame = new AnycodeTemplateEditor();
-		frame.setContentPane(getMainPanel());
-		frame.setJMenuBar(newMenuBar());
+		JFrame frame = new AnycodeTemplateEditor(new EditorContext());
 		frame.pack();
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+		frame.setLocation(x, y);
 		frame.setVisible(true);
 
 	}
 
-	private static JMenuBar newMenuBar() {
-		JMenuBar mb = new JMenuBar();
-		mb.add(newMenu());
-		return mb;
+	public AnycodeTemplateEditor(final IEditorContext ctx) {
+		this.editorContext = ctx;
+		build();
 	}
-
-	private static JMenu newMenu() {
-		JMenu menu = new JMenu("File");
-		menu.add(new JMenuItem("Open..."));
-		menu.add(new JMenuItem("Save"));
-		menu.add(new JMenuItem("Quit"));
-		return menu;
+	
+	private void build() {
+		setJMenuBar(newMenuBar());
+		setContentPane(newMainPanel());
 	}
+	
+	private JMenuBar newMenuBar() {
+		//MenuBar bar = new MenuBar(new DirectiveFileController(this.editorContext));
+		//return bar;
+		return null;
+	}
+	
 
-	private static JPanel getMainPanel() {
+	private JPanel newMainPanel() {
 		return new JPanel();
 	}
 
