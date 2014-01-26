@@ -4,6 +4,8 @@ import org.jdom2.Element;
 
 import in.labulle.anycode.editor.core.ApiElement;
 import in.labulle.anycode.editor.core.Directive;
+import in.labulle.anycode.editor.core.Function;
+import in.labulle.anycode.editor.core.Macro;
 
 public class XmlDirective extends Directive implements XmlAble {
 	public XmlDirective() {
@@ -47,6 +49,16 @@ public class XmlDirective extends Directive implements XmlAble {
 	private void addMacro(Element element) {
 		getElements().add(new XmlMacro(element));
 
+	}
+	
+	@Override
+	protected Function getNewFunctionIntance() {
+		return new XmlFunction();
+	}
+	
+	@Override
+	protected Macro getNewMacroIntance() {
+		return new XmlMacro();
 	}
 
 }

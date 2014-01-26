@@ -37,5 +37,15 @@ public abstract class ApiElement {
 	public List<Param> getParams() {
 		return params;
 	}
+	
+	public final Param newParam() {
+		Param p = getParamInstance();
+		params.add(p);
+		return p;
+	}
+	
+	protected Param getParamInstance() {
+		return new Param();
+	}
 
 }

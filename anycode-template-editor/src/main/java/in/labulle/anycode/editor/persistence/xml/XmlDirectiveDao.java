@@ -1,9 +1,6 @@
 package in.labulle.anycode.editor.persistence.xml;
 
 import in.labulle.anycode.editor.core.Directive;
-import in.labulle.anycode.editor.core.Function;
-import in.labulle.anycode.editor.core.Macro;
-import in.labulle.anycode.editor.core.Param;
 import in.labulle.anycode.editor.persistence.IDirectiveDao;
 
 import java.io.File;
@@ -15,21 +12,6 @@ import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
 public class XmlDirectiveDao implements IDirectiveDao {
-
-	@Override
-	public Macro newMacro() {
-		return new XmlMacro();
-	}
-
-	@Override
-	public Param newParam() {
-		return new XmlParam();
-	}
-
-	@Override
-	public Function newFunction() {
-		return new XmlFunction();
-	}
 
 	@Override
 	public Directive newDirective() {
