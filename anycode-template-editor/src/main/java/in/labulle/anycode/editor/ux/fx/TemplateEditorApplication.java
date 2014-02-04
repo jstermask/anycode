@@ -14,7 +14,7 @@ public class TemplateEditorApplication extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("main_view.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
         Scene scene = new Scene(root, 300, 275);
         primaryStage.setTitle("FXML Welcome");
         primaryStage.setScene(scene);

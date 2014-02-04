@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-import in.labulle.anycode.editor.controller.IDirectiveFileController;
+import in.labulle.anycode.editor.service.IDirectiveFacade;
 
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
@@ -15,14 +15,14 @@ public class MenuBar extends JMenuBar {
 	/**
 	 * File controller
 	 */
-	private final IDirectiveFileController directiveFileController;
+	private final IDirectiveFacade directiveFileController;
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -2436255515398532506L;
 
-	public MenuBar(final IDirectiveFileController directiveFileController) {
+	public MenuBar(final IDirectiveFacade directiveFileController) {
 		this.directiveFileController = directiveFileController;
 		init();
 	}

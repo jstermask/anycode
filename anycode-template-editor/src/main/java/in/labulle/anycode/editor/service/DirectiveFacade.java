@@ -1,4 +1,4 @@
-package in.labulle.anycode.editor.controller;
+package in.labulle.anycode.editor.service;
 
 import in.labulle.anycode.editor.context.IDirectiveContext;
 import in.labulle.anycode.editor.context.IEditorContext;
@@ -7,12 +7,12 @@ import in.labulle.anycode.editor.persistence.IDirectiveDao;
 
 import java.io.File;
 
-public class DirectiveFileController implements IDirectiveFileController {
+public class DirectiveFacade implements IDirectiveFacade {
 	private final IEditorContext context;
 	
 	private IDirectiveDao directiveDao;
 
-	public DirectiveFileController(IEditorContext context, IDirectiveDao directiveDao) {
+	public DirectiveFacade(IEditorContext context, IDirectiveDao directiveDao) {
 		this.context = context;
 		this.directiveDao = directiveDao;
 	}

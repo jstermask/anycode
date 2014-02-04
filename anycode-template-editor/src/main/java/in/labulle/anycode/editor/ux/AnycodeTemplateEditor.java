@@ -2,7 +2,7 @@ package in.labulle.anycode.editor.ux;
 
 import in.labulle.anycode.editor.context.EditorContext;
 import in.labulle.anycode.editor.context.IEditorContext;
-import in.labulle.anycode.editor.controller.DirectiveFileController;
+import in.labulle.anycode.editor.service.DirectiveFacade;
 import in.labulle.anycode.editor.ux.menu.MenuBar;
 
 import java.awt.Dimension;
