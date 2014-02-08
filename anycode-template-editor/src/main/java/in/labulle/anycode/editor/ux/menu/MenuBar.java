@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-import in.labulle.anycode.editor.service.IDirectiveFacade;
+import in.labulle.anycode.editor.facade.IDirectiveFacade;
 
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;

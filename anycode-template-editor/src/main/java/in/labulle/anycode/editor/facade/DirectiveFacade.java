@@ -1,4 +1,4 @@
-package in.labulle.anycode.editor.service;
+package in.labulle.anycode.editor.facade;
 
 import in.labulle.anycode.editor.context.IDirectiveContext;
 import in.labulle.anycode.editor.context.IEditorContext;
@@ -6,6 +6,7 @@ import in.labulle.anycode.editor.core.Directive;
 import in.labulle.anycode.editor.persistence.IDirectiveDao;
 
 import java.io.File;
+import java.util.List;
 
 public class DirectiveFacade implements IDirectiveFacade {
 	private final IEditorContext context;
@@ -41,6 +42,12 @@ public class DirectiveFacade implements IDirectiveFacade {
 
 	public void setDirectiveDao(IDirectiveDao directiveDao) {
 		this.directiveDao = directiveDao;
+	}
+
+	@Override
+	public List<Directive> getAllOpenedDirectives() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
