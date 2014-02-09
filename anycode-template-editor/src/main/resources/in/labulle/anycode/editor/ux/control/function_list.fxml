@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml" minHeight="150" minWidth="100" prefHeight="200" prefWidth="150">
+	<children>
+		<ListView>
+			<VBox.margin>
+				<Insets bottom="5" left="5" right="5" top="5" />
+			</VBox.margin>
+		</ListView>
+	</children>
+</fx:root>

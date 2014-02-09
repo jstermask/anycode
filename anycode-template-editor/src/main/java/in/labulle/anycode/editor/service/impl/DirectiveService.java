@@ -1,26 +1,34 @@
 package in.labulle.anycode.editor.service.impl;
 
 import in.labulle.anycode.editor.core.Directive;
-import in.labulle.anycode.editor.service.IDrectiveService;
+import in.labulle.anycode.editor.persistence.IDirectiveDao;
+import in.labulle.anycode.editor.service.IDirectiveService;
 
-public class DirectiveService implements IDrectiveService {
+public class DirectiveService implements IDirectiveService {
+	private IDirectiveDao directiveDao;
+	
+	public DirectiveService(IDirectiveDao dao) {
+		this.directiveDao = dao;
+	}
 
 	@Override
 	public Directive newDirective() {
-		// TODO Auto-generated method stub
-		return null;
+		return getDirectiveDao().newDirective();
 	}
 
 	@Override
 	public void saveToFile(Directive d, String outputPath) {
-		// TODO Auto-generated method stub
+		getDirectiveDao().saveToFile(d, outputPath);
 
 	}
 
 	@Override
 	public Directive loadFromFile(String path) {
-		// TODO Auto-generated method stub
-		return null;
+		return getDirectiveDao().loadFromFile(path);
+	}
+	
+	private IDirectiveDao getDirectiveDao() {
+		return directiveDao;
 	}
 
 }

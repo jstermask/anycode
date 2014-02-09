@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root type="javafx.scene.control.TabPane" xmlns:fx="http://javafx.com/fxml" prefHeight="480.0" prefWidth="640.0" tabClosingPolicy="UNAVAILABLE">
+	<tabs>
+		<fx:include source="directive_tab.fxml" />
+	</tabs>
+</fx:root>

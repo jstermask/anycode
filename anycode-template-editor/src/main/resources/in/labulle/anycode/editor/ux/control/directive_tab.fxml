@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root type="javafx.scene.control.Tab" xmlns:fx="http://javafx.com/fxml">
+	<content>
+		<BorderPane>
+			<left>
+				<fx:include source="function_list.fxml" />
+			</left>
+			<center>
+				<fx:include source="function_form.fxml" />
+			</center>
+		</BorderPane>
+	</content>
+</fx:root>
