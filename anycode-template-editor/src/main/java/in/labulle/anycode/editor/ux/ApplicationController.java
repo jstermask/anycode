@@ -11,8 +11,7 @@ public class ApplicationController {
 	@FXML
 	private MenuController menuController;
 	
-	@FXML
-	private TabController tabController;
+
 	
 	private IDirectiveFacade directiveFacade;
 	
@@ -29,13 +28,6 @@ public class ApplicationController {
 		this.menuController = menuController;
 	}
 	
-	public TabController getTabController() {
-		return tabController;
-	}
-	
-	public void setTabController(TabController tabController) {
-		this.tabController = tabController;
-	}
 	
 	public IDirectiveFacade getDirectiveFacade() {
 		return directiveFacade;

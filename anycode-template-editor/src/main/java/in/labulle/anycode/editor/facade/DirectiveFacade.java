@@ -21,12 +21,18 @@ public class DirectiveFacade implements IDirectiveFacade {
 
 	@Override
 	public IDirectiveContext loadFromSelectedFile(File selectedFile) {
-		Directive d = getDirectiveService().loadFromFile(
-				selectedFile.getAbsolutePath());
-		IDirectiveContext ctx = this.context.newDirectiveContext();
-		ctx.setDirective(d);
-		ctx.setFile(selectedFile);
-		return ctx;
+		try {
+			Directive d = getDirectiveService().loadFromFile(
+					selectedFile.getAbsolutePath());
+			IDirectiveContext ctx = this.context.newDirectiveContext();
+			ctx.setDirective(d);
+			ctx.setFile(selectedFile);
+			return ctx;
+		} catch (RuntimeException e) {
+			return null;
+
+		}
+
 	}
 
 	@Override

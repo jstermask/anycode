@@ -6,6 +6,7 @@ import in.labulle.anycode.editor.core.ApiElement;
 import in.labulle.anycode.editor.core.Directive;
 import in.labulle.anycode.editor.core.Function;
 import in.labulle.anycode.editor.core.Macro;
+import in.labulle.anycode.editor.persistence.InvalidFileException;
 
 public class XmlDirective extends Directive implements XmlAble {
 	public XmlDirective() {
@@ -17,6 +18,8 @@ public class XmlDirective extends Directive implements XmlAble {
 			for (Element child : elt.getChildren()) {
 				addChild(child);
 			}
+		} else {
+			throw new InvalidFileException();
 		}
 	}
 

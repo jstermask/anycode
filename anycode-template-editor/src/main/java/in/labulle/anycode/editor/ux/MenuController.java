@@ -4,6 +4,7 @@ import in.labulle.anycode.editor.context.IDirectiveContext;
 import in.labulle.anycode.editor.facade.IDirectiveFacade;
 import in.labulle.anycode.editor.ux.control.EditorTabPane;
 import in.labulle.anycode.editor.ux.control.TemplateEditorScene;
+import in.labulle.anycode.editor.ux.dialog.Dialogs;
 
 import java.io.File;
 
@@ -33,7 +34,11 @@ public class MenuController {
 			}
 
 			IDirectiveContext ctx = getDirectiveFacade().loadFromSelectedFile(chosenFile);
-			getTabView().loadDirective(ctx);
+			if(ctx == null) {
+				Dialogs.showError("Selected file is not valid !");
+			} else {
+				getTabView().loadDirective(ctx);
+			}
 			
 		}
 
