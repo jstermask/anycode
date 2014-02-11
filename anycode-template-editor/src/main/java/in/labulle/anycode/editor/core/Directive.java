@@ -4,11 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Directive {
+	
+	
 	protected Directive() {
 
 	}
 
 	private final List<ApiElement> elements = new ArrayList<ApiElement>();
+	
+	private String description;
 
 	public List<ApiElement> getElements() {
 		return elements;
@@ -32,5 +36,13 @@ public class Directive {
 
 	protected Macro getNewMacroIntance() {
 		return new Macro();
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

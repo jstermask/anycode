@@ -40,8 +40,10 @@ public class XmlDirective extends Directive implements XmlAble {
 	private void addChild(Element element) {
 		if ("function".equals(element.getName())) {
 			addFunction(element);
-		} else {
+		} else if("macro".equals(element.getName())){
 			addMacro(element);
+		} else if("description".equals(element.getName())) {
+			setDescription(element.getValue());
 		}
 	}
 

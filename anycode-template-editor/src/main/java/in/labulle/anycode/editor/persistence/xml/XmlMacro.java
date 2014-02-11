@@ -4,6 +4,7 @@ import org.jdom2.Attribute;
 import org.jdom2.Element;
 
 import in.labulle.anycode.editor.core.Macro;
+import in.labulle.anycode.editor.core.Param;
 
 public class XmlMacro extends Macro implements XmlAble {
 
@@ -12,7 +13,7 @@ public class XmlMacro extends Macro implements XmlAble {
 	}
 	
 	protected XmlMacro(Element element) {
-		
+		XmlApiElement.copyFromXml(element, this);
 	}
 	
 	@Override
@@ -26,6 +27,11 @@ public class XmlMacro extends Macro implements XmlAble {
 	@Override
 	public String getElementName() {
 		return "macro";
+	}
+	
+	@Override
+	protected Param getParamInstance() {
+		return new XmlParam();
 	}
 
 }
