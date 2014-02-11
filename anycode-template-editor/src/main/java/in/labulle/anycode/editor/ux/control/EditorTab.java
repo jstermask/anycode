@@ -3,15 +3,21 @@ package in.labulle.anycode.editor.ux.control;
 import in.labulle.anycode.editor.context.IDirectiveContext;
 import in.labulle.anycode.editor.core.ApiElement;
 import in.labulle.anycode.editor.core.Directive;
+import in.labulle.anycode.editor.core.Function;
 
 import java.io.IOException;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Tab;
+import javafx.util.Callback;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,9 +26,12 @@ public class EditorTab extends Tab {
 	private static final Logger LOG = LoggerFactory.getLogger(EditorTab.class);
 
 	private IDirectiveContext directiveContext;
-	
+
 	@FXML
-	private ListView<String> functionListView;
+	private ListView<ApiElement> functionListView;
+
+	@FXML
+	private ApiElementForm form;
 
 	public EditorTab(IDirectiveContext ctx) {
 		this.directiveContext = ctx;
@@ -39,29 +48,61 @@ public class EditorTab extends Tab {
 				LOG.error("Constructor", e);
 			}
 		}
-		
+
 	}
 
 	private IDirectiveContext getDirectiveContext() {
 		return directiveContext;
 	}
-	
 
 	private void init() {
 		loadTab();
 		loadApiElements();
+		selectNothing();
 	}
-	
+
 	private void loadTab() {
 		setOnClosed(getCloseEventHandler());
 		setText(directiveContext.getFile().getName());
 	}
-	
+
 	private void loadApiElements() {
 		Directive d = getDirectiveContext().getDirective();
-		for(ApiElement elt : d.getElements()) {
-			functionListView.getItems().add(elt.getName());
+		functionListView
+				.setCellFactory(new Callback<ListView<ApiElement>, ListCell<ApiElement>>() {
+
+					@Override
+					public ListCell<ApiElement> call(ListView<ApiElement> p) {
+
+						ListCell<ApiElement> cell = new ListCell<ApiElement>() {
+
+							@Override
+							protected void updateItem(ApiElement t, boolean bln) {
+								super.updateItem(t, bln);
+								if (t != null) {
+									String type = (t instanceof Function) ? "[F]"
+											: "[M]";
+									setText(type + " " + t.getName());
+								}
+							}
+
+						};
+
+						return cell;
+					}
+				});
+
+		for (ApiElement elt : d.getElements()) {
+			functionListView.getItems().add(elt);
 		}
+		functionListView.getSelectionModel().setSelectionMode(
+				SelectionMode.SINGLE);
+		functionListView.getSelectionModel().selectedItemProperty()
+				.addListener(getSelectionListener());
+	}
+
+	private void selectNothing() {
+		this.form.setVisible(false);
 	}
 
 	private EventHandler<Event> getCloseEventHandler() {
@@ -78,5 +119,18 @@ public class EditorTab extends Tab {
 		};
 	}
 
+	private ChangeListener<ApiElement> getSelectionListener() {
+		return new ChangeListener<ApiElement>() {
+
+			@Override
+			public void changed(ObservableValue<? extends ApiElement> arg0,
+					ApiElement arg1, ApiElement arg2) {
+				form.setElement(arg2);
+				form.setVisible(true);
+
+			}
+
+		};
+	}
 
 }
