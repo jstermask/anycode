@@ -4,6 +4,7 @@ import in.labulle.anycode.editor.context.IDirectiveContext;
 import in.labulle.anycode.editor.core.ApiElement;
 import in.labulle.anycode.editor.core.Directive;
 import in.labulle.anycode.editor.core.Function;
+import in.labulle.anycode.editor.ux.FormController;
 
 import java.io.IOException;
 
@@ -17,6 +18,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Tab;
+import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
 import org.slf4j.Logger;
@@ -31,7 +33,10 @@ public class EditorTab extends Tab {
 	private ListView<ApiElement> functionListView;
 
 	@FXML
-	private ApiElementForm form;
+	private VBox form;
+	
+	@FXML
+	private FormController formController;
 
 	public EditorTab(IDirectiveContext ctx) {
 		this.directiveContext = ctx;
@@ -125,12 +130,17 @@ public class EditorTab extends Tab {
 			@Override
 			public void changed(ObservableValue<? extends ApiElement> arg0,
 					ApiElement arg1, ApiElement arg2) {
-				form.setElement(arg2);
-				form.setVisible(true);
+				if(arg2 != null) {
+					formController.setElement(arg2);
+					form.setVisible(true);
+				}
 
 			}
 
 		};
 	}
+
+	
+
 
 }

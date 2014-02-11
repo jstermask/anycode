@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import in.labulle.anycode.editor.ux.control.*?>
-
+<?import in.labulle.anycode.editor.ux.bean.*?>
 <fx:root type="in.labulle.anycode.editor.ux.control.EditorTab" xmlns:fx="http://javafx.com/fxml">
 	<content>
 		<BorderPane>
@@ -24,28 +24,7 @@
 				</VBox>
 			</left>
 			<center>
-				<ApiElementForm fx:id="form">
-					<VBox.margin>
-						<Insets bottom="5" left="5" right="5" top="5" />
-					</VBox.margin>
-					<Label layoutX="13.0" layoutY="22.0" text="Name" />
-					<TextField fx:id="name"/>
-					<Label layoutX="15.0" layoutY="53.0" text="Description" />
-					<TextArea fx:id="description" prefHeight="60.0" prefWidth="200.0" />
-					<Label layoutX="15.0" layoutY="85.0" text="Parameters" />
-					<TableView layoutY="210.0" prefHeight="160.0" prefWidth="352.0">
-						<columns>
-							<TableColumn prefWidth="75.0" text="C1" />
-							<TableColumn prefWidth="75.0" text="C2" />
-						</columns>
-					</TableView>
-					<Label layoutX="12.0" layoutY="176.0" text="Source code" />
-					<TextArea prefHeight="80.0" prefWidth="352.0" />
-					<HBox>
-						<Button text="OK" />
-						<Button text="Cancel"/>
-					</HBox>
-				</ApiElementForm>
+				<fx:include fx:id="form" source="element_form.fxml"/>
 			</center>
 		</BorderPane>
 	</content>
