@@ -5,6 +5,7 @@ import in.labulle.anycode.editor.core.ApiElement;
 import in.labulle.anycode.editor.core.Directive;
 import in.labulle.anycode.editor.core.Function;
 import in.labulle.anycode.editor.ux.FormController;
+import in.labulle.anycode.editor.ux.bean.ApiElementBean;
 
 import java.io.IOException;
 
@@ -30,11 +31,11 @@ public class EditorTab extends Tab {
 	private IDirectiveContext directiveContext;
 
 	@FXML
-	private ListView<ApiElement> functionListView;
+	private ListView<ApiElementBean> functionListView;
 
 	@FXML
 	private VBox form;
-	
+
 	@FXML
 	private FormController formController;
 
@@ -74,18 +75,20 @@ public class EditorTab extends Tab {
 	private void loadApiElements() {
 		Directive d = getDirectiveContext().getDirective();
 		functionListView
-				.setCellFactory(new Callback<ListView<ApiElement>, ListCell<ApiElement>>() {
+				.setCellFactory(new Callback<ListView<ApiElementBean>, ListCell<ApiElementBean>>() {
 
 					@Override
-					public ListCell<ApiElement> call(ListView<ApiElement> p) {
+					public ListCell<ApiElementBean> call(
+							ListView<ApiElementBean> p) {
 
-						ListCell<ApiElement> cell = new ListCell<ApiElement>() {
+						ListCell<ApiElementBean> cell = new ListCell<ApiElementBean>() {
 
 							@Override
-							protected void updateItem(ApiElement t, boolean bln) {
+							protected void updateItem(ApiElementBean t,
+									boolean bln) {
 								super.updateItem(t, bln);
 								if (t != null) {
-									String type = (t instanceof Function) ? "[F]"
+									String type = t.isFunction() ? "[F]"
 											: "[M]";
 									setText(type + " " + t.getName());
 								}
@@ -98,7 +101,7 @@ public class EditorTab extends Tab {
 				});
 
 		for (ApiElement elt : d.getElements()) {
-			functionListView.getItems().add(elt);
+			functionListView.getItems().add(new ApiElementBean(elt));
 		}
 		functionListView.getSelectionModel().setSelectionMode(
 				SelectionMode.SINGLE);
@@ -124,13 +127,13 @@ public class EditorTab extends Tab {
 		};
 	}
 
-	private ChangeListener<ApiElement> getSelectionListener() {
-		return new ChangeListener<ApiElement>() {
+	private ChangeListener<ApiElementBean> getSelectionListener() {
+		return new ChangeListener<ApiElementBean>() {
 
 			@Override
-			public void changed(ObservableValue<? extends ApiElement> arg0,
-					ApiElement arg1, ApiElement arg2) {
-				if(arg2 != null) {
+			public void changed(ObservableValue<? extends ApiElementBean> arg0,
+					ApiElementBean arg1, ApiElementBean arg2) {
+				if (arg2 != null) {
 					formController.setElement(arg2);
 					form.setVisible(true);
 				}
@@ -139,8 +142,5 @@ public class EditorTab extends Tab {
 
 		};
 	}
-
-	
-
 
 }

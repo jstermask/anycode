@@ -1,6 +1,6 @@
 package in.labulle.anycode.editor.ux;
 
-import in.labulle.anycode.editor.core.ApiElement;
+import in.labulle.anycode.editor.ux.bean.ApiElementBean;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -23,34 +23,27 @@ public class FormController {
 		name.getParent().setVisible(false);
 	}
 	
-	private ApiElement element;
+	private ApiElementBean element;
 	
 
 
 	
 
 
-	public void setElement(ApiElement element) {
+	public void setElement(ApiElementBean element) {
 		this.element = element;
 		updateForm();
 	}
 
 	public void save() {
-		updateModel();
+		element.updateModel();
 	}
 	
-
-
-	private void updateModel() {
-		element.setName(name.getText());
-		element.setDescription(description.getText());
-		element.setCode(code.getText());
-	}
 	
 	private void updateForm() {
-		name.setText(element.getName());
-		description.setText(element.getDescription());
-		code.setText(element.getCode());
+		element.nameProperty().bindBidirectional(name.textProperty());
+		element.codeProperty().bindBidirectional(code.textProperty());
+		element.descriptionProperty().bindBidirectional(description.textProperty());
 	}
 
 }
