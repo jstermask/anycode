@@ -1,7 +1,8 @@
 package ${c.owner.getFullyQualifiedName(".")};
 
+
 public class ${c.name} {
 	<%for(att in c.attributes) {%>
-		private String $att.name;
+		<%=jpa.attribute(att)%>
 	<%}%>
 }

@@ -7,4 +7,5 @@ public interface IElement {
 	IElement getOwner();
 	String getFullyQualifiedName(String separator);
 	Set<IStereotype> getStereotypes();
+	Visibility getVisibility();
 }

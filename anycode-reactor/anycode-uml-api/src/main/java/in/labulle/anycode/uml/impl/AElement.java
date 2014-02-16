@@ -5,12 +5,15 @@ import java.util.Set;
 
 import in.labulle.anycode.uml.IElement;
 import in.labulle.anycode.uml.IStereotype;
+import in.labulle.anycode.uml.Visibility;
 
 public class AElement implements IElement {
 
 	private String name;
 
 	private IElement owner;
+	
+	private Visibility visibility;
 
 	private final Set<IStereotype> stereotypes = new HashSet<IStereotype>();
 
@@ -55,5 +58,14 @@ public class AElement implements IElement {
 		}
 		return buf.toString();
 	}
+	
+	public Visibility getVisibility() {
+		return visibility;
+	}
+	
+	public void setVisibility(Visibility visibility) {
+		this.visibility = visibility;
+	}
+	
 
 }
