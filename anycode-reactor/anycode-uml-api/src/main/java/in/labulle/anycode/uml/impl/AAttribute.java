@@ -25,4 +25,8 @@ public class AAttribute extends AElement implements IAttribute {
 	public void setCardinality(Cardinality cardinality) {
 		this.cardinality = cardinality;
 	}
+	
+	public boolean isRelation() {
+		return false;
+	}
 }
