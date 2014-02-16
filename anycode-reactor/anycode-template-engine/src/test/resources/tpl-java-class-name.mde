@@ -1,1 +1,1 @@
-$targetDir/${name}.java
+$targetDir/${c.name}.java
