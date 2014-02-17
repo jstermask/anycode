@@ -24,7 +24,7 @@ class CompositeTemplate implements ITemplate {
 		ctx.put("jpa", new JpaDirective())
 		def outputFile = nameTemplate.make(ctx).toString()
 		File f = new File(outputFile)
-		f.mkdirs();
+		f.getParentFile().mkdirs();
 		FileWriter w = new FileWriter(f)
 		contentTemplate.make(ctx).writeTo(w)
 		w.close();

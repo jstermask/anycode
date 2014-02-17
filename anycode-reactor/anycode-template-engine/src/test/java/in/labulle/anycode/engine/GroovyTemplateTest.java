@@ -55,18 +55,12 @@ public class GroovyTemplateTest {
 	public void testTemplate_1() throws TemplateException,
 			InstantiationException, IllegalAccessException, IOException {
 		try {
-			ClassLoader parent = getClass().getClassLoader();
-			GroovyClassLoader loader = new GroovyClassLoader(parent);
-			String compositeTemplateFile = ITemplate.class.getResource(
-					"CompositeTemplate.groovy").getFile();
-			System.out.println(compositeTemplateFile);
-			Class<?> groovyClass = loader.parseClass(new File(
-					compositeTemplateFile));
+			
 
 			// let's call some method on an instance
-			ITemplate t = (ITemplate) groovyClass.newInstance();
+			ITemplate t = (ITemplate) new CompositeTemplate();
 			Map<String, Object> context = new HashMap<String, Object>();
-			context.put(ITemplate.TARGET_DIR_PARAM, getClass().getResource("/")
+			context.put(ITemplate.TARGET_DIR_PARAM, getClass().getResource("")
 					.getFile());
 			context.put("c", this.testClass);
 			String namepath = getClass()
@@ -76,7 +70,6 @@ public class GroovyTemplateTest {
 			t.setNameTemplate(namepath);
 			t.setContentTemplate(contentpath);
 			t.render(context);
-			loader.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail(e.getMessage());
