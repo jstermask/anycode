@@ -1,4 +1,4 @@
-package in.labulle.anycode.astah.plugin.template;
+package in.labulle.anycode.astah.plugin.template.api;
 
 import in.labulle.anycode.astah.plugin.template.exception.TemplateException;
 import in.labulle.anycode.astah.plugin.template.exception.TemplateRuntimeException;

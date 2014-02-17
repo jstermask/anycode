@@ -4,8 +4,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import in.labulle.anycode.astah.plugin.template.config.Configuration;
 import in.labulle.anycode.astah.plugin.template.exception.TemplateException;
-import in.labulle.anycode.astah.plugin.template.impl.CompositeTemplate;
-import in.labulle.anycode.astah.plugin.template.impl.Template;
+import in.labulle.anycode.astah.plugin.template.freemarker.core.CompositeTemplate;
+import in.labulle.anycode.astah.plugin.template.freemarker.core.Template;
 
 import java.io.File;
 import java.net.URISyntaxException;

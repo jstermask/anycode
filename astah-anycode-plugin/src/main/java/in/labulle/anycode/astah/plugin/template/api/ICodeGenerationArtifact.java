@@ -1,4 +1,4 @@
-package in.labulle.anycode.astah.plugin.template;
+package in.labulle.anycode.astah.plugin.template.api;
 
 public interface ICodeGenerationArtifact {
 	/**

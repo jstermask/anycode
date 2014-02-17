@@ -1,6 +1,4 @@
-package in.labulle.anycode.astah.plugin.template.repository;
-
-import in.labulle.anycode.astah.plugin.template.ICodeGenerationArtifact;
+package in.labulle.anycode.astah.plugin.template.api;
 
 import java.util.List;
 

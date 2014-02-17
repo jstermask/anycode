@@ -1,10 +1,10 @@
-package in.labulle.anycode.astah.plugin.template.repository.impl;
+package in.labulle.anycode.astah.plugin.template.freemarker.repository;
 
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
-import in.labulle.anycode.astah.plugin.template.ICodeGenerationArtifact;
+import in.labulle.anycode.astah.plugin.template.api.ICodeGenerationArtifact;
+import in.labulle.anycode.astah.plugin.template.api.ITemplateRepository;
 import in.labulle.anycode.astah.plugin.template.freemarker.loader.ITemplateLoader;
-import in.labulle.anycode.astah.plugin.template.repository.ITemplateRepository;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package in.labulle.anycode.astah.plugin.template.util;
 
-import in.labulle.anycode.astah.plugin.template.impl.Template;
+import in.labulle.anycode.astah.plugin.template.freemarker.core.Template;
 
 import java.util.HashMap;
 import java.util.Map;

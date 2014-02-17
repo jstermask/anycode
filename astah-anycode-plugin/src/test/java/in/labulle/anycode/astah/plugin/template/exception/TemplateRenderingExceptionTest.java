@@ -3,7 +3,7 @@ package in.labulle.anycode.astah.plugin.template.exception;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import in.labulle.anycode.astah.api.ClassMock;
-import in.labulle.anycode.astah.plugin.template.ITemplate;
+import in.labulle.anycode.astah.plugin.template.api.ITemplate;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package in.labulle.anycode.astah.plugin.template.repository;
+package in.labulle.anycode.astah.plugin.template.api;
 
 
 public interface ITemplateRepositoryFactory {

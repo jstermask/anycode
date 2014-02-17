@@ -2,9 +2,10 @@ package in.labulle.anycode.astah.plugin.template;
 
 import static org.junit.Assert.assertEquals;
 import in.labulle.anycode.astah.api.ClassMock;
+import in.labulle.anycode.astah.plugin.template.api.ICodeGenerationArtifact;
 import in.labulle.anycode.astah.plugin.template.config.Configuration;
 import in.labulle.anycode.astah.plugin.template.freemarker.loader.FilePathTemplateLoader;
-import in.labulle.anycode.astah.plugin.template.repository.impl.TemplateRepositoryImpl;
+import in.labulle.anycode.astah.plugin.template.freemarker.repository.TemplateRepositoryImpl;
 
 import java.io.File;
 import java.io.IOException;

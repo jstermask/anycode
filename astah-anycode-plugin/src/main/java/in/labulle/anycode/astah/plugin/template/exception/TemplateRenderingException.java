@@ -1,6 +1,6 @@
 package in.labulle.anycode.astah.plugin.template.exception;
 
-import in.labulle.anycode.astah.plugin.template.ITemplate;
+import in.labulle.anycode.astah.plugin.template.api.ITemplate;
 
 import com.change_vision.jude.api.inf.model.IClass;
 

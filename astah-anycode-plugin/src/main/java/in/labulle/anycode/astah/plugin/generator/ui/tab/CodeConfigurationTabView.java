@@ -7,7 +7,7 @@ import in.labulle.anycode.astah.plugin.model.ModelRepositoryImpl;
 import in.labulle.anycode.astah.plugin.mvc.IView;
 import in.labulle.anycode.astah.plugin.osgi.util.BundleUtils;
 import in.labulle.anycode.astah.plugin.report.ICodeGenerationLog;
-import in.labulle.anycode.astah.plugin.template.repository.impl.TemplateRepositoryFactoryImpl;
+import in.labulle.anycode.astah.plugin.template.freemarker.repository.TemplateRepositoryFactoryImpl;
 
 import java.awt.BorderLayout;
 import java.awt.Component;

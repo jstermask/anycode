@@ -1,6 +1,6 @@
-package in.labulle.anycode.astah.plugin.template.impl;
+package in.labulle.anycode.astah.plugin.template.freemarker.core;
 
-import in.labulle.anycode.astah.plugin.template.IMacro;
+import in.labulle.anycode.astah.plugin.template.api.IMacro;
 
 public class Macro implements IMacro {
 	private String name;
