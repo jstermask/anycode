@@ -22,6 +22,7 @@ class CompositeTemplate implements ITemplate {
 	
 	def void render(Map<String, Object> ctx) {
 		ctx.put("jpa", new JpaDirective())
+		ctx.put("java", new JavaDirective())
 		def outputFile = nameTemplate.make(ctx).toString()
 		File f = new File(outputFile)
 		f.getParentFile().mkdirs();

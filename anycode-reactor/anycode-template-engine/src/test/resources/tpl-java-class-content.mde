@@ -3,6 +3,6 @@ package ${c.owner.getFullyQualifiedName(".")};
 
 public class ${c.name} {
 	<%for(att in c.attributes) {%>
-		<%=jpa.attribute(att)%>
+		${java.attribute(att)}
 	<%}%>
 }

@@ -1,16 +1,13 @@
 package in.labulle.anycode.engine;
 
-import groovy.lang.GroovyClassLoader;
-import groovy.lang.GroovyObject;
+import static org.junit.Assert.fail;
 import in.labulle.anycode.uml.IClass;
 import in.labulle.anycode.uml.Visibility;
 import in.labulle.anycode.uml.impl.AAttribute;
 import in.labulle.anycode.uml.impl.AClass;
 import in.labulle.anycode.uml.impl.ADataTypePrimitive;
 import in.labulle.anycode.uml.impl.APackage;
-import static org.junit.Assert.*;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
