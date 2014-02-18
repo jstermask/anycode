@@ -7,5 +7,6 @@
   <modules>
   	<module>anycode-uml-api</module>
   	<module>anycode-template-engine</module>
+  	<module>astah-anycode-plugin</module>
   </modules>
 </project>

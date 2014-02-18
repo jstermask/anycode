@@ -10,8 +10,14 @@
 		<astahPath>${env.ASTAH_API_HOME}</astahPath>
 	</properties>
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>fr.jjb.astah.plugin</groupId>
 	<artifactId>astah-anycode-plugin</artifactId>
+	<parent>
+		<groupId>in.labulle.anycode</groupId>
+		<artifactId>anycode-reactor</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+	
 	<name>AnyCode plugin for Astah*</name>
 	<description>Code generation plugin for Astah* Community</description>
 	<version>1.2.0_GA</version>
