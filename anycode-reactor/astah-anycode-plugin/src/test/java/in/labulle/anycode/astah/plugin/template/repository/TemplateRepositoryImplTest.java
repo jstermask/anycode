@@ -23,7 +23,7 @@ public class TemplateRepositoryImplTest {
 	@Mock
 	private Configuration configuration;
 
-	@Test(expected = TemplateRuntimeException.class)
+	@Test
 	public void testLoadEmpty() {
 		when(ftp.load(configuration)).thenReturn(
 				new ArrayList<ICodeGenerationArtifact>());

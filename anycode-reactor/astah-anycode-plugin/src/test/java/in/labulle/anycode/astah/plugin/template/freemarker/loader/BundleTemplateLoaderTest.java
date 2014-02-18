@@ -49,7 +49,7 @@ public class BundleTemplateLoaderTest {
     @Test
     public void testLoad() throws MalformedURLException {
         BundleTemplateLoader ld = new BundleTemplateLoader(ctx);
-        Assert.assertEquals(0, ld.load(config).size());
+        Assert.assertEquals(2, ld.load(config).size());
     }
 
     @Test
