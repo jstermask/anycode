@@ -10,7 +10,7 @@ import static java.lang.String.*
  * @author Jose Carreno
  *
  */
-class JavaDirective {
+class JavaDirective extends AnycodeDirective {
 	/**
 	 * @param a attribute
 	 * @return attribute full signature as a script : [visibility] [datatype] [attribute name]. e.g. : private String myVar;
@@ -21,4 +21,5 @@ class JavaDirective {
 		"""
 		return script;
 	}
+
 }

@@ -9,7 +9,7 @@ import groovy.text.SimpleTemplateEngine
  * @author Jose Carreno
  *
  */
-class JpaDirective {
+class JpaDirective extends AnycodeDirective {
 	/**
 	 * @param a attribute
 	 * @return attribute full signature as a script : [visibility] [datatype] [attribute name]. e.g. : private String myVar;
