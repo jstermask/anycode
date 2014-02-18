@@ -5,6 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
+  	<module>anycode-maven-skin</module>
   	<module>anycode-uml-api</module>
   	<module>anycode-template-engine</module>
   	<module>astah-anycode-plugin</module>
