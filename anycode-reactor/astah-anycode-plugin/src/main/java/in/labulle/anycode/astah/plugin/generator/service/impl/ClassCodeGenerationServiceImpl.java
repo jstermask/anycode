@@ -2,13 +2,13 @@ package in.labulle.anycode.astah.plugin.generator.service.impl;
 
 import in.labulle.anycode.astah.plugin.generator.service.ICodeGenerationService;
 import in.labulle.anycode.astah.plugin.model.IModelRepository;
-import in.labulle.anycode.astah.plugin.model.util.ModelUtils;
 import in.labulle.anycode.astah.plugin.report.ICodeGenerationLog;
 import in.labulle.anycode.astah.plugin.template.api.ICodeGenerationArtifact;
 import in.labulle.anycode.astah.plugin.template.api.ITemplate;
 import in.labulle.anycode.astah.plugin.template.api.ITemplateRepositoryFactory;
 import in.labulle.anycode.astah.plugin.template.config.Configuration;
 import in.labulle.anycode.astah.plugin.template.exception.TemplateException;
+import in.labulle.anycode.uml.astah.utils.ModelUtils;
 
 import java.io.File;
 import java.util.ArrayList;

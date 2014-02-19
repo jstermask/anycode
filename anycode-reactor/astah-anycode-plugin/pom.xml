@@ -434,6 +434,11 @@
 			<artifactId>anycode-template-engine-groovy</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>in.labulle.anycode</groupId>
+			<artifactId>anycode-uml-astah</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<issueManagement>
 		<system>BitBucket</system>

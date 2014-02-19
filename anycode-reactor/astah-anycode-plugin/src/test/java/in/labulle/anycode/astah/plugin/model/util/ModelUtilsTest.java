@@ -1,7 +1,7 @@
 package in.labulle.anycode.astah.plugin.model.util;
 
 import in.labulle.anycode.astah.api.ClassMock;
-import in.labulle.anycode.astah.plugin.model.util.ModelUtils;
+import in.labulle.anycode.uml.astah.utils.ModelUtils;
 
 import org.junit.Assert;
 import org.junit.Test;
