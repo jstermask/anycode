@@ -1,14 +1,14 @@
 package in.labulle.anycode.astah.plugin.generator.service.impl;
 
 import in.labulle.anycode.astah.plugin.generator.service.ICodeGenerationService;
-import in.labulle.anycode.astah.plugin.model.IModelRepository;
 import in.labulle.anycode.astah.plugin.report.ICodeGenerationLog;
 import in.labulle.anycode.astah.plugin.template.api.ICodeGenerationArtifact;
 import in.labulle.anycode.astah.plugin.template.api.ITemplate;
 import in.labulle.anycode.astah.plugin.template.api.ITemplateRepositoryFactory;
 import in.labulle.anycode.astah.plugin.template.config.Configuration;
 import in.labulle.anycode.astah.plugin.template.exception.TemplateException;
-import in.labulle.anycode.uml.astah.utils.ModelUtils;
+import in.labulle.anycode.uml.IClass;
+import in.labulle.anycode.uml.repository.IModelRepository;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -17,7 +17,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.change_vision.jude.api.inf.model.IClass;
 
 /**
  * Gets all the classes from the model and generates them with each template.
@@ -68,7 +67,7 @@ public class ClassCodeGenerationServiceImpl implements ICodeGenerationService {
         }
         config.put(Configuration.CONTEXT_PARAM_TARGET_DIR, outputPath);
         config.put(Configuration.CONTEXT_PARAM_TEMPLATE_DIR, templatePath);
-        List<IClass> classes = ModelUtils.getAllClasses(getModelRepository().getModelInstance());
+        List<IClass> classes = getModelRepository().getModelInstance().getAllClasses();
         List<ITemplate> templates = getTemplates(templatePath);
         int maxGenerations = classes.size() * templates.size();
         if (LOG.isDebugEnabled()) {
@@ -121,11 +120,11 @@ public class ClassCodeGenerationServiceImpl implements ICodeGenerationService {
         try {
             File f = aTemplate.renderToFile(config);
             if (this.codeGenerationReport != null) {
-                this.codeGenerationReport.success(f, aTemplate.getName(), aClass.getFullName("."));
+                this.codeGenerationReport.success(f, aTemplate.getName(), aClass.getFullyQualifiedName("."));
             }
         } catch (TemplateException e) {
             if (this.codeGenerationReport != null) {
-                this.codeGenerationReport.failure(aTemplate.getName(), aClass.getFullName("."), e);
+                this.codeGenerationReport.failure(aTemplate.getName(), aClass.getFullyQualifiedName("."), e);
             }
         }
     }

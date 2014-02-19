@@ -5,6 +5,10 @@ import in.labulle.anycode.uml.IStereotype;
 public class AStereotype implements IStereotype {
 
 	private String name;
+	
+	public AStereotype(final String name) {
+		this.name = name;
+	}
 
 	public String getName() {
 		return name;

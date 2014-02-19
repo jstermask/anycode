@@ -1,4 +1,4 @@
-package in.labulle.anycode.astah.plugin.model;
+package in.labulle.anycode.repository.astah;
 
 public class ModelException extends RuntimeException {
 

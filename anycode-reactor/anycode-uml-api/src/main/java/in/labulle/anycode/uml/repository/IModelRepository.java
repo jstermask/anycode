@@ -1,6 +1,6 @@
-package in.labulle.anycode.astah.plugin.model;
+package in.labulle.anycode.uml.repository;
 
-import com.change_vision.jude.api.inf.model.IModel;
+import in.labulle.anycode.uml.IModel;
 
 /**
  * Astah Project accessor encapsulation.
