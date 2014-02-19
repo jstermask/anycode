@@ -4,23 +4,18 @@
 		<groupId>in.labulle.anycode</groupId>
 		<artifactId>anycode-reactor</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>..</relativePath>
 	</parent>
-	<artifactId>anycode-template-engine</artifactId>
-
-	<dependencies>	
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
-		</dependency>
+	<artifactId>anycode-template-engine-freemarker</artifactId>
+	<dependencies>
 		<dependency>
 			<groupId>in.labulle.anycode</groupId>
-			<artifactId>anycode-uml-api</artifactId>
+			<artifactId>anycode-template-engine</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.19</version>
+		</dependency>
 	</dependencies>
-
-	
 </project>

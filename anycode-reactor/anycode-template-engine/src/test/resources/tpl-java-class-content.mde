@@ -1,8 +1,0 @@
-package ${c.owner.getFullyQualifiedName(".")};
-
-
-public class ${c.name} {
-	<%for(att in c.attributes) {%>
-		${java.attribute(att)}
-	<%}%>
-}
