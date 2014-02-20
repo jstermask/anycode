@@ -5,9 +5,9 @@ import in.labulle.anycode.uml.IClass;
 
 import java.util.List;
 
-public class AstahClass extends AstahElement implements IClass {
+public class AstahClass extends AstahElement<com.change_vision.jude.api.inf.model.IClass> implements IClass {
 
-	public AstahClass(com.change_vision.jude.api.inf.model.IElement astahElt) {
+	public AstahClass(com.change_vision.jude.api.inf.model.IClass astahElt) {
 		super(astahElt);
 	}
 

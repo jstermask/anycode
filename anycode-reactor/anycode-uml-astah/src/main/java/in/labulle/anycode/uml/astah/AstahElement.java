@@ -12,10 +12,10 @@ import com.change_vision.jude.api.inf.model.IClass;
 import com.change_vision.jude.api.inf.model.INamedElement;
 import com.change_vision.jude.api.inf.model.IPackage;
 
-public abstract class AstahElement implements IElement {
-	private com.change_vision.jude.api.inf.model.IElement astahElement;
+public abstract class AstahElement<T extends com.change_vision.jude.api.inf.model.IElement> implements IElement {
+	private T astahElement;
 
-	public AstahElement(final com.change_vision.jude.api.inf.model.IElement astahElt) {
+	public AstahElement(final T astahElt) {
 		this.astahElement = astahElt;
 	}
 
@@ -71,5 +71,9 @@ public abstract class AstahElement implements IElement {
 			}
 		}
 		return Visibility.PROTECTED;
+	}
+	
+	protected T getAstahElement() {
+		return astahElement;
 	}
 }
