@@ -1,6 +1,7 @@
-package in.labulle.anycode.astah.plugin.template.freemarker.loader;
+package in.labulle.anycode.engine.freemarker.repository.loader;
 
 import static org.mockito.Mockito.when;
+import in.labulle.anycode.engine.freemarker.repository.loader.BundleTemplateLoader;
 
 import java.io.IOException;
 import java.io.InputStream;

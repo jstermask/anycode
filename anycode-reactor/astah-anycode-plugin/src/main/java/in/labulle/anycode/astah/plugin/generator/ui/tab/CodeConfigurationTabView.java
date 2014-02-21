@@ -2,11 +2,11 @@ package in.labulle.anycode.astah.plugin.generator.ui.tab;
 
 import in.labulle.anycode.astah.plugin.generator.control.CodeGenerationController;
 import in.labulle.anycode.astah.plugin.generator.control.ICodeGenerationContext;
-import in.labulle.anycode.astah.plugin.generator.service.impl.ClassCodeGenerationServiceImpl;
 import in.labulle.anycode.astah.plugin.mvc.IView;
-import in.labulle.anycode.astah.plugin.osgi.util.BundleUtils;
-import in.labulle.anycode.astah.plugin.template.freemarker.repository.TemplateRepositoryFactoryImpl;
+import in.labulle.anycode.engine.freemarker.repository.TemplateRepositoryFactoryImpl;
+import in.labulle.anycode.engine.freemarker.repository.loader.osgi.BundleUtils;
 import in.labulle.anycode.engine.log.ICodeGenerationLog;
+import in.labulle.anycode.engine.service.impl.ClassCodeGenerationServiceImpl;
 import in.labulle.anycode.repository.astah.ModelRepositoryImpl;
 
 import java.awt.BorderLayout;

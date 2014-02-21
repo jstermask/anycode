@@ -1,6 +1,6 @@
-package in.labulle.anycode.astah.plugin.generator.service.impl;
+package in.labulle.anycode.engine.service.impl;
 
-import in.labulle.anycode.astah.plugin.template.config.Configuration;
+import in.labulle.anycode.engine.config.Configuration;
 import in.labulle.anycode.engine.core.ICodeGenerationArtifact;
 import in.labulle.anycode.engine.core.ITemplate;
 import in.labulle.anycode.engine.core.ITemplateRepositoryFactory;
@@ -14,9 +14,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 
 /**
  * Gets all the classes from the model and generates them with each template.
@@ -25,11 +22,7 @@ import org.slf4j.LoggerFactory;
  * 
  */
 public class ClassCodeGenerationServiceImpl implements ICodeGenerationService {
-    /**
-     * log.
-     */
-    private static final Logger LOG = LoggerFactory.getLogger(ClassCodeGenerationServiceImpl.class);
-
+    
     /**
      * Model repository.
      */
@@ -56,23 +49,13 @@ public class ClassCodeGenerationServiceImpl implements ICodeGenerationService {
         this.templateRepositoryFactory = templateRepository;
     }
 
-    @Override
-    public void generateCode(final String templatePath, final String outputPath) {
-        if (LOG.isDebugEnabled()) {
-            LOG.debug("generateCode(" + templatePath + ", " + outputPath + ")");
-        }
-        Configuration config = Configuration.getConfiguration().clone();
-        if (LOG.isDebugEnabled()) {
-            LOG.debug("cloned configuration");
-        }
+    public void generateCode(final String templatePath, final String outputPath) {   
+        Configuration config = Configuration.getConfiguration().clone();    
         config.put(Configuration.CONTEXT_PARAM_TARGET_DIR, outputPath);
         config.put(Configuration.CONTEXT_PARAM_TEMPLATE_DIR, templatePath);
         List<IClass> classes = getModelRepository().getModelInstance().getAllClasses();
         List<ITemplate> templates = getTemplates(templatePath);
-        int maxGenerations = classes.size() * templates.size();
-        if (LOG.isDebugEnabled()) {
-            LOG.debug(classes.size() + " classes and " + templates.size() + " templates found !");
-        }
+        int maxGenerations = classes.size() * templates.size();   
         int achievedGenerations = 0;
         for (IClass aClass : classes) {
             for (ITemplate aTemplate : templates) {
@@ -114,9 +97,6 @@ public class ClassCodeGenerationServiceImpl implements ICodeGenerationService {
      */
     private void generate(final IClass aClass, final ITemplate aTemplate, final Configuration config) {
         config.put(Configuration.CONTEXT_PARAM_CLASS_CURRENT, aClass);
-        if (LOG.isDebugEnabled()) {
-            LOG.debug("generate(" + aClass.getName() + ", " + aTemplate + "," + config + ")");
-        }
         try {
             File f = aTemplate.renderToFile(config);
             if (this.codeGenerationReport != null) {
@@ -129,7 +109,6 @@ public class ClassCodeGenerationServiceImpl implements ICodeGenerationService {
         }
     }
 
-    @Override
     public void attachReport(ICodeGenerationLog report) {
         this.codeGenerationReport = report;
     }
@@ -145,13 +124,11 @@ public class ClassCodeGenerationServiceImpl implements ICodeGenerationService {
         return templates;
     }
 
-    @Override
     public List<ICodeGenerationArtifact> getCodeGenerationArtifacts(String templatePath) {
         return this.templateRepositoryFactory.newInstance(templatePath).getCodeGenerationArtifacts();
 
     }
 
-    @Override
     public String getModelFilePath() {
         return getModelRepository().getModelFilePath();
     }

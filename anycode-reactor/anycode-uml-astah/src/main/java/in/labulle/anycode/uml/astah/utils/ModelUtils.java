@@ -32,7 +32,7 @@ public final class ModelUtils {
 				getAllClasses(ownedNamedElement, classList);
 			}
 		} else if (element instanceof IClass) {
-			if (!isJREClass((IClass) element)) {
+			if (!isJREClass(element.getFullName("."))) {
 				classList.add((IClass) element);
 				for (IClass nestedClasses : ((IClass) element)
 						.getNestedClasses()) {
@@ -42,8 +42,8 @@ public final class ModelUtils {
 		}
 	}
 
-	public static boolean isJREClass(IClass classe) {
-		return classe.getFullName(".").indexOf("java") == 0
-				|| classe.getName().length() == 1;
+	public static boolean isJREClass(String fullyQualifiedName) {
+		return fullyQualifiedName.indexOf("java") == 0
+				|| fullyQualifiedName.lastIndexOf(".") == fullyQualifiedName.length() - 2;
 	}
 }

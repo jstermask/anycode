@@ -1,6 +1,7 @@
-package in.labulle.anycode.astah.plugin.template.util;
+package in.labulle.anycode.engine.util;
 
 import static org.junit.Assert.*;
+import in.labulle.anycode.engine.util.MergeUtils;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

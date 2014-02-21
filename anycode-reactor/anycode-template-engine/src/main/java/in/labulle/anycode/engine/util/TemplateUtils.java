@@ -1,4 +1,4 @@
-package in.labulle.anycode.astah.plugin.template.util;
+package in.labulle.anycode.engine.util;
 
 import in.labulle.anycode.engine.exception.InvalidMacroNameException;
 

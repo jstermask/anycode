@@ -1,10 +1,8 @@
-package in.labulle.anycode.astah.plugin.model.util;
-
-import in.labulle.anycode.astah.api.ClassMock;
-import in.labulle.anycode.uml.astah.utils.ModelUtils;
+package in.labulle.anycode.uml.astah.utils;
 
 import org.junit.Assert;
 import org.junit.Test;
+
 
 
 public class ModelUtilsTest {
@@ -13,13 +11,8 @@ public class ModelUtilsTest {
 
 	@Test
 	public void testIsJREClass() {
-		ClassMock cl = new ClassMock("fr.test");
-		cl.setName("TestClass");
-		Assert.assertFalse(ModelUtils.isJREClass(cl));
-
-		cl = new ClassMock("java.util");
-		cl.setName("ArrayList");
-		Assert.assertTrue(ModelUtils.isJREClass(cl));
+		Assert.assertFalse(ModelUtils.isJREClass("fr.test.TestClass"));
+		Assert.assertTrue(ModelUtils.isJREClass("java.util.ArrayList"));
 	}
 
 }

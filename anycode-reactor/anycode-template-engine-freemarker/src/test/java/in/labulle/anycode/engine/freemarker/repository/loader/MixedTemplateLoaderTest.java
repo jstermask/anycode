@@ -1,7 +1,9 @@
-package in.labulle.anycode.astah.plugin.template.freemarker.loader;
+package in.labulle.anycode.engine.freemarker.repository.loader;
 
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
+import in.labulle.anycode.engine.freemarker.repository.loader.ITemplateLoader;
+import in.labulle.anycode.engine.freemarker.repository.loader.MixedTemplateLoader;
 
 import java.io.IOException;
 
@@ -9,7 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)

@@ -1,11 +1,9 @@
-package in.labulle.anycode.astah.plugin.template.repository;
+package in.labulle.anycode.engine.freemarker.repository;
 
 import static org.mockito.Mockito.when;
 import freemarker.template.Configuration;
-import in.labulle.anycode.astah.plugin.template.freemarker.loader.FilePathTemplateLoader;
-import in.labulle.anycode.astah.plugin.template.freemarker.repository.TemplateRepositoryImpl;
 import in.labulle.anycode.engine.core.ICodeGenerationArtifact;
-import in.labulle.anycode.engine.exception.TemplateRuntimeException;
+import in.labulle.anycode.engine.freemarker.repository.loader.FilePathTemplateLoader;
 
 import java.util.ArrayList;
 

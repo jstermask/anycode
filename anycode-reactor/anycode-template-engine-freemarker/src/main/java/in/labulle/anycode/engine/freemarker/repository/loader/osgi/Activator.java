@@ -1,29 +1,18 @@
-package in.labulle.anycode.astah.plugin.osgi;
-
-import in.labulle.anycode.astah.plugin.osgi.util.BundleUtils;
-import in.labulle.anycode.astah.plugin.osgi.util.ImageBundle;
+package in.labulle.anycode.engine.freemarker.repository.loader.osgi;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class Activator implements BundleActivator {
 	private static BundleContext ctx;
 
-	private static final Logger LOG = LoggerFactory.getLogger(Activator.class);
+	
 
-
-	@Override
 	public void start(BundleContext context) throws Exception {
 		ctx = context;
-		if (LOG.isDebugEnabled()) {
-			LOG.debug("Activation done.");
-		}
 		loadImageLibrary();
 	}
 
-	@Override
 	public void stop(BundleContext context) throws Exception {
 		ctx = null;
 	}

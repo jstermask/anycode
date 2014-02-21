@@ -1,8 +1,8 @@
-package in.labulle.anycode.astah.plugin.template.util;
+package in.labulle.anycode.engine.util;
 
-import in.labulle.anycode.astah.plugin.template.util.TemplateUtils;
 import in.labulle.anycode.engine.exception.InvalidMacroNameException;
 import in.labulle.anycode.engine.exception.TemplateRuntimeException;
+import in.labulle.anycode.engine.util.TemplateUtils;
 import junit.framework.Assert;
 
 import org.junit.Test;

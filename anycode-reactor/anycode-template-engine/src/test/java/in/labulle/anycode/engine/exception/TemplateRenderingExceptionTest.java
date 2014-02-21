@@ -1,9 +1,8 @@
-package in.labulle.anycode.astah.plugin.template.exception;
+package in.labulle.anycode.engine.exception;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 import in.labulle.anycode.engine.core.ITemplate;
-import in.labulle.anycode.engine.exception.TemplateRenderingException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package in.labulle.anycode.astah.plugin.template.config;
+package in.labulle.anycode.engine.config;
 
 import java.util.HashMap;
 /**

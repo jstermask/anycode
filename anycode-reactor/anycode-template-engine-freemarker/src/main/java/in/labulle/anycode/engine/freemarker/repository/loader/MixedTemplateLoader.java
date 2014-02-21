@@ -1,4 +1,4 @@
-package in.labulle.anycode.astah.plugin.template.freemarker.loader;
+package in.labulle.anycode.engine.freemarker.repository.loader;
 
 import in.labulle.anycode.engine.core.ICodeGenerationArtifact;
 
@@ -17,7 +17,7 @@ public class MixedTemplateLoader implements ITemplateLoader {
 		this.loaders = loaders;
 	}
 
-	@Override
+	
 	public void closeTemplateSource(Object templateSource) throws IOException {
 		boolean done = false;
 		for (TemplateLoader loader : loaders) {
@@ -34,7 +34,7 @@ public class MixedTemplateLoader implements ITemplateLoader {
 
 	}
 
-	@Override
+	
 	public Object findTemplateSource(String name) throws IOException {
 		for (TemplateLoader loader : loaders) {
 			try {
@@ -50,7 +50,7 @@ public class MixedTemplateLoader implements ITemplateLoader {
 
 	}
 
-	@Override
+	
 	public long getLastModified(Object templateSource) {
 		long lastMod = 0;
 		for (TemplateLoader loader : loaders) {
@@ -66,7 +66,7 @@ public class MixedTemplateLoader implements ITemplateLoader {
 		return lastMod;
 	}
 
-	@Override
+	
 	public Reader getReader(Object templateSource, String encoding)
 			throws IOException {
 		for (TemplateLoader loader : loaders) {
@@ -82,7 +82,7 @@ public class MixedTemplateLoader implements ITemplateLoader {
 		throw new IOException("Could not getReader " + templateSource + " - " + encoding);
 	}
 
-	@Override
+	
 	public List<ICodeGenerationArtifact> load(Configuration tConfiguration) {
 		List<ICodeGenerationArtifact> tp = new ArrayList<ICodeGenerationArtifact>();
 		for(ITemplateLoader loader : loaders) {

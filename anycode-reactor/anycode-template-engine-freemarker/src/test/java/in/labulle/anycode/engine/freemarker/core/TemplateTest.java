@@ -1,11 +1,8 @@
-package in.labulle.anycode.astah.plugin.template;
+package in.labulle.anycode.engine.freemarker.core;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.fail;
-import in.labulle.anycode.astah.plugin.template.freemarker.core.Template;
 import in.labulle.anycode.engine.exception.TemplateException;
-import in.labulle.anycode.engine.exception.TemplateRuntimeException;
 
 import java.net.URISyntaxException;
 import java.util.HashMap;

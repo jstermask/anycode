@@ -2,8 +2,8 @@ package in.labulle.anycode.astah.plugin.generator.ui.tab;
 
 import in.labulle.anycode.astah.plugin.generator.control.CodeGenerationController;
 import in.labulle.anycode.astah.plugin.mvc.IView;
-import in.labulle.anycode.astah.plugin.osgi.util.BundleUtils;
-import in.labulle.anycode.astah.plugin.osgi.util.ImageBundle;
+import in.labulle.anycode.engine.freemarker.repository.loader.osgi.BundleUtils;
+import in.labulle.anycode.engine.freemarker.repository.loader.osgi.ImageBundle;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

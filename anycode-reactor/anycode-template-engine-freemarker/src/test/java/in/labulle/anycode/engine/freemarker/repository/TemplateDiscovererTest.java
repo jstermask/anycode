@@ -1,11 +1,9 @@
-package in.labulle.anycode.astah.plugin.template;
+package in.labulle.anycode.engine.freemarker.repository;
 
 import static org.junit.Assert.assertEquals;
-import in.labulle.anycode.astah.api.ClassMock;
-import in.labulle.anycode.astah.plugin.template.config.Configuration;
-import in.labulle.anycode.astah.plugin.template.freemarker.loader.FilePathTemplateLoader;
-import in.labulle.anycode.astah.plugin.template.freemarker.repository.TemplateRepositoryImpl;
+import in.labulle.anycode.engine.config.Configuration;
 import in.labulle.anycode.engine.core.ICodeGenerationArtifact;
+import in.labulle.anycode.engine.freemarker.repository.loader.FilePathTemplateLoader;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,7 +33,7 @@ public class TemplateDiscovererTest {
 		Configuration.getConfiguration().put("templateDir",
 				getClass().getResource("/templates").getFile());
 		Configuration.getConfiguration().put("c",
-				new ClassMock("fr.test.pack", "MyClass"));
+				new ElementMock("fr.test.pack", "MyClass"));
 		TemplateRepositoryImpl disco = new TemplateRepositoryImpl(new FilePathTemplateLoader(new File(getClass().getResource("/templates").getFile())));
 		disco.getCodeGenerationArtifacts();
 	}

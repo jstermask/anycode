@@ -1,4 +1,4 @@
-package in.labulle.anycode.astah.plugin.osgi.util;
+package in.labulle.anycode.engine.freemarker.repository.loader.osgi;
 
 import java.net.URL;
 import java.util.ArrayList;

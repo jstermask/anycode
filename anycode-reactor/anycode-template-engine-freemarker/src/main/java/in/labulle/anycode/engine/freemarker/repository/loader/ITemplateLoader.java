@@ -1,4 +1,4 @@
-package in.labulle.anycode.astah.plugin.template.freemarker.loader;
+package in.labulle.anycode.engine.freemarker.repository.loader;
 
 import in.labulle.anycode.engine.core.ICodeGenerationArtifact;
 

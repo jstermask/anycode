@@ -1,11 +1,13 @@
-package in.labulle.anycode.astah.plugin.template.freemarker.core;
+package in.labulle.anycode.engine.freemarker.core;
 
-import in.labulle.anycode.astah.plugin.template.config.Configuration;
-import in.labulle.anycode.astah.plugin.template.util.MergeUtils;
+
+import in.labulle.anycode.engine.config.Configuration;
 import in.labulle.anycode.engine.core.ITemplate;
 import in.labulle.anycode.engine.exception.TemplateException;
 import in.labulle.anycode.engine.exception.TemplateRenderingException;
 import in.labulle.anycode.engine.exception.TemplateRuntimeException;
+import in.labulle.anycode.engine.util.MergeUtils;
+import in.labulle.anycode.uml.IClass;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,11 +18,6 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.change_vision.jude.api.inf.model.IClass;
-
 /**
  * A generation template consist
  * 
@@ -28,8 +25,6 @@ import com.change_vision.jude.api.inf.model.IClass;
  * 
  */
 public class Template implements ITemplate {
-
-	private static final Logger LOG = LoggerFactory.getLogger(Template.class);
 
 	public static final String MDA_EXTENSION = "mdc";
 
@@ -52,7 +47,7 @@ public class Template implements ITemplate {
 		return ((IClass) context.get(Configuration.CONTEXT_PARAM_CLASS_CURRENT));
 	}
 
-	@Override
+
 	public boolean overrides() {
 		return template.getName().endsWith(MDA_OVERWRITE_EXTENSION);
 	}
@@ -61,7 +56,6 @@ public class Template implements ITemplate {
 	 * @return file content
 	 * @throws TemplateRuntimeException
 	 */
-	@Override
 	public String renderAsString(Map<String, Object> context)
 			throws TemplateException {
 		try {
@@ -82,7 +76,6 @@ public class Template implements ITemplate {
 		}
 	}
 
-	@Override
 	public File renderToFile(Map<String, Object> context)
 			throws TemplateException {
 		String filePath = (String) context.get(OUTPUT_FILE_CONTEXT_PARAM);
@@ -114,11 +107,7 @@ public class Template implements ITemplate {
 						try {
 							writer.close();
 						} catch (IOException e) {
-							if (LOG.isWarnEnabled()) {
-								LOG.warn("Writer for file " + filePath
-										+ " could not be closed. : "
-										+ e.getMessage());
-							}
+							
 						}
 					}
 				}
@@ -138,15 +127,13 @@ public class Template implements ITemplate {
 			Map<String, String> customCodes = MergeUtils.findCustomCodes(w.toString());
 			context.put("customCodes", customCodes);
 		} catch (IOException e) {
-			if(LOG.isWarnEnabled()) {
-				LOG.warn("addCustomCodesToContext(), map " + e.getMessage());
-			}
+			
 		} finally {
 			if(bf != null) {
 				try {
 					bf.close();
 				} catch (IOException e) {
-					LOG.warn("addCustomCodesToContext(), close " + e.getMessage());
+					
 				}
 			}
 		}
@@ -165,12 +152,10 @@ public class Template implements ITemplate {
 
 	}
 
-	@Override
 	public String toString() {
 		return template.getName();
 	}
 
-	@Override
 	public String getName() {
 		String name = template.getName();
 		return name.substring(0, name.indexOf("."));

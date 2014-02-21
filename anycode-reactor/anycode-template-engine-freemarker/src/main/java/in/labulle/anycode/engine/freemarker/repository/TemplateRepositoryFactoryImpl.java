@@ -1,32 +1,28 @@
-package in.labulle.anycode.astah.plugin.template.freemarker.repository;
+package in.labulle.anycode.engine.freemarker.repository;
+
+import in.labulle.anycode.engine.core.ITemplateRepository;
+import in.labulle.anycode.engine.core.ITemplateRepositoryFactory;
+import in.labulle.anycode.engine.exception.TemplateRuntimeException;
+import in.labulle.anycode.engine.freemarker.repository.loader.BundleTemplateLoader;
+import in.labulle.anycode.engine.freemarker.repository.loader.FilePathTemplateLoader;
+import in.labulle.anycode.engine.freemarker.repository.loader.ITemplateLoader;
+import in.labulle.anycode.engine.freemarker.repository.loader.MixedTemplateLoader;
+import in.labulle.anycode.engine.freemarker.repository.loader.osgi.Activator;
 
 import java.io.File;
 import java.io.IOException;
 
-import in.labulle.anycode.astah.plugin.exception.AnycodeRuntimeException;
-import in.labulle.anycode.astah.plugin.osgi.Activator;
-import in.labulle.anycode.astah.plugin.template.freemarker.loader.BundleTemplateLoader;
-import in.labulle.anycode.astah.plugin.template.freemarker.loader.FilePathTemplateLoader;
-import in.labulle.anycode.astah.plugin.template.freemarker.loader.ITemplateLoader;
-import in.labulle.anycode.astah.plugin.template.freemarker.loader.MixedTemplateLoader;
-import in.labulle.anycode.engine.core.ITemplateRepository;
-import in.labulle.anycode.engine.core.ITemplateRepositoryFactory;
+public class TemplateRepositoryFactoryImpl implements ITemplateRepositoryFactory {
 
-public class TemplateRepositoryFactoryImpl implements
-		ITemplateRepositoryFactory {
 
-	@Override
-	public ITemplateRepository newInstance(String templatePath) {
-		try {
-		return new TemplateRepositoryImpl(
-				new MixedTemplateLoader(new ITemplateLoader[] {
-						new FilePathTemplateLoader(new File(
-								templatePath)),
-						new BundleTemplateLoader(
-								Activator.getBundleContext()) }));
-		} catch(IOException e) {
-			throw new AnycodeRuntimeException(e);
-		}
-	}
+    public ITemplateRepository newInstance(String templatePath) {
+        try {
+            return new TemplateRepositoryImpl(new MixedTemplateLoader(new ITemplateLoader[] {
+                    new FilePathTemplateLoader(new File(templatePath)),
+                    new BundleTemplateLoader(Activator.getBundleContext()) }));
+        } catch (IOException e) {
+            throw new TemplateRuntimeException(e);
+        }
+    }
 
 }

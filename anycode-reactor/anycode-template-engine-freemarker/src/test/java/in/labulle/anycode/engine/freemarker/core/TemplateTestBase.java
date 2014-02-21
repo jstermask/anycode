@@ -1,6 +1,6 @@
-package in.labulle.anycode.astah.plugin.template;
+package in.labulle.anycode.engine.freemarker.core;
 
-import in.labulle.anycode.astah.plugin.template.freemarker.core.Template;
+import in.labulle.anycode.engine.freemarker.core.Template;
 
 import java.io.File;
 import java.io.IOException;

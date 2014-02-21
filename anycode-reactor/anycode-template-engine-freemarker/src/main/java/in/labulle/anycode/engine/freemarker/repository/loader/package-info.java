@@ -5,4 +5,4 @@
  * @author KALAO
  *
  */
-package in.labulle.anycode.astah.plugin.template.freemarker.loader;
+package in.labulle.anycode.engine.freemarker.repository.loader;
