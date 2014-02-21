@@ -3,9 +3,10 @@ package in.labulle.anycode.astah.plugin.generator.ui.tab;
 import in.labulle.anycode.astah.plugin.generator.control.CodeGenerationController;
 import in.labulle.anycode.astah.plugin.generator.control.ICodeGenerationContext;
 import in.labulle.anycode.astah.plugin.mvc.IView;
-import in.labulle.anycode.engine.freemarker.repository.TemplateRepositoryFactoryImpl;
 import in.labulle.anycode.engine.freemarker.repository.loader.osgi.BundleUtils;
 import in.labulle.anycode.engine.log.ICodeGenerationLog;
+import in.labulle.anycode.engine.repository.Engine;
+import in.labulle.anycode.engine.repository.TemplateRepositoryFactoryImpl;
 import in.labulle.anycode.engine.service.impl.ClassCodeGenerationServiceImpl;
 import in.labulle.anycode.repository.astah.ModelRepositoryImpl;
 
@@ -41,7 +42,7 @@ public class CodeConfigurationTabView extends JPanel implements
 	
 	public CodeConfigurationTabView() {
 		super();
-		CodeGenerationController c = new CodeGenerationController(new ClassCodeGenerationServiceImpl(new ModelRepositoryImpl(), new TemplateRepositoryFactoryImpl()));	
+		CodeGenerationController c = new CodeGenerationController(new ClassCodeGenerationServiceImpl(new ModelRepositoryImpl(), new TemplateRepositoryFactoryImpl(Engine.groovy)));	
 		initComponents();
 		register(c);
 	}
