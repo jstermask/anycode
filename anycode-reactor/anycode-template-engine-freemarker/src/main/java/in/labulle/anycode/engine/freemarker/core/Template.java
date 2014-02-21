@@ -70,7 +70,7 @@ public class Template implements ITemplate {
 			}
 		} catch (Exception e) {
 			TemplateRenderingException tpe = new TemplateRenderingException(e,
-					getClassToRender(context).getName(), this);
+					getClassToRender(context) == null ? "null" : getClassToRender(context).getName(), this);
 			throw tpe;
 
 		}
@@ -83,7 +83,7 @@ public class Template implements ITemplate {
 			throw new TemplateRenderingException(new IllegalArgumentException(
 					"Context param '" + OUTPUT_FILE_CONTEXT_PARAM
 							+ "' hasn't been put in context"),
-					getClassToRender(context).getName(), this);
+							getClassToRender(context) == null ? "null" : getClassToRender(context).getName(), this);
 		}
 		File outputFile = new File(filePath);
 		if(outputFile.exists()) {
@@ -101,7 +101,7 @@ public class Template implements ITemplate {
 					renderToWriter(result, writer);
 				} catch (IOException e) {
 					throw new TemplateRenderingException(e,
-							getClassToRender(context).getName(), this);
+					        getClassToRender(context) == null ? "null" : getClassToRender(context).getName(), this);
 				} finally {
 					if (writer != null) {
 						try {

@@ -1,0 +1,11 @@
+<#import "macros.mda" as my>
+package ${packageName};
+<@my.javadoc/>
+public class ${className} {
+}   
+     
+     
+     
+     
+     
+     
