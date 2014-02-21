@@ -1,14 +1,18 @@
 package in.labulle.anycode.engine
 
-import java.lang.instrument.Instrumentation;
+import java.io.File;
+import java.util.Map;
 
 import groovy.text.GStringTemplateEngine
 import groovy.text.Template
+import in.labulle.anycode.engine.core.ITemplate
+import in.labulle.anycode.engine.exception.TemplateException;
 
 class CompositeTemplate implements ITemplate {
 	GStringTemplateEngine engine
 	Template nameTemplate
 	Template contentTemplate
+	String name
 	
 	def CompositeTemplate() {
 		engine = new GStringTemplateEngine()	
@@ -16,10 +20,17 @@ class CompositeTemplate implements ITemplate {
 	
 	def void setNameTemplate(String namePath) {
 		nameTemplate = engine.createTemplate(new File(namePath))
+		calculateName(namePath)
+
 	}
 	
 	def void setContentTemplate(String contentPath) {
 		contentTemplate = engine.createTemplate(new File(contentPath))
+		calculateName(contentPath)
+	}
+	
+	def void calculateName(String path) {
+		name = path.substring(path.lastIndexOf(File.separator), path.lastIndexOf("."))
 	}
 	
 	def void render(Map<String, Object> ctx) {
@@ -36,7 +47,32 @@ class CompositeTemplate implements ITemplate {
 		ctx.put("java", new JavaDirective())
 		ctx.put("util", new UtilDirective())
 		ctx.put("jpa", new JpaDirective())
-		
+	}
+
+	public String getName() {
+		return name
+	}
+
+	public boolean overrides() {
+		return true;
+	}
+
+	public String renderAsString(Map<String, Object> ctx)
+			throws TemplateException {
+		loadDirectives(ctx);
+		return contentTemplate.make(ctx).toString()
+	}
+
+	public File renderToFile(Map<String, Object> ctx)
+			throws TemplateException {
+		loadDirectives(ctx);
+		def outputFile = nameTemplate.make(ctx).toString()
+		File f = new File(outputFile)
+		f.getParentFile().mkdirs();
+		FileWriter w = new FileWriter(f)
+		contentTemplate.make(ctx).writeTo(w)
+		w.close();
+		return f;
 	}
 	
 }
