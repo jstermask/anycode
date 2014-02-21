@@ -5,9 +5,9 @@ import in.labulle.anycode.engine.core.ITemplate;
 import in.labulle.anycode.engine.exception.TemplateRuntimeException;
 import in.labulle.anycode.engine.freemarker.core.CompositeTemplate;
 import in.labulle.anycode.engine.freemarker.core.Template;
+import in.labulle.anycode.engine.repository.AbstractDirectoryTemplateRepository;
 
 import java.io.File;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +32,8 @@ public class FilePathTemplateLoader extends FileTemplateLoader implements ITempl
 
     private void addTemplates(File dir, List<ICodeGenerationArtifact> templates,
             freemarker.template.Configuration tConfig) {
-
-        String fileNames[] = dir.list(getTemplateFilenameFilter());
-        String files[] = dir.list(getTemplateFilter());
+        String fileNames[] = dir.list(AbstractDirectoryTemplateRepository.getTemplateFilenameFilter());
+        String files[] = dir.list(AbstractDirectoryTemplateRepository.getTemplateFilter());
         try {
             for (int i = 0; i < fileNames.length; i++) {
                 if (files.length > i) {
@@ -51,22 +50,6 @@ public class FilePathTemplateLoader extends FileTemplateLoader implements ITempl
 
     }
 
-    private FilenameFilter getTemplateFilenameFilter() {
-        return new FilenameFilter() {
-            public boolean accept(File dir, String name) {
-                return (name.indexOf("-name." + Template.MDA_EXTENSION) != -1)
-                        || (name.indexOf("-name." + Template.MDA_OVERWRITE_EXTENSION) != -1);
-            }
-        };
-    }
 
-    private FilenameFilter getTemplateFilter() {
-        return new FilenameFilter() {
-            public boolean accept(File dir, String name) {
-                return (name.indexOf("-content." + Template.MDA_EXTENSION) != -1)
-                        || (name.indexOf("-content." + Template.MDA_OVERWRITE_EXTENSION) != -1);
-            }
-        };
-    }
 
 }

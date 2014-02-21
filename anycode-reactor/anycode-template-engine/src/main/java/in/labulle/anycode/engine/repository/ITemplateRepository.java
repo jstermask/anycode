@@ -1,4 +1,6 @@
-package in.labulle.anycode.engine.core;
+package in.labulle.anycode.engine.repository;
+
+import in.labulle.anycode.engine.core.ICodeGenerationArtifact;
 
 import java.util.List;
 

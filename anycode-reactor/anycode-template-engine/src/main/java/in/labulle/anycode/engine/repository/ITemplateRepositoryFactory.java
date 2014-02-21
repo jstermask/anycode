@@ -1,4 +1,4 @@
-package in.labulle.anycode.engine.core;
+package in.labulle.anycode.engine.repository;
 
 
 public interface ITemplateRepositoryFactory {

@@ -1,6 +1,7 @@
 package in.labulle.anycode.engine;
 
 import static org.junit.Assert.*;
+import in.labulle.anycode.engine.groovy.core.CompositeTemplate;
 
 import org.junit.Test;
 

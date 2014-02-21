@@ -3,8 +3,8 @@ package in.labulle.anycode.engine.freemarker.repository;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
 import in.labulle.anycode.engine.core.ICodeGenerationArtifact;
-import in.labulle.anycode.engine.core.ITemplateRepository;
 import in.labulle.anycode.engine.freemarker.repository.loader.ITemplateLoader;
+import in.labulle.anycode.engine.repository.ITemplateRepository;
 
 import java.util.ArrayList;
 import java.util.List;

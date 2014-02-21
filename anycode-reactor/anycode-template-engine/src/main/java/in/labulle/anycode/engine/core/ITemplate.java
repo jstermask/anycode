@@ -13,6 +13,7 @@ import java.util.Map;
  * 
  */
 public interface ITemplate extends ICodeGenerationArtifact {
+	public static final String MDA_OVERWRITE_EXTENSION = "mda";
 
 	/**
 	 * 
