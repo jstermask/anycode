@@ -5,8 +5,8 @@ import in.labulle.anycode.astah.plugin.generator.ui.CodeGenerationLogTableModel;
 import in.labulle.anycode.astah.plugin.generator.ui.utils.UIUtils;
 import in.labulle.anycode.astah.plugin.osgi.util.BundleUtils;
 import in.labulle.anycode.astah.plugin.osgi.util.ImageBundle;
-import in.labulle.anycode.astah.plugin.report.ICodeGenerationEvent;
-import in.labulle.anycode.astah.plugin.report.ICodeGenerationLog;
+import in.labulle.anycode.engine.log.ICodeGenerationEvent;
+import in.labulle.anycode.engine.log.ICodeGenerationLog;
 
 import java.awt.Color;
 import java.awt.Container;

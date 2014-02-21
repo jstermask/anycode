@@ -1,16 +1,12 @@
-package in.labulle.anycode.astah.plugin.report.impl;
+package in.labulle.anycode.engine.log.impl;
+
+import in.labulle.anycode.engine.log.GenerationStatus;
+import in.labulle.anycode.engine.log.ICodeGenerationEvent;
 
 import java.io.File;
-
-import in.labulle.anycode.astah.plugin.osgi.util.BundleUtils;
-import in.labulle.anycode.astah.plugin.report.GenerationStatus;
-import in.labulle.anycode.astah.plugin.report.ICodeGenerationEvent;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.ResourceBundle;
 
 public class CodeGenerationEvent implements ICodeGenerationEvent {
-    private static final Logger LOG = LoggerFactory.getLogger(CodeGenerationEvent.class);
 
     private final String templateName;
     private final String umlElementName;
@@ -24,9 +20,6 @@ public class CodeGenerationEvent implements ICodeGenerationEvent {
         this.templateName = templateName;
         this.umlElementName = umlElementName;
         this.status = status;
-        if (LOG.isDebugEnabled()) {
-            LOG.debug(this.toString());
-        }
     }
 
     private CodeGenerationEvent(final File generatedFile, final String templateName, final String umlElementName,
@@ -44,22 +37,18 @@ public class CodeGenerationEvent implements ICodeGenerationEvent {
         return new CodeGenerationEvent(null, templateName, umlElementName, e);
     }
 
-    @Override
     public GenerationStatus getStatus() {
         return this.status;
     }
 
-    @Override
     public String getTemplateName() {
         return this.templateName;
     }
 
-    @Override
     public String getUmlElementName() {
         return this.umlElementName;
     }
 
-    @Override
     public Exception getFailureCause() {
         return this.failureCause;
     }
@@ -68,12 +57,10 @@ public class CodeGenerationEvent implements ICodeGenerationEvent {
         return "[TPL|" + this.templateName + "] | [UML|" + this.umlElementName + "] => " + status;
     }
 
-    @Override
     public File getGeneratedFile() {
         return this.generatedFile;
     }
 
-    @Override
     public String getDetails() {
         switch (status) {
         case FAILURE:
@@ -96,10 +83,11 @@ public class CodeGenerationEvent implements ICodeGenerationEvent {
     }
 
     private String getFileInfo() {
+        ResourceBundle bdl = ResourceBundle.getBundle("anycode-template-engine-messages");
         if (generatedFile == null || !generatedFile.exists()) {
-            return BundleUtils.getMessage("msg_no_file_generated");
+            return bdl.getString("msg_no_file_generated");
         } else {
-            return "[" + (generatedFile.length() / 1024) + BundleUtils.getMessage("label_kb") + "] "
+            return "[" + (generatedFile.length() / 1024) + bdl.getString("label_kb") + "] "
                     + generatedFile.getAbsolutePath();
         }
     }

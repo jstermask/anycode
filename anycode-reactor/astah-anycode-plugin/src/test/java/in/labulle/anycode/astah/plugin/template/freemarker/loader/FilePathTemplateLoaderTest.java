@@ -1,6 +1,6 @@
 package in.labulle.anycode.astah.plugin.template.freemarker.loader;
 
-import in.labulle.anycode.astah.plugin.template.exception.TemplateRuntimeException;
+import in.labulle.anycode.engine.exception.TemplateRuntimeException;
 
 import java.io.File;
 import java.io.IOException;

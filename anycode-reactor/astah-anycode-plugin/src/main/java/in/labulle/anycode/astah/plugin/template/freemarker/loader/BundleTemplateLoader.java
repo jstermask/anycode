@@ -2,10 +2,10 @@ package in.labulle.anycode.astah.plugin.template.freemarker.loader;
 
 import freemarker.template.Configuration;
 import in.labulle.anycode.astah.plugin.osgi.util.BundleUtils;
-import in.labulle.anycode.astah.plugin.template.api.ICodeGenerationArtifact;
-import in.labulle.anycode.astah.plugin.template.exception.InvalidMacroNameException;
 import in.labulle.anycode.astah.plugin.template.freemarker.core.Macro;
 import in.labulle.anycode.astah.plugin.template.util.TemplateUtils;
+import in.labulle.anycode.engine.core.ICodeGenerationArtifact;
+import in.labulle.anycode.engine.exception.InvalidMacroNameException;
 
 import java.io.IOException;
 import java.io.InputStream;

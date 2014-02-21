@@ -1,6 +1,6 @@
 package in.labulle.anycode.astah.plugin.template.util;
 
-import in.labulle.anycode.astah.plugin.template.exception.InvalidMacroNameException;
+import in.labulle.anycode.engine.exception.InvalidMacroNameException;
 
 import java.util.StringTokenizer;
 

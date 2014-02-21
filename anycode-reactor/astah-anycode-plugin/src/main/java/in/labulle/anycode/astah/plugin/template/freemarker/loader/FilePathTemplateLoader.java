@@ -1,10 +1,10 @@
 package in.labulle.anycode.astah.plugin.template.freemarker.loader;
 
-import in.labulle.anycode.astah.plugin.template.api.ICodeGenerationArtifact;
-import in.labulle.anycode.astah.plugin.template.api.ITemplate;
-import in.labulle.anycode.astah.plugin.template.exception.TemplateRuntimeException;
 import in.labulle.anycode.astah.plugin.template.freemarker.core.CompositeTemplate;
 import in.labulle.anycode.astah.plugin.template.freemarker.core.Template;
+import in.labulle.anycode.engine.core.ICodeGenerationArtifact;
+import in.labulle.anycode.engine.core.ITemplate;
+import in.labulle.anycode.engine.exception.TemplateRuntimeException;
 
 import java.io.File;
 import java.io.FilenameFilter;

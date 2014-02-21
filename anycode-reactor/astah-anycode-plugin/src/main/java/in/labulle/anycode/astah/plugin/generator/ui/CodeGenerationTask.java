@@ -1,6 +1,6 @@
 package in.labulle.anycode.astah.plugin.generator.ui;
 
-import in.labulle.anycode.astah.plugin.generator.service.ICodeGenerationService;
+import in.labulle.anycode.engine.service.ICodeGenerationService;
 
 import javax.swing.SwingWorker;
 

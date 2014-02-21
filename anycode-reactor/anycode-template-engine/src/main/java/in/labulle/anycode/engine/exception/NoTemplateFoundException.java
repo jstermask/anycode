@@ -1,4 +1,4 @@
-package in.labulle.anycode.astah.plugin.template.exception;
+package in.labulle.anycode.engine.exception;
 
 
 public class NoTemplateFoundException extends TemplateRuntimeException {

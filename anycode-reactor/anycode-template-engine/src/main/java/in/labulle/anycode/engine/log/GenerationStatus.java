@@ -1,4 +1,4 @@
-package in.labulle.anycode.astah.plugin.report;
+package in.labulle.anycode.engine.log;
 
 public enum GenerationStatus {
 	IN_PROGRESS, SUCCESS, FAILURE;

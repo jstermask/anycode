@@ -1,9 +1,8 @@
-package in.labulle.anycode.astah.plugin.template.exception;
-
-import in.labulle.anycode.astah.plugin.exception.AnycodeException;
+package in.labulle.anycode.engine.exception;
 
 
-public class InvalidMacroNameException extends AnycodeException {
+
+public class InvalidMacroNameException extends TemplateException {
 
 	/**
 	 * 

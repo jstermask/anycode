@@ -1,7 +1,7 @@
 package in.labulle.anycode.astah.plugin.generator.control;
 
 import in.labulle.anycode.astah.plugin.mvc.IContext;
-import in.labulle.anycode.astah.plugin.report.ICodeGenerationLog;
+import in.labulle.anycode.engine.log.ICodeGenerationLog;
 
 public interface ICodeGenerationContext extends IContext {
 	String getTemplatePath();

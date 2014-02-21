@@ -2,8 +2,8 @@ package in.labulle.anycode.astah.plugin.generator.ui;
 
 import in.labulle.anycode.astah.plugin.osgi.util.BundleUtils;
 import in.labulle.anycode.astah.plugin.osgi.util.ImageBundle;
-import in.labulle.anycode.astah.plugin.report.ICodeGenerationEvent;
-import in.labulle.anycode.astah.plugin.report.impl.CodeGenerationLog;
+import in.labulle.anycode.engine.log.ICodeGenerationEvent;
+import in.labulle.anycode.engine.log.impl.CodeGenerationLog;
 
 import java.util.HashSet;
 import java.util.Set;

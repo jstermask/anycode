@@ -1,9 +1,9 @@
 package in.labulle.anycode.astah.plugin.template.exception;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-import in.labulle.anycode.astah.api.ClassMock;
-import in.labulle.anycode.astah.plugin.template.api.ITemplate;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
+import in.labulle.anycode.engine.core.ITemplate;
+import in.labulle.anycode.engine.exception.TemplateRenderingException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +17,7 @@ public class TemplateRenderingExceptionTest {
 	@Test
 	public void testGetMessage() {
 		when(tpl.toString()).thenReturn("TestTpl");
-		TemplateRenderingException tr = new TemplateRenderingException(new NullPointerException(), new ClassMock("test", "MyClass"), tpl);			
+		TemplateRenderingException tr = new TemplateRenderingException(new NullPointerException(), "MyClass", tpl);			
 		assertEquals("Error processing class MyClass with template TestTpl", tr.getMessage());
 	}
 	

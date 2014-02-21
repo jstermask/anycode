@@ -1,12 +1,12 @@
 package in.labulle.anycode.astah.plugin.generator.control;
 
 import in.labulle.anycode.astah.plugin.exception.AnycodeRuntimeException;
-import in.labulle.anycode.astah.plugin.generator.service.ICodeGenerationService;
 import in.labulle.anycode.astah.plugin.generator.ui.CodeGenerationTask;
 import in.labulle.anycode.astah.plugin.mvc.IController;
-import in.labulle.anycode.astah.plugin.template.api.ICodeGenerationArtifact;
-import in.labulle.anycode.astah.plugin.template.api.IMacro;
-import in.labulle.anycode.astah.plugin.template.api.ITemplate;
+import in.labulle.anycode.engine.core.ICodeGenerationArtifact;
+import in.labulle.anycode.engine.core.IMacro;
+import in.labulle.anycode.engine.core.ITemplate;
+import in.labulle.anycode.engine.service.ICodeGenerationService;
 
 import java.io.IOException;
 import java.util.List;

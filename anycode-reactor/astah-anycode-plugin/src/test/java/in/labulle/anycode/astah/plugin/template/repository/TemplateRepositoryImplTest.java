@@ -2,10 +2,10 @@ package in.labulle.anycode.astah.plugin.template.repository;
 
 import static org.mockito.Mockito.when;
 import freemarker.template.Configuration;
-import in.labulle.anycode.astah.plugin.template.api.ICodeGenerationArtifact;
-import in.labulle.anycode.astah.plugin.template.exception.TemplateRuntimeException;
 import in.labulle.anycode.astah.plugin.template.freemarker.loader.FilePathTemplateLoader;
 import in.labulle.anycode.astah.plugin.template.freemarker.repository.TemplateRepositoryImpl;
+import in.labulle.anycode.engine.core.ICodeGenerationArtifact;
+import in.labulle.anycode.engine.exception.TemplateRuntimeException;
 
 import java.util.ArrayList;
 

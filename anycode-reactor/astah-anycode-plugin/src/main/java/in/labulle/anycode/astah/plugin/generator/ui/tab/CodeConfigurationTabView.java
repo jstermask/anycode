@@ -5,8 +5,8 @@ import in.labulle.anycode.astah.plugin.generator.control.ICodeGenerationContext;
 import in.labulle.anycode.astah.plugin.generator.service.impl.ClassCodeGenerationServiceImpl;
 import in.labulle.anycode.astah.plugin.mvc.IView;
 import in.labulle.anycode.astah.plugin.osgi.util.BundleUtils;
-import in.labulle.anycode.astah.plugin.report.ICodeGenerationLog;
 import in.labulle.anycode.astah.plugin.template.freemarker.repository.TemplateRepositoryFactoryImpl;
+import in.labulle.anycode.engine.log.ICodeGenerationLog;
 import in.labulle.anycode.repository.astah.ModelRepositoryImpl;
 
 import java.awt.BorderLayout;

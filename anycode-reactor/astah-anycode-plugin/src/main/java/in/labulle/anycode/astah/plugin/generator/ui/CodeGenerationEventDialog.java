@@ -1,7 +1,7 @@
 package in.labulle.anycode.astah.plugin.generator.ui;
 
 import in.labulle.anycode.astah.plugin.osgi.util.BundleUtils;
-import in.labulle.anycode.astah.plugin.report.ICodeGenerationEvent;
+import in.labulle.anycode.engine.log.ICodeGenerationEvent;
 
 import java.awt.Dimension;
 import java.awt.Font;

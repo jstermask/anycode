@@ -1,4 +1,4 @@
-package in.labulle.anycode.astah.plugin.report;
+package in.labulle.anycode.engine.log;
 
 import java.io.File;
 import java.util.List;
@@ -9,7 +9,6 @@ public interface ICodeGenerationLog {
 
 	ICodeGenerationEvent failure(final String templateName,
 			final String umlElementName, final Exception failureCause);
-
 	List<ICodeGenerationEvent> getContent();
 
 	void reset();

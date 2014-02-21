@@ -1,6 +1,6 @@
 package in.labulle.anycode.astah.plugin.template.freemarker.loader;
 
-import in.labulle.anycode.astah.plugin.template.api.ICodeGenerationArtifact;
+import in.labulle.anycode.engine.core.ICodeGenerationArtifact;
 
 import java.io.IOException;
 import java.io.Reader;

@@ -1,7 +1,6 @@
-package in.labulle.anycode.astah.plugin.template.api;
+package in.labulle.anycode.engine.core;
 
-import in.labulle.anycode.astah.plugin.template.exception.TemplateException;
-import in.labulle.anycode.astah.plugin.template.exception.TemplateRuntimeException;
+import in.labulle.anycode.engine.exception.TemplateException;
 
 import java.io.File;
 import java.util.Map;

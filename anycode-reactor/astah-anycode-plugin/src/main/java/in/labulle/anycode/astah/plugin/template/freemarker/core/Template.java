@@ -1,15 +1,14 @@
 package in.labulle.anycode.astah.plugin.template.freemarker.core;
 
-import in.labulle.anycode.astah.plugin.template.api.ITemplate;
 import in.labulle.anycode.astah.plugin.template.config.Configuration;
-import in.labulle.anycode.astah.plugin.template.exception.TemplateException;
-import in.labulle.anycode.astah.plugin.template.exception.TemplateRenderingException;
-import in.labulle.anycode.astah.plugin.template.exception.TemplateRuntimeException;
 import in.labulle.anycode.astah.plugin.template.util.MergeUtils;
+import in.labulle.anycode.engine.core.ITemplate;
+import in.labulle.anycode.engine.exception.TemplateException;
+import in.labulle.anycode.engine.exception.TemplateRenderingException;
+import in.labulle.anycode.engine.exception.TemplateRuntimeException;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -77,7 +76,7 @@ public class Template implements ITemplate {
 			}
 		} catch (Exception e) {
 			TemplateRenderingException tpe = new TemplateRenderingException(e,
-					getClassToRender(context), this);
+					getClassToRender(context).getName(), this);
 			throw tpe;
 
 		}
@@ -91,7 +90,7 @@ public class Template implements ITemplate {
 			throw new TemplateRenderingException(new IllegalArgumentException(
 					"Context param '" + OUTPUT_FILE_CONTEXT_PARAM
 							+ "' hasn't been put in context"),
-					getClassToRender(context), this);
+					getClassToRender(context).getName(), this);
 		}
 		File outputFile = new File(filePath);
 		if(outputFile.exists()) {
@@ -109,7 +108,7 @@ public class Template implements ITemplate {
 					renderToWriter(result, writer);
 				} catch (IOException e) {
 					throw new TemplateRenderingException(e,
-							getClassToRender(context), this);
+							getClassToRender(context).getName(), this);
 				} finally {
 					if (writer != null) {
 						try {

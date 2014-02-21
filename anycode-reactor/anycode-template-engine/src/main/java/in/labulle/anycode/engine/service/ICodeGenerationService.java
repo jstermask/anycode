@@ -1,7 +1,7 @@
-package in.labulle.anycode.astah.plugin.generator.service;
+package in.labulle.anycode.engine.service;
 
-import in.labulle.anycode.astah.plugin.report.ICodeGenerationLog;
-import in.labulle.anycode.astah.plugin.template.api.ICodeGenerationArtifact;
+import in.labulle.anycode.engine.core.ICodeGenerationArtifact;
+import in.labulle.anycode.engine.log.ICodeGenerationLog;
 
 import java.util.List;
 

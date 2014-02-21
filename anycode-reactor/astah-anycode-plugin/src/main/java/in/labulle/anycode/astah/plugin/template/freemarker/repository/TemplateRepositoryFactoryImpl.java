@@ -5,12 +5,12 @@ import java.io.IOException;
 
 import in.labulle.anycode.astah.plugin.exception.AnycodeRuntimeException;
 import in.labulle.anycode.astah.plugin.osgi.Activator;
-import in.labulle.anycode.astah.plugin.template.api.ITemplateRepository;
-import in.labulle.anycode.astah.plugin.template.api.ITemplateRepositoryFactory;
 import in.labulle.anycode.astah.plugin.template.freemarker.loader.BundleTemplateLoader;
 import in.labulle.anycode.astah.plugin.template.freemarker.loader.FilePathTemplateLoader;
 import in.labulle.anycode.astah.plugin.template.freemarker.loader.ITemplateLoader;
 import in.labulle.anycode.astah.plugin.template.freemarker.loader.MixedTemplateLoader;
+import in.labulle.anycode.engine.core.ITemplateRepository;
+import in.labulle.anycode.engine.core.ITemplateRepositoryFactory;
 
 public class TemplateRepositoryFactoryImpl implements
 		ITemplateRepositoryFactory {
