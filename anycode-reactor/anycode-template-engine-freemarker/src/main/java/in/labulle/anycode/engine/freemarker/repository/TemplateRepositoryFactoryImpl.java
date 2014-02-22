@@ -5,7 +5,7 @@ import in.labulle.anycode.engine.freemarker.repository.loader.BundleTemplateLoad
 import in.labulle.anycode.engine.freemarker.repository.loader.FilePathTemplateLoader;
 import in.labulle.anycode.engine.freemarker.repository.loader.ITemplateLoader;
 import in.labulle.anycode.engine.freemarker.repository.loader.MixedTemplateLoader;
-import in.labulle.anycode.engine.freemarker.repository.loader.osgi.Activator;
+import in.labulle.anycode.engine.osgi.Activator;
 import in.labulle.anycode.engine.repository.ITemplateRepository;
 import in.labulle.anycode.engine.repository.ITemplateRepositoryFactory;
 

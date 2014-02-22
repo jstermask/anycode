@@ -3,10 +3,10 @@ package in.labulle.anycode.astah.plugin.generator.ui.tab;
 import in.labulle.anycode.astah.plugin.generator.ui.CodeGenerationEventDialog;
 import in.labulle.anycode.astah.plugin.generator.ui.CodeGenerationLogTableModel;
 import in.labulle.anycode.astah.plugin.generator.ui.utils.UIUtils;
-import in.labulle.anycode.engine.freemarker.repository.loader.osgi.BundleUtils;
-import in.labulle.anycode.engine.freemarker.repository.loader.osgi.ImageBundle;
 import in.labulle.anycode.engine.log.ICodeGenerationEvent;
 import in.labulle.anycode.engine.log.ICodeGenerationLog;
+import in.labulle.anycode.engine.osgi.BundleUtils;
+import in.labulle.anycode.engine.osgi.ImageBundle;
 
 import java.awt.Color;
 import java.awt.Container;

@@ -4,7 +4,7 @@ import freemarker.template.Configuration;
 import in.labulle.anycode.engine.core.ICodeGenerationArtifact;
 import in.labulle.anycode.engine.exception.InvalidMacroNameException;
 import in.labulle.anycode.engine.freemarker.core.Macro;
-import in.labulle.anycode.engine.freemarker.repository.loader.osgi.BundleUtils;
+import in.labulle.anycode.engine.osgi.BundleUtils;
 import in.labulle.anycode.engine.util.TemplateUtils;
 
 import java.io.IOException;

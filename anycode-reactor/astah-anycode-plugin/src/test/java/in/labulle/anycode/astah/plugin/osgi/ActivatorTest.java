@@ -1,7 +1,7 @@
 package in.labulle.anycode.astah.plugin.osgi;
 
 import static org.mockito.Mockito.when;
-import in.labulle.anycode.engine.freemarker.repository.loader.osgi.Activator;
+import in.labulle.anycode.engine.osgi.Activator;
 
 import java.net.URL;
 import java.util.Enumeration;

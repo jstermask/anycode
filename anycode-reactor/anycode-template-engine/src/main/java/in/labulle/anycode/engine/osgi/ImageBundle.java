@@ -1,4 +1,4 @@
-package in.labulle.anycode.engine.freemarker.repository.loader.osgi;
+package in.labulle.anycode.engine.osgi;
 
 import java.net.URL;
 import java.util.HashMap;

@@ -1,7 +1,7 @@
 package in.labulle.anycode.astah.plugin.osgi.util;
 
 import static org.junit.Assert.*;
-import in.labulle.anycode.engine.freemarker.repository.loader.osgi.ImageBundle;
+import in.labulle.anycode.engine.osgi.ImageBundle;
 
 import java.net.MalformedURLException;
 import java.net.URL;

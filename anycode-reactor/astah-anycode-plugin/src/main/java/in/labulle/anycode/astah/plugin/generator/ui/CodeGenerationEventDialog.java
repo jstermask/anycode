@@ -1,7 +1,7 @@
 package in.labulle.anycode.astah.plugin.generator.ui;
 
-import in.labulle.anycode.engine.freemarker.repository.loader.osgi.BundleUtils;
 import in.labulle.anycode.engine.log.ICodeGenerationEvent;
+import in.labulle.anycode.engine.osgi.BundleUtils;
 
 import java.awt.Dimension;
 import java.awt.Font;

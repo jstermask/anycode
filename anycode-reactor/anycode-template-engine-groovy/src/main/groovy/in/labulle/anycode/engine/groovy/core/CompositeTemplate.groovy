@@ -1,12 +1,9 @@
 package in.labulle.anycode.engine.groovy.core
 
-import java.io.File;
-import java.util.Map;
-
 import groovy.text.GStringTemplateEngine
 import groovy.text.Template
 import in.labulle.anycode.engine.core.ITemplate
-import in.labulle.anycode.engine.exception.TemplateException;
+import in.labulle.anycode.engine.exception.TemplateException
 
 class CompositeTemplate implements ITemplate {
 	GStringTemplateEngine engine
