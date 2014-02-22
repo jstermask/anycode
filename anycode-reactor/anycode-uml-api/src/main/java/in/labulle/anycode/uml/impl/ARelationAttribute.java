@@ -1,7 +1,9 @@
 package in.labulle.anycode.uml.impl;
 
+import in.labulle.anycode.uml.IRelationAttribute;
 
-public class ARelationAttribute extends AAttribute {
+
+public class ARelationAttribute extends AAttribute implements IRelationAttribute {
 	public enum Qualifier {
 		COMPOSITION, AGGREGATION;
 	}
@@ -18,7 +20,6 @@ public class ARelationAttribute extends AAttribute {
 	
 
 	
-	@Override
 	public boolean isRelation() {
 		return true;
 	}
@@ -34,17 +35,17 @@ public class ARelationAttribute extends AAttribute {
 		}
 	}
 	
-	@Override
+
 	public boolean isComposition() {
 		return Qualifier.COMPOSITION.equals(this.qualifier);
 	}
 	
-	@Override
+
 	public boolean isAggregation() {
 		return Qualifier.AGGREGATION.equals(this.qualifier);
 	}
 	
-	@Override
+
 	public boolean isNavigable() {
 		return navigability == null || Navigability.NAVIGABLE.equals(this.navigability);
 	}
@@ -56,6 +57,23 @@ public class ARelationAttribute extends AAttribute {
 	public void setQualifier(Qualifier qualifier) {
 		this.qualifier = qualifier;
 	}
+
+	public boolean isManyToOne() {
+		return getCardinality().isSingle() && !getOtherSide().getCardinality().isSingle();
+	}
+
+	public boolean isOneToOne() {
+		return getCardinality().isSingle() && getOtherSide().getCardinality().isSingle();
+	}
+
+	public boolean isManyToMany() {
+		return !getCardinality().isSingle() && !getOtherSide().getCardinality().isSingle();
+	}
+
+	public boolean isOneToMany() {
+		return !getCardinality().isSingle() && getOtherSide().getCardinality().isSingle(); 
+	}
+
 	
 	
 }

@@ -27,7 +27,6 @@
 	</dependencies>
 
 	<build>
-
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.gmaven</groupId>
@@ -48,6 +47,5 @@
 				</configuration>
 			</plugin>
 		</plugins>
-
 	</build>
 </project>
