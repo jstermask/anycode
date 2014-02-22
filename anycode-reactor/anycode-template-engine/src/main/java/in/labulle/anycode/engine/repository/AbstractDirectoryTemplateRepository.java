@@ -34,7 +34,7 @@ public abstract class AbstractDirectoryTemplateRepository implements ITemplateRe
 	        try {
 	            for (int i = 0; i < fileNames.length; i++) {
 	                if (files.length > i) {
-	                	ITemplate t = buildTemplate(fileNames[i], files[i]);
+	                	ITemplate t = buildTemplate(path + File.separator + fileNames[i], path + File.separator + files[i]);
 	                    codeGenerationArtifacts.add(t);
 	                } else {
 	                    throw new TemplateRuntimeException("There are more filenames templates than content templates");
