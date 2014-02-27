@@ -14,6 +14,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /**
  * Gets all the classes from the model and generates them with each template.
@@ -22,6 +25,10 @@ import java.util.List;
  * 
  */
 public class ClassCodeGenerationServiceImpl implements ICodeGenerationService {
+	/**
+	 * log.
+	 */
+	private static final Logger LOG = LoggerFactory.getLogger(ClassCodeGenerationServiceImpl.class);
     
     /**
      * Model repository.
@@ -50,11 +57,21 @@ public class ClassCodeGenerationServiceImpl implements ICodeGenerationService {
     }
 
     public void generateCode(final String templatePath, final String outputPath) {   
+		if (LOG.isDebugEnabled()) {
+			LOG.debug("generateCode(" + templatePath + ", " + outputPath + ")");
+		}
         Configuration config = Configuration.getConfiguration().clone();    
         config.put(Configuration.CONTEXT_PARAM_TARGET_DIR, outputPath);
         config.put(Configuration.CONTEXT_PARAM_TEMPLATE_DIR, templatePath);
         List<IClass> classes = getModelRepository().getModelInstance().getAllClasses();
+        if (LOG.isDebugEnabled()) {
+			LOG.debug("Number of classes : " + classes.size());
+		}
         List<ITemplate> templates = getTemplates(templatePath);
+        if (LOG.isDebugEnabled()) {
+			LOG.debug("Number of templates : " + templates.size());
+		}
+        
         int maxGenerations = classes.size() * templates.size();   
         int achievedGenerations = 0;
         for (IClass aClass : classes) {
@@ -97,6 +114,10 @@ public class ClassCodeGenerationServiceImpl implements ICodeGenerationService {
      */
     private void generate(final IClass aClass, final ITemplate aTemplate, final Configuration config) {
         config.put(Configuration.CONTEXT_PARAM_CLASS_CURRENT, aClass);
+		if (LOG.isDebugEnabled()) {
+			LOG.debug("generate(" + aClass.getName() + ","
+					+ aTemplate.getName());
+		}
         try {
             File f = aTemplate.renderToFile(config);
             if (this.codeGenerationReport != null) {

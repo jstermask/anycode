@@ -56,6 +56,13 @@ public abstract class AstahElement<T extends com.change_vision.jude.api.inf.mode
 		}
 		return st;
 	}
+	
+	
+	public boolean hasStereotype(final String stereotypeName) {
+		return astahElement.hasStereotype(stereotypeName);		
+	}
+	
+
 
 	public Visibility getVisibility() {
 		if (astahElement instanceof INamedElement) {

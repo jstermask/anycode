@@ -28,17 +28,17 @@ class JpaDirective extends AnycodeDirective {
 	
 	def static annotation(IAttribute a) {
 		if(!a.isRelation()) {
-			return null;
+			return "";
 		} else {
 			def ar = (IRelationAttribute)a
 			if(ar.isOneToOne()) {
-				return "@OneToOne"
+				return "@javax.persistence.OneToOne"
 			} else if (ar.isOneToMany()) {
-				return "@OneToMany"
+				return "@javax.persistence.OneToMany"
 			} else if(ar.isManyToMany()) {
-				return "@ManyToMany"
+				return "@javax.persistence.ManyToMany"
 			} else if(ar.isManyToOne()) {
-				return "@ManyToOne"
+				return "@javax.persistence.ManyToOne"
 			}
 		}
 	}

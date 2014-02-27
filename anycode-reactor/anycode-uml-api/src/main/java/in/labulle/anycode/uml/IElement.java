@@ -8,4 +8,5 @@ public interface IElement {
 	String getFullyQualifiedName(String separator);
 	Set<IStereotype> getStereotypes();
 	Visibility getVisibility();
+	boolean hasStereotype(String stereotype);
 }

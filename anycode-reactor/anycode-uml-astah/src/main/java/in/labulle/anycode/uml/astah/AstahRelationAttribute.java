@@ -1,5 +1,8 @@
 package in.labulle.anycode.uml.astah;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import in.labulle.anycode.uml.Cardinality;
 import in.labulle.anycode.uml.IDataType;
 import in.labulle.anycode.uml.IRelationAttribute;
@@ -8,10 +11,15 @@ import com.change_vision.jude.api.inf.model.IMultiplicityRange;
 
 public class AstahRelationAttribute extends AstahAttribute implements
 		IRelationAttribute {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(AstahRelationAttribute.class);
 
 	public AstahRelationAttribute(
 			com.change_vision.jude.api.inf.model.IAttribute astahElt) {
 		super(astahElt);
+		if(LOG.isDebugEnabled()) {
+			LOG.debug("New relation attribute : " + astahElt.getName());
+		}
 	}
 
 	public Cardinality getCardinality() {

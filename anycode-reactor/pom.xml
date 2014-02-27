@@ -1,16 +1,27 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>in.labulle.anycode</groupId>
-  <artifactId>anycode-reactor</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <modules>
-  	<module>anycode-maven-skin</module>
-  	<module>anycode-uml-api</module>
-  	<module>anycode-template-engine</module>
-  	<module>astah-anycode-plugin</module>
-  	<module>anycode-template-engine-groovy</module>
-  	<module>anycode-template-engine-freemarker</module>
-  	<module>anycode-uml-astah</module>
-  </modules>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>in.labulle.anycode</groupId>
+	<artifactId>anycode-reactor</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<modules>
+		<module>anycode-maven-skin</module>
+		<module>anycode-uml-api</module>
+		<module>anycode-template-engine</module>
+		<module>astah-anycode-plugin</module>
+		<module>anycode-template-engine-groovy</module>
+		<module>anycode-template-engine-freemarker</module>
+		<module>anycode-uml-astah</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.7.2</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>
