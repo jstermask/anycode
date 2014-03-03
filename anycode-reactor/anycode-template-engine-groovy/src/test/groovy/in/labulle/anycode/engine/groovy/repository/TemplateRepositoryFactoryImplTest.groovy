@@ -1,9 +1,9 @@
 package in.labulle.anycode.engine.groovy.repository;
 
-import static org.junit.Assert.*;
-import in.labulle.anycode.engine.repository.ITemplateRepository;
+import static org.junit.Assert.*
+import in.labulle.anycode.engine.repository.ITemplateRepository
 
-import org.junit.Test;
+import org.junit.Test
 
 class TemplateRepositoryFactoryImplTest {
 
@@ -14,5 +14,4 @@ class TemplateRepositoryFactoryImplTest {
 		def artifacts = rep.getCodeGenerationArtifacts()
 		assertEquals(1, artifacts.size())
 	}
-
 }
