@@ -4,6 +4,8 @@ package in.labulle.anycode.engine.groovy.core
 
 import in.labulle.anycode.uml.Cardinality;
 import in.labulle.anycode.uml.IAttribute;
+import in.labulle.anycode.uml.IDataType;
+import in.labulle.anycode.uml.IOperation;
 import groovy.text.SimpleTemplateEngine
 import static java.lang.String.*
 
@@ -14,7 +16,7 @@ import static java.lang.String.*
  */
 class JavaDirective extends AnycodeDirective {
 	/**
-	 * Gets or generates attribute's name
+	 * Generates attribute's name
 	 * @param a attribute
 	 * @return attribute's name or datatype name if relation attribute has no specific name.
 	 */
@@ -24,6 +26,15 @@ class JavaDirective extends AnycodeDirective {
 			attName += "s"
 		}
 		return attName
+	}
+	
+	/**
+	 * Generate datatype name
+	 * @param d
+	 * @return
+	 */
+	def static getDataTypeName(IDataType d) {
+		return (d.isPrimitive() ? d.getName().capitalize() : d.getName())
 	}
 
 
@@ -43,9 +54,9 @@ class JavaDirective extends AnycodeDirective {
 	 */
 	def static datatype(IAttribute a, String collectionClassName) {
 		if(a.getDataType().isPrimitive()) {
-			return """${a.dataType.name.capitalize()}"""
+			return """${getDataTypeName(a.dataType)}"""
 		} else {
-			return """${!a.cardinality.single ? collectionClassName + '<' + a.dataType.name + '>' : a.dataType.name}"""
+			return """${!a.cardinality.single ? collectionClassName + '<' + getDataTypeName(a.dataType) + '>' : getDataTypeName(a.dataType)}"""
 		}
 	}
 
@@ -56,5 +67,39 @@ class JavaDirective extends AnycodeDirective {
 	 */
 	def static datatype(IAttribute a) {
 		return datatype(a, 'java.util.List')
+	}
+	
+	/**
+	 * renders attribute's getter implementation
+	 * @param a attribute
+	 * @return
+	 */
+	def static getter(IAttribute a) {
+		return """public final ${datatype(a)} get${getAttributeName(a).capitalize()}() {
+			return this.${getAttributeName(a)};
+		}"""
+	}
+	
+	/**
+	 * renders attribute's getter implementation
+	 * @param a attribute
+	 * @return
+	 */
+	def static setter(IAttribute a) {
+		return """public final void set${getAttributeName(a).capitalize()}(final ${datatype(a)} some${getAttributeName(a).capitalize()}) {
+			this.${getAttributeName(a)} = some${getAttributeName(a).capitalize()};
+		}"""
+	}
+	
+	def static operationSignature(IOperation op) {
+		def params = null
+		op.getParameters().reverseEach() { it -> params = "final ${getDataTypeName(it.dataType)} ${it.name}" + (params == null ? "" : ", " + params)  }
+		
+		return """${op.visibility.toString().toLowerCase()} ${op.returnType == null ? 'void' : op.returnType.name} ${op.name}(${params})"""
+	}
+	
+	def static operationImplementation(IOperation op) {
+		return """${operationSignature(op)} {
+		}"""
 	}
 }
