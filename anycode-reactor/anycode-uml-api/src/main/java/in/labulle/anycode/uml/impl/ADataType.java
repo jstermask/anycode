@@ -5,9 +5,15 @@ import in.labulle.anycode.uml.IDataType;
 
 public class ADataType implements IDataType {
 	private IClass classifier;
+	
+	private boolean primitive;
 
 	public boolean isPrimitive() {
-		return false;
+		return this.primitive;
+	}
+	
+	public void setPrimitive(boolean primitive) {
+		this.primitive = primitive;
 	}
 
 	public IClass getClassifier() {

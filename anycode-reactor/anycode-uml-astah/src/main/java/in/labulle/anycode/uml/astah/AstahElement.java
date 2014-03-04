@@ -22,7 +22,7 @@ public abstract class AstahElement<T extends com.change_vision.jude.api.inf.mode
 	public static IElement getElement(
 			com.change_vision.jude.api.inf.model.IElement e) {
 		if (e instanceof IPackage) {
-			return new AstahPackage(e);
+			return new AstahPackage((IPackage)e);
 		} else if (e instanceof IClass) {
 			return new AstahClass((IClass) e);
 		}

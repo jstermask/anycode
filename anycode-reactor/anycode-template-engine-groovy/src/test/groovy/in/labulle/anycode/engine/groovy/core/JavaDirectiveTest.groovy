@@ -56,5 +56,25 @@ class JavaDirectiveTest {
 		
 		assertEquals("java.util.Set<Car>", JavaDirective.datatype(att, "java.util.Set").toString())
 	}
+	
+	@Test
+	public void testDatatypePrimitive() {
+		AAttribute att = new AAttribute()
+		att.setCardinality(Cardinality.ONE_TO_ONE)
+		
+		AClass cl = new AClass()
+		cl.setName("Person")
+		att.setOwner(cl)
+	
+		cl = new AClass()
+		cl.setName("integer")
+		ADataType dt = new ADataType()
+		dt.setPrimitive(true)
+		dt.setClassifier(cl)
+		att.setDataType(dt)
+		
+		assertEquals("Integer", JavaDirective.datatype(att).toString())
+		
+	}
 
 }

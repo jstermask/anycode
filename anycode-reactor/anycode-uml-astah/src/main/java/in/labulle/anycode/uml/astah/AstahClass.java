@@ -2,6 +2,7 @@ package in.labulle.anycode.uml.astah;
 
 import in.labulle.anycode.uml.IAttribute;
 import in.labulle.anycode.uml.IClass;
+import in.labulle.anycode.uml.IOperation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,14 @@ public class AstahClass extends
 			}
 		}
 		return atts;
+	}
+
+	public List<IOperation> getOperations() {
+		List<IOperation> ops = new ArrayList<IOperation>();
+		for(com.change_vision.jude.api.inf.model.IOperation op : getAstahElement().getOperations()) {
+			ops.add(new AstahOperation(op));
+		}
+		return ops;
 	}
 
 }

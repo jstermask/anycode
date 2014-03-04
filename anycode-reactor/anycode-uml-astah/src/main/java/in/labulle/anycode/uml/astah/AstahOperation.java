@@ -1,0 +1,33 @@
+package in.labulle.anycode.uml.astah;
+
+import in.labulle.anycode.uml.IClass;
+import in.labulle.anycode.uml.IOperation;
+import in.labulle.anycode.uml.IParameter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class AstahOperation extends
+		AstahElement<com.change_vision.jude.api.inf.model.IOperation> implements
+		IOperation {
+
+	public AstahOperation(
+			com.change_vision.jude.api.inf.model.IOperation astahElt) {
+		super(astahElt);
+	}
+
+	public String getName() {
+		return getAstahElement().getName();
+	}
+
+	public IClass getReturnType() {
+		return (IClass) AstahElement.getElement(getAstahElement()
+				.getReturnType());
+	}
+
+	public List<IParameter> getParameters() {
+		List<IParameter> params = new ArrayList<IParameter>();
+		return params;
+	}
+
+}
