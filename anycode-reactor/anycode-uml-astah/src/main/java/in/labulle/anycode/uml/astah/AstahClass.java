@@ -2,6 +2,7 @@ package in.labulle.anycode.uml.astah;
 
 import in.labulle.anycode.uml.IAttribute;
 import in.labulle.anycode.uml.IClass;
+import in.labulle.anycode.uml.IInterface;
 import in.labulle.anycode.uml.IOperation;
 
 import java.util.ArrayList;
@@ -9,6 +10,9 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.change_vision.jude.api.inf.model.IGeneralization;
+import com.change_vision.jude.api.inf.model.IRealization;
 
 public class AstahClass extends
 		AstahElement<com.change_vision.jude.api.inf.model.IClass> implements
@@ -41,6 +45,22 @@ public class AstahClass extends
 			ops.add(new AstahOperation(op));
 		}
 		return ops;
+	}
+
+	public List<IClass> getGeneralizations() {
+		List<IClass> gens = new ArrayList<IClass>();
+		for(IGeneralization gen : getAstahElement().getGeneralizations()) {
+			gens.add(new AstahClass(gen.getSubType()));
+		}
+		return gens;
+	}
+
+	public List<IInterface> getRealizations() {
+		List<IInterface> gens = new ArrayList<IInterface>();
+		for(IRealization gen : getAstahElement().getClientRealizations()) {
+			gens.add(new AstahInterface((com.change_vision.jude.api.inf.model.IClass)gen.getClient()));
+		}
+		return gens;
 	}
 
 }

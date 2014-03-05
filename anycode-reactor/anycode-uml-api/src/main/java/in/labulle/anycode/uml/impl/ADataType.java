@@ -1,10 +1,10 @@
 package in.labulle.anycode.uml.impl;
 
-import in.labulle.anycode.uml.IClass;
+import in.labulle.anycode.uml.IClassifier;
 import in.labulle.anycode.uml.IDataType;
 
 public class ADataType implements IDataType {
-	private IClass classifier;
+	private IClassifier classifier;
 	
 	private boolean primitive;
 
@@ -16,11 +16,11 @@ public class ADataType implements IDataType {
 		this.primitive = primitive;
 	}
 
-	public IClass getClassifier() {
+	public IClassifier getClassifier() {
 		return classifier;
 	}
 	
-	public void setClassifier(IClass classifier) {
+	public void setClassifier(IClassifier classifier) {
 		this.classifier = classifier;
 	}
 

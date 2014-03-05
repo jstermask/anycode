@@ -7,6 +7,6 @@ public interface IDataType {
 	
 	
 	boolean isPrimitive();
-	IClass getClassifier();
+	IClassifier getClassifier();
 	String getName();
 }

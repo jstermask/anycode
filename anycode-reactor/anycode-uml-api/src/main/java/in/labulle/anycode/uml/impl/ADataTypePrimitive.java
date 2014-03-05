@@ -1,6 +1,6 @@
 package in.labulle.anycode.uml.impl;
 
-import in.labulle.anycode.uml.IClass;
+import in.labulle.anycode.uml.IClassifier;
 import in.labulle.anycode.uml.IDataType;
 
 public enum ADataTypePrimitive implements IDataType {
@@ -10,7 +10,7 @@ public enum ADataTypePrimitive implements IDataType {
 		return true;
 	}
 
-	public IClass getClassifier() {
+	public IClassifier getClassifier() {
 		return null;
 	}
 
