@@ -1,5 +1,9 @@
 package in.labulle.anycode.uml;
 
-public interface IClassifier extends IElement {
+import java.util.List;
 
+public interface IClassifier extends IElement {
+	List<IAttribute> getAttributes();
+	List<IOperation> getOperations();
+	List<? extends IClassifier> getGeneralizations();
 }

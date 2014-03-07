@@ -1,9 +1,7 @@
 package in.labulle.anycode.uml.astah;
 
-import in.labulle.anycode.uml.IAttribute;
 import in.labulle.anycode.uml.IClass;
 import in.labulle.anycode.uml.IInterface;
-import in.labulle.anycode.uml.IOperation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +9,10 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.change_vision.jude.api.inf.model.IGeneralization;
 import com.change_vision.jude.api.inf.model.IRealization;
 
 public class AstahClass extends
-		AstahElement<com.change_vision.jude.api.inf.model.IClass> implements
+		AstahClassifier implements
 		IClass {
 	private static final Logger LOG = LoggerFactory.getLogger(AstahClass.class);
 
@@ -26,33 +23,11 @@ public class AstahClass extends
 		}
 	}
 
-	public List<IAttribute> getAttributes() {
-		List<IAttribute> atts = new ArrayList<IAttribute>();
-		for (com.change_vision.jude.api.inf.model.IAttribute att : getAstahElement()
-				.getAttributes()) {
-			if (att.getAssociation() != null) {
-				atts.add(new AstahRelationAttribute(att));
-			} else {
-				atts.add(new AstahAttribute(att));
-			}
-		}
-		return atts;
-	}
 
-	public List<IOperation> getOperations() {
-		List<IOperation> ops = new ArrayList<IOperation>();
-		for(com.change_vision.jude.api.inf.model.IOperation op : getAstahElement().getOperations()) {
-			ops.add(new AstahOperation(op));
-		}
-		return ops;
-	}
 
+	@SuppressWarnings("unchecked")
 	public List<IClass> getGeneralizations() {
-		List<IClass> gens = new ArrayList<IClass>();
-		for(IGeneralization gen : getAstahElement().getGeneralizations()) {
-			gens.add(new AstahClass(gen.getSubType()));
-		}
-		return gens;
+		return (List<IClass>)super.getGeneralizations();
 	}
 
 	public List<IInterface> getRealizations() {

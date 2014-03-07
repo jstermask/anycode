@@ -4,7 +4,10 @@ package in.labulle.anycode.engine.groovy.core
 
 import in.labulle.anycode.uml.Cardinality;
 import in.labulle.anycode.uml.IAttribute;
+import in.labulle.anycode.uml.IClass;
+import in.labulle.anycode.uml.IClassifier;
 import in.labulle.anycode.uml.IDataType;
+import in.labulle.anycode.uml.IInterface;
 import in.labulle.anycode.uml.IOperation;
 import groovy.text.SimpleTemplateEngine
 import static java.lang.String.*
@@ -15,6 +18,64 @@ import static java.lang.String.*
  *
  */
 class JavaDirective extends AnycodeDirective {
+
+	/**
+	 * 
+	 * @param c
+	 * @return
+	 */
+	def static classifierSignature(IClassifier c) {
+		if(c instanceof IClass) {
+			return classSignature((IClass)c)
+		} else {
+			return interfaceSignature((IInterface)c)
+		}
+	}	
+
+	/**
+	 * Class signature
+	 * @param c
+	 * @return
+	 */
+	def static classSignature(IClass c) {
+		def generalizations = generalizations(c)
+		def realizations = realizations(c)
+		return """public class ${c.name} ${generalizations != null ? 'extends '+ generalizations : ''}  ${realizations != null ? 'implements '+ realizations : ''}"""
+	}
+	
+	/**
+	 * Class signature
+	 * @param i
+	 * @return
+	 */
+	def static interfaceSignature(IInterface i) {
+		def generalizations = generalizations(i)
+		return """public interface ${i.name} ${generalizations != null ? 'extends '+ generalizations : ''}"""
+	}
+	
+	/**
+	 * renders generalizations
+	 * @param c
+	 * @return comma separated generalizations
+	 */
+	def static generalizations(IClassifier c) {
+		def generalizations = null
+		c.generalizations.reverseEach { generalizations = it.name + (generalizations == null ? "" : ", " + generalizations)}
+		return generalizations;
+	}
+	
+	/**
+	 * renders realizations
+	 * @param c 
+	 * @return comma separated realizations
+	 */
+	def static realizations(IClass c) {
+		def realizations = null
+		c.realizations.reverseEach { realizations = it.name + (realizations == null ? "" : ", " + realizations)}
+		return realizations;
+	}
+	
+	
 	/**
 	 * Generates attribute's name
 	 * @param a attribute
@@ -91,6 +152,11 @@ class JavaDirective extends AnycodeDirective {
 		}"""
 	}
 	
+	/**
+	 * 
+	 * @param op
+	 * @return
+	 */
 	def static operationSignature(IOperation op) {
 		def params = null
 		op.getParameters().reverseEach() { it -> params = "final ${getDataTypeName(it.dataType)} ${it.name}" + (params == null ? "" : ", " + params)  }
@@ -98,6 +164,11 @@ class JavaDirective extends AnycodeDirective {
 		return """${op.visibility.toString().toLowerCase()} ${op.returnType == null ? 'void' : op.returnType.name} ${op.name}(${params})"""
 	}
 	
+	/**
+	 * 
+	 * @param op
+	 * @return
+	 */
 	def static operationImplementation(IOperation op) {
 		return """${operationSignature(op)} {
 		}"""

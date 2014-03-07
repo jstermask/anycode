@@ -1,6 +1,8 @@
 package in.labulle.anycode.engine.groovy.repository;
 
 import static org.junit.Assert.*
+import in.labulle.anycode.engine.core.ICodeGenerationArtifact;
+import in.labulle.anycode.engine.core.ITemplate;
 import in.labulle.anycode.engine.repository.ITemplateRepository
 
 import org.junit.Test
