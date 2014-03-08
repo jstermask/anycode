@@ -163,7 +163,7 @@ class JavaDirective extends AnycodeDirective {
 		def params = null
 		op.getParameters().reverseEach() { it -> params = "final ${getDataTypeName(it.dataType)} ${it.name}" + (params == null ? "" : ", " + params)  }
 		
-		return """${op.visibility.toString().toLowerCase()} ${op.returnType == null ? 'void' : op.returnType.name} ${op.name}(${params})"""
+		return """${op.visibility.toString().toLowerCase()} ${op.returnType == null ? 'void' : op.returnType.getFullyQualifiedName(".")} ${op.name}(${params})"""
 	}
 	
 	/**
