@@ -16,4 +16,6 @@ class TemplateRepositoryFactoryImplTest {
 		def artifacts = rep.getCodeGenerationArtifacts()
 		assertEquals(1, artifacts.size())
 	}
+	
+
 }

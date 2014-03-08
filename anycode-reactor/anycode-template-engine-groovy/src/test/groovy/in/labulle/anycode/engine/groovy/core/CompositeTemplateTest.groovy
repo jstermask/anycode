@@ -2,6 +2,7 @@ package in.labulle.anycode.engine.groovy.core;
 
 import static org.junit.Assert.*;
 import in.labulle.anycode.engine.groovy.core.CompositeTemplate;
+import in.labulle.anycode.uml.impl.AClass;
 
 import org.junit.Test;
 
@@ -14,8 +15,12 @@ class CompositeTemplateTest {
 		ct.loadDirectives(map);
 		assertNotNull(map.get("java"));
 		assertNotNull(map.get("jpa"));
-		assertNotNull(map.get("util"));
-		
+		assertNotNull(map.get("util"));	
 	}
+
+	
+
+	
+	
 
 }
