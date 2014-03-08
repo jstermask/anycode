@@ -9,6 +9,6 @@ ${java.classifierSignature(c)} {
 		println java.setter(it)} %>
 	
 	<% c.operations.each() { 
-		println java.operation(it) } %>
+		println java.operationImplementation(it) } %>
 	
 }

@@ -10,26 +10,25 @@ class CompositeTemplate implements ITemplate {
 	Template nameTemplate
 	Template contentTemplate
 	String name
-	
+
 	def CompositeTemplate() {
-		engine = new GStringTemplateEngine()	
+		engine = new GStringTemplateEngine()
 	}
-	
+
 	def void setNameTemplate(String namePath) {
 		nameTemplate = engine.createTemplate(new File(namePath))
 		calculateName(namePath)
-
 	}
-	
+
 	def void setContentTemplate(String contentPath) {
 		contentTemplate = engine.createTemplate(new File(contentPath))
 		calculateName(contentPath)
 	}
-	
+
 	def void calculateName(String path) {
 		name = path.substring(path.lastIndexOf(File.separator), path.lastIndexOf("."))
 	}
-	
+
 	def void render(Map<String, Object> ctx) {
 		loadDirectives(ctx);
 		def outputFile = nameTemplate.make(ctx).toString()
@@ -39,7 +38,7 @@ class CompositeTemplate implements ITemplate {
 		contentTemplate.make(ctx).writeTo(w)
 		w.close();
 	}
-	
+
 	def void loadDirectives(Map<String, Object> ctx) {
 		ctx.put("java", new JavaDirective())
 		ctx.put("util", new UtilDirective())
@@ -54,22 +53,27 @@ class CompositeTemplate implements ITemplate {
 		return true;
 	}
 
-	public String renderAsString(Map<String, Object> ctx)
-			throws TemplateException {
-		loadDirectives(ctx);
-		return contentTemplate.make(ctx).toString()
+	public String renderAsString(Map<String, Object> ctx) throws TemplateException {
+		try {
+			loadDirectives(ctx);
+			return contentTemplate.make(ctx).toString()
+		} catch(Exception e) {
+			throw new TemplateException(e);
+		}
 	}
 
-	public File renderToFile(Map<String, Object> ctx)
-			throws TemplateException {
-		loadDirectives(ctx);
-		def outputFile = nameTemplate.make(ctx).toString()
-		File f = new File(outputFile)
-		f.getParentFile().mkdirs();
-		FileWriter w = new FileWriter(f)
-		contentTemplate.make(ctx).writeTo(w)
-		w.close();
-		return f;
+	public File renderToFile(Map<String, Object> ctx) throws TemplateException {
+		try {
+			loadDirectives(ctx);
+			def outputFile = nameTemplate.make(ctx).toString()
+			File f = new File(outputFile)
+			f.getParentFile().mkdirs();
+			FileWriter w = new FileWriter(f)
+			contentTemplate.make(ctx).writeTo(w)
+			w.close();
+			return f;
+		} catch(Exception e) {
+			throw new TemplateException(e);
+		}
 	}
-	
 }

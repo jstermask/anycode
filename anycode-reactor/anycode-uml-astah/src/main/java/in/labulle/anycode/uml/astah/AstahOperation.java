@@ -27,6 +27,9 @@ public class AstahOperation extends
 
 	public List<IParameter> getParameters() {
 		List<IParameter> params = new ArrayList<IParameter>();
+		for(com.change_vision.jude.api.inf.model.IParameter param : getAstahElement().getParameters()) {
+			params.add(new AstahParameter(param));
+		}
 		return params;
 	}
 

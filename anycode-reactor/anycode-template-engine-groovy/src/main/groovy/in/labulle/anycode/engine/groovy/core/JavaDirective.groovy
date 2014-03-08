@@ -84,7 +84,9 @@ class JavaDirective extends AnycodeDirective {
 	def static getAttributeName(IAttribute a) {
 		def attName = (a.getName() != null ? a.getName() : a.getDataType().getName()[0].toLowerCase() + a.getDataType().getName().substring(1))
 		if(!a.getCardinality().isSingle()) {
-			attName += "s"
+			if(a.getName() == null) { 
+				attName += "s"
+			}
 		}
 		return attName
 	}
@@ -95,7 +97,7 @@ class JavaDirective extends AnycodeDirective {
 	 * @return
 	 */
 	def static getDataTypeName(IDataType d) {
-		return (d.isPrimitive() ? d.getName().capitalize() : d.getName())
+		return (d.isPrimitive() ? d.getName().capitalize() : d.getFullyQualifiedName("."))
 	}
 
 

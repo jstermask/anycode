@@ -67,28 +67,58 @@
 	</profiles>
 
 	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.gmaven</groupId>
+				<artifactId>gmaven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generateStubs</goal>
+							<goal>compile</goal>
+							<goal>generateTestStubs</goal>
+							<goal>testCompile</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<providerSelection>2.0</providerSelection>
+					<source>2.0</source>
+				</configuration>
+			</plugin>
+		</plugins>
 		<pluginManagement>
 			<plugins>
 				<plugin>
-					<groupId>org.codehaus.gmaven</groupId>
-					<artifactId>gmaven-plugin</artifactId>
-					<executions>
-						<execution>
-							<goals>
-								<goal>generateStubs</goal>
-								<goal>compile</goal>
-								<goal>generateTestStubs</goal>
-								<goal>testCompile</goal>
-							</goals>
-						</execution>
-					</executions>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
 					<configuration>
-						<providerSelection>2.0</providerSelection>
-						<source>2.0</source>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.gmaven</groupId>
+										<artifactId>gmaven-plugin</artifactId>
+										<versionRange>[1.0.0,)</versionRange>
+										<goals>
+											<goal>generateStubs</goal>
+											<goal>compile</goal>
+											<goal>generateTestStubs</goal>
+											<goal>testCompile</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute>
+											<runOnIncremental>true</runOnIncremental>
+										</execute>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
 					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
-
 	</build>
 </project>

@@ -1,8 +1,7 @@
 package in.labulle.anycode.uml.astah;
-import com.change_vision.jude.api.inf.model.IClass;
-
 import in.labulle.anycode.uml.IDataType;
-import in.labulle.anycode.uml.astah.utils.ModelUtils;
+
+import com.change_vision.jude.api.inf.model.IClass;
 
 public class AstahDataType extends AstahElement<IClass> implements IDataType {
 
@@ -12,7 +11,7 @@ public class AstahDataType extends AstahElement<IClass> implements IDataType {
 	}
 
 	public boolean isPrimitive() {
-		return ModelUtils.isJREClass(getAstahElement().getFullName("."));
+		return getAstahElement() == null;
 	}
 
 	public in.labulle.anycode.uml.IClass getClassifier() {

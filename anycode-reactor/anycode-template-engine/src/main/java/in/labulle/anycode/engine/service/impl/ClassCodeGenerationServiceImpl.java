@@ -116,7 +116,7 @@ public class ClassCodeGenerationServiceImpl implements ICodeGenerationService {
         config.put(Configuration.CONTEXT_PARAM_CLASS_CURRENT, aClass);
 		if (LOG.isDebugEnabled()) {
 			LOG.debug("generate(" + aClass.getName() + ","
-					+ aTemplate.getName());
+					+ aTemplate.getName() + ")");
 		}
         try {
             File f = aTemplate.renderToFile(config);

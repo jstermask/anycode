@@ -9,4 +9,5 @@ public interface IDataType {
 	boolean isPrimitive();
 	IClassifier getClassifier();
 	String getName();
+	String getFullyQualifiedName(final String separator);
 }

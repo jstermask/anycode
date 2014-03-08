@@ -17,4 +17,8 @@ public enum ADataTypePrimitive implements IDataType {
 	public String getName() {
 		return toString().toLowerCase();
 	}
+
+	public String getFullyQualifiedName(String separator) {
+		return getName();
+	}
 }

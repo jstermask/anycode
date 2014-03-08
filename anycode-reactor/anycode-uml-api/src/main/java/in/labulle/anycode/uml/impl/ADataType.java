@@ -28,4 +28,8 @@ public class ADataType implements IDataType {
 		return this.classifier.getName();
 	}
 
+	public String getFullyQualifiedName(String separator) {
+		return this.classifier.getFullyQualifiedName(separator);
+	}
+
 }
