@@ -4,8 +4,15 @@ package in.labulle.anycode.engine.groovy.core
 
 import java.lang.annotation.Annotation;
 
+import in.labulle.anycode.uml.Cardinality;
 import in.labulle.anycode.uml.IAttribute;
+import in.labulle.anycode.uml.IClass;
+import in.labulle.anycode.uml.IOperation;
 import in.labulle.anycode.uml.IRelationAttribute;
+import in.labulle.anycode.uml.Visibility;
+import in.labulle.anycode.uml.impl.AAttribute;
+import in.labulle.anycode.uml.impl.AClass;
+import in.labulle.anycode.uml.impl.ADataType;
 import groovy.text.SimpleTemplateEngine
 
 /**
@@ -13,19 +20,41 @@ import groovy.text.SimpleTemplateEngine
  * @author Jose Carreno
  *
  */
-class JpaDirective extends AnycodeDirective {
+class JpaDirective extends JavaDirective {
 	/**
-	 * @param a attribute
-	 * @return attribute full signature as a script : [visibility] [datatype] [attribute name]. e.g. : private String myVar;
+	 * @param a attribute to render
+	 * @return attribute full signature as a script as well as JPA annotations : [visibility] [datatype] [attribute name]. e.g. : private String myVar;
 	 */
 	def static attribute(IAttribute a) {
+		def javaAtt = super.attribute(a)
 		def script = """\
-		${JpaDirective.annotation(a)}
-		${JavaDirective.attribute(a)}
+		${annotation(a)}
+		${javaAtt}
 		"""
 		return script;
 	}
-	
+
+	/**
+	 * Generates a primary key based on entity class. 3 possibilities :
+	 * <ul>
+	 * <li>Class has more than one "id" stereotyped attribute, then a PK class is rendered</li>
+	 * <li>Class has exactly one "id" stereotyped attribute, then a JPA identifier will be generated based on this attribute.</li>
+	 * <li>Attribute has no "id" stereotyped attribute, then a JPA Long identifier will be automatically generated, with sequence generation.</li>
+	 * </ul> 
+	 * @param c the class to render
+	 * @return 
+	 */
+	def static primaryKey(IClass c) {
+		def atts = c.attributes.findAll({ isIdentifier(it)})
+		if(atts.size() > 1) {
+			return compositePrimaryKey(c)
+		} else if(atts.size() == 1) {
+			return singlePrimaryKey(atts[0])
+		} else {
+			return autoPrimaryKey(c)
+		}
+	}
+
 	def static annotation(IAttribute a) {
 		if(!a.isRelation()) {
 			return "";
@@ -41,5 +70,52 @@ class JpaDirective extends AnycodeDirective {
 				return "@javax.persistence.ManyToOne"
 			}
 		}
+	}
+	
+	def static isIdentifier(IAttribute a) {
+		return a.hasStereotype("id")
+	}
+	
+	def static isFinderOperation(IOperation op) {
+		return op.name.startsWith("@")
+	}
+	
+	private def static autoPrimaryKey(IClass c) {
+		AAttribute aat = new AAttribute()
+		aat.setName("id")
+		aat.setVisibility(Visibility.PRIVATE)
+		aat.setCardinality(Cardinality.ONE_TO_ONE)
+		ADataType aatype = new ADataType()
+		AClass cl = new AClass()
+		cl.setName("java.lang.Long")
+		aatype.setClassifier(cl)
+		aat.setDataType(aatype)
+		return singlePrimaryKey(aat)
+	}
+	
+	private def static singlePrimaryKey(IAttribute a) {
+		return singlePrimaryKey(a, "@java.persistence.Id")
+	}
+	
+	private def static singlePrimaryKey(IAttribute a, String annotation) {
+		return """${annotation}
+		${super.attribute(a)}
+		${getter(a)}
+		${setter(a)}
+		"""
+	}
+	
+	private def static compositePrimaryKey(IClass c) {
+		AAttribute aat = new AAttribute()
+		aat.setName("id")
+		aat.setVisibility(Visibility.PRIVATE)
+		aat.setCardinality(Cardinality.ONE_TO_ONE)
+		ADataType aatype = new ADataType()
+		AClass cl = new AClass()
+		cl.setName(c.name + "PK")
+		cl.setOwner(c.getOwner())
+		aatype.setClassifier(cl)
+		aat.setDataType(aatype)
+		return singlePrimaryKey(aat, "@java.persistence.EmbeddedId")
 	}
 }
