@@ -45,13 +45,13 @@ class JpaDirective extends JavaDirective {
 	 * @return 
 	 */
 	def static primaryKey(IClass c) {
-		def atts = c.attributes.findAll({ isIdentifier(it)})
-		if(atts.size() > 1) {
-			return compositePrimaryKey(c)
-		} else if(atts.size() == 1) {
-			return singlePrimaryKey(atts[0])
-		} else {
+		def atts = c.attributes.findAll({it -> isIdentifier(it)})
+		if(atts == null || atts.size() == 0) {
 			return autoPrimaryKey(c)
+		} else if(atts.size() > 1) {
+			return compositePrimaryKey(c)
+		} else {
+			return singlePrimaryKey(atts[0])
 		}
 	}
 
