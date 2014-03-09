@@ -26,11 +26,9 @@ class JpaDirective extends JavaDirective {
 	 * @return attribute full signature as a script as well as JPA annotations : [visibility] [datatype] [attribute name]. e.g. : private String myVar;
 	 */
 	def static attribute(IAttribute a) {
-		def javaAtt = super.attribute(a)
-		def script = """\
-		${annotation(a)}
-		${javaAtt}
-		"""
+		def javaAtt = JavaDirective.attribute(a)
+		def script = """${annotation(a)}
+			${javaAtt}"""
 		return script;
 	}
 
@@ -51,7 +49,7 @@ class JpaDirective extends JavaDirective {
 		} else if(atts.size() > 1) {
 			return compositePrimaryKey(c)
 		} else {
-			return singlePrimaryKey(atts[0])
+			return singlePrimaryKey(atts[0], "@javax.persistence.Id")
 		}
 	}
 
@@ -90,19 +88,15 @@ class JpaDirective extends JavaDirective {
 		cl.setName("java.lang.Long")
 		aatype.setClassifier(cl)
 		aat.setDataType(aatype)
-		return singlePrimaryKey(aat)
+		return singlePrimaryKey(aat, "@javax.persistence.Id")
 	}
 	
-	private def static singlePrimaryKey(IAttribute a) {
-		return singlePrimaryKey(a, "@java.persistence.Id")
-	}
 	
 	private def static singlePrimaryKey(IAttribute a, String annotation) {
-		return """${annotation}
-		${super.attribute(a)}
-		${getter(a)}
-		${setter(a)}
-		"""
+		def javaAtt = super.attribute(a)
+		return """${annotation} ${javaAtt} 
+			${getter(a)} 
+			${setter(a)}"""
 	}
 	
 	private def static compositePrimaryKey(IClass c) {
@@ -116,6 +110,6 @@ class JpaDirective extends JavaDirective {
 		cl.setOwner(c.getOwner())
 		aatype.setClassifier(cl)
 		aat.setDataType(aatype)
-		return singlePrimaryKey(aat, "@java.persistence.EmbeddedId")
+		return singlePrimaryKey(aat, "@javax.persistence.EmbeddedId")
 	}
 }

@@ -42,11 +42,7 @@ public class AElement implements IElement {
 	}
 
 	public boolean hasStereotype(final String stereotype) {
-		return this.stereotypes.contains(new IStereotype() {		
-			public String getName() {
-			 	return stereotype;
-			}
-		});
+		return this.stereotypes.contains(new AStereotype(stereotype));
 	}
 
 	public String getFullyQualifiedName(String separator) {
