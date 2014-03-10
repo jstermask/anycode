@@ -9,4 +9,6 @@ public interface IRelationAttribute extends IAttribute {
 	boolean isManyToMany();
 	boolean isOneToMany();
 	IRelationAttribute getOtherSide();
+	boolean isOwningSide();
+	boolean isBidirectionalRelation();
 }

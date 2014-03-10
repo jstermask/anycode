@@ -73,6 +73,14 @@ public class ARelationAttribute extends AAttribute implements IRelationAttribute
 	public boolean isOneToMany() {
 		return !getCardinality().isSingle() && getOtherSide().getCardinality().isSingle(); 
 	}
+	
+	public boolean isOwningSide() {
+		return (isManyToOne() && isBidirectionalRelation()) || (isOneToOne() && isBidirectionalRelation() && Navigability.NAVIGABLE.equals(this.navigability));
+	}
+	
+	public boolean isBidirectionalRelation() {
+		return isNavigable() && getOtherSide().isNavigable();
+	}
 
 	
 	

@@ -1,11 +1,11 @@
 package in.labulle.anycode.uml.astah;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import in.labulle.anycode.uml.Cardinality;
 import in.labulle.anycode.uml.IDataType;
 import in.labulle.anycode.uml.IRelationAttribute;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.change_vision.jude.api.inf.model.IMultiplicityRange;
 
@@ -85,11 +85,19 @@ public class AstahRelationAttribute extends AstahAttribute implements
 	public IRelationAttribute getOtherSide() {
 		com.change_vision.jude.api.inf.model.IAttribute[] memberEnds = getAstahElement()
 				.getAssociation().getMemberEnds();
-		if (this.equals(memberEnds[0])) {
+		if (!this.getAstahElement().equals(memberEnds[0])) {
 			return new AstahRelationAttribute(memberEnds[0]);
 		} else {
 			return new AstahRelationAttribute(memberEnds[1]);
 		}
+	}
+
+	public boolean isOwningSide() {
+		return (isManyToOne() && isBidirectionalRelation()) || ((isManyToMany() || isOneToOne()) && isBidirectionalRelation() && "Navigable".equals(getAstahElement().getNavigability()));
+	}
+	
+	public boolean isBidirectionalRelation() {
+		return isNavigable() && getOtherSide().isNavigable();
 	}
 
 }
