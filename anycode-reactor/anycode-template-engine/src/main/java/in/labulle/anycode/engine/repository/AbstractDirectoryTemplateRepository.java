@@ -9,17 +9,17 @@ import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractDirectoryTemplateRepository implements ITemplateRepository {
+public abstract class AbstractDirectoryTemplateRepository implements
+		ITemplateRepository {
 	private String path;
 	private List<ICodeGenerationArtifact> codeGenerationArtifacts;
-	
+
 	public AbstractDirectoryTemplateRepository(final String path) {
 		this.path = path;
 	}
-	
 
 	public List<ICodeGenerationArtifact> getCodeGenerationArtifacts() {
-		if(codeGenerationArtifacts == null) {
+		if (codeGenerationArtifacts == null) {
 			codeGenerationArtifacts = new ArrayList<ICodeGenerationArtifact>();
 			refresh();
 		}
@@ -29,27 +29,31 @@ public abstract class AbstractDirectoryTemplateRepository implements ITemplateRe
 	public void refresh() {
 		codeGenerationArtifacts.clear();
 		File dir = new File(path);
-		 String fileNames[] = dir.list(getTemplateFilenameFilter());
-	     String files[] = dir.list(getTemplateFilter());
-	        try {
-	            for (int i = 0; i < fileNames.length; i++) {
-	                if (files.length > i) {
-	                	ITemplate t = buildTemplate(path + File.separator + fileNames[i], path + File.separator + files[i]);
-	                    codeGenerationArtifacts.add(t);
-	                } else {
-	                    throw new TemplateRuntimeException("There are more filenames templates than content templates");
-	                }
-	            }
-	        } catch (Exception e) {
-	            throw new TemplateRuntimeException(e);
-	        }
+		String fileNames[] = dir.list(getTemplateFilenameFilter());
+		String files[] = dir.list(getTemplateFilter());
+		for (int i = 0; i < fileNames.length; i++) {
+			try {
+				if (files.length > i) {
+					ITemplate t = buildTemplate(path + File.separator
+							+ fileNames[i], path + File.separator + files[i]);
+					codeGenerationArtifacts.add(t);
+				} else {
+					throw new TemplateRuntimeException(
+							"There are more filenames templates than content templates");
+				}
+			} catch (Exception e) {
+				TemplateRuntimeException ee = new TemplateRuntimeException("Error parsing template " + fileNames[i], e);
+				throw ee;
+			}
 
+		}
 	}
-	
+
 	public static FilenameFilter getTemplateFilenameFilter() {
 		return new FilenameFilter() {
 			public boolean accept(File dir, String name) {
-				return (name.indexOf("-name." + ITemplate.MDA_OVERWRITE_EXTENSION) != -1);
+				return (name.indexOf("-name."
+						+ ITemplate.MDA_OVERWRITE_EXTENSION) != -1);
 			}
 		};
 	}
@@ -57,11 +61,12 @@ public abstract class AbstractDirectoryTemplateRepository implements ITemplateRe
 	public static FilenameFilter getTemplateFilter() {
 		return new FilenameFilter() {
 			public boolean accept(File dir, String name) {
-				return (name.indexOf("-content." + ITemplate.MDA_OVERWRITE_EXTENSION) != -1);
+				return (name.indexOf("-content."
+						+ ITemplate.MDA_OVERWRITE_EXTENSION) != -1);
 			}
 		};
 	}
-	
-	protected abstract ITemplate buildTemplate(String nameTemplatePath, String contentTemplatePath);
-}
 
+	protected abstract ITemplate buildTemplate(String nameTemplatePath,
+			String contentTemplatePath);
+}

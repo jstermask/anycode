@@ -66,12 +66,19 @@ class CompositeTemplate implements ITemplate {
 		try {
 			loadDirectives(ctx);
 			def outputFile = nameTemplate.make(ctx).toString()
-			File f = new File(outputFile)
-			f.getParentFile().mkdirs();
-			FileWriter w = new FileWriter(f)
-			contentTemplate.make(ctx).writeTo(w)
-			w.close();
-			return f;
+			def content = contentTemplate.make(ctx).toString()
+			def contentStr = content.replaceAll("\n", "").replaceAll("\t", "").replaceAll(" ", "")
+			if(contentStr.length() > 1) {
+				File f = new File(outputFile)
+				f.getParentFile().mkdirs();
+				FileWriter w = new FileWriter(f)
+				def gs = """${content}"""
+				gs.writeTo(w)
+				w.close();
+				return f;
+			} else {
+				return null;
+			}
 		} catch(Exception e) {
 			throw new TemplateException(e);
 		}
