@@ -1,7 +1,7 @@
 package in.labulle.anycode.engine.groovy.core;
 
 import static org.junit.Assert.*
-import in.labulle.anycode.engine.groovy.core.JavaDirective
+import in.labulle.anycode.engine.groovy.directive.JavaDirective;
 import in.labulle.anycode.uml.Cardinality
 import in.labulle.anycode.uml.Visibility
 import in.labulle.anycode.uml.impl.AAttribute

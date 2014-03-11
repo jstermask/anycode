@@ -1,6 +1,7 @@
 package in.labulle.anycode.engine.groovy.core;
 
 import static org.junit.Assert.*
+import in.labulle.anycode.engine.groovy.directive.JpaDirective;
 import in.labulle.anycode.uml.Visibility;
 import in.labulle.anycode.uml.impl.AAttribute
 import in.labulle.anycode.uml.impl.AClass

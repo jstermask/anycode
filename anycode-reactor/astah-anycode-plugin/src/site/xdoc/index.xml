@@ -45,7 +45,7 @@
 					</p>
 					<p class="center process-step">Customize templates</p>
 					<p class="justify">
-						Write as many templates as you need. A template consists in 2 freemarker files that let you customize
+						Write as many templates as you need. A template consists in 2 <b>groovy</b> files that let you customize
 						both the name and
 						the content of target files. It receives a UML
 						class as parameter so

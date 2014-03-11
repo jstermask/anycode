@@ -4,6 +4,10 @@ import groovy.text.GStringTemplateEngine
 import groovy.text.Template
 import in.labulle.anycode.engine.core.ITemplate
 import in.labulle.anycode.engine.exception.TemplateException
+import in.labulle.anycode.engine.groovy.directive.JavaDirective;
+import in.labulle.anycode.engine.groovy.directive.JpaDirective;
+import in.labulle.anycode.engine.groovy.directive.SpringDirective;
+import in.labulle.anycode.engine.groovy.directive.UtilDirective;
 
 class CompositeTemplate implements ITemplate {
 	GStringTemplateEngine engine
