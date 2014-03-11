@@ -43,6 +43,7 @@ class CompositeTemplate implements ITemplate {
 		ctx.put("java", new JavaDirective())
 		ctx.put("util", new UtilDirective())
 		ctx.put("jpa", new JpaDirective())
+		ctx.put("springData", new SpringDirective())
 	}
 
 	public String getName() {

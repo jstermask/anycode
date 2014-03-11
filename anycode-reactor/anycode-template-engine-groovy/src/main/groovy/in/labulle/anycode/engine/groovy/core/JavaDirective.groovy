@@ -10,7 +10,7 @@ import in.labulle.anycode.uml.IDataType;
 import in.labulle.anycode.uml.IInterface;
 import in.labulle.anycode.uml.IOperation;
 import groovy.text.SimpleTemplateEngine
-import static java.lang.String.*
+import  java.lang.String.*
 
 /**
  * This directive provides macros and functions to generate code in java language.
@@ -24,7 +24,7 @@ class JavaDirective extends AnycodeDirective {
 	 * @param c
 	 * @return
 	 */
-	def static classifierSignature(IClassifier c) {
+	def  classifierSignature(IClassifier c) {
 		if(c instanceof IClass) {
 			return classSignature((IClass)c)
 		} else {
@@ -37,7 +37,7 @@ class JavaDirective extends AnycodeDirective {
 	 * @param c
 	 * @return
 	 */
-	def static classSignature(IClass c) {
+	def  classSignature(IClass c) {
 		def generalizations = generalizations(c)
 		def realizations = realizations(c)
 		return """public class ${c.name} ${generalizations != null ? 'extends '+ generalizations : ''}  ${realizations != null ? 'implements '+ realizations : ''}"""
@@ -48,7 +48,7 @@ class JavaDirective extends AnycodeDirective {
 	 * @param i
 	 * @return
 	 */
-	def static interfaceSignature(IInterface i) {
+	def  interfaceSignature(IInterface i) {
 		def generalizations = generalizations(i)
 		return """public interface ${i.name} ${generalizations != null ? 'extends '+ generalizations : ''}"""
 	}
@@ -58,7 +58,7 @@ class JavaDirective extends AnycodeDirective {
 	 * @param c
 	 * @return comma separated generalizations
 	 */
-	def static generalizations(IClassifier c) {
+	def  generalizations(IClassifier c) {
 		def generalizations = null
 		c.generalizations.reverseEach { generalizations = it.name + (generalizations == null ? "" : ", " + generalizations)}
 		return generalizations;
@@ -69,7 +69,7 @@ class JavaDirective extends AnycodeDirective {
 	 * @param c 
 	 * @return comma separated realizations
 	 */
-	def static realizations(IClass c) {
+	def  realizations(IClass c) {
 		def realizations = null
 		c.realizations.reverseEach { realizations = it.name + (realizations == null ? "" : ", " + realizations)}
 		return realizations;
@@ -81,7 +81,7 @@ class JavaDirective extends AnycodeDirective {
 	 * @param a attribute
 	 * @return attribute's name or datatype name if relation attribute has no specific name.
 	 */
-	def static getAttributeName(IAttribute a) {
+	def  getAttributeName(IAttribute a) {
 		def attName = (a.getName() != null ? a.getName() : a.getDataType().getName()[0].toLowerCase() + a.getDataType().getName().substring(1))
 		if(!a.getCardinality().isSingle()) {
 			if(a.getName() == null) { 
@@ -96,7 +96,7 @@ class JavaDirective extends AnycodeDirective {
 	 * @param d
 	 * @return
 	 */
-	def static getDataTypeName(IDataType d) {
+	def  getDataTypeName(IDataType d) {
 		return (d.isPrimitive() ? d.getName().capitalize() : d.getFullyQualifiedName("."))
 	}
 
@@ -105,7 +105,7 @@ class JavaDirective extends AnycodeDirective {
 	 * @param a attribute
 	 * @return attribute full signature as a script : [visibility] [datatype] [attribute name]. e.g. : private String myVar;
 	 */
-	def static attribute(IAttribute a) {
+	def  attribute(IAttribute a) {
 		return """${a.visibility.toString().toLowerCase()} ${datatype(a)} ${getAttributeName(a)};"""
 	}
 
@@ -115,7 +115,7 @@ class JavaDirective extends AnycodeDirective {
 	 * @param collectionClassName (java.util.List for instance)
 	 * @return
 	 */
-	def static datatype(IAttribute a, String collectionClassName) {
+	def  datatype(IAttribute a, String collectionClassName) {
 		if(a.getDataType().isPrimitive()) {
 			return """${getDataTypeName(a.dataType)}"""
 		} else {
@@ -128,7 +128,7 @@ class JavaDirective extends AnycodeDirective {
 	 * @param a attribute.
 	 * @return
 	 */
-	def static datatype(IAttribute a) {
+	def  datatype(IAttribute a) {
 		return datatype(a, 'java.util.List')
 	}
 	
@@ -137,7 +137,7 @@ class JavaDirective extends AnycodeDirective {
 	 * @param a attribute
 	 * @return
 	 */
-	def static getter(IAttribute a) {
+	def  getter(IAttribute a) {
 		return """public final ${datatype(a)} get${getAttributeName(a).capitalize()}() {
 			return this.${getAttributeName(a)};
 		}"""
@@ -148,7 +148,7 @@ class JavaDirective extends AnycodeDirective {
 	 * @param a attribute
 	 * @return
 	 */
-	def static setter(IAttribute a) {
+	def  setter(IAttribute a) {
 		return """public final void set${getAttributeName(a).capitalize()}(final ${datatype(a)} some${getAttributeName(a).capitalize()}) {
 			this.${getAttributeName(a)} = some${getAttributeName(a).capitalize()};
 		}"""
@@ -159,11 +159,11 @@ class JavaDirective extends AnycodeDirective {
 	 * @param op
 	 * @return
 	 */
-	def static operationSignature(IOperation op) {
+	def  operationSignature(IOperation op) {
 		def params = null
 		op.getParameters().reverseEach() { it -> params = "final ${getDataTypeName(it.dataType)} ${it.name}" + (params == null ? "" : ", " + params)  }
 		
-		return """${op.visibility.toString().toLowerCase()} ${op.returnType == null ? 'void' : op.returnType.getFullyQualifiedName(".")} ${op.name}(${params})"""
+		return """${op.visibility.toString().toLowerCase()} ${op.returnType == null ? 'void' : op.returnType.getFullyQualifiedName(".")} ${getOperationName(op)}(${params})"""
 	}
 	
 	/**
@@ -171,7 +171,16 @@ class JavaDirective extends AnycodeDirective {
 	 * @param op
 	 * @return
 	 */
-	def static operationImplementation(IOperation op) {
+	protected def  getOperationName(IOperation op) {
+		return op.getName()
+	}
+	
+	/**
+	 * 
+	 * @param op
+	 * @return
+	 */
+	def  operationImplementation(IOperation op) {
 		return """${operationSignature(op)} {
 		}"""
 	}

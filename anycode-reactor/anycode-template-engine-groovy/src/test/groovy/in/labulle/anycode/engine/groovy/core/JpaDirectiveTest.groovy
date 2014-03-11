@@ -12,6 +12,8 @@ import org.junit.Test
 
 public class JpaDirectiveTest {
 	def aClass
+	
+	def jpa = new JpaDirective()
 
 	@Before
 	def void initClass() {
@@ -30,7 +32,7 @@ public class JpaDirectiveTest {
 
 	@Test
 	def void testAutoPrimaryKey() {
-		assertTrue(JpaDirective.primaryKey(aClass).toString().indexOf("@javax.persistence.Id") != -1)
+		assertTrue(jpa.primaryKey(aClass).toString().indexOf("@javax.persistence.Id") != -1)
 	}
 	
 	@Test
@@ -48,8 +50,8 @@ public class JpaDirectiveTest {
 		
 		assertTrue(att.hasStereotype("id"))
 		
-		assertTrue(JpaDirective.primaryKey(aClass).toString().indexOf("@javax.persistence.Id") != -1)
-		assertTrue(JpaDirective.primaryKey(aClass).toString().indexOf("private java.lang.String code;") != -1)
+		assertTrue(jpa.primaryKey(aClass).toString().indexOf("@javax.persistence.Id") != -1)
+		assertTrue(jpa.primaryKey(aClass).toString().indexOf("private java.lang.String code;") != -1)
 		
 	}
 	
@@ -79,8 +81,8 @@ public class JpaDirectiveTest {
 		
 
 		
-		assertTrue(JpaDirective.primaryKey(aClass).toString().indexOf("@javax.persistence.EmbeddedId") != -1)
-		assertTrue(JpaDirective.primaryKey(aClass).toString().indexOf("PersonPK id") != -1)
+		assertTrue(jpa.primaryKey(aClass).toString().indexOf("@javax.persistence.EmbeddedId") != -1)
+		assertTrue(jpa.primaryKey(aClass).toString().indexOf("PersonPK id") != -1)
 		
 	}
 

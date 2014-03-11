@@ -11,6 +11,8 @@ public class AClassifier extends AElement implements IClassifier {
 	private final List<IAttribute> attributes = new ArrayList<IAttribute>();
 	private final List<IOperation> operations = new ArrayList<IOperation>();
 	private final List<? extends IClassifier> generalizations = new ArrayList<IClassifier>();
+	private final List<? extends IClassifier> clientDependencies = new ArrayList<IClassifier>();
+	
 
 	public List<IAttribute> getAttributes() {
 		return attributes;
@@ -38,5 +40,9 @@ public class AClassifier extends AElement implements IClassifier {
 
 	public List<? extends IClassifier> getGeneralizations() {
 		return generalizations;
+	}
+	
+	public List<? extends IClassifier> getClientDependencies() {
+		return this.clientDependencies;
 	}
 }

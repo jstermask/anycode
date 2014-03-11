@@ -25,8 +25,8 @@ class JpaDirective extends JavaDirective {
 	 * @param a attribute to render
 	 * @return attribute full signature as a script as well as JPA annotations : [visibility] [datatype] [attribute name]. e.g. : private String myVar;
 	 */
-	def static attribute(IAttribute a) {
-		def javaAtt = JavaDirective.attribute(a)
+	def  attribute(IAttribute a) {
+		def javaAtt = super.attribute(a)
 		def script = """${annotation(a)}
 			${javaAtt}"""
 		return script;
@@ -42,7 +42,7 @@ class JpaDirective extends JavaDirective {
 	 * @param c the class to render
 	 * @return 
 	 */
-	def static primaryKey(IClass c) {
+	def  primaryKey(IClass c) {
 		def atts = c.attributes.findAll({it -> isIdentifier(it)})
 		if(atts == null || atts.size() == 0) {
 			return autoPrimaryKey(c)
@@ -63,7 +63,7 @@ class JpaDirective extends JavaDirective {
 	 * @param c the class to render
 	 * @return
 	 */
-	def static primaryKeyDataType(IClass c) {
+	def  primaryKeyDataType(IClass c) {
 		def atts = c.attributes.findAll({it -> isIdentifier(it)})
 		if(atts == null || atts.size() == 0) {
 			return """java.lang.Long"""
@@ -74,7 +74,7 @@ class JpaDirective extends JavaDirective {
 		}
 	}
 
-	def static annotation(IAttribute a) {
+	def  annotation(IAttribute a) {
 		if(!a.isRelation()) {
 			return "";
 		} else {
@@ -94,7 +94,7 @@ class JpaDirective extends JavaDirective {
 	}
 
 
-	private def static annotationOptions(IAttribute a) {
+	private def  annotationOptions(IAttribute a) {
 		def options = null
 		def mappedByOption = mappedBy(a)
 		if(mappedByOption != null) {
@@ -109,7 +109,7 @@ class JpaDirective extends JavaDirective {
 		}
 	}
 
-	private def static mappedBy(IAttribute a) {
+	private def  mappedBy(IAttribute a) {
 		if(a instanceof IRelationAttribute) {
 			IRelationAttribute ia = (IRelationAttribute)a
 			if(!ia.isOwningSide() && ia.isBidirectionalRelation()) {
@@ -120,15 +120,28 @@ class JpaDirective extends JavaDirective {
 	}
 
 
-	def static isIdentifier(IAttribute a) {
+	def  isIdentifier(IAttribute a) {
 		return a.hasStereotype("id")
 	}
 
-	def static isFinderOperation(IOperation op) {
+	def  isFinderOperation(IOperation op) {
 		return op.name.startsWith("@")
 	}
+	
+	/**
+	 *
+	 * @param op
+	 * @return
+	 */
+	protected def  getOperationName(IOperation op) {
+		if(isFinderOperation(op)) {
+			return op.getName().substring(1)
+		} else {
+			return super.getOperationName(op)
+		}
+	}
 
-	private def static autoPrimaryKey(IClass c) {
+	private def  autoPrimaryKey(IClass c) {
 		AAttribute aat = new AAttribute()
 		aat.setName("id")
 		aat.setVisibility(Visibility.PRIVATE)
@@ -142,14 +155,14 @@ class JpaDirective extends JavaDirective {
 	}
 
 
-	private def static singlePrimaryKey(IAttribute a, String annotation) {
+	private def  singlePrimaryKey(IAttribute a, String annotation) {
 		def javaAtt = super.attribute(a)
 		return """${annotation} ${javaAtt} 
 			${getter(a)} 
 			${setter(a)}"""
 	}
 
-	private def static compositePrimaryKey(IClass c) {
+	private def  compositePrimaryKey(IClass c) {
 		AAttribute aat = new AAttribute()
 		aat.setName("id")
 		aat.setVisibility(Visibility.PRIVATE)

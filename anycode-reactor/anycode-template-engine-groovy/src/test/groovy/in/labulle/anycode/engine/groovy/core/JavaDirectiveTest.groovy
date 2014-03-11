@@ -13,6 +13,8 @@ import in.labulle.anycode.uml.impl.AParameter;
 import org.junit.Test
 
 class JavaDirectiveTest {
+	
+	def java = new JavaDirective()
 
 	@Test
 	public void testGetAttributeName() {
@@ -28,12 +30,12 @@ class JavaDirectiveTest {
 		ADataType dt = new ADataType()
 		dt.setClassifier(cl)
 		att.setDataType(dt)
-		assertEquals("car", JavaDirective.getAttributeName(att))
+		assertEquals("car", java.getAttributeName(att))
 
 		att.setCardinality(Cardinality.ZERO_TO_MANY)
-		assertEquals("cars", JavaDirective.getAttributeName(att))
+		assertEquals("cars", java.getAttributeName(att))
 
-		assertEquals("private java.util.List<Car> cars;", JavaDirective.attribute(att).toString())
+		assertEquals("private java.util.List<Car> cars;", java.attribute(att).toString())
 	}
 
 	@Test
@@ -50,12 +52,12 @@ class JavaDirectiveTest {
 
 		dt.setClassifier(cl)
 		att.setDataType(dt)
-		assertEquals("Car", JavaDirective.datatype(att).toString())
+		assertEquals("Car", java.datatype(att).toString())
 
 		att.setCardinality(Cardinality.ONE_TO_MANY)
-		assertEquals("java.util.List<Car>", JavaDirective.datatype(att).toString())
+		assertEquals("java.util.List<Car>", java.datatype(att).toString())
 
-		assertEquals("java.util.Set<Car>", JavaDirective.datatype(att, "java.util.Set").toString())
+		assertEquals("java.util.Set<Car>", java.datatype(att, "java.util.Set").toString())
 	}
 
 	@Test
@@ -74,7 +76,7 @@ class JavaDirectiveTest {
 		dt.setClassifier(cl)
 		att.setDataType(dt)
 
-		assertEquals("Integer", JavaDirective.datatype(att).toString())
+		assertEquals("Integer", java.datatype(att).toString())
 	}
 
 	@Test
@@ -88,7 +90,7 @@ class JavaDirectiveTest {
 		dt.setClassifier(cl)
 		dt.setPrimitive(true)
 		att.setDataType(dt)
-		assertEquals("public final Integer getMyAttribute() {\n\t\t\treturn this.myAttribute;\n\t\t}", JavaDirective.getter(att).toString())
+		assertEquals("public final Integer getMyAttribute() {\n\t\t\treturn this.myAttribute;\n\t\t}", java.getter(att).toString())
 	}
 
 	@Test
@@ -102,7 +104,7 @@ class JavaDirectiveTest {
 		dt.setClassifier(cl)
 		dt.setPrimitive(true)
 		att.setDataType(dt)
-		assertEquals("public final void setMyAttribute(final Integer someMyAttribute) {\n\t\t\tthis.myAttribute = someMyAttribute;\n\t\t}", JavaDirective.setter(att).toString())
+		assertEquals("public final void setMyAttribute(final Integer someMyAttribute) {\n\t\t\tthis.myAttribute = someMyAttribute;\n\t\t}", java.setter(att).toString())
 	}
 
 	@Test
@@ -134,8 +136,8 @@ class JavaDirectiveTest {
 		
 		
 		
-		assertEquals("public void calculate(final Integer x, final String testParamText)", JavaDirective.operationSignature(op).toString())
-		assertEquals("public void calculate(final Integer x, final String testParamText) {\n\t\t}", JavaDirective.operationImplementation(op).toString())
+		assertEquals("public void calculate(final Integer x, final String testParamText)", java.operationSignature(op).toString())
+		assertEquals("public void calculate(final Integer x, final String testParamText) {\n\t\t}", java.operationImplementation(op).toString())
 		
 	}
 }

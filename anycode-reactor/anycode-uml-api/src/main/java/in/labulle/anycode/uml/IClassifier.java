@@ -6,4 +6,5 @@ public interface IClassifier extends IElement {
 	List<IAttribute> getAttributes();
 	List<IOperation> getOperations();
 	List<? extends IClassifier> getGeneralizations();
+	List<? extends IClassifier> getClientDependencies();
 }

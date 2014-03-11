@@ -10,6 +10,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.change_vision.jude.api.inf.model.IDependency;
 import com.change_vision.jude.api.inf.model.IGeneralization;
 
 public class AstahClassifier extends
@@ -51,6 +52,14 @@ public class AstahClassifier extends
 			gens.add(new AstahClassifier(gen.getSubType()));
 		}
 		return gens;
+	}
+
+	public List<? extends IClassifier> getClientDependencies() {
+		List<IClassifier> deps = new ArrayList<IClassifier>();
+		for(IDependency dep : getAstahElement().getClientDependencies()) {
+			deps.add((IClassifier)AstahElement.getElement(dep.getSupplier()));
+		}
+		return deps;
 	}
 
 

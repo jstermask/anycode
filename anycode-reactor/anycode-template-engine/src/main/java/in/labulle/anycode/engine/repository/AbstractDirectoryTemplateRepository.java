@@ -7,6 +7,8 @@ import in.labulle.anycode.engine.exception.TemplateRuntimeException;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class AbstractDirectoryTemplateRepository implements
@@ -29,20 +31,25 @@ public abstract class AbstractDirectoryTemplateRepository implements
 	public void refresh() {
 		codeGenerationArtifacts.clear();
 		File dir = new File(path);
-		String fileNames[] = dir.list(getTemplateFilenameFilter());
-		String files[] = dir.list(getTemplateFilter());
-		for (int i = 0; i < fileNames.length; i++) {
+		List<String> fileNames = Arrays.asList(dir
+				.list(getTemplateFilenameFilter()));
+		List<String> files = Arrays.asList(dir.list(getTemplateFilter()));
+		Collections.sort(fileNames);
+		Collections.sort(files);
+		for (int i = 0; i < fileNames.size(); i++) {
 			try {
-				if (files.length > i) {
+				if (files.size() > i) {
 					ITemplate t = buildTemplate(path + File.separator
-							+ fileNames[i], path + File.separator + files[i]);
+							+ fileNames.get(i),
+							path + File.separator + files.get(i));
 					codeGenerationArtifacts.add(t);
 				} else {
 					throw new TemplateRuntimeException(
 							"There are more filenames templates than content templates");
 				}
 			} catch (Exception e) {
-				TemplateRuntimeException ee = new TemplateRuntimeException("Error parsing template " + fileNames[i], e);
+				TemplateRuntimeException ee = new TemplateRuntimeException(
+						"Error parsing template " + fileNames.get(i), e);
 				throw ee;
 			}
 
