@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<directive id="jpa" name="jpa">
+	<description> This directive provides macros and functions to generate
+		code specific to JPA2/Hibernate implementation.</description>
+	<macro name="imports">
+		<description>Renders JPA import dependencies (import
+			javax.persistence.*...).</description>
+		<code>
+<![CDATA[<#macro imports>
+import javax.persistence.*;
+import java.util.*;
+import org.hibernate.annotations.*;
+</#macro>]]>
+		</code>
+	</macro>
+
+	<macro name="entity_annotations">
+		<description>If entity has no identifier column defined, then a
+			sequence generator will be generated. Otherwise, nothing will be
+			generated</description>
+		<param>
+			<name>c</name>
+			<description>UML class instance</description>
+		</param>
+		<code>
+<![CDATA[<#macro entity_annotations c>
+@javax.persistence.Entity
+<#if (getIdAttributes(c)?size == 0)>
+<@entity_sequence c/>
+</#if>
+</#macro>]]>
+		</code>
+	</macro>
+
+	<macro name="attribute">
+		<description>Generates JPA attribute</description>
+		<param>
+			<name>att</name>
+			<description>UML Attribute instance</description>
+		</param>
+		<code>
+<![CDATA[<#macro attribute att>
+    <@compress>
+	<@attribute_annotations att/>
+	<@java.attribute att/>
+	</@compress>
+	
+</#macro>]]>
+		</code>
+	</macro>
+	
+	<macro name="attribute_annotations">
+		<description>Generates JPA annotations on an attribute.
+		</description>
+		<param>
+			<name>att</name>
+			<description>UML Attribute instance</description>
+		</param>
+		<code>
+<![CDATA[<#macro attribute_annotations att>
+	<#if !util.isSimple(att) && !isIdAttribute(att)>
+	<@association_annotation att/><@association_annotation_options att/>
+	</#if>
+</#macro>]]>
+		</code>
+	</macro>
+		
+
+	<macro name="association_annotation">
+		<description>Generates JPA annotations on an association attribute.
+		</description>
+		<param>
+			<name>att</name>
+			<description>UML Attribute instance</description>
+		</param>
+		<code>
+<![CDATA[<#macro association_annotation att>
+<#if util.isEnumeration(att.type)>
+@javax.persistence.Enumerated
+<#elseif util.isOneToOne(att)>
+@javax.persistence.OneToOne
+<#elseif util.isManyToMany(att)>
+@javax.persistence.ManyToMany
+<#elseif util.isManyToOne(att)>
+@javax.persistence.ManyToOne
+<#elseif util.isOneToMany(att)>
+@javax.persistence.OneToMany
+</#if>
+</#macro>]]>
+		</code>
+	</macro>
+	
+	<macro name="association_annotation_options">
+		<description>Generates JPA annotation options on an attribute.
+		</description>
+		<param>
+			<name>att</name>
+			<description>UML Attribute instance</description>
+		</param>
+		<code>
+<![CDATA[<#macro association_annotation_options att>
+	<#local options = []/>
+	<#if util.isEnumeration(att.type)>
+		<#local anOption = "javax.persistence.EnumType.STRING" />
+		<#local options = options + [anOption]/>
+	<#else>
+		<#if util.isMandatoryAssociation(att)>
+			<#local anOption = "optional=false" />
+			<#local options = options + [anOption]/>
+		</#if>
+		<#if !util.isOwningSide(att)>
+			<#local anOption = "mappedBy = \"" + java.getAttributeName(att.association.memberEnds[1]) + "\"" />
+			<#local options = options + [anOption]/>
+		</#if>
+		<#if util.isOwningSide(att) && att.association.memberEnds[0].aggregate>
+			<#local anOption = "cascade = {javax.persistence.CascadeType.ALL}" />
+			<#local options = options + [anOption]/>
+		</#if>
+	</#if>
+	<#list options as opt>
+		<#if opt_index == 0>(</#if>${opt}<#if opt_has_next>,<#else>)</#if>
+	</#list>
+</#macro>]]>
+		</code>
+	</macro>
+
+
+
+	<macro name="primary_key">
+		<description>Generates a primary key. If "id" attributes are present,
+			then classes are generated automatically. Otherwise a default primary
+			key is generated.</description>
+		<param>
+			<name>c</name>
+			<description>UML class instance</description>
+		</param>
+		<code>
+<![CDATA[<#macro primary_key c>
+<#local atts = getIdAttributes(c) />	
+<#if (atts?size == 1)>
+	<@simple_primary_key atts[0]/>
+<#elseif (atts?size > 1)>
+	<@composite_primary_key c/>
+<#else>
+	<@default_primary_key c/>
+</#if>
+</#macro>]]>
+		</code>
+	</macro>
+	
+	<macro name="primary_key_datatype">
+		<description>Generates a primary key data type as a string.
+			key is generated.</description>
+		<param>
+			<name>c</name>
+			<description>UML class instance</description>
+		</param>
+		<code>
+<![CDATA[<#macro primary_key_datatype c>
+<@compress>
+<#local atts = getIdAttributes(c) />	
+<#if (atts?size == 1)>
+	<@java.datatype atts[0]/>
+<#elseif (atts?size > 1)>
+	${c.name}PK
+<#else>
+	Integer
+</#if>
+</@compress>
+</#macro>]]>
+		</code>
+	</macro>
+
+	<macro name="default_primary_key">
+		<description>Generates a primary key named ID.</description>
+		<param>
+			<name>c</name>
+			<description>UML class instance</description>
+		</param>
+		<code>
+<![CDATA[<#macro default_primary_key c>
+		@javax.persistence.Id
+		@javax.persistence.GeneratedValue(strategy=javax.persistence.GenerationType.SEQUENCE,generator="SQ_${c.name?upper_case}")
+		private Integer id;
+		
+		public Integer getId() {
+			return this.id;
+		}
+		
+		public void setId(final Integer anId) {
+			this.id = anId;
+		}
+</#macro>]]>
+		</code>
+	</macro>
+	
+	
+
+	<macro name="simple_primary_key">
+		<description>Generates a primary key based on the unique id attribute
+			of the class.</description>
+		<param>
+			<name>att</name>
+			<description>UML attribute</description>
+		</param>
+		<code>
+<![CDATA[<#macro simple_primary_key att>
+	@javax.persistence.Id
+	<#if att.association??>@javax.persistence.ManyToOne</#if>
+	<@java.attribute att />
+	<@java.getter att />
+	<@java.setter att />
+	
+</#macro>]]>
+		</code>
+	</macro>
+
+	<macro name="composite_primary_key">
+		<description>Generates a composite primary key (non composite), based
+			on the given class</description>
+		<param>
+			<name>c</name>
+			<description>class </description>
+		</param>
+		<code>
+<![CDATA[<#macro composite_primary_key c>
+		@javax.persistence.EmbeddedId
+		private ${c.name}PK id;
+		
+		public ${c.name}PK getId() {
+			return this.id;
+		}
+		
+		public void setId(final ${c.name}PK anId) {
+			this.id = anId;
+		}
+</#macro>]]>
+		</code>
+	</macro>
+
+	<macro name="entity_sequence">
+		<description>Generates sequence generator as SQ_{className}.
+		</description>
+		<param>
+			<name>c</name>
+			<description>UML class instance</description>
+		</param>
+		<code>
+<![CDATA[<#macro entity_sequence c>
+@javax.persistence.SequenceGenerator(name="SQ_${c.name?upper_case}", sequenceName="SQ_${c.name?upper_case}", initialValue=1, allocationSize=1)
+</#macro>]]>
+		</code>
+	</macro>
+
+	<function name="getIdAttributes">
+		<description>Gets the list of identifier attributes of the entity
+			based on &lt;&lt;id&gt;&gt; stereotype </description>
+		<param>
+			<name>c</name>
+			<description>The c to check</description>
+		</param>
+		<return>list of attributes tagged with id stereotype</return>
+		<code>
+<![CDATA[<#function getIdAttributes c>
+	<#local listIds = []/>
+	<#list util.getAttributes(c, false) as att>
+	<#if isIdAttribute(att)>
+		<#local listIds = listIds + [att]/>
+	</#if>
+	</#list>
+	<#return listIds/>
+</#function>]]>
+		</code>
+		<snippet>
+<![CDATA[]]>
+		</snippet>
+	</function>
+
+	<function name="hasCompositeKey">
+		<description>Checks is class has a composite key </description>
+		<param>
+			<name>c</name>
+			<description>The c to check</description>
+		</param>
+		<return>true if class has a composite key</return>
+		<code>
+<![CDATA[<#function hasCompositeKey c>
+	<#return (getIdAttributes(c)?size > 1) />
+</#function>]]>
+		</code>
+		<snippet>
+<![CDATA[]]>
+		</snippet>
+	</function>
+
+	<function name="getNonIdAttributes">
+		<description>Gets the list of attributes of the entity that are not
+			"identifiers" (no "id" stereotype) </description>
+		<param>
+			<name>c</name>
+			<description>The c to check</description>
+		</param>
+		<return>list of attributes not tagged with id stereotype. Only
+			navigable attributes are returned here.</return>
+		<code>
+<![CDATA[<#function getNonIdAttributes c>
+	<#local listIds = []/>
+	<#list util.getAttributes(c, true) as att>
+	<#if (!isIdAttribute(att))>
+		<#local listIds = listIds + [att]/>
+	</#if>
+	</#list>
+	<#return listIds/>
+</#function>]]>
+		</code>
+		<snippet>
+<![CDATA[]]>
+		</snippet>
+	</function>
+
+	<function name="isIdAttribute">
+		<description>Checks if attribute is has "id" stereotype</description>
+		<param>
+			<name>att</name>
+			<description>The attribute to check</description>
+		</param>
+		<return>true if attribute has "id" stereotype</return>
+		<code>
+<![CDATA[<#function isIdAttribute att>
+	<#return (att.hasStereotype("id") || util.isCompositeRelation(att)) />
+</#function>]]>
+		</code>
+		<snippet>
+<![CDATA[]]>
+		</snippet>
+	</function>
+
+
+	<macro name="finder_operation">
+		<description>Generates an operation signature.
+		</description>
+		<param>
+			<name>c</name>
+			<description>UML class instance</description>
+		</param>
+		<code>
+<![CDATA[<#macro finder_operation op>
+<@java.operation op=op includeExceptions=false includeBody=false alternativeOpName=op?substring(1)/>
+</#macro>]]>
+		</code>
+	</macro>
+	
+	<function name="isFinderOperation">
+		<description>Checks if operation is a finder method</description>
+		<param>
+			<name>op</name>
+			<description>The operation to check</description>
+		</param>
+		<return>true operation starts with @</return>
+		<code>
+<![CDATA[<#function isFinderOperation op>
+	<#return (op?starts_with("@")) />
+</#function>]]>
+		</code>
+		<snippet>
+<![CDATA[]]>
+		</snippet>
+	</function>
+
+	
+</directive>

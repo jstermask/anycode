@@ -1,0 +1,126 @@
+
+	
+<#--Adds a merge point to your generated code. Further generations will merge code inside this tag-->
+
+<#macro custom_code id params...>
+	<@compress>
+	${params['bComment']}<customCode id="${id}">
+	<#if .data_model['customCodes']?? && .data_model['customCodes'][id]?? >
+		${.data_model['customCodes'][id]}
+	</#if>
+	<#if params['eComment']??>${params['eComment']}<#else>${params['bComment']}</#if></customCode>
+	</@compress>
+	
+</#macro>
+		
+	
+<#--Return class attributes
+		-->
+
+<#function getAttributes c navigableOnly=false>
+	<#local listIds = []/>
+	<#list c.attributes as att>
+	<#if (!navigableOnly || isNavigable(att))>
+		<#local listIds = listIds + [att]/>
+	</#if>
+	</#list>
+	<#return listIds/>
+</#function>
+	
+<#--Attribute that is not "simple" and that is a aggregate end of a relation is an aggregate relation
+		-->
+
+<#function isAggregateRelation att>
+	<#return (!isSimple(att) && att.aggregate)/>
+</#function>
+	
+<#--Attribute that is not "simple" and that is a composite end of a relation is a composite relation
+		-->
+
+<#function isCompositeRelation att>
+	<#return (!isSimple(att) && att.composite)/>
+</#function>
+	
+<#--Checks if an element is an enumeration.
+		-->
+
+<#function isEnumeration elt>
+	<#return (elt.hasStereotype("enum"))/>
+</#function>
+	
+<#--Checks whether the given attribute is mandatory, i.e : whether the given attribute is part of a 1-1 or *-1 and not
+			1-[0..1] nor *-[0..1]
+		-->
+
+<#function isMandatoryAssociation att>
+	<#return ((isManyToOne(att) || isOneToOne(att)) && att.multiplicity[0].lower == 1) />
+</#function>
+	
+<#--Checks whether the given attribute is part of a manyToMany relationship.-->
+
+<#function isManyToMany att>
+	<#if !isSimple(att)>
+		<#local many = true />
+		<#list att.association.memberEnds as att1>
+			<#if !(att1.multiplicity?has_content && att1.multiplicity[0].upper == -1 && (att1.multiplicity[0].lower == 0 || att1.multiplicity[0].lower == 1))>
+				<#local many = false />
+			</#if>
+		</#list>
+		<#return many />
+	<#else>
+		<#return false/>
+	</#if>
+</#function>
+		
+	
+<#--Checks whether the given attribute is the "one" end in a many-to-one relationship.-->
+
+<#function isManyToOne att>
+	<#return !isSimple(att) && !isManyToMany(att) && att.multiplicity?has_content && att.multiplicity[0].upper == 1 />
+</#function>
+		
+	
+<#--Return true if attribute is navigable or if it has no specified navigation
+		-->
+
+<#function isNavigable att>
+	<#return att.navigability == 'Navigable' || att.navigability == 'Unspecified' />
+</#function>
+	
+<#--Checks whether the given attribute is the "many" end in a oneToMany relationship.-->
+
+<#function isOneToMany att>
+	<#return !isSimple(att) && !isManyToMany(att) && att.multiplicity?has_content && att.multiplicity[0].upper == -1/>
+</#function>
+		
+	
+<#--Checks whether the given attribute is part of a manyToMany relationship.-->
+
+<#function isOneToOne att>
+	<#if !isSimple(att)>
+		<#local one = true />
+		<#list att.association.memberEnds as att1>
+			<#if !(att1.multiplicity?has_content && att1.multiplicity[0].upper == 1 && (att1.multiplicity[0].lower == 1 || att1.multiplicity[0].lower == 0))>
+				<#local one = false />
+			</#if>
+		</#list>
+		<#return one />
+	<#else>
+		<#return false/>
+	</#if>
+</#function>
+		
+	
+<#--Attribute that is not "simple" and that owns the relation. In a bidirectional relation an association end is considered as the owning side if it is explicitely set to navigable.
+		-->
+
+<#function isOwningSide att>
+	<#return (!isSimple(att) && att.navigability == 'Navigable')/>
+</#function>
+	
+<#--Checks whether the given attribute is a simple class attribute and not part of a relation.-->
+
+<#function isSimple att>
+	<#return !att.association?has_content />
+</#function>
+		
