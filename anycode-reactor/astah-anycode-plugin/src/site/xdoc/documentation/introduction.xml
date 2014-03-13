@@ -32,9 +32,9 @@
 		</section>
 		<section name="Template programming language">
 				<p>
-					A template must be coded in freemarker language. It would not make sense to describe this language here as everything is already well documented in the official
-					<a href="http://freemarker.org/docs/" target="_blank">Freemarker Manual</a>
-					. You'll learn there how code loops, conditions, how to manipulate strings, arrays...
+					A template is a Groovy template, and therefore must be coded in <b>Groovy</b> language. It would not make sense to describe this language here as everything is already well documented in the official
+					<a href="http://groovy.codehaus.org/Groovy+Templates" target="_blank">Groovy Templates documentation</a>
+					. You'll learn there how code loops, conditions, closures, how to manipulate strings, arrays...
 				</p>
 		</section>
 		
@@ -49,11 +49,10 @@
 					<th>Type</th>
 				</tr>
 				<tr>
-					<td>model</td>
-					<td>Wrapper for each astah class. You can get the IClass object from the wrapper by invoking getC() method (model.c). This
-						variable will help you generate most of the content of your source code.
+					<td>c</td>
+					<td>Wrapper for each astah class. c variable is an instance of Anycode API IClass object.
 					</td>
-					<td>fr.jjb.astah.util.ClassWrapper</td>
+					<td>in.labulle.anycode.uml.IClass</td>
 				</tr>
 				<tr>
 					<td>targetDir</td>
@@ -70,10 +69,10 @@
 				</tr>
 			</table>
 			<p>
-				IClass is an interface provided by Astah API whose javadoc is available online. It represents a class designed in Astah. From
+				IClass is an interface provided by Anycode API whose javadoc is available online here. It wraps class designed in Astah. From
 				the template, you can therefore access a UML Class information, its name, package, attributes, operations, relations,
 				stereotypes... To sum up, you can have access to (almost?) anything you designed in your diagram. And the good news is that
-				Astah API is quite easy to use. For practical details, please see
+				Anycode API is quite easy to use. For practical details, please see
 				<i>Template snippets section</i>
 				of this guide.
 			</p>
