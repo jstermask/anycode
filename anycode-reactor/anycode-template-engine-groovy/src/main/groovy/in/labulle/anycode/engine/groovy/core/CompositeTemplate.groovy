@@ -4,10 +4,11 @@ import groovy.text.GStringTemplateEngine
 import groovy.text.Template
 import in.labulle.anycode.engine.core.ITemplate
 import in.labulle.anycode.engine.exception.TemplateException
-import in.labulle.anycode.engine.groovy.directive.JavaDirective;
-import in.labulle.anycode.engine.groovy.directive.JpaDirective;
-import in.labulle.anycode.engine.groovy.directive.SpringDirective;
-import in.labulle.anycode.engine.groovy.directive.UtilDirective;
+import in.labulle.anycode.engine.groovy.directive.JavaDirective
+import in.labulle.anycode.engine.groovy.directive.JpaDirective
+import in.labulle.anycode.engine.groovy.directive.ObjectiveCDirective
+import in.labulle.anycode.engine.groovy.directive.SpringDirective
+import in.labulle.anycode.engine.groovy.directive.UtilDirective
 
 class CompositeTemplate implements ITemplate {
 	GStringTemplateEngine engine
@@ -48,6 +49,7 @@ class CompositeTemplate implements ITemplate {
 		ctx.put("util", new UtilDirective())
 		ctx.put("jpa", new JpaDirective())
 		ctx.put("springData", new SpringDirective())
+		ctx.put("objc", new ObjectiveCDirective())
 	}
 
 	public String getName() {
