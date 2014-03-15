@@ -1,6 +1,7 @@
 package in.labulle.anycode.engine.repository;
 
 import in.labulle.anycode.engine.core.ICodeGenerationArtifact;
+import in.labulle.anycode.engine.core.IMacro;
 import in.labulle.anycode.engine.core.ITemplate;
 import in.labulle.anycode.engine.exception.TemplateRuntimeException;
 
@@ -31,6 +32,11 @@ public abstract class AbstractDirectoryTemplateRepository implements
 	public void refresh() {
 		codeGenerationArtifacts.clear();
 		File dir = new File(path);
+		loadTemplates(dir);
+		loadMacros(dir);
+	}
+
+	protected void loadTemplates(File dir) {
 		List<String> fileNames = Arrays.asList(dir
 				.list(getTemplateFilenameFilter()));
 		List<String> files = Arrays.asList(dir.list(getTemplateFilter()));
@@ -52,14 +58,21 @@ public abstract class AbstractDirectoryTemplateRepository implements
 						"Error parsing template " + fileNames.get(i), e);
 				throw ee;
 			}
+		}
+	}
 
+	protected void loadMacros(File dir) {
+		List<String> files = Arrays.asList(dir.list(getMacroFilter()));
+		for (int i = 0; i < files.size(); i++) {
+			IMacro m = buildMacro(files.get(i));
+			this.codeGenerationArtifacts.add(m);
 		}
 	}
 
 	public static FilenameFilter getTemplateFilenameFilter() {
 		return new FilenameFilter() {
 			public boolean accept(File dir, String name) {
-				return (name.indexOf("-name."
+				return (name.indexOf(ITemplate.NAME_SUFFIX + "."
 						+ ITemplate.MDA_OVERWRITE_EXTENSION) != -1);
 			}
 		};
@@ -68,7 +81,16 @@ public abstract class AbstractDirectoryTemplateRepository implements
 	public static FilenameFilter getTemplateFilter() {
 		return new FilenameFilter() {
 			public boolean accept(File dir, String name) {
-				return (name.indexOf("-content."
+				return (name.indexOf(ITemplate.CONTENT_SUFFIX + "."
+						+ ITemplate.MDA_OVERWRITE_EXTENSION) != -1);
+			}
+		};
+	}
+
+	public static FilenameFilter getMacroFilter() {
+		return new FilenameFilter() {
+			public boolean accept(File dir, String name) {
+				return (name.indexOf(ITemplate.DIRECTIVE_SUFFIX + "."
 						+ ITemplate.MDA_OVERWRITE_EXTENSION) != -1);
 			}
 		};
@@ -76,4 +98,6 @@ public abstract class AbstractDirectoryTemplateRepository implements
 
 	protected abstract ITemplate buildTemplate(String nameTemplatePath,
 			String contentTemplatePath);
+
+	protected abstract IMacro buildMacro(String macroFilePath);
 }

@@ -14,6 +14,9 @@ import java.util.Map;
  */
 public interface ITemplate extends ICodeGenerationArtifact {
 	public static final String MDA_OVERWRITE_EXTENSION = "mda";
+	public static final String NAME_SUFFIX = "-name";
+	public static final String CONTENT_SUFFIX = "-content";
+	public static final String DIRECTIVE_SUFFIX = "-directive";
 
 	/**
 	 * 

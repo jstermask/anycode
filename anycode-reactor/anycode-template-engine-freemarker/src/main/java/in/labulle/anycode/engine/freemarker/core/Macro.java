@@ -14,7 +14,7 @@ public class Macro implements IMacro {
 		this.label = label;
 	}
 
-	public String getName() {
+	public String getVarName() {
 		return this.name;
 	}
 
@@ -22,7 +22,11 @@ public class Macro implements IMacro {
 		return this.prefix;
 	}
 
-	public String getLabel() {
+	public String getName() {
 		return this.label;
+	}
+
+	public Object getInstance() {
+		return this;
 	}
 }
