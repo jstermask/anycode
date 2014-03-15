@@ -16,12 +16,12 @@ class GroovyUserClass implements IMacro {
 		ClassLoader parent = getClass().getClassLoader()
 		GroovyClassLoader loader = new GroovyClassLoader(parent)
 		Class groovyClass = loader.parseClass(file)
-		return GroovyClass.newInstance()
+		return groovyClass.newInstance()
 	}
 	
 	def String getVarName() {
 		def idx = file.getName().indexOf(ITemplate.DIRECTIVE_SUFFIX)
-		return file.getName().subSequence(0, idx - 1);
+		return file.getName().subSequence(0, idx);
 	}
 	
 	def String getName() {

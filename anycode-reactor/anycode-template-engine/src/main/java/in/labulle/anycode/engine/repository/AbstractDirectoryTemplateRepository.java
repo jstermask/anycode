@@ -64,7 +64,7 @@ public abstract class AbstractDirectoryTemplateRepository implements
 	protected void loadMacros(File dir) {
 		List<String> files = Arrays.asList(dir.list(getMacroFilter()));
 		for (int i = 0; i < files.size(); i++) {
-			IMacro m = buildMacro(files.get(i));
+			IMacro m = buildMacro(path + File.separator + files.get(i));
 			this.codeGenerationArtifacts.add(m);
 		}
 	}

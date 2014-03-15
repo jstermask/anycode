@@ -1,0 +1,5 @@
+<?php
+class ${c.name} {
+	<% c.attributes.each() { %> ${php.attribute(it)} <% } %>	
+}
+?>
