@@ -1,0 +1,23 @@
+import in.labulle.anycode.uml.*;
+
+class PhpDirective {
+	def attribute(IAttribute a) {
+		return """private var \$${a.name};"""
+	}
+	
+	def getter(IAttribute a) {
+		return """public function get${capitalize(a.name)}() {
+			return \$this->${a.name};
+		}"""
+	}
+	
+	def setter(IAttribute a) {
+		return """pblic function set${capitalize(a.name)}(\$aValue) {
+			\$this->${a.name} = \$aValue;
+		}"""
+	}
+	
+	def capitalize(String s) {
+		return s[0].toUpperCase() + s.substring(1)
+	}
+}

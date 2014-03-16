@@ -1,7 +1,0 @@
-import in.labulle.anycode.uml.*;
-
-class PhpDirective {
-	def attribute(IAttribute a) {
-		return """var \$${a.name};"""
-	}
-}

@@ -85,7 +85,7 @@
 						</td>
 						<td>
 							in.labulle.anycode.uml.IClass (from
-							<a href="../api/anycode-uml-api/apidocs/index.html" target="_blank">Anycode API</a>
+							<a href="../api/anycode-uml-api/apidocs/index.html" target="_blank">Anycode UML API</a>
 							)
 						</td>
 					</tr>
@@ -105,7 +105,7 @@
 				<p>
 					<b>NOTE</b>
 					: IClass is an interface provided by
-					<a href="../api/anycode-uml-api/apidocs/index.html" target="_blank">Anycode API</a>
+					<a href="../api/anycode-uml-api/apidocs/index.html" target="_blank">Anycode UML API</a>
 					whose javadoc is available online
 					<a href="../api/anycode-uml-api/apidocs/index.html" target="_blank">here</a>
 					. It represents a class designed in Astah and wraps it so that it is even easier to use in templates. From the template, you can therefore access

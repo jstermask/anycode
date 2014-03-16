@@ -30,14 +30,15 @@
 			<dt><a href="language.html">2. Language reference</a></dt>
 			<dd>
 				<dl>
-					<dt><a href="language.html#s21">2.1. Class general information</a></dt>
-					<dt><a href="language.html#s22">2.2. Attributes</a></dt>
-					<dt><a href="language.html#s23">2.3. Operations</a></dt>		
-					<dt><a href="language.html#s24">2.4. Relationship</a></dt>
-					<dt><a href="language.html#s25">2.5. Dependencies</a></dt>
-					<dt><a href="language.html#s26">2.6. Inheritance</a></dt>
-					<dt><a href="language.html#s27">2.7. Stereotypes</a></dt>/dt>
-					<dt><a href="language.html#s28">2.8. User directives</a></dt>
+					<dt><a href="language.html#s21">2.1. About Anycode UML API</a></dt>
+					<dt><a href="language.html#s22">2.2. Class general information</a></dt>
+					<dt><a href="language.html#s23">2.3. Attributes</a></dt>
+					<dt><a href="language.html#s24">2.4. Operations</a></dt>		
+					<dt><a href="language.html#s25">2.5. Relationship</a></dt>
+					<dt><a href="language.html#s26">2.6. Dependencies</a></dt>
+					<dt><a href="language.html#s27">2.7. Inheritance</a></dt>
+					<dt><a href="language.html#s28">2.8. Stereotypes</a></dt>
+					<dt><a href="language.html#s29">2.9. User directives</a></dt>
 				</dl>
 			</dd>
 			<dt><a href="../directives/directives.html">3. Built-in Directives</a></dt>

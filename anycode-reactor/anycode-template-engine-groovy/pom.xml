@@ -6,7 +6,6 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>anycode-template-engine-groovy</artifactId>
-
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -20,17 +19,11 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>org.codehaus.gmaven.runtime</groupId>
-			<artifactId>gmaven-runtime-2.0</artifactId>
-			<version>1.5</version>
-		</dependency>
-		<dependency>
 			<groupId>org.codehaus.groovy</groupId>
 			<artifactId>groovy-all</artifactId>
-			<version>2.0.7</version>
+			<version>2.2.2</version>
 		</dependency>
 	</dependencies>
-
 	<profiles>
 		<profile>
 			<id>groovy-docs</id>
@@ -51,8 +44,7 @@
 												<path refid="maven.compile.classpath" />
 											</classpath>
 										</taskdef>
-
-										<Groovydoc destdir="target/groovydoc" sourcepath="src/main/groovy" packagenames="**.*" use="true" windowtitle="Groovydoc" private="false" />
+										<Groovydoc destdir="target/apidocs" sourcepath="src/main/groovy" packagenames="**.*" use="true" windowtitle="Groovydoc" private="false" />
 									</tasks>
 								</configuration>
 								<goals>
@@ -65,26 +57,59 @@
 			</build>
 		</profile>
 	</profiles>
-
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.codehaus.gmaven</groupId>
-				<artifactId>gmaven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<compilerId>groovy-eclipse-compiler</compilerId>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.codehaus.groovy</groupId>
+						<artifactId>groovy-eclipse-compiler</artifactId>
+						<version>2.8.0-01</version>
+					</dependency>
+					<dependency>
+						<groupId>org.codehaus.groovy</groupId>
+						<artifactId>groovy-eclipse-batch</artifactId>
+						<version>2.1.8-01</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.groovy</groupId>
+				<artifactId>groovy-eclipse-compiler</artifactId>
+				<version>2.8.0-01</version>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.7</version>
 				<executions>
 					<execution>
+						<phase>compile</phase>
+						<configuration>
+							<target>
+								<echo message="======> Generating groovy documentation..." />
+								<taskdef name="groovydoc" classname="org.codehaus.groovy.ant.Groovydoc" classpathref="maven.compile.classpath" />
+								<groovydoc destdir="${basedir}/target/apidocs" sourcepath="${basedir}/src/main/groovy" use="true" windowtitle="${project.name}"
+									doctitle="${project.name}">
+									<link packages="java.,org.xml.,javax.,org.xml." href="http://download.oracle.com/javase/6/docs/api" />
+									<link packages="org.apache.tools.ant." href="http://evgeny-goldin.org/javadoc/ant/api" />
+									<link packages="groovy.,org.codehaus.groovy." href="http://groovy.codehaus.org/api/" />
+									<link packages="in.labulle.anycode.uml." href="http://anycode.labulle.in/api/anycode-uml-api/apidocs/" />
+								</groovydoc>
+							</target>
+						</configuration>
 						<goals>
-							<goal>generateStubs</goal>
-							<goal>compile</goal>
-							<goal>generateTestStubs</goal>
-							<goal>testCompile</goal>
+							<goal>run</goal>
 						</goals>
 					</execution>
 				</executions>
-				<configuration>
-					<providerSelection>2.0</providerSelection>
-					<source>2.0</source>
-				</configuration>
 			</plugin>
 		</plugins>
 		<pluginManagement>
@@ -98,19 +123,52 @@
 							<pluginExecutions>
 								<pluginExecution>
 									<pluginExecutionFilter>
-										<groupId>org.codehaus.gmaven</groupId>
-										<artifactId>gmaven-plugin</artifactId>
-										<versionRange>[1.0.0,)</versionRange>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-compiler-plugin</artifactId>
+										<versionRange>[3.1,)</versionRange>
 										<goals>
-											<goal>generateStubs</goal>
 											<goal>compile</goal>
-											<goal>generateTestStubs</goal>
 											<goal>testCompile</goal>
 										</goals>
 									</pluginExecutionFilter>
 									<action>
 										<execute>
-											<runOnIncremental>true</runOnIncremental>
+											<runOnIncremental>false</runOnIncremental>
+										</execute>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.groovy</groupId>
+										<artifactId>groovy-eclipse-compiler</artifactId>
+										<versionRange>[2.8.0-01,)</versionRange>
+										<goals>
+											<goal>add-groovy-build-paths</goal>
+											<goal>compile</goal>
+											<goal>testCompile</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute>
+											<runOnIncremental>false</runOnIncremental>
+										</execute>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-antrun-plugin</artifactId>
+										<versionRange>[1.7,)</versionRange>
+										<goals>
+											<goal>compile</goal>
+											<goal>testCompile</goal>
+											<goal>run</goal>
+											
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute>
+											<runOnIncremental>false</runOnIncremental>
 										</execute>
 									</action>
 								</pluginExecution>

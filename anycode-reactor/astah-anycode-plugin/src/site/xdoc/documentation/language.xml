@@ -8,10 +8,17 @@
 		<h1>Language reference</h1>
 		<p>This section will not describe groovy language, as official <a href="http://groovy.codehaus.org/Groovy+Templates" target="_blank">Groovy Templates manual</a> 
 		is already here for that. It will give you practical examples to start generating your own source code. 
-		It will be regularly updated to give you more and more help. Also, please read <a href="../api/anycode-uml-api/apidocs/index.html" target="_blank">Anycode API</a> 
+		It will be regularly updated to give you more and more help. Also, please read <a href="../api/anycode-uml-api/apidocs/index.html" target="_blank">Anycode UML API</a> 
 		in order to know more about methods you can use.
 		</p>
 		<a name="s21"></a>
+		<section name="About Anycode UML API">
+		<p>Before 1.2.0_GA version, Anycode used to rely on Astah API and exposed it directly in the templates. Starting from 1.2.0_GA and above, Anycode will always rely on its own <a href="../api/anycode-uml-api/apidocs/index.html" target="_blank">UML API</a>
+		The main objectives for wrapping Astah API are to ensure Anycode stability over Astah releases and to make the code generation easier. It is a very recent development and more functions will be added in the next releases.
+		The examples below will show how to use it.
+		</p>
+		</section>
+		<a name="s22"></a>
 		<section name="Class">
 <source>
 // Display class name
@@ -27,7 +34,7 @@ ${c.owner.getFullyQualifiedName(".")}
 ${targetDir}/${c.getFullyQualifiedName("/").php}
 </source>
 		</section>
-		<a name="s22"></a>
+		<a name="s23"></a>
 		<section name="Attributes">
 <source>
 // Iterating over attributes 
@@ -37,7 +44,7 @@ ${targetDir}/${c.getFullyQualifiedName("/").php}
 &lt;&#37; } &#37;&gt;
 </source>			
 		</section>
-		<a name="s23"></a>
+		<a name="s24"></a>
 		<section name="Operations">
 <source>
 // Iterating over operations, that start with 'b' (using closures)
@@ -47,7 +54,7 @@ ${targetDir}/${c.getFullyQualifiedName("/").php}
 &lt;&#37; } &#37;&gt;
 </source>				
 		</section>
-		<a name="s24"></a>
+		<a name="s25"></a>
 		<section name="Relationship">
 <p>Simple attributes and relations are both listed in the attributes of the owning class. However you can easily distinguish them thanks to Anycode API</p>
 <source>
@@ -60,18 +67,16 @@ ${targetDir}/${c.getFullyQualifiedName("/").php}
 // Is my attribute 'att' part of a one to one relationship ?
 &lt;&#37; if(att.relation &amp;&amp; att.oneToOne) { &#37;&gt;
 	// Let do something here...
-&lt;&#37; } &#37;&gt;
-</source>		
+&lt;&#37; } &#37;&gt;</source>		
 			</section>
-			<a name="s25"></a>
+			<a name="s26"></a>
 			<section name="Dependencies">
 <source>
 &lt;&#37; c.clientDependencies.each { &#37;&gt;
 	// 'it' is a IClassifier object c depends on.	
-&lt;&#37; } &#37;&gt;
-</source>
+&lt;&#37; } &#37;&gt;</source>
 			</section>
-			<a name="s26"></a>
+			<a name="s27"></a>
 			<section name="Inheritance">
 <source>
 // Displays coma separated list of supertypes 
@@ -80,120 +85,106 @@ ${targetDir}/${c.getFullyQualifiedName("/").php}
 &lt;&#37; } &#37;&gt;
 </source>
 			</section>
-			<a name="s27"></a>
+			<a name="s28"></a>
 			<section name="Stereotypes">
 <source>
 &lt;&#37; if(c.hasStereotype("entity")) { &#37;&gt;
 	// means that class has stereotype 'entity'
-&lt;&#37; } &#37;&gt;
-</source>
+&lt;&#37; } &#37;&gt;</source>
 			</section>
-			<a name="s28"></a>
+			<a name="s29"></a>
 			<section name="User Directive">
 				<p>
 					As you can imagine, your templates' size will grow a lot if you have to code the above snippets everytime you need them. 
-					Fortunately you can write custom "directives" in separate files and use them directly from your templates.
+					Fortunately you can write custom "directives" in separate files and re-use them directly from your templates. This section will tell you how to do that.
 				</p>
 				<p>
-				A Directive a just a Groovy class, saved in template directory (directory where your templates are saved), and whose name follows a specific convention : [someName]-directive.mda
+				A Directive a just a Groovy class, saved in the template directory (directory you put your other templates), and whose filename follows a specific naming convention : <b>[myCode]<i>-directive.mda</i></b>.
+				This file will then be processed by anycode and an instance of this class will be available in your template with "myCode" variable name.
 				</p>
-				
-				Let's take a very simple example : suppose you need to generate a PHP attribute of a class as well as its getters and setters. You can then write all the code in the macro as 
-				you can see in the <i>-content.mda</i> template below :
+				<p>
+				Let's take a very simple example : suppose you need to generate a PHP attribute of a class as well as its getters and setters. You can then write all the code in the directive as 
+				you can see below.
 				</p>
+				<code><b>myPhp-directive.mda</b></code>
+				<source>
+import in.labulle.anycode.uml.*;
+
+class PhpDirective {
+	def attribute(IAttribute a) {
+		return """private var \$${a.name};"""
+	}
+	
+	def getter(IAttribute a) {
+		return """public function get${capitalize(a.name)}() {
+			return \$this->${a.name};
+		}"""
+	}
+	
+	def setter(IAttribute a) {
+		return """pblic function set${capitalize(a.name)}(\$aValue) {
+			\$this->${a.name} = \$aValue;
+		}"""
+	}
+	
+	def capitalize(String s) {
+		return s[0].toUpperCase() + s.substring(1)
+	}
+}
+				</source>
+<p>The above class is a Directive. This is a regular Groovy Class that imports Anycode API and that helps generating variable, getter and setter from an UML Attribute. There is no specific constraint regarding the class' name or its methods.
+The only important thing to remember is to import the required dependencies (like any groovy class) and make sure that they are in Astah's classpath.
+</p>
+<p>Now, let's see how to use this directive in our template, thus reducing its code and improving its readability :</p>
 				<code><b>yetanothertemplate-name.mda</b></code>
 				<source>
 ${targetDir}/${c.name}.php
 				</source> 
 				<code><b>yetanothertemplate-content.mda</b></code>
 				<source>
-&lt;#macro attribute att&gt;
-var ${att.name};
-function get${att.name?cap_first}() {
-	return ${att.name};
-}
-	
-function set${att.name?cap_first}($a${att.name?cap_first}) {
-	$this->${att.name} = $a${att.name?cap_first};
-}
-&lt;/#macro&gt;
 &lt;?php
 class ${c.name} {
-	&lt;#list c.attributes as att&gt;
-	&lt;@attribute att/&gt;
-	&lt;/#list&gt;
+	&lt;&#37; c.attributes.each() { &#37;&gt;
+		${myPhp.attribute(it)} 
+		${myPhp.getter(it)} 
+		${myPhp.setter(it)} 
+	&lt;&#37; } &#37;&gt;	
 }
-?&gt;	
-				</source>
+?&gt;</source>
 				<p>And the result below with a simple Person class with 3 attributes :</p>
 				
 				<code><b>Person.php</b></code>
-				<source>
+<source>
 &lt;?php
 class Person {
-var firstname;
-function getFirstname() {
-	return $this->{att.name};
+private var $firstname;
+public function getFirstname() {
+	return $this->firstname;
 }
 	
-function setFirstname($aFirstname) {
+public function setFirstname($aFirstname) {
 	$this->firstname = $aFirstname;
 }
-var lastname;
-function getLastname() {
-	return $this->{att.name};
+
+private var $lastname;
+public function getLastname() {
+	return $this->lastname;
 }
 	
-function setLastname($aLastname) {
+public function setLastname($aLastname) {
 	$this->lastname = $aLastname;
 }
-var birthdate;
-function getBirthdate() {
-	return $this->{att.name};
+
+private var $birthdate;
+public function getBirthdate() {
+	return $this->birthdate;
 }
 	
-function setBirthdate($aBirthdate) {
+public function setBirthdate($aBirthdate) {
 	$this->birthdate = $aBirthdate;
 }
 }
-?&gt;
-				</source>
-				<p>
-				Well the source code is now more readable but the macro is still in our template file, and therefore it cannot be reused... Don't worry, let's put it  in a separate file and use the latter
-				with a directive !
-				</p>
-			</section>
-			<a name="s29"></a>
-			<section name="User Directives">
-				<p>
-					Another reason why we chose Freemarker for templates is directives. Let's create a directive file, located <b>in the same directory</b> where we put all our previous templates:
-				</p>
-				<code><b>mymacros.mda</b></code>
-				<source>
-&lt;#macro attribute att&gt;
-var ${att.name};
-function get${att.name?cap_first}() {
-	return $this->${att.name};
-}
-	
-function set${att.name?cap_first}($a${att.name?cap_first}) {
-	$this->${att.name} = $a${att.name?cap_first};
-}
-&lt;/#macro&gt;			
-				</source>
-				<p>Now, let's use this macro in our template :</p>
-				<code><b>yetanothertemplate-content.mda</b></code>
-				<source>
-&lt;#import "mymacros.mda" as my/&gt;
-&lt;?php
-class ${c.name} {
-	&lt;#list c.attributes as att&gt;
-	&lt;@my.attribute att/&gt;
-	&lt;/#list&gt;
-}
-?&gt;	
-				</source>
-				<p>Thanks to this process you can define your own directives and make source code generation very easy.</p>
-			</section>
+?&gt;</source>
+		</section>
 	</body>
 </document>

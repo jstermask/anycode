@@ -24,10 +24,11 @@ class TemplateRepositoryFactoryImplTest {
 		ITemplate tp = artifacts.get(0)
 		Map<String, Object> map = new HashMap<String, Object>()
 		map.put("c", getIClass())
-		assertEquals("php", macro.getVarName())
+		assertEquals("myPhp", macro.getVarName())
 		map.put(macro.getVarName(), macro.getInstance())
 		def tpValue = tp.renderAsString(map)
 		assertTrue(tpValue.contains("\$coolAtt"))
+		println tpValue
 	}
 	
 	private IClass getIClass() {

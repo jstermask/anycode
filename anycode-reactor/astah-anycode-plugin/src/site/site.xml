@@ -41,14 +41,10 @@
 		<menu name="Documentation">
 			<item name="Install Guide" href="/documentation/install-guide.html"/>
 			<item name="Reference documentation" href="/documentation/reference-documentation.html"/>
-			<item name="Built-in directives API" href="/directives/directives.html">
-				<item name="@util" href="/directives/util-utility-module.html" />
-				<item name="@java" href="/directives/java-java-module.html" />
-				<item name="@jpa" href="/directives/jpa-jpa-module.html" />
-				<item name="@spring" href="/directives/spring-spring-module.html" />		
-			</item>
+			<item name="UML API" href="/api/anycode-uml-api/apidocs/index.html"/>
+			<item name="Built-in directives API" href="/api/anycode-directive-api/groovydoc/index.html"/>	
 			<item name="Tutorials" href="/tutorials/tutorials.html">
-				<item name="Hello World tutorial" href="/tutorials/tutorial-java-helloworld.html"/>
+				<item name="Java tutorial - Hello World" href="/tutorials/tutorial-java-helloworld.html"/>
 				<item name="JPA tutorial - Basics" href="/tutorials/tutorial-jpa-basics.html"/>
 				
 			</item>

@@ -97,16 +97,16 @@
 
 .anime {
 	-webkit-transition: -webkit-transform 0.4s ease-in-out;
-	/* Utilisé pour la transition sur chrome et safari */
+	/* Utilisï¿½ pour la transition sur chrome et safari */
 	-moz-transition: -moz-transform 0.4s ease-in-out;
-	/* Utilisé pour la transition sur Firefox */
+	/* Utilisï¿½ pour la transition sur Firefox */
 	transition: transform 0.4s ease-in-out;
-	color: #ccc;	
+	color: #ccc;
 }
 
 .anime:hover {
 	-webkit-transform: scale(1.2) rotate(-10deg);
-	/* Agrandissement de la photo à l'échelle 1.4 et rotation de -10 degrés */
+	/* Agrandissement de la photo ï¿½ l'ï¿½chelle 1.4 et rotation de -10 degrï¿½s */
 	-moz-transform: scale(1.2) rotate(-10deg);
 	-o-transform: scale(1.2) rotate(-10deg);
 	transform: scale(1.2) rotate(-10deg);
@@ -116,4 +116,10 @@
 
 .anime:hover:after {
 	content: attr(description);
+}
+
+.newsWhite {
+	background: linear-gradient(to bottom, rgba(240, 240, 240, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(240, 240, 240, 1) 75%, rgba(200, 200, 200, 1) 100%);
+	color: #4090b0;
+	text-shadow: -1px -1px 3px rgba(0, 0, 0, 0.4);
 }

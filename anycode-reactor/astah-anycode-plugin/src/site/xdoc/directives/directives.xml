@@ -8,32 +8,28 @@
 		<section name="Built-in directives">
 			<p>
 				Directives are probably the most useful part in anycode generation.
-				Below, you'll find a set of functions and macros that you
-				can use
-				directly in you template code. You can use them directly to in your
-				templates or in your own macros. We will try to
-				offer more and more
-				directives for various languages in the future releases. See the
+				Below, you'll find a set of functions and functions that you
+				can use directly in you template code. More directives for various languages in the future releases. See the
 				<a href="../about/roadmap.html">Roadmap</a>
 				for details.
 			</p>
+			<p>If you want to see details about directives, please go to <a href="../api/anycode-uml-api/apidocs/index.html">Anycode API Online Javadoc</a></p>
 			<table class="table table-bordered">
 				<tr>
-					<th colspan="2">Summary</th>
+					<th colspan="4">Summary</th>
 				</tr>
 				<tr>
-					<td>
-						<a href="util-utility-module.html">@util</a>
-					</td>
-					<td>Utility macros and functions to get information about
-						associations, attributes, operations easily.
-					</td>
+					<th>Directive</th>
+					<th>Variable name (in your template)</th>
+					<th>Description</th>
+					<th>API Documentation (link)</th>
 				</tr>
+				
 				<tr>
-					<td>
-						<a href="java-java-module.html">@java</a>
-					</td>
-					<td>Automates code generation fragments in java.</td>
+					<td>Java Language</td>
+					<td>java</td>
+					<td>Provides functions to render attributes, getters, setters, operations.</td>
+					<td><a href=""></a></td>
 				</tr>
 				<tr>
 					<td>

@@ -1,5 +1,9 @@
 <?php
 class ${c.name} {
-	<% c.attributes.each() { %> ${php.attribute(it)} <% } %>	
+	<% c.attributes.each() { %> 
+		${myPhp.attribute(it)} 
+		${myPhp.getter(it)} 
+		${myPhp.setter(it)} 
+	<% } %>	
 }
 ?>
