@@ -36,9 +36,8 @@
 					<dt><a href="language.html#s24">2.4. Relationship</a></dt>
 					<dt><a href="language.html#s25">2.5. Dependencies</a></dt>
 					<dt><a href="language.html#s26">2.6. Inheritance</a></dt>
-					<dt><a href="language.html#s27">2.7. Stereotypes</a></dt>
-					<dt><a href="language.html#s28">2.8. User Macros</a></dt>
-					<dt><a href="language.html#s29">2.9. User directives</a></dt>
+					<dt><a href="language.html#s27">2.7. Stereotypes</a></dt>/dt>
+					<dt><a href="language.html#s28">2.8. User directives</a></dt>
 				</dl>
 			</dd>
 			<dt><a href="../directives/directives.html">3. Built-in Directives</a></dt>

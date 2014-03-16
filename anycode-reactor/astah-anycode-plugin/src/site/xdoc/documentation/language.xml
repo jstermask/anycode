@@ -88,5 +88,112 @@ ${targetDir}/${c.getFullyQualifiedName("/").php}
 &lt;&#37; } &#37;&gt;
 </source>
 			</section>
+			<a name="s28"></a>
+			<section name="User Directive">
+				<p>
+					As you can imagine, your templates' size will grow a lot if you have to code the above snippets everytime you need them. 
+					Fortunately you can write custom "directives" in separate files and use them directly from your templates.
+				</p>
+				<p>
+				A Directive a just a Groovy class, saved in template directory (directory where your templates are saved), and whose name follows a specific convention : [someName]-directive.mda
+				</p>
+				
+				Let's take a very simple example : suppose you need to generate a PHP attribute of a class as well as its getters and setters. You can then write all the code in the macro as 
+				you can see in the <i>-content.mda</i> template below :
+				</p>
+				<code><b>yetanothertemplate-name.mda</b></code>
+				<source>
+${targetDir}/${c.name}.php
+				</source> 
+				<code><b>yetanothertemplate-content.mda</b></code>
+				<source>
+&lt;#macro attribute att&gt;
+var ${att.name};
+function get${att.name?cap_first}() {
+	return ${att.name};
+}
+	
+function set${att.name?cap_first}($a${att.name?cap_first}) {
+	$this->${att.name} = $a${att.name?cap_first};
+}
+&lt;/#macro&gt;
+&lt;?php
+class ${c.name} {
+	&lt;#list c.attributes as att&gt;
+	&lt;@attribute att/&gt;
+	&lt;/#list&gt;
+}
+?&gt;	
+				</source>
+				<p>And the result below with a simple Person class with 3 attributes :</p>
+				
+				<code><b>Person.php</b></code>
+				<source>
+&lt;?php
+class Person {
+var firstname;
+function getFirstname() {
+	return $this->{att.name};
+}
+	
+function setFirstname($aFirstname) {
+	$this->firstname = $aFirstname;
+}
+var lastname;
+function getLastname() {
+	return $this->{att.name};
+}
+	
+function setLastname($aLastname) {
+	$this->lastname = $aLastname;
+}
+var birthdate;
+function getBirthdate() {
+	return $this->{att.name};
+}
+	
+function setBirthdate($aBirthdate) {
+	$this->birthdate = $aBirthdate;
+}
+}
+?&gt;
+				</source>
+				<p>
+				Well the source code is now more readable but the macro is still in our template file, and therefore it cannot be reused... Don't worry, let's put it  in a separate file and use the latter
+				with a directive !
+				</p>
+			</section>
+			<a name="s29"></a>
+			<section name="User Directives">
+				<p>
+					Another reason why we chose Freemarker for templates is directives. Let's create a directive file, located <b>in the same directory</b> where we put all our previous templates:
+				</p>
+				<code><b>mymacros.mda</b></code>
+				<source>
+&lt;#macro attribute att&gt;
+var ${att.name};
+function get${att.name?cap_first}() {
+	return $this->${att.name};
+}
+	
+function set${att.name?cap_first}($a${att.name?cap_first}) {
+	$this->${att.name} = $a${att.name?cap_first};
+}
+&lt;/#macro&gt;			
+				</source>
+				<p>Now, let's use this macro in our template :</p>
+				<code><b>yetanothertemplate-content.mda</b></code>
+				<source>
+&lt;#import "mymacros.mda" as my/&gt;
+&lt;?php
+class ${c.name} {
+	&lt;#list c.attributes as att&gt;
+	&lt;@my.attribute att/&gt;
+	&lt;/#list&gt;
+}
+?&gt;	
+				</source>
+				<p>Thanks to this process you can define your own directives and make source code generation very easy.</p>
+			</section>
 	</body>
 </document>
