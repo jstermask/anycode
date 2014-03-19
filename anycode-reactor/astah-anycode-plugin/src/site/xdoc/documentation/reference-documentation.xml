@@ -42,14 +42,6 @@
 				</dl>
 			</dd>
 			<dt><a href="../directives/directives.html">3. Built-in Directives</a></dt>
-			<dd>
-				<dl>
-					<dt><a href="../directives/util-utility-module.html">3.1. @util : Utility directive</a></dt>
-					<dt><a href="../directives/java-java-module.html">3.2. @java : Java directive</a></dt>
-					<dt><a href="../directives/jpa-jpa-module.html">3.3. @jpa : JPA2.0 directive</a></dt>
-					<dt><a href="../directives/spring-spring-module.html">3.3. @spring : Spring directive</a></dt>		
-				</dl>
-			</dd>
 		</dl>
 	</body>
 </document>

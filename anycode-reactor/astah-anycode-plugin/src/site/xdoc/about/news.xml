@@ -7,6 +7,14 @@
 	</head>
 	<body>
 		<section name="Recent news">
+			<h3>2014, March 23rd - astah-anycode-plugin-1.2.0_GA</h3>
+			<p>This release includes the following features</p>
+			<ul>
+				<li>Groovy is now used as templating language instead of Freemarker</li>
+				<li>Objectice-C directive first release and tutorial (still under development)</li>
+				<li>Bug fixes</li>		
+			</ul>
+		
 			<h3>2013, November 7th - astah-anycode-plugin-1.1.0_GA</h3>
 			<p>This release includes the following features</p>
 			<ul>

@@ -1,51 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 	<head>
 		<title>Built-in directives</title>
 	</head>
 	<body>
 		<section name="Built-in directives">
-			<p>
-				Directives are probably the most useful part in anycode generation.
-				Below, you'll find a set of functions and functions that you
-				can use directly in you template code. More directives for various languages in the future releases. See the
-				<a href="../about/roadmap.html">Roadmap</a>
-				for details.
+			<p> Directives are probably the most useful part in anycode generation. A directive is a class focused on one specific language code generation and
+				that is available as a variable from any of your template. Here is the list of available variables :
 			</p>
-			<p>If you want to see details about directives, please go to <a href="../api/anycode-uml-api/apidocs/index.html">Anycode API Online Javadoc</a></p>
 			<table class="table table-bordered">
 				<tr>
-					<th colspan="4">Summary</th>
+					<th>Variable name in templates</th>
+					<th>API Documentation</th>
+					<th>Summary</th>
 				</tr>
 				<tr>
-					<th>Directive</th>
-					<th>Variable name (in your template)</th>
-					<th>Description</th>
-					<th>API Documentation (link)</th>
-				</tr>
-				
-				<tr>
-					<td>Java Language</td>
 					<td>java</td>
-					<td>Provides functions to render attributes, getters, setters, operations.</td>
-					<td><a href=""></a></td>
+					<td>
+						<a href="../api/anycode-directive-api/apidocs/in/labulle/anycode/engine/groovy/directive/JavaDirective.html">JavaDirective</a>
+					</td>
+					<td>Supply functions to render attributes, operations and class signature in Java Language</td>
 				</tr>
 				<tr>
+					<td>jpa</td>
 					<td>
-						<a href="jpa-jpa-module.html">@jpa</a>
+						<a href="../api/anycode-directive-api/apidocs/in/labulle/anycode/engine/groovy/directive/JpaDirective.html">JpaDirective</a>
 					</td>
-					<td>Automates code generation fragments for JPA2/Hibernate
-						implementation.
-					</td>
+					<td>Extends Java Directive and adds some functions to render primary key and JPA attributes</td>
 				</tr>
 				<tr>
+					<td>spring</td>
 					<td>
-						<a href="spring-spring-module.html">@spring</a>
+						<a href="../api/anycode-directive-api/apidocs/in/labulle/anycode/engine/groovy/directive/SpringDirective.html">SpringDirective</a>
 					</td>
-					<td>Automates code generation fragments for spring implementations.
-						At the moment it is only used to inject spring-data dependencies
-						for services and JPA entities.</td>
+					<td>Provide few useful functions to make dependency wiring easier.</td>
+				</tr>
+				<tr>
+					<td>objc</td>
+					<td>
+						<a href="../api/anycode-directive-api/apidocs/in/labulle/anycode/engine/groovy/directive/ObjectiveCDirective.html">ObjectiveCDirective</a>
+					</td>
+					<td> First version of Objective-C directive. This directive is recent and provides very basic functions to help generate Objective-C code. Please
+						see Objective-C tutorial for further details.
+					</td>
 				</tr>
 			</table>
 		</section>

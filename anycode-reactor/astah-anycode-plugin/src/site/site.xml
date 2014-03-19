@@ -41,8 +41,15 @@
 		<menu name="Documentation">
 			<item name="Install Guide" href="/documentation/install-guide.html"/>
 			<item name="Reference documentation" href="/documentation/reference-documentation.html"/>
-			<item name="UML API" href="/api/anycode-uml-api/apidocs/index.html"/>
-			<item name="Built-in directives API" href="/api/anycode-directive-api/groovydoc/index.html"/>	
+			<item name="Anycode UML API" href="/api/anycode-uml-api/apidocs/index.html"/>
+			<item name="Built-in directives" href="/directives/directives.html">
+				<item name="Java" href="/api/anycode-directive-api/apidocs/in/labulle/anycode/engine/groovy/directive/JavaDirective.html"/>
+				<item name="JPA 2.0" href="/api/anycode-directive-api/apidocs/in/labulle/anycode/engine/groovy/directive/JpaDirective.html"/>
+				<item name="Spring" href="/api/anycode-directive-api/apidocs/in/labulle/anycode/engine/groovy/directive/SpringDirective.html"/>
+				<item name="Objective-C" href="/api/anycode-directive-api/apidocs/in/labulle/anycode/engine/groovy/directive/ObjectiveCDirective.html"/>
+				
+			</item>
+				
 			<item name="Tutorials" href="/tutorials/tutorials.html">
 				<item name="Java tutorial - Hello World" href="/tutorials/tutorial-java-helloworld.html"/>
 				<item name="JPA tutorial - Basics" href="/tutorials/tutorial-jpa-basics.html"/>
