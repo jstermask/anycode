@@ -36,7 +36,7 @@ public class AstahAttribute extends
 	}
 
 	public IClassifier getDataType() {
-		return (IClassifier) AstahElement.getElement(getAstahElement());
+		return (IClassifier) AstahElement.getElement(getAstahElement().getType());
 	}
 
 }

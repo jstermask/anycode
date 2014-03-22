@@ -66,7 +66,7 @@ class JpaDirective extends JavaDirective {
 		} else if(atts.size() > 1) {
 			return """${c.getFullyQualifiedName(".")}PK"""
 		} else {
-			return """${getDataTypeName(atts[0].dataType)}"""
+			return """${getDataTypeName(atts[0].dataType, atts[0].modifier)}"""
 		}
 	}
 

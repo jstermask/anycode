@@ -92,10 +92,20 @@ class JavaDirective extends AnycodeDirective {
 	 * @param d
 	 * @return
 	 */
-	def  getDataTypeName(IClassifier d) {
-		def dt = (d.isPrimitive() ? d.getName().capitalize() : d.getName())
-		if(d.getModifier() != null) {
-			dt += d.getModifier()
+	def  getDataTypeName(IClassifier c) {
+		return getDataTypeName(c, null)
+	}
+	
+	/**
+	 * Generates datatype name followed by its modifier
+	 * @param c
+	 * @param modifier
+	 * @return
+	 */
+	def getDataTypeName(IClassifier c, String modifier) {
+		def dt = (c.isPrimitive() ? c.getName().capitalize() : c.getName())
+		if(modifier != null) {
+			dt += modifier
 		}
 		return dt
 	}
@@ -117,9 +127,9 @@ class JavaDirective extends AnycodeDirective {
 	 */
 	def  datatype(IAttribute a, String collectionClassName) {
 		if(a.getDataType().isPrimitive()) {
-			return """${getDataTypeName(a.dataType)}"""
+			return """${getDataTypeName(a.dataType, a.modifier)}"""
 		} else {
-			return """${!a.cardinality.single ? collectionClassName + '<' + getDataTypeName(a.dataType) + '>' : getDataTypeName(a.dataType)}"""
+			return """${!a.cardinality.single ? collectionClassName + '<' + getDataTypeName(a.dataType, a.modifier) + '>' : getDataTypeName(a.dataType, a.modifier)}"""
 		}
 	}
 
@@ -161,9 +171,9 @@ class JavaDirective extends AnycodeDirective {
 	 */
 	def  operationSignature(IOperation op) {
 		def params = null
-		op.getParameters().reverseEach() { it -> params = "final ${getDataTypeName(it.dataType)} ${it.name}" + (params == null ? "" : ", " + params)  }
+		op.getParameters().reverseEach() { it -> params = "final ${getDataTypeName(it.dataType, it.modifier)} ${it.name}" + (params == null ? "" : ", " + params)  }
 		
-		return """${op.visibility.toString().toLowerCase()} ${op.returnType == null ? 'void' : op.returnType.getName()} ${getOperationName(op)}(${params})"""
+		return """${op.visibility.toString().toLowerCase()} ${op.returnType == null ? 'void' : getDataTypeName(op.returnType, op.modifier)} ${getOperationName(op)}(${params})"""
 	}
 	
 	/**
