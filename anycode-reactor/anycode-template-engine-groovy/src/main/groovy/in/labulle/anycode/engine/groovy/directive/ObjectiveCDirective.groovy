@@ -1,14 +1,14 @@
 package in.labulle.anycode.engine.groovy.directive
 
-import in.labulle.anycode.uml.IAttribute;
-import in.labulle.anycode.uml.IDataType;
+import in.labulle.anycode.uml.IAttribute
+import in.labulle.anycode.uml.IClassifier
 
 class ObjectiveCDirective {
 	def attribute(IAttribute a) {
 		
 	}
 	
-	def getDataTypeName(IDataType d) {
+	def getDataTypeName(IClassifier d) {
 		def dtName = d.getName().toLowerCase()
 		if(d.isPrimitive()) {
 			if(dtName.indexOf("string") != -1) {

@@ -1,6 +1,6 @@
 package in.labulle.anycode.uml.astah;
 
-import in.labulle.anycode.uml.IDataType;
+import in.labulle.anycode.uml.IClassifier;
 import in.labulle.anycode.uml.IParameter;
 
 public class AstahParameter extends AstahElement<com.change_vision.jude.api.inf.model.IParameter> implements IParameter {
@@ -9,8 +9,8 @@ public class AstahParameter extends AstahElement<com.change_vision.jude.api.inf.
 		super(astahElt);
 	}
 	
-	public IDataType getDataType() {
-		return new AstahDataType(getAstahElement().getType());
+	public IClassifier getDataType() {
+		return (IClassifier) AstahElement.getElement(getAstahElement().getType());
 	}
 	
 	

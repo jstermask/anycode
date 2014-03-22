@@ -1,6 +1,6 @@
 package in.labulle.anycode.uml.astah;
 
-import in.labulle.anycode.uml.IClass;
+import in.labulle.anycode.uml.IClassifier;
 import in.labulle.anycode.uml.IOperation;
 import in.labulle.anycode.uml.IParameter;
 
@@ -20,14 +20,14 @@ public class AstahOperation extends
 		return getAstahElement().getName();
 	}
 
-	public IClass getReturnType() {
-		return (IClass) AstahElement.getElement(getAstahElement()
-				.getReturnType());
+	public IClassifier getReturnType() {
+		return (IClassifier) AstahElement.getElement(getAstahElement().getReturnType());
 	}
 
 	public List<IParameter> getParameters() {
 		List<IParameter> params = new ArrayList<IParameter>();
-		for(com.change_vision.jude.api.inf.model.IParameter param : getAstahElement().getParameters()) {
+		for (com.change_vision.jude.api.inf.model.IParameter param : getAstahElement()
+				.getParameters()) {
 			params.add(new AstahParameter(param));
 		}
 		return params;

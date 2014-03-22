@@ -12,6 +12,7 @@ public class AClassifier extends AElement implements IClassifier {
 	private final List<IOperation> operations = new ArrayList<IOperation>();
 	private final List<? extends IClassifier> generalizations = new ArrayList<IClassifier>();
 	private final List<? extends IClassifier> clientDependencies = new ArrayList<IClassifier>();
+	private boolean primitive;
 	
 
 	public List<IAttribute> getAttributes() {
@@ -44,5 +45,13 @@ public class AClassifier extends AElement implements IClassifier {
 	
 	public List<? extends IClassifier> getClientDependencies() {
 		return this.clientDependencies;
+	}
+	
+	public void setPrimitive(boolean primitive) {
+		this.primitive = primitive;
+	}
+	
+	public boolean isPrimitive() {
+		return primitive;
 	}
 }

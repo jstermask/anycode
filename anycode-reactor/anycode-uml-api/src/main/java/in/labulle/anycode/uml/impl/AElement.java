@@ -12,8 +12,10 @@ public class AElement implements IElement {
 	private String name;
 
 	private IElement owner;
-	
+
 	private Visibility visibility;
+
+	private String modifier;
 
 	private final Set<IStereotype> stereotypes = new HashSet<IStereotype>();
 
@@ -54,14 +56,20 @@ public class AElement implements IElement {
 		}
 		return buf.toString();
 	}
-	
+
 	public Visibility getVisibility() {
 		return visibility;
 	}
-	
+
 	public void setVisibility(Visibility visibility) {
 		this.visibility = visibility;
 	}
-	
 
+	public String getModifier() {
+		return modifier;
+	}
+
+	public void setModifier(String modifier) {
+		this.modifier = modifier;
+	}
 }

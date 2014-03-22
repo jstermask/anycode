@@ -7,7 +7,7 @@ import in.labulle.anycode.engine.exception.TemplateException
 import in.labulle.anycode.engine.groovy.directive.JavaDirective
 import in.labulle.anycode.engine.groovy.directive.JpaDirective
 import in.labulle.anycode.engine.groovy.directive.ObjectiveCDirective
-import in.labulle.anycode.engine.groovy.directive.SpringDirective
+import in.labulle.anycode.engine.groovy.directive.SpringDataDirective
 import in.labulle.anycode.engine.groovy.directive.UtilDirective
 
 class CompositeTemplate implements ITemplate {
@@ -48,7 +48,7 @@ class CompositeTemplate implements ITemplate {
 		ctx.put("java", new JavaDirective())
 		ctx.put("util", new UtilDirective())
 		ctx.put("jpa", new JpaDirective())
-		ctx.put("springData", new SpringDirective())
+		ctx.put("springData", new SpringDataDirective())
 		ctx.put("objc", new ObjectiveCDirective())
 	}
 

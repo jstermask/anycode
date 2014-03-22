@@ -9,4 +9,5 @@ public interface IElement {
 	Set<IStereotype> getStereotypes();
 	Visibility getVisibility();
 	boolean hasStereotype(String stereotype);
+	String getModifier();
 }

@@ -1,16 +1,16 @@
 package in.labulle.anycode.uml.impl;
 
-import in.labulle.anycode.uml.IDataType;
+import in.labulle.anycode.uml.IClassifier;
 import in.labulle.anycode.uml.IParameter;
 
 public class AParameter extends AElement implements IParameter {
-	private IDataType dataType;
+	private IClassifier dataType;
 
-	public IDataType getDataType() {
+	public IClassifier getDataType() {
 		return dataType;
 	}
 
-	public void setDataType(IDataType dataType) {
+	public void setDataType(IClassifier dataType) {
 		this.dataType = dataType;
 	}
 

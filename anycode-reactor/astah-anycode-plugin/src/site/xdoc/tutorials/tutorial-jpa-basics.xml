@@ -37,7 +37,7 @@
 			</p>
 			<p>
 				<source>
-${targetDir}/${c.getFullName("/")}.java </source>
+${targetDir}/${c.getFullyQualifiedName("/")}.java </source>
 			</p>
 
 			<p>
@@ -45,93 +45,64 @@ ${targetDir}/${c.getFullName("/")}.java </source>
 			</p>
 			<p>
 				<source>
-&lt;#if c.hasStereotype("entity")&gt;
-package ${c.getFullNamespace(".")};
+&lt;&#37;  if(c.hasStereotype("entity")) { &#37;&gt;
+package ${c.owner.getFullyQualifiedName(".")};
 
-&lt;@jpa.entity_annotations c/&gt;
-public class ${c.name} {
-&lt;@jpa.primary_key c/&gt;
-
-&lt;#list jpa.getNonIdAttributes(c) as att&gt;
-&lt;@jpa.attribute att/&gt;
-&lt;@java.getter att/&gt;
-&lt;@java.setter att/&gt;
-&lt;/#list&gt;
+@javax.persistence.Entity
+${jpa.classifierSignature(c)} {
+	${jpa.primaryKey(c)}
+	
+	&lt;&#37;  def atts = c.attributes.findAll({!jpa.isIdentifier(it)}) &#37;&gt;
+	&lt;&#37;  atts.each() { &#37;&gt;
+			${jpa.attribute(it)}
+   	&lt;&#37;  } &#37;&gt;
+   
+  	&lt;&#37;  atts.each() { &#37;&gt;
+			${jpa.getter(it)}
+			${jpa.setter(it)}		
+   	&lt;&#37;  } &#37;&gt;
+   	
 }
-&lt;/#if&gt; </source>
+&lt;&#37;  } &#37;&gt; </source>
 			</p>
-			<h4>Conditional rendering</h4>
-			<p>
-				You'll notice that we only generate a content for class with
-				stereotype
-				<b>'entity'</b>
-				. This means that if a class does not have this
-				stereotype, nothing
-				will be generated
-				at all. This is very
-				convenient as you can model JPA
-				and non-JPA
-				classes in the same
-				model.
-			</p>
-			<h4>Entity annotations</h4>
-			<p>
-				The
-				<b>jpa.entity_annotations</b>
-				macro
-				currently generates @Entity annotation. You could
-				hard-code this
-				annotation in the template but this macro might
-				also generate some
-				other useful boilerplate code in the future so
-				it's worth using it.
-			</p>
-
-			<h4>Primary key generation</h4>
-			<p>
-				<b>jpa.primary_key</b>
-				macro detects and generates entity's primary key
-				attribute, getter
-				and setter. Here is how detection works:
-			</p>
-			<ul>
-				<li>If no attribute has "id" stereotype, a default primary key
-					(Integer) is generated with a sequence generator.
-				</li>
-				<li>If one attribute has "id" stereotype, a simple primary key is
-					generated based on that attribute
-				</li>
-				<li>If there are more than one attribute, then a PK class is
-					referenced. In this case, you should add a template to generated
-					PK. This particular case is not demonstrated in this tutorial.
-					Though, it will be shown in another tutorial.
-				</li>
-			</ul>
-
-			<h4>Attributes and relationships</h4>
-			<p>
-				Using
-				<b>jpa.getNonIdAttributes</b>
-				method, we can iterate over
-				attributes and relationships to be persisted in JPA entity. Any
-				navigable (or unspecified navigable)
-				association is included in the
-				attributes. It generates association
-				annotations automatically as
-				well as default annotation options.
-			</p>
-			<p>Navigability is an important point in relationship as it will tell
-				JPA whether it is unidirectional or bidirectional. It will also help
-				determining the owning side for one-to-one, one-to-many and
-				many-to-many relationships. Here are the conditions for 2 classes A
-				and B :</p>
-			<ul>
-				<li>A x-&gt; B : A is the owning side.</li>
-				<li>A -&gt; B : A is the owning side.</li>
-				<li>A x- B : A is the owning side</li>
-			</ul>
-			<p>In our project tracker model, we want Project class to be the
-				owning side for project members. JPA will then generated the adequate 'mappedBy' option.</p>
+	<h4>Conditional rendering</h4>
+	<p>
+		You'll notice that we only generate a content for class with stereotype
+		<b>'entity'</b>
+		. This means that if a class does not have this stereotype, nothing will be generated at all. This is very convenient as you can model JPA and
+		non-JPA classes in the same model.
+	</p>
+	<h4>Primary key generation</h4>
+	<p>
+		<b>jpa.primaryKkey</b>
+		method detects and generates entity's primary key attribute, getter and setter. Here is how detection works:
+	</p>
+	<ul>
+		<li>If no attribute has "id" stereotype, a default primary key (Long) is generated with a sequence generator.
+		</li>
+		<li>If one attribute has "id" stereotype, a simple primary key is generated based on that attribute
+		</li>
+		<li>If there are more than one attribute, then a PK class is referenced. In this case, you should add a template to generated PK. This particular
+			case is not demonstrated in this tutorial. Though, it will be shown in another one.
+		</li>
+	</ul>
+	<h4>Attributes and relationships</h4>
+	<p>
+		Using
+		<b>findAll with a closure in groovy</b> we can iterate over attributes and relationships to be persisted in JPA entity. Any navigable (or unspecified navigable) association is
+		included in the attributes. It generates association annotations automatically as well as default annotation options.
+	</p>
+	<p>Navigability is an important point in relationship as it will tell JPA whether it is unidirectional or bidirectional. It will also help
+		determining the owning side for one-to-one, one-to-many and many-to-many relationships. Here are the conditions for 2 classes A and B :
+	</p>
+	<ul>
+		<li>A x-&gt; B : A is the owning side.</li>
+		<li>A -&gt; B : A is the owning side.</li>
+		<li>A x- B : A is the owning side</li>
+	</ul>
+	<p>In our project tracker model, we want Project class to be the owning side for project members. JPA code will then be generated with the adequate 'mappedBy'
+		option.
+	</p>
 		</section>
 		<section name="Service classes">
 			<p>In our uml model, we add a service class with one method, as follows :</p>
@@ -148,36 +119,35 @@ public class ${c.name} {
 				</p>
 				<p>
 					<source>
-${targetDir}/${c.getFullNamespace("/")}/I${c.name}.java </source>
+${targetDir}/${c.getFullyQualifiedName("/")}/I${c.name}.java </source>
 				</p>
 				<p>
 					We customized class name with 'I' prefix for
-					<b>I</b>
-					nterface.
+					<b>I</b>nterface.
 				</p>
 				<p>
 					<b>SERVICE-INTERFACE-content.mda:</b>
 				</p>
 				<p>
 					<source>
-&lt;#if c.hasStereotype("service")&gt;
-package ${c.getFullNamespace(".")};
+&lt;&#37; if(c.hasStereotype("service")) { &#37;&gt;
+package ${c.owner.getFullyQualifiedName(".")};
 import java.util.List;
-import ${c.owner.getFullNamespace(".")}.core.*;
+import ${c.owner.owner.getFullyQualifiedName(".")}.core.*;
 
 public interface I${c.name} {
-	&lt;#list c.operations as op&gt;
-		&lt;@java.operation op /&gt;
-	&lt;/#list&gt;
+	&lt;&#37; c.operations.each { &#37;&gt;
+		${java.operationSignature(it)};
+	&lt;&#37; } &#37;&gt;
 }
-&lt;/#if&gt; </source>
+&lt;&#37; } &#37;&gt; </source>
 				</p>
 				<p>
 					Only 'service' stereotyped class will have an interface generated.
 					This interface only consists in a list of operation signatures,
 					generated with
-					<b>java.operation</b>
-					macro.
+					<b>java.operationSignature</b>
+					method.
 				</p>
 			</subsection>
 			<subsection name="Service implementation">
@@ -187,7 +157,7 @@ public interface I${c.name} {
 				</p>
 				<p>
 					<source>
-${targetDir}/${c.getFullNamespace("/")}/impl/${c.name}.java </source>
+${targetDir}/${c.getFullyQualifiedName("/")}/impl/${c.name}.java </source>
 				</p>
 				<p>We decided to generate implementation in 'impl' sub-package.</p>
 				<p>
@@ -195,31 +165,34 @@ ${targetDir}/${c.getFullNamespace("/")}/impl/${c.name}.java </source>
 				</p>
 				<p>
 					<source>
-&lt;#if c.hasStereotype("service")&gt;
-package ${c.getFullNamespace(".")}.impl;
+&lt;&#37; if (c.hasStereotype("service")) { &#37;&gt;
+package ${c.owner.getFullyQualifiedName(".")}.impl;
 import java.util.List;
-import ${c.owner.getFullNamespace(".")}.core.*;
-import ${c.owner.getFullNamespace(".")}.service.*;
+import org.springframework.stereotype.*;
+import org.springframework.beans.factory.annotation.*;
 
+&lt;&#37;  def basePackage = c.owner.owner.getFullyQualifiedName(".") &#37;&gt;
+import ${basePackage}.core.*;
+import ${basePackage}.dao.*;
+import ${basePackage}.service.*;
+
+@org.springframework.stereotype.Service
 public class ${c.name} implements I${c.name} {
-	&lt;#list c.operations as op&gt;
-		&lt;@java.operation op=op includeBody=true /&gt;
-	&lt;/#list&gt;
+	&lt;&#37;  c.clientDependencies.each { &#37;&gt;
+		${springData.autowiredAttribute(it)}
+	&lt;&#37; } &#37;&gt;
+
+	&lt;&#37;  c.operations.each { &#37;&gt;
+		${springData.operationImplementation(it)}
+	&lt;&#37;  } &#37;&gt;
 }
-&lt;/#if&gt;</source>
+&lt;&#37;  } &#37;&gt;</source>
 				</p>
 				<p>
 					Only 'service' stereotyped class will have an interface generated.
-					It implements the interface. We reuse
-					<b>java.operation</b>
-					macro but this time we generate a body.
-				</p>
-				<p>
-					This will call an underlying macro called
-					<b>java.custom_code</b>
-					. This macro will generate automatically an opening comment and a
-					closing comment inside method's body. Any code you write within those
-					comments will be kept and included in future code generations.
+					It implements the interface. We use
+					<b>java.operationImplementation</b>
+					method to generate a body.
 				</p>
 			</subsection>
 		</section>
@@ -236,7 +209,7 @@ public class ${c.name} implements I${c.name} {
 				</p>
 				<p>
 					<source>
-${targetDir}/${c.owner.getFullNamespace("/")}/dao/${c.name}Repository.java </source>
+${targetDir}/${c.owner.getFullyQualifiedName("/")}/../dao/${c.name}Repository.java </source>
 				</p>
 				<p>We decided to generate classes in 'dao' sub-package.</p>
 				<p>
@@ -244,25 +217,29 @@ ${targetDir}/${c.owner.getFullNamespace("/")}/dao/${c.name}Repository.java </sou
 				</p>
 				<p>
 					<source>
-&lt;#if c.hasStereotype("entity")&gt;
-package ${c.owner.getFullNamespace(".")}.dao;
+&lt;&#37;if(c.hasStereotype("entity")) {&#37;&gt;
+
+package ${c.owner.owner.getFullyQualifiedName(".")}.dao;
+
 import java.util.List;
-import ${c.owner.getFullNamespace(".")}.core.*;
+import ${c.owner.getFullyQualifiedName(".")}.*;
 
 @org.springframework.stereotype.Repository
-public interface ${c.name}Repository extends org.springframework.data.jpa.repository.JpaRepository&lt;${c.name},&lt;@jpa.primary_key_datatype c/&gt;&gt; {
-
+public interface ${c.name}Repository extends org.springframework.data.jpa.repository.JpaRepository<${c.name},${jpa.primaryKeyDataType(c)}> {
+	&lt;&#37; c.operations.findAll({jpa.isFinderOperation(it)}).each { &#37;&gt;
+	${jpa.operationSignature(it)};
+	&lt;&#37; } &#37;&gt;
 }
-&lt;/#if&gt;</source>
+&lt;&#37; } &#37;&gt;</source>
 				</p>
 			</subsection>
 			<subsection name="Wiring services and repositories">
-				<p>UML dependency can be used in Astah API through <b>getClientDependencies()</b> method. We just have to add the following piece of code in our SERVICE-IMPL template, using @spring directive :</p>
+				<p>UML dependency can be used in Anycode UML API through <b>getClientDependencies()</b> method. We just have to add the following piece of code in our SERVICE-IMPL template, using @springData directive :</p>
 				<p><source>
 [...]
-&lt;#list c.clientDependencies as dep&gt;
-	&lt;@spring.service_entity_dependency dep/&gt;
-&lt;/#list&gt;
+&lt;&#37; c.clientDependencies.each { &#37;&gt;
+	${springData.autowiredAttribute(it)}
+&lt;&#37;} &#37;&gt;
 [...] </source></p>
 				<p>This will add a reference to the above repository class, as well as a getter and a setter. On top of that spring @AutoWired annotation will be added.</p>			
 			</subsection>
@@ -273,13 +250,11 @@ public interface ${c.name}Repository extends org.springframework.data.jpa.reposi
 				<p>
 				<source>
 [...]
-&lt;#list c.operations as op&gt;
-	&lt;#if jpa.isFinderOperation(op)&gt;
-	&lt;@jpa.finder_operation op /&gt;
-	&lt;/#if&gt;
-&lt;/#list&gt;
+&lt;&#37; c.operations.findAll({jpa.isFinderOperation(it)}).each { &#37;&gt;
+	${jpa.operationSignature(it)};
+&lt;&#37; } &#37;&gt;
 [...] </source></p>
-			<p>This will take all methods starting with @ in the entity class and put them in the repository class.</p>
+			<p>jpa.operationSignature is the same as java.operationSignature except that it will take all methods starting with @ in the entity class and put them in the repository class.</p>
 			</subsection>
 		</section>
 		<section name="Testing your source code">

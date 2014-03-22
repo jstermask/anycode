@@ -8,7 +8,6 @@ import in.labulle.anycode.uml.Cardinality
 import in.labulle.anycode.uml.IClass
 import in.labulle.anycode.uml.impl.AAttribute
 import in.labulle.anycode.uml.impl.AClass
-import in.labulle.anycode.uml.impl.ADataType
 
 import org.junit.Test
 
@@ -42,10 +41,8 @@ class TemplateRepositoryFactoryImplTest {
 		cl = new AClass()
 		cl.setName("Car")
 		cl.addAttribute(att)
-		ADataType dt = new ADataType()
-
-		dt.setClassifier(cl)
-		att.setDataType(dt)
+		
+		att.setDataType(cl)
 		return cl
 	}
 }

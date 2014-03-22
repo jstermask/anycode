@@ -1,6 +1,6 @@
 package in.labulle.anycode.uml.impl;
 
-import in.labulle.anycode.uml.IClass;
+import in.labulle.anycode.uml.IClassifier;
 import in.labulle.anycode.uml.IOperation;
 import in.labulle.anycode.uml.IParameter;
 
@@ -9,15 +9,15 @@ import java.util.List;
 
 public class AOperation extends AElement implements IOperation {
 
-	private IClass returnType;
+	private IClassifier returnType;
 
 	private final List<IParameter> parameters = new ArrayList<IParameter>();
 
-	public IClass getReturnType() {
+	public IClassifier getReturnType() {
 		return returnType;
 	}
 
-	public void setReturnType(IClass returnType) {
+	public void setReturnType(IClassifier returnType) {
 		this.returnType = returnType;
 	}
 

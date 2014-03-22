@@ -2,18 +2,14 @@ package in.labulle.anycode.engine.groovy.directive
 
 
 
-import java.lang.annotation.Annotation;
-
-import in.labulle.anycode.uml.Cardinality;
-import in.labulle.anycode.uml.IAttribute;
-import in.labulle.anycode.uml.IClass;
-import in.labulle.anycode.uml.IOperation;
-import in.labulle.anycode.uml.IRelationAttribute;
-import in.labulle.anycode.uml.Visibility;
-import in.labulle.anycode.uml.impl.AAttribute;
-import in.labulle.anycode.uml.impl.AClass;
-import in.labulle.anycode.uml.impl.ADataType;
-import groovy.text.SimpleTemplateEngine
+import in.labulle.anycode.uml.Cardinality
+import in.labulle.anycode.uml.IAttribute
+import in.labulle.anycode.uml.IClass
+import in.labulle.anycode.uml.IOperation
+import in.labulle.anycode.uml.IRelationAttribute
+import in.labulle.anycode.uml.Visibility
+import in.labulle.anycode.uml.impl.AAttribute
+import in.labulle.anycode.uml.impl.AClass
 
 /**
  * JPA Directive.
@@ -146,11 +142,9 @@ class JpaDirective extends JavaDirective {
 		aat.setName("id")
 		aat.setVisibility(Visibility.PRIVATE)
 		aat.setCardinality(Cardinality.ONE_TO_ONE)
-		ADataType aatype = new ADataType()
 		AClass cl = new AClass()
 		cl.setName("java.lang.Long")
-		aatype.setClassifier(cl)
-		aat.setDataType(aatype)
+		aat.setDataType(cl)
 		return singlePrimaryKey(aat, "@javax.persistence.Id")
 	}
 
@@ -167,12 +161,11 @@ class JpaDirective extends JavaDirective {
 		aat.setName("id")
 		aat.setVisibility(Visibility.PRIVATE)
 		aat.setCardinality(Cardinality.ONE_TO_ONE)
-		ADataType aatype = new ADataType()
+		
 		AClass cl = new AClass()
 		cl.setName(c.name + "PK")
 		cl.setOwner(c.getOwner())
-		aatype.setClassifier(cl)
-		aat.setDataType(aatype)
+		aat.setDataType(cl)
 		return singlePrimaryKey(aat, "@javax.persistence.EmbeddedId")
 	}
 }

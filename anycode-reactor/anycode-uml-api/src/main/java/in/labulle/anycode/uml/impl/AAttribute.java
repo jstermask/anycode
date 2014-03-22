@@ -2,19 +2,19 @@ package in.labulle.anycode.uml.impl;
 
 import in.labulle.anycode.uml.Cardinality;
 import in.labulle.anycode.uml.IAttribute;
-import in.labulle.anycode.uml.IDataType;
+import in.labulle.anycode.uml.IClassifier;
 
 public class AAttribute extends AElement implements IAttribute {
-	private IDataType dataType;
+	private IClassifier dataType;
 	
 	private Cardinality cardinality = Cardinality.ZERO_TO_ONE;
 	
 	
-	public IDataType getDataType() {
+	public IClassifier getDataType() {
 		return dataType;
 	}
 	
-	public void setDataType(IDataType dataType) {
+	public void setDataType(IClassifier dataType) {
 		this.dataType = dataType;
 	}
 

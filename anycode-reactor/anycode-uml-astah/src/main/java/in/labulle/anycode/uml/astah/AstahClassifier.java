@@ -62,6 +62,10 @@ public class AstahClassifier extends
 		return deps;
 	}
 
+	public boolean isPrimitive() {
+		return getAstahElement().isPrimitiveType();
+	}
+
 
 
 }

@@ -1,12 +1,12 @@
 package in.labulle.anycode.uml.astah;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import in.labulle.anycode.repository.astah.ModelException;
 import in.labulle.anycode.uml.Cardinality;
 import in.labulle.anycode.uml.IAttribute;
-import in.labulle.anycode.uml.IDataType;
+import in.labulle.anycode.uml.IClassifier;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AstahAttribute extends
 		AstahElement<com.change_vision.jude.api.inf.model.IAttribute> implements
@@ -35,8 +35,8 @@ public class AstahAttribute extends
 		return false;
 	}
 
-	public IDataType getDataType() {
-		return new AstahDataType(getAstahElement().getType());
+	public IClassifier getDataType() {
+		return (IClassifier) AstahElement.getElement(getAstahElement());
 	}
 
 }

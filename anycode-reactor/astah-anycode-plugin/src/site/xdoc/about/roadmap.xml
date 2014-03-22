@@ -5,7 +5,12 @@
 		<title>Roadmap</title>
 	</head>
 	<body>
-		<section name="Roadmap">			
+		<section name="Roadmap">
+			<h3>2014/04 - astah-anycode-plugin-1.2.1_GA</h3>
+			<ul>
+				<li>Bug fixes</li>
+				<li>More documentation</li>
+			</ul>			
 			<h3>2014/05 - astah-anycode-plugin-1.3.x</h3>
 			<ul>
 				<li>Php Directive and code generation support</li>

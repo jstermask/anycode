@@ -9,10 +9,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.change_vision.jude.api.inf.model.IClass;
+import com.change_vision.jude.api.inf.model.IModel;
 import com.change_vision.jude.api.inf.model.INamedElement;
 import com.change_vision.jude.api.inf.model.IPackage;
 
-public abstract class AstahElement<T extends com.change_vision.jude.api.inf.model.IElement> implements IElement {
+public abstract class AstahElement<T extends com.change_vision.jude.api.inf.model.IElement>
+		implements IElement {
 	private T astahElement;
 
 	public AstahElement(final T astahElt) {
@@ -21,8 +23,10 @@ public abstract class AstahElement<T extends com.change_vision.jude.api.inf.mode
 
 	public static IElement getElement(
 			com.change_vision.jude.api.inf.model.IElement e) {
-		if (e instanceof IPackage) {
-			return new AstahPackage((IPackage)e);
+		if (e instanceof IModel) {
+			return null;
+		} else if (e instanceof IPackage) {
+			return new AstahPackage((IPackage) e);
 		} else if (e instanceof IClass) {
 			return new AstahClass((IClass) e);
 		}
@@ -51,23 +55,20 @@ public abstract class AstahElement<T extends com.change_vision.jude.api.inf.mode
 
 	public Set<IStereotype> getStereotypes() {
 		Set<IStereotype> st = new HashSet<IStereotype>();
-		for(String stereotype : astahElement.getStereotypes()) {
+		for (String stereotype : astahElement.getStereotypes()) {
 			st.add(new AStereotype(stereotype));
 		}
 		return st;
 	}
-	
-	
-	public boolean hasStereotype(final String stereotypeName) {
-		return astahElement.hasStereotype(stereotypeName);		
-	}
-	
 
+	public boolean hasStereotype(final String stereotypeName) {
+		return astahElement.hasStereotype(stereotypeName);
+	}
 
 	public Visibility getVisibility() {
 		if (astahElement instanceof INamedElement) {
-			INamedElement elt = (INamedElement)astahElement;
-			if(elt.isPublicVisibility()) {
+			INamedElement elt = (INamedElement) astahElement;
+			if (elt.isPublicVisibility()) {
 				return Visibility.PUBLIC;
 			} else if (elt.isPackageVisibility()) {
 				return Visibility.PACKAGE;
@@ -79,8 +80,12 @@ public abstract class AstahElement<T extends com.change_vision.jude.api.inf.mode
 		}
 		return Visibility.PROTECTED;
 	}
-	
+
 	protected T getAstahElement() {
 		return astahElement;
+	}
+
+	public String getModifier() {
+		return astahElement.getTypeModifier();
 	}
 }

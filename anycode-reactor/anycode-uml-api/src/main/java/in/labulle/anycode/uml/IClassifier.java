@@ -12,4 +12,5 @@ public interface IClassifier extends IElement {
 	List<IOperation> getOperations();
 	List<? extends IClassifier> getGeneralizations();
 	List<? extends IClassifier> getClientDependencies();
+	boolean isPrimitive();
 }

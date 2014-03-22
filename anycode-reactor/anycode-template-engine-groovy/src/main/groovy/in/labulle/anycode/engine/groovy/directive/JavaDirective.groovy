@@ -2,15 +2,11 @@ package in.labulle.anycode.engine.groovy.directive
 
 
 
-import in.labulle.anycode.uml.Cardinality;
 import in.labulle.anycode.uml.IAttribute;
 import in.labulle.anycode.uml.IClass;
 import in.labulle.anycode.uml.IClassifier;
-import in.labulle.anycode.uml.IDataType;
 import in.labulle.anycode.uml.IInterface;
 import in.labulle.anycode.uml.IOperation;
-import groovy.text.SimpleTemplateEngine
-import  java.lang.String.*
 
 /**
  * This directive provides macros and functions to generate code in java language.
@@ -96,8 +92,12 @@ class JavaDirective extends AnycodeDirective {
 	 * @param d
 	 * @return
 	 */
-	def  getDataTypeName(IDataType d) {
-		return (d.isPrimitive() ? d.getName().capitalize() : d.getFullyQualifiedName("."))
+	def  getDataTypeName(IClassifier d) {
+		def dt = (d.isPrimitive() ? d.getName().capitalize() : d.getName())
+		if(d.getModifier() != null) {
+			dt += d.getModifier()
+		}
+		return dt
 	}
 
 
@@ -163,7 +163,7 @@ class JavaDirective extends AnycodeDirective {
 		def params = null
 		op.getParameters().reverseEach() { it -> params = "final ${getDataTypeName(it.dataType)} ${it.name}" + (params == null ? "" : ", " + params)  }
 		
-		return """${op.visibility.toString().toLowerCase()} ${op.returnType == null ? 'void' : op.returnType.getFullyQualifiedName(".")} ${getOperationName(op)}(${params})"""
+		return """${op.visibility.toString().toLowerCase()} ${op.returnType == null ? 'void' : op.returnType.getName()} ${getOperationName(op)}(${params})"""
 	}
 	
 	/**

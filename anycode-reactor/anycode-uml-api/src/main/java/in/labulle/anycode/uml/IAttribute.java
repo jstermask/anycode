@@ -19,7 +19,7 @@ public interface IAttribute extends IElement {
 	 * 
 	 * @return datatype.
 	 */
-	IDataType getDataType();
+	IClassifier getDataType();
 
 	/**
 	 * Checks whether this attribute is part of a relation.

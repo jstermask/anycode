@@ -25,7 +25,7 @@
 			</p>
 			<p>
 				<source>
-${targetDir}/${c.getFullName("/")}.java
+${targetDir}/${c.getFullyQualifiedName("/")}.java
 				</source>
 			</p>
 
@@ -34,34 +34,31 @@ ${targetDir}/${c.getFullName("/")}.java
 			</p>
 			<p>
 				<source>
-package ${c.getFullNamespace(".")};
+package ${c.owner.getFullyQualifiedName(".")};
 /**
 * This class was generated automatically thanks to any
 <code />
 */
 public class ${c.name} {
-	&lt;#list c.attributes as anAttribute&gt;
-	&lt;@java.attribute anAttribute/&gt;
-	&lt;/#list>
+	&lt;&#37; c.attributes.each { &#37;&gt;
+		${java.attribute(it)}
+	&lt;&#37; } &#37;&gt;
 	
-	&lt;#list c.attributes as anAttribute&gt;
-	&lt;@java.getter anAttribute/&gt;
-	&lt;/#list>
+	&lt;&#37; c.attributes.each { &#37;&gt;
+		${java.getter(it)}
+	&lt;&#37; } &#37;&gt;
 	
-	&lt;#list c.attributes as anAttribute&gt;
-	&lt;@java.setter anAttribute/&gt;
-	&lt;/#list&gt;
+	&lt;&#37; c.attributes.each { &#37;&gt;
+		${java.setter(it)}
+	&lt;&#37; } &#37;&gt;
 }
 				</source>
 			</p>
 			<p>
-				You may have noticed @java keyword. This is a
+				You may have noticed 'java' variable. This is a
 				<a href="directives/directives.html">built-in directive</a>
-				. Because Astah API can sometimes be difficult to use,
-				boilerplate
-				code is added to directives
-				so that you only have to focus on your
-				custom code generation.
+				. Because <a href="../api/anycode-uml-api/apidocs/index.html" target="_blank">Anycode UML API</a> can sometimes be difficult to use,
+				boilerplate code is added to directives so that you only have to focus on your custom code generation.
 			</p>
 		</section>
 		<section name="Generate your java code">

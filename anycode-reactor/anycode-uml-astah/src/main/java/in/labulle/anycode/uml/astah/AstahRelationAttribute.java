@@ -1,7 +1,6 @@
 package in.labulle.anycode.uml.astah;
 
 import in.labulle.anycode.uml.Cardinality;
-import in.labulle.anycode.uml.IDataType;
 import in.labulle.anycode.uml.IRelationAttribute;
 
 import org.slf4j.Logger;
@@ -58,9 +57,6 @@ public class AstahRelationAttribute extends AstahAttribute implements
 		return getAstahElement().isAggregate();
 	}
 
-	public IDataType getDataType() {
-		return new AstahDataType(getAstahElement().getType());
-	}
 
 	public boolean isManyToOne() {
 		return getCardinality().isSingle()
