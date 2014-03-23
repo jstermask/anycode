@@ -2,6 +2,7 @@ package in.labulle.anycode.engine.groovy.directive
 
 import in.labulle.anycode.uml.IAttribute
 import in.labulle.anycode.uml.IClassifier
+import in.labulle.anycode.uml.IOperation;
 
 class ObjectiveCDirective {
 	/**
@@ -52,5 +53,34 @@ class ObjectiveCDirective {
 	
 	def datatype(IAttribute a) {
 		return datatype(a, 'NSArray *')
+	}
+	
+	/**
+	 *
+	 * @param op
+	 * @return
+	 */
+	protected def  getOperationName(IOperation op) {
+		return op.getName()
+	}
+	
+	def operationSignature(IOperation op) {
+		def params = null
+		op.getParameters().reverseEach() { it -> params = "(${getDataTypeName(it.dataType, it.modifier)}) ${it.name}" + (params == null ? "" : " " + params)  }
+		
+		return """- ${op.returnType == null ? '(void)' : '('+getDataTypeName(op.returnType, op.modifier) + ')'}${getOperationName(op)}${params == null ? '' : ':' + params}"""
+	}
+	
+	def operationImplementation(IOperation op) {
+		return """${operationSignature(op)} {
+		}"""
+	}
+	
+	def classImports(IClassifier c) {
+		def imports = ""
+		c.attributes.findAll({!it.dataType.primitive}).each {
+			imports += """@class ${it.dataType.name};\n"""
+		}
+		return imports
 	}
 }
