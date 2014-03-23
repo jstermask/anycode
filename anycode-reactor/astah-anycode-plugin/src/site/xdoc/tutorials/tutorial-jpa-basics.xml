@@ -225,7 +225,7 @@ import java.util.List;
 import ${c.owner.getFullyQualifiedName(".")}.*;
 
 @org.springframework.stereotype.Repository
-public interface ${c.name}Repository extends org.springframework.data.jpa.repository.JpaRepository<${c.name},${jpa.primaryKeyDataType(c)}> {
+public interface ${c.name}Repository extends org.springframework.data.jpa.repository.JpaRepository&lt;${c.name},${jpa.primaryKeyDataType(c)}&gt; {
 	&lt;&#37; c.operations.findAll({jpa.isFinderOperation(it)}).each { &#37;&gt;
 	${jpa.operationSignature(it)};
 	&lt;&#37; } &#37;&gt;

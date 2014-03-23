@@ -53,7 +53,7 @@
 			<item name="Tutorials" href="/tutorials/tutorials.html">
 				<item name="Java tutorial - Hello World" href="/tutorials/tutorial-java-helloworld.html"/>
 				<item name="JPA tutorial - Basics" href="/tutorials/tutorial-jpa-basics.html"/>
-				
+				<item name="Objective-C tutorial - Basics" href="/tutorials/tutorial-objc-basics.html"/>
 			</item>
 		</menu>
 		<menu name="About">

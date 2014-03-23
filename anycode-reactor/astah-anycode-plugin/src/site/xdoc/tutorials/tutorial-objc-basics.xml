@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<head>
+		<title>Tutorial - Objective-C 2.0 - Basics</title>
+	</head>
+	<body>
+		<h1>Objectice-C 2.0 - AppStore tutorial</h1>
+		<section name="About this tutorial">
+			<p>Objective-C Directive has been released since Anycode 1.2.0+ . I must admit that i'm not very familiar with this language. Objective-C support is therefore limited. However, i'll be glad to take into
+			account any of your suggestions and advice for future releases of the tool.</p>
+			<p>All the source code described in this tutorial is available on <a href="https://bitbucket.org/jjbcarreno/anycode-sample-projects" target="_blank">anycode tutorials bitbucket repository</a></p>
+		</section>
+		<section name="UML Model">
+			<p>For this example, we consider a very (very) simple App Store
+				model :
+			</p>
+			<ul>
+				<li>
+					An AppStore has a set of Applications
+				</li>
+				<li>Each Application has a category.
+				</li>
+			</ul>
+			<p class="center">
+				<img src="../images/tutorials/appStore_entities.png" class="img-polaroid" />
+			</p>
+			
+		</section>
+		<section name="Objective-C Interface template">
+			<p>Objective-C Class consists in 2 files : an interface definition and its implementation. Let's write interface template :
+			</p>
+			<p>
+				<b>objc-interface-name.mda</b>
+			</p>
+			<p>
+				<source>
+${targetDir}/${c.getFullyQualifiedName("/")}.h </source>
+			</p>
+
+			<p>
+				<b>objc-interface-content.mda</b>
+			</p>
+			<p>
+				<source>
+#import &lt;Foundation/Foundation.h&gt;
+
+${objc.classImports(c)}
+
+@interface ${c.name} : NSObject {
+	&lt;&#37; c.attributes.each { &#37;&gt;
+	${objc.attribute(it)}
+	&lt;&#37; } &#37;&gt;
+}
+&lt;&#37; c.attributes.each { &#37;&gt;
+	@property ${it.dataType.primitive ? '(assign)' : '(retain)'} ${objc.attribute(it)}
+&lt;&#37; } &#37;&gt;
+
+&lt;&#37; c.operations.each { &#37;&gt;
+	${objc.operationSignature(it)};
+&lt;&#37; } &#37;&gt;
+@end </source>
+			</p>
+			<h4>Objective C Directive</h4>
+			<p>As you can see in the above example, 'objc' variable is heavily used. This is ObjectiveC Directive class. For more details about this directive, please see 
+			<a href="/api/anycode-directive-api/apidocs/in/labulle/anycode/engine/groovy/directive/ObjectiveCDirective.html">Objective C Directive JavaDoc API</a>
+			</p>
+			<h4>Automatic Class import</h4>
+			<p>
+				For compiling reasons, an interface that references another class has to declare it with <b>@class</b> keyword. This is what classImports method
+			</p>
+			<h4>Attributes, getters and setters</h4>
+			<p>
+				Since Objective 2.0, getters and setters can be declared in interface using @property keyword. Again we can use Objective C directive to render attributes and relations. It will automatically detect primitive
+				types and turn them into valid ObjectiveC types. Collections will be mapped as NSArray.
+			</p>
+		</section>
+		<section name="Objective-C Implementation template">
+		<p>Implementation template is even easier than interface's.</p>
+			<p>
+				<b>objc-implementation-name.mda</b>
+			</p>
+			<p>
+				<source>
+${targetDir}/${c.getFullyQualifiedName("/")}.m</source>
+			</p>
+
+			<p>
+				<b>objc-implementation-content.mda</b>
+			</p>
+				<source>
+#import "${c.name}.h"
+@implementation ${c.name}
+&lt;&#37; c.attributes.each { &#37;&gt;
+	@synthesize ${objc.getAttributeName(it)};
+&lt;&#37; } &#37;&gt;
+
+&lt;&#37; c.operations.each { &#37;&gt;
+	${objc.operationImplementation(it)};
+&lt;&#37; } &#37;&gt;
+@end </source>		
+<p>Well that's it. This will generate your classes, their relations and methods (with empty implementation). </p>
+		</section>
+		<section name="Testing your source code">
+			<p>The sources of this tutorial are available online  <a href="https://bitbucket.org/jjbcarreno/anycode-sample-projects" target="_blank">here</a>. It contains a the templates, generated code and a running main class that shows how to use classes.</p>
+		</section>
+	</body>
+</document>
+
+
+
+
+
+
+
