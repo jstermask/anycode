@@ -8,7 +8,7 @@
 		<h1>Objectice-C 2.0 - AppStore tutorial</h1>
 		<section name="About this tutorial">
 			<p>Objective-C Directive has been released since Anycode 1.2.0+ . I must admit that i'm not very familiar with this language. Objective-C support is therefore limited. However, i'll be glad to take into
-			account any of your suggestions and advice for future releases of the tool.</p>
+			account any of your suggestions and advices for future releases of the tool.</p>
 			<p>All the source code described in this tutorial is available on <a href="https://bitbucket.org/jjbcarreno/anycode-sample-projects" target="_blank">anycode tutorials bitbucket repository</a></p>
 		</section>
 		<section name="UML Model">
@@ -67,7 +67,7 @@ ${objc.classImports(c)}
 			</p>
 			<h4>Automatic Class import</h4>
 			<p>
-				For compiling reasons, an interface that references another class has to declare it with <b>@class</b> keyword. This is what classImports method
+				For compiling reasons, an interface that references another class has to declare it with <b>@class</b> keyword. This is what classImports method does.
 			</p>
 			<h4>Attributes, getters and setters</h4>
 			<p>
