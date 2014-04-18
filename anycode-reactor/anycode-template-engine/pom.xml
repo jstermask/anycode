@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>in.labulle.anycode</groupId>
 		<artifactId>anycode-reactor</artifactId>
-		<version>1.2.0_GA</version>
+		<version>1.2.1-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
 	<artifactId>anycode-template-engine</artifactId>
@@ -24,7 +24,7 @@
 		<dependency>
 			<groupId>in.labulle.anycode</groupId>
 			<artifactId>anycode-uml-api</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.2.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.osgi</groupId>

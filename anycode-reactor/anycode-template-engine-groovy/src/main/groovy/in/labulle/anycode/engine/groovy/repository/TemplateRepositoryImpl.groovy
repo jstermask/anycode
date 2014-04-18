@@ -20,6 +20,7 @@ class TemplateRepositoryImpl extends AbstractDirectoryTemplateRepository {
 		CompositeTemplate t = new CompositeTemplate()
 		t.setContentTemplate(contentTemplatePath)
 		t.setNameTemplate(nameTemplatePath)
+		t.setScope(TemplateScope.CLASSIFIER)
 		return t
 	}
 	

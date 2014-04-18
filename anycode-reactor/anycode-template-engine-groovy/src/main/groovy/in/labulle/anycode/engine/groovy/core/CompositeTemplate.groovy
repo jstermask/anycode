@@ -3,6 +3,7 @@ package in.labulle.anycode.engine.groovy.core
 import groovy.text.GStringTemplateEngine
 import groovy.text.Template
 import in.labulle.anycode.engine.core.ITemplate
+import in.labulle.anycode.engine.core.TemplateScope;
 import in.labulle.anycode.engine.exception.TemplateException
 import in.labulle.anycode.engine.groovy.directive.JavaDirective
 import in.labulle.anycode.engine.groovy.directive.JpaDirective
@@ -15,6 +16,7 @@ class CompositeTemplate implements ITemplate {
 	Template nameTemplate
 	Template contentTemplate
 	String name
+	TemplateScope scope
 
 	def CompositeTemplate() {
 		engine = new GStringTemplateEngine()
@@ -89,5 +91,13 @@ class CompositeTemplate implements ITemplate {
 		} catch(Exception e) {
 			throw new TemplateException(e);
 		}
+	}
+
+	public void setScope(TemplateScope scope) {
+		this.scope=scope
+	}
+
+	public TemplateScope getScope() {
+		return this.scope
 	}
 }

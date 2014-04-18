@@ -47,6 +47,10 @@ public interface ITemplate extends ICodeGenerationArtifact {
 	File renderToFile(Map<String, Object> context)
 			throws TemplateException;
 	
-	
+	/**
+	 * 
+	 * @return the kind of class this template is interested in
+	 */
+	TemplateScope getScope();
 
 }

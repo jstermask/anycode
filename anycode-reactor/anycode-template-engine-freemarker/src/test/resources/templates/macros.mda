@@ -1,6 +1,0 @@
-<#macro javadoc>
-/**
- * @author Jose Carreno
- *
- */
-</#macro>

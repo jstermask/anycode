@@ -23,6 +23,12 @@ public class Configuration extends HashMap<String,Object> implements Cloneable {
 	public static final String CONTEXT_PARAM_CLASS_CURRENT = "c";
 	
 	/**
+	 * Current IModel instance parameter name.
+	 */
+	public static final String CONTEXT_PARAM_MODEL_CURRENT = "m";
+	
+	
+	/**
 	 * reference to the reference configuration.
 	 */
 	private static Configuration CONFIG;
