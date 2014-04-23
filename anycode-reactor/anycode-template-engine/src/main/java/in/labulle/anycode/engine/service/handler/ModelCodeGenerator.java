@@ -5,7 +5,6 @@ import in.labulle.anycode.engine.core.ITemplate;
 import in.labulle.anycode.engine.core.TemplateScope;
 import in.labulle.anycode.engine.exception.TemplateException;
 import in.labulle.anycode.engine.service.util.TemplateUtils;
-import in.labulle.anycode.uml.IClass;
 import in.labulle.anycode.uml.IModel;
 
 import java.io.File;
@@ -14,7 +13,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ClassifierCodeGenerator extends ReportCodeGenerator {
+public class ModelCodeGenerator extends ReportCodeGenerator {
 	/**
 	 * log.
 	 */
@@ -22,37 +21,35 @@ public class ClassifierCodeGenerator extends ReportCodeGenerator {
 			.getLogger(ClassifierCodeGenerator.class);
 
 	public void generateCode(IModel model, List<ITemplate> templates) {
-		List<IClass> classes = model.getAllClasses();
-		List<ITemplate> tps = TemplateUtils.getTemplateByScope(templates, TemplateScope.CLASSIFIER);
-		for (IClass aClass : classes) {
-			for (ITemplate aTemplate : tps) {
-				generate(aClass, aTemplate);
-				getCodeGenerationLog().progress();
-			}
+		List<ITemplate> tps = TemplateUtils.getTemplateByScope(templates, TemplateScope.MODEL);
+		for (ITemplate aTemplate : tps) {
+			generate(model, aTemplate);
+			getCodeGenerationLog().progress();
 		}
 	}
 
-	private void generate(final IClass aClass, final ITemplate aTemplate) {
-		getConfiguration().put(Configuration.CONTEXT_PARAM_CLASS_CURRENT,
-				aClass);
+	private void generate(final IModel model, final ITemplate aTemplate) {
+		getConfiguration().put(Configuration.CONTEXT_PARAM_MODEL_CURRENT,
+				model);
 		if (LOG.isDebugEnabled()) {
-			LOG.debug("generate(" + aClass.getName() + ","
+			LOG.debug("generate(" + model + ","
 					+ aTemplate.getName() + ")");
 		}
 		try {
 			File f = aTemplate.renderToFile(getConfiguration());
 			getCodeGenerationLog().success(f, aTemplate.getName(),
-					aClass.getFullyQualifiedName("."));
+					model.toString());
 		} catch (TemplateException e) {
-
 			getCodeGenerationLog().failure(aTemplate.getName(),
-					aClass.getFullyQualifiedName("."), e);
+					model.toString(), e);
 		}
 	}
 
 	public Integer calculateNumberOfGenerations(IModel model,
 			List<ITemplate> templates) {
-		return model.getAllClasses().size() * templates.size();
+		return TemplateUtils.getTemplateByScope(templates, TemplateScope.MODEL).size();
 	}
+	
+
 
 }

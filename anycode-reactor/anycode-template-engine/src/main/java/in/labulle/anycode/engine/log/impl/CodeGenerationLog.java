@@ -9,49 +9,60 @@ import java.util.List;
 import java.util.Observable;
 
 public class CodeGenerationLog extends Observable implements ICodeGenerationLog {
-    private final List<ICodeGenerationEvent> entries = new ArrayList<ICodeGenerationEvent>();
-    private Integer progress;
+	private final List<ICodeGenerationEvent> entries = new ArrayList<ICodeGenerationEvent>();
+	private Integer numberOfachievedGenerations;
 
-    public CodeGenerationLog() {
-        this.progress = 0;
-    }
+	private Integer numberOfGenerations;
 
-    public List<ICodeGenerationEvent> getContent() {
-        return this.entries;
-    }
+	public CodeGenerationLog() {
+		this.numberOfachievedGenerations = 0;
+		this.numberOfGenerations = 0;
+	}
 
-    public ICodeGenerationEvent success(File generatedFile, String templateName, String umlElementName) {
-        ICodeGenerationEvent evt = CodeGenerationEvent.success(generatedFile, templateName, umlElementName);
-        entries.add(evt);
-        notifyEvent(evt);
-        return evt;
-    }
+	public List<ICodeGenerationEvent> getContent() {
+		return this.entries;
+	}
 
-    public ICodeGenerationEvent failure(String templateName, String umlElementName, Exception failureCause) {
-        ICodeGenerationEvent evt = CodeGenerationEvent.failure(templateName, umlElementName, failureCause);
-        entries.add(evt);
-        notifyEvent(evt);
-        return evt;
-    }
+	public ICodeGenerationEvent success(File generatedFile,
+			String templateName, String umlElementName) {
+		ICodeGenerationEvent evt = CodeGenerationEvent.success(generatedFile,
+				templateName, umlElementName);
+		entries.add(evt);
+		notifyEvent(evt);
+		return evt;
+	}
 
-    public Integer getProgress() {
-        return progress;
-    }
+	public ICodeGenerationEvent failure(String templateName,
+			String umlElementName, Exception failureCause) {
+		ICodeGenerationEvent evt = CodeGenerationEvent.failure(templateName,
+				umlElementName, failureCause);
+		entries.add(evt);
+		notifyEvent(evt);
+		return evt;
+	}
 
-    public void setProgress(Integer progress) {
-        this.progress = progress;
-    }
+	public Integer getProgress() {
+		return (int) Math.round((numberOfachievedGenerations * 1.0 / numberOfGenerations * 1.0) * 100.0);
+	}
 
-    private void notifyEvent(ICodeGenerationEvent evt) {
-        setChanged();
-        notifyObservers(evt);
-    }
+	public void progress() {
+		numberOfachievedGenerations++;
+	}
 
-    public void reset() {
-        this.progress = 0;
-        this.entries.clear();
-        setChanged();
-        notifyObservers();
-    }
+	private void notifyEvent(ICodeGenerationEvent evt) {
+		setChanged();
+		notifyObservers(evt);
+	}
+
+	public void reset() {
+		this.numberOfachievedGenerations = 0;
+		this.entries.clear();
+		setChanged();
+		notifyObservers();
+	}
+
+	public void setNumberOfGenerations(Integer numberOfGenerations) {
+		this.numberOfGenerations = numberOfGenerations;
+	}
 
 }

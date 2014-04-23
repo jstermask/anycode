@@ -13,7 +13,9 @@ public interface ICodeGenerationLog {
 
 	void reset();
 
-	public void setProgress(final Integer progress);
+	void progress();
+	
+	void setNumberOfGenerations(Integer numberOfGenerations);
 
 	Integer getProgress();
 }
