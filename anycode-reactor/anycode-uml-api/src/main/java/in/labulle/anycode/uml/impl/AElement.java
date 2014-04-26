@@ -3,7 +3,9 @@ package in.labulle.anycode.uml.impl;
 import java.util.HashSet;
 import java.util.Set;
 
+import in.labulle.anycode.uml.IClassifier;
 import in.labulle.anycode.uml.IElement;
+import in.labulle.anycode.uml.IPackage;
 import in.labulle.anycode.uml.IStereotype;
 import in.labulle.anycode.uml.Visibility;
 
@@ -16,6 +18,8 @@ public class AElement implements IElement {
 	private Visibility visibility;
 
 	private String modifier;
+	
+	private String documentation;
 
 	private final Set<IStereotype> stereotypes = new HashSet<IStereotype>();
 
@@ -42,6 +46,11 @@ public class AElement implements IElement {
 
 	public void setOwner(IElement owner) {
 		this.owner = owner;
+		if(this instanceof IPackage) {
+			((IPackage)owner).addSubPackage((IPackage)this);
+		} else if (this instanceof IClassifier) {
+			((IPackage)owner).addClassifier((IClassifier)this);
+		}
 	}
 
 	public Set<IStereotype> getStereotypes() {
@@ -80,5 +89,13 @@ public class AElement implements IElement {
 
 	public void setModifier(String modifier) {
 		this.modifier = modifier;
+	}
+	
+	public String getDocumentation() {
+		return documentation;
+	}
+	
+	public void setDocumentation(String documentation) {
+		this.documentation = documentation;
 	}
 }

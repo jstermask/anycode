@@ -88,4 +88,12 @@ public abstract class AstahElement<T extends com.change_vision.jude.api.inf.mode
 	public String getModifier() {
 		return astahElement.getTypeModifier();
 	}
+	
+	public String getDocumentation() {
+		if(getAstahElement() instanceof INamedElement) {
+			return ((INamedElement)getAstahElement()).getDefinition();
+		} else {
+			return "";
+		}
+	}
 }

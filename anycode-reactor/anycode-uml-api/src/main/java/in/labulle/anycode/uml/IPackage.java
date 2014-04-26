@@ -1,5 +1,10 @@
 package in.labulle.anycode.uml;
 
-public interface IPackage extends IElement {
+import java.util.List;
 
+public interface IPackage extends IElement {
+	List<IPackage> getSubPackages();
+	void addSubPackage(IPackage pack);
+	List<IClassifier> getClassifiers();
+	void addClassifier(IClassifier cl);
 }

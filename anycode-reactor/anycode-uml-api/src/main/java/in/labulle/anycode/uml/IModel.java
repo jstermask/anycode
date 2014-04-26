@@ -4,4 +4,5 @@ import java.util.List;
 
 public interface IModel {
 	List<IClass> getAllClasses();
+	List<IPackage> getPackages();
 }
