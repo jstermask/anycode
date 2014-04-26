@@ -64,5 +64,13 @@ public class CodeGenerationLog extends Observable implements ICodeGenerationLog 
 	public void setNumberOfGenerations(Integer numberOfGenerations) {
 		this.numberOfGenerations = numberOfGenerations;
 	}
+	
+	public Integer getNumberOfachievedGenerations() {
+		return numberOfachievedGenerations;
+	}
+	
+	public Integer getNumberOfGenerations() {
+		return numberOfGenerations;
+	}
 
 }

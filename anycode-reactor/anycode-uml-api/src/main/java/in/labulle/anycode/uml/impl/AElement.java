@@ -19,6 +19,15 @@ public class AElement implements IElement {
 
 	private final Set<IStereotype> stereotypes = new HashSet<IStereotype>();
 
+	public AElement() {
+		super();
+	}
+	
+	public AElement(String name) {
+		this();
+		setName(name);
+	}
+	
 	public String getName() {
 		return name;
 	}

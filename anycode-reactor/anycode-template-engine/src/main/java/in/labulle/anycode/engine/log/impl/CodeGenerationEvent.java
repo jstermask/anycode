@@ -54,7 +54,7 @@ public class CodeGenerationEvent implements ICodeGenerationEvent {
     }
 
     public String toString() {
-        return "[TPL|" + this.templateName + "] | [UML|" + this.umlElementName + "] => " + status;
+        return "[TPL|" + getTemplateName() + "] | [UML|" + getUmlElementName() + "] => " + status;
     }
 
     public File getGeneratedFile() {

@@ -3,6 +3,7 @@ package in.labulle.anycode.engine.repository;
 import in.labulle.anycode.engine.core.ICodeGenerationArtifact;
 import in.labulle.anycode.engine.core.IMacro;
 import in.labulle.anycode.engine.core.ITemplate;
+import in.labulle.anycode.engine.core.TemplateScope;
 import in.labulle.anycode.engine.exception.TemplateRuntimeException;
 
 import java.io.File;
@@ -32,14 +33,15 @@ public abstract class AbstractDirectoryTemplateRepository implements
 	public void refresh() {
 		codeGenerationArtifacts.clear();
 		File dir = new File(path);
-		loadTemplates(dir);
+		loadTemplates(dir, TemplateScope.CLASSIFIER);
+		loadTemplates(dir, TemplateScope.MODEL);
 		loadMacros(dir);
 	}
 
-	protected void loadTemplates(File dir) {
+	protected void loadTemplates(File dir, TemplateScope scope) {
 		List<String> fileNames = Arrays.asList(dir
-				.list(getTemplateFilenameFilter()));
-		List<String> files = Arrays.asList(dir.list(getTemplateFilter()));
+				.list(getTemplateFilenameFilter(scope)));
+		List<String> files = Arrays.asList(dir.list(getTemplateFilter(scope)));
 		Collections.sort(fileNames);
 		Collections.sort(files);
 		for (int i = 0; i < fileNames.size(); i++) {
@@ -47,7 +49,7 @@ public abstract class AbstractDirectoryTemplateRepository implements
 				if (files.size() > i) {
 					ITemplate t = buildTemplate(path + File.separator
 							+ fileNames.get(i),
-							path + File.separator + files.get(i));
+							path + File.separator + files.get(i), scope);
 					codeGenerationArtifacts.add(t);
 				} else {
 					throw new TemplateRuntimeException(
@@ -69,20 +71,20 @@ public abstract class AbstractDirectoryTemplateRepository implements
 		}
 	}
 
-	public static FilenameFilter getTemplateFilenameFilter() {
+	public static FilenameFilter getTemplateFilenameFilter(final TemplateScope scope) {
 		return new FilenameFilter() {
 			public boolean accept(File dir, String name) {
 				return (name.indexOf(ITemplate.NAME_SUFFIX + "."
-						+ ITemplate.MDA_OVERWRITE_EXTENSION) != -1);
+						+ scope.getExtension()) != -1);
 			}
 		};
 	}
 
-	public static FilenameFilter getTemplateFilter() {
+	public static FilenameFilter getTemplateFilter(final TemplateScope scope) {
 		return new FilenameFilter() {
 			public boolean accept(File dir, String name) {
 				return (name.indexOf(ITemplate.CONTENT_SUFFIX + "."
-						+ ITemplate.MDA_OVERWRITE_EXTENSION) != -1);
+						+ scope.getExtension()) != -1);
 			}
 		};
 	}
@@ -97,7 +99,7 @@ public abstract class AbstractDirectoryTemplateRepository implements
 	}
 
 	protected abstract ITemplate buildTemplate(String nameTemplatePath,
-			String contentTemplatePath);
+			String contentTemplatePath, TemplateScope scope);
 
 	protected abstract IMacro buildMacro(String macroFilePath);
 }

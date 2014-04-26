@@ -15,6 +15,14 @@ public class AClassifier extends AElement implements IClassifier {
 	private boolean primitive;
 	
 
+	public AClassifier() {
+		super();
+	}
+	
+	public AClassifier(String name) {
+		super(name);
+	}
+	
 	public List<IAttribute> getAttributes() {
 		return attributes;
 	}

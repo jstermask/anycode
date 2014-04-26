@@ -4,7 +4,6 @@ import in.labulle.anycode.engine.config.Configuration;
 import in.labulle.anycode.engine.core.ICodeGenerationArtifact;
 import in.labulle.anycode.engine.core.IMacro;
 import in.labulle.anycode.engine.core.ITemplate;
-import in.labulle.anycode.engine.exception.TemplateException;
 import in.labulle.anycode.engine.exception.TemplateRuntimeException;
 import in.labulle.anycode.engine.log.ICodeGenerationLog;
 import in.labulle.anycode.engine.repository.ITemplateRepositoryFactory;
@@ -14,11 +13,9 @@ import in.labulle.anycode.engine.service.handler.ICodeGenerator;
 import in.labulle.anycode.engine.service.handler.ModelCodeGenerator;
 import in.labulle.anycode.engine.service.handler.ReportCodeGenerator;
 import in.labulle.anycode.engine.service.util.TemplateUtils;
-import in.labulle.anycode.uml.IClass;
 import in.labulle.anycode.uml.IModel;
 import in.labulle.anycode.uml.repository.IModelRepository;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,13 +100,6 @@ public class ClassCodeGenerationServiceImpl implements ICodeGenerationService {
 		
 	}
 
-	/**
-	 * 
-	 * @return template repository
-	 */
-	protected ITemplateRepositoryFactory getTemplateRepositoryFactory() {
-		return templateRepositoryFactory;
-	}
 
 	/**
 	 * 
@@ -122,37 +112,6 @@ public class ClassCodeGenerationServiceImpl implements ICodeGenerationService {
 	private void addMacros(List<IMacro> macros, final Configuration config) {
 		for (IMacro aMacro : macros) {
 			config.put(aMacro.getVarName(), aMacro.getInstance());
-		}
-	}
-
-	/**
-	 * Call the template to render itself as a file.
-	 * 
-	 * @param aClass
-	 *            class
-	 * @param aTemplate
-	 *            template
-	 * @param config
-	 *            configuration
-	 */
-	private void generate(final IClass aClass, final ITemplate aTemplate,
-			final Configuration config) {
-		config.put(Configuration.CONTEXT_PARAM_CLASS_CURRENT, aClass);
-		if (LOG.isDebugEnabled()) {
-			LOG.debug("generate(" + aClass.getName() + ","
-					+ aTemplate.getName() + ")");
-		}
-		try {
-			File f = aTemplate.renderToFile(config);
-			if (this.codeGenerationReport != null) {
-				this.codeGenerationReport.success(f, aTemplate.getName(),
-						aClass.getFullyQualifiedName("."));
-			}
-		} catch (TemplateException e) {
-			if (this.codeGenerationReport != null) {
-				this.codeGenerationReport.failure(aTemplate.getName(),
-						aClass.getFullyQualifiedName("."), e);
-			}
 		}
 	}
 

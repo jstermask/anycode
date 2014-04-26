@@ -21,35 +21,40 @@ public class ModelCodeGenerator extends ReportCodeGenerator {
 			.getLogger(ClassifierCodeGenerator.class);
 
 	public void generateCode(IModel model, List<ITemplate> templates) {
-		List<ITemplate> tps = TemplateUtils.getTemplateByScope(templates, TemplateScope.MODEL);
+		List<ITemplate> tps = TemplateUtils.getTemplateByScope(templates,
+				TemplateScope.MODEL);
 		for (ITemplate aTemplate : tps) {
 			generate(model, aTemplate);
-			getCodeGenerationLog().progress();
+			if (getCodeGenerationLog() != null) {
+				getCodeGenerationLog().progress();
+			}
 		}
 	}
 
 	private void generate(final IModel model, final ITemplate aTemplate) {
-		getConfiguration().put(Configuration.CONTEXT_PARAM_MODEL_CURRENT,
-				model);
+		getConfiguration()
+				.put(Configuration.CONTEXT_PARAM_MODEL_CURRENT, model);
 		if (LOG.isDebugEnabled()) {
-			LOG.debug("generate(" + model + ","
-					+ aTemplate.getName() + ")");
+			LOG.debug("generate(" + model + "," + aTemplate.getName() + ")");
 		}
 		try {
 			File f = aTemplate.renderToFile(getConfiguration());
-			getCodeGenerationLog().success(f, aTemplate.getName(),
-					model.toString());
+			if (getCodeGenerationLog() != null) {
+				getCodeGenerationLog().success(f, aTemplate.getName(),
+						model.toString());
+			}
 		} catch (TemplateException e) {
-			getCodeGenerationLog().failure(aTemplate.getName(),
-					model.toString(), e);
+			if (getCodeGenerationLog() != null) {
+				getCodeGenerationLog().failure(aTemplate.getName(),
+						model.toString(), e);
+			}
 		}
 	}
 
 	public Integer calculateNumberOfGenerations(IModel model,
 			List<ITemplate> templates) {
-		return TemplateUtils.getTemplateByScope(templates, TemplateScope.MODEL).size();
+		return TemplateUtils.getTemplateByScope(templates, TemplateScope.MODEL)
+				.size();
 	}
-	
-
 
 }

@@ -10,6 +10,15 @@ public class AAttribute extends AElement implements IAttribute {
 	private Cardinality cardinality = Cardinality.ZERO_TO_ONE;
 	
 	
+	
+	public AAttribute() {
+		super();
+	}
+
+	public AAttribute(String name) {
+		super(name);
+	}
+
 	public IClassifier getDataType() {
 		return dataType;
 	}

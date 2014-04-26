@@ -52,7 +52,7 @@ public class ClassifierCodeGenerator extends ReportCodeGenerator {
 
 	public Integer calculateNumberOfGenerations(IModel model,
 			List<ITemplate> templates) {
-		return model.getAllClasses().size() * templates.size();
+		return model.getAllClasses().size() * TemplateUtils.getTemplateByScope(templates, TemplateScope.CLASSIFIER).size();
 	}
 
 }
