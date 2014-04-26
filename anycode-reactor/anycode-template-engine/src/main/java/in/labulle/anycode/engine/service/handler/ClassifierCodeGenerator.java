@@ -5,7 +5,7 @@ import in.labulle.anycode.engine.core.ITemplate;
 import in.labulle.anycode.engine.core.TemplateScope;
 import in.labulle.anycode.engine.exception.TemplateException;
 import in.labulle.anycode.engine.service.util.TemplateUtils;
-import in.labulle.anycode.uml.IClass;
+import in.labulle.anycode.uml.IClassifier;
 import in.labulle.anycode.uml.IModel;
 
 import java.io.File;
@@ -22,9 +22,9 @@ public class ClassifierCodeGenerator extends ReportCodeGenerator {
 			.getLogger(ClassifierCodeGenerator.class);
 
 	public void generateCode(IModel model, List<ITemplate> templates) {
-		List<IClass> classes = model.getAllClasses();
+		List<IClassifier> classes = model.getAllClasses();
 		List<ITemplate> tps = TemplateUtils.getTemplateByScope(templates, TemplateScope.CLASSIFIER);
-		for (IClass aClass : classes) {
+		for (IClassifier aClass : classes) {
 			for (ITemplate aTemplate : tps) {
 				generate(aClass, aTemplate);
 				getCodeGenerationLog().progress();
@@ -32,7 +32,7 @@ public class ClassifierCodeGenerator extends ReportCodeGenerator {
 		}
 	}
 
-	private void generate(final IClass aClass, final ITemplate aTemplate) {
+	private void generate(final IClassifier aClass, final ITemplate aTemplate) {
 		getConfiguration().put(Configuration.CONTEXT_PARAM_CLASS_CURRENT,
 				aClass);
 		if (LOG.isDebugEnabled()) {

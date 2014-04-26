@@ -23,7 +23,6 @@ public class APackage extends AElement implements IPackage {
 		return new ArrayList<IPackage>(subPackages);
 	}
 
-
 	public List<IClassifier> getClassifiers() {
 		return new ArrayList<IClassifier>(classifiers);
 	}
@@ -35,6 +34,5 @@ public class APackage extends AElement implements IPackage {
 	public void addClassifier(IClassifier cl) {
 		this.classifiers.add(cl);
 	}
-
 
 }

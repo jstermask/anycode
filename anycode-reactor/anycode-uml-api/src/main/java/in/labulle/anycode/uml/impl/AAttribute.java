@@ -6,11 +6,9 @@ import in.labulle.anycode.uml.IClassifier;
 
 public class AAttribute extends AElement implements IAttribute {
 	private IClassifier dataType;
-	
+
 	private Cardinality cardinality = Cardinality.ZERO_TO_ONE;
-	
-	
-	
+
 	public AAttribute() {
 		super();
 	}
@@ -22,7 +20,7 @@ public class AAttribute extends AElement implements IAttribute {
 	public IClassifier getDataType() {
 		return dataType;
 	}
-	
+
 	public void setDataType(IClassifier dataType) {
 		this.dataType = dataType;
 	}
@@ -30,12 +28,11 @@ public class AAttribute extends AElement implements IAttribute {
 	public Cardinality getCardinality() {
 		return cardinality;
 	}
-	
+
 	public void setCardinality(Cardinality cardinality) {
 		this.cardinality = cardinality;
 	}
 
-	
 	public boolean isRelation() {
 		return false;
 	}

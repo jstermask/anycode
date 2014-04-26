@@ -18,7 +18,7 @@ public class AElement implements IElement {
 	private Visibility visibility;
 
 	private String modifier;
-	
+
 	private String documentation;
 
 	private final Set<IStereotype> stereotypes = new HashSet<IStereotype>();
@@ -26,12 +26,12 @@ public class AElement implements IElement {
 	public AElement() {
 		super();
 	}
-	
+
 	public AElement(String name) {
 		this();
 		setName(name);
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -46,10 +46,10 @@ public class AElement implements IElement {
 
 	public void setOwner(IElement owner) {
 		this.owner = owner;
-		if(this instanceof IPackage) {
-			((IPackage)owner).addSubPackage((IPackage)this);
+		if (this instanceof IPackage) {
+			((IPackage) owner).addSubPackage((IPackage) this);
 		} else if (this instanceof IClassifier) {
-			((IPackage)owner).addClassifier((IClassifier)this);
+			((IPackage) owner).addClassifier((IClassifier) this);
 		}
 	}
 
@@ -90,11 +90,11 @@ public class AElement implements IElement {
 	public void setModifier(String modifier) {
 		this.modifier = modifier;
 	}
-	
+
 	public String getDocumentation() {
 		return documentation;
 	}
-	
+
 	public void setDocumentation(String documentation) {
 		this.documentation = documentation;
 	}

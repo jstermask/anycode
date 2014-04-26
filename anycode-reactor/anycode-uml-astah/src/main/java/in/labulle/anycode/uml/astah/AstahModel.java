@@ -1,14 +1,14 @@
 package in.labulle.anycode.uml.astah;
 
+import in.labulle.anycode.uml.IClassifier;
+import in.labulle.anycode.uml.IModel;
+import in.labulle.anycode.uml.IPackage;
+import in.labulle.anycode.uml.astah.utils.ModelUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import com.change_vision.jude.api.inf.model.INamedElement;
-
-import in.labulle.anycode.uml.IClass;
-import in.labulle.anycode.uml.IModel;
-import in.labulle.anycode.uml.IPackage;
-import in.labulle.anycode.uml.astah.utils.ModelUtils;
 
 public class AstahModel implements IModel {
 	private final com.change_vision.jude.api.inf.model.IModel astahModel;
@@ -17,12 +17,16 @@ public class AstahModel implements IModel {
 		this.astahModel = astah;
 	}
 
-	public List<IClass> getAllClasses() {
+	public List<IClassifier> getAllClasses() {
 		List<com.change_vision.jude.api.inf.model.IClass> astahClasses = ModelUtils
 				.getAllClasses(astahModel);
-		List<IClass> classes = new ArrayList<IClass>();
+		List<IClassifier> classes = new ArrayList<IClassifier>();
 		for (com.change_vision.jude.api.inf.model.IClass astahCl : astahClasses) {
-			classes.add(new AstahClass(astahCl));
+			if (astahCl.hasStereotype("interface")) {
+				classes.add(new AstahInterface(astahCl));
+			} else {
+				classes.add(new AstahClass(astahCl));
+			}
 		}
 		return classes;
 	}

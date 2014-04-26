@@ -10,6 +10,7 @@ import in.labulle.anycode.engine.exception.TemplateException;
 import in.labulle.anycode.engine.repository.ITemplateRepository;
 import in.labulle.anycode.engine.repository.ITemplateRepositoryFactory;
 import in.labulle.anycode.uml.IClass;
+import in.labulle.anycode.uml.IClassifier;
 import in.labulle.anycode.uml.IModel;
 import in.labulle.anycode.uml.impl.AClass;
 import in.labulle.anycode.uml.impl.APackage;
@@ -52,9 +53,9 @@ public class AbstractMocks {
 		IModel model = mock(IModel.class);
 		if (withClasses) {
 			when(model.getAllClasses()).thenReturn(
-					Arrays.asList(getPersonClass(), getCarClass()));
+					Arrays.asList((IClassifier)getPersonClass(), (IClassifier)getCarClass()));
 		} else {
-			when(model.getAllClasses()).thenReturn(new ArrayList<IClass>());
+			when(model.getAllClasses()).thenReturn(new ArrayList<IClassifier>());
 
 		}
 		return model;
