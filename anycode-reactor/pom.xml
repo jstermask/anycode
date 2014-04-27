@@ -12,6 +12,7 @@
 		<module>astah-anycode-plugin</module>
 		<module>anycode-template-engine-groovy</module>
 		<module>anycode-uml-astah</module>
+		<module>anycode-xmi-parser</module>
 	</modules>
 
 	<dependencyManagement>

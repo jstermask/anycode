@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><uml:Model xmlns:uml="http://www.omg.org/spec/UML/20090901" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmi:version="2.1" xmi:id="_mmWCoM5WEeOj-t2CYSuHFA" name="project1">
+  <eAnnotations xmi:id="_mmWCoc5WEeOj-t2CYSuHFA" source="Objing">
+    <contents xmi:type="uml:Property" xmi:id="_mmWCos5WEeOj-t2CYSuHFA" name="exporterVersion">
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_mmWCo85WEeOj-t2CYSuHFA" value="3.0.0"/>
+    </contents>
+  </eAnnotations>
+  <packagedElement xmi:type="uml:Package" xmi:id="_mmWpsM5WEeOj-t2CYSuHFA" name="in">
+    <packagedElement xmi:type="uml:Package" xmi:id="_mmWpsc5WEeOj-t2CYSuHFA" name="labulle">
+      <packagedElement xmi:type="uml:Package" xmi:id="_mmWpss5WEeOj-t2CYSuHFA" name="anycode">
+        <packagedElement xmi:type="uml:Class" xmi:id="_mmWps85WEeOj-t2CYSuHFA" name="Person" clientDependency="_mmWpu85WEeOj-t2CYSuHFA">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_mmWptM5WEeOj-t2CYSuHFA" name="address" visibility="public" type="_mmWpx85WEeOj-t2CYSuHFA" association="_mmWpvM5WEeOj-t2CYSuHFA">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mmWptc5WEeOj-t2CYSuHFA"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_mmWpts5WEeOj-t2CYSuHFA" name="cars" visibility="public" type="_mmWpys5WEeOj-t2CYSuHFA" aggregation="shared" association="_mmWpwM5WEeOj-t2CYSuHFA">
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mmWpt85WEeOj-t2CYSuHFA" value="*"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mmWpuM5WEeOj-t2CYSuHFA"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_mmWpuc5WEeOj-t2CYSuHFA" name="firstname" visibility="private" isUnique="false">
+            <type xmi:type="uml:PrimitiveType" href="http://schema.omg.org/spec/20090901/UML.xmi#String"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_mmWpus5WEeOj-t2CYSuHFA" name="lastname" visibility="private" isUnique="false">
+            <type xmi:type="uml:PrimitiveType" href="http://schema.omg.org/spec/20090901/UML.xmi#String"/>
+          </ownedAttribute>
+          <interfaceRealization xmi:id="_mmWpu85WEeOj-t2CYSuHFA" name="InterfaceRealization" supplier="_mmWpwc5WEeOj-t2CYSuHFA" client="_mmWps85WEeOj-t2CYSuHFA" contract="_mmWpwc5WEeOj-t2CYSuHFA"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_mmWpvM5WEeOj-t2CYSuHFA" memberEnd="_mmWptM5WEeOj-t2CYSuHFA _mmWpvc5WEeOj-t2CYSuHFA">
+          <ownedEnd xmi:type="uml:Property" xmi:id="_mmWpvc5WEeOj-t2CYSuHFA" visibility="public" type="_mmWps85WEeOj-t2CYSuHFA" association="_mmWpvM5WEeOj-t2CYSuHFA">
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mmWpvs5WEeOj-t2CYSuHFA" value="*"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mmWpv85WEeOj-t2CYSuHFA"/>
+          </ownedEnd>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_mmWpwM5WEeOj-t2CYSuHFA" memberEnd="_mmWpts5WEeOj-t2CYSuHFA _mmWpy85WEeOj-t2CYSuHFA"/>
+        <packagedElement xmi:type="uml:Interface" xmi:id="_mmWpwc5WEeOj-t2CYSuHFA" name="Moveable" isAbstract="true">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_mmWpws5WEeOj-t2CYSuHFA" name="move" visibility="public">
+            <ownedParameter xmi:id="_mmWpw85WEeOj-t2CYSuHFA" name="x" isUnique="false">
+              <type xmi:type="uml:PrimitiveType" href="http://schema.omg.org/spec/20090901/UML.xmi#Integer"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mmWpxM5WEeOj-t2CYSuHFA" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mmWpxc5WEeOj-t2CYSuHFA" value="1"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_mmWpxs5WEeOj-t2CYSuHFA" value=""/>
+            </ownedParameter>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_mmWpx85WEeOj-t2CYSuHFA" name="Address">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_mmWpyM5WEeOj-t2CYSuHFA" name="streetNumber" visibility="private" isUnique="false">
+            <type xmi:type="uml:PrimitiveType" href="http://schema.omg.org/spec/20090901/UML.xmi#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_mmWpyc5WEeOj-t2CYSuHFA" name="streetName" visibility="private" isUnique="false">
+            <type xmi:type="uml:PrimitiveType" href="http://schema.omg.org/spec/20090901/UML.xmi#String"/>
+          </ownedAttribute>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_mmWpys5WEeOj-t2CYSuHFA" name="Car" clientDependency="_mmWpzs5WEeOj-t2CYSuHFA">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_mmWpy85WEeOj-t2CYSuHFA" name="owner" visibility="public" type="_mmWps85WEeOj-t2CYSuHFA" association="_mmWpwM5WEeOj-t2CYSuHFA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mmWpzM5WEeOj-t2CYSuHFA"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_mmWpzc5WEeOj-t2CYSuHFA" name="model" visibility="private" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="http://schema.omg.org/spec/20090901/UML.xmi#String"/>
+    </ownedAttribute>
+    <interfaceRealization xmi:id="_mmWpzs5WEeOj-t2CYSuHFA" name="InterfaceRealization" supplier="_mmWpwc5WEeOj-t2CYSuHFA" client="_mmWpys5WEeOj-t2CYSuHFA" contract="_mmWpwc5WEeOj-t2CYSuHFA"/>
+  </packagedElement>
+</uml:Model>
