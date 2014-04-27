@@ -11,7 +11,6 @@
 		<module>anycode-template-engine</module>
 		<module>astah-anycode-plugin</module>
 		<module>anycode-template-engine-groovy</module>
-		<module>anycode-template-engine-freemarker</module>
 		<module>anycode-uml-astah</module>
 	</modules>
 

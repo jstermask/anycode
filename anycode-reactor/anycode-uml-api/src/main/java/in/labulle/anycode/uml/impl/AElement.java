@@ -46,10 +46,12 @@ public class AElement implements IElement {
 
 	public void setOwner(IElement owner) {
 		this.owner = owner;
-		if (this instanceof IPackage) {
-			((IPackage) owner).addSubPackage((IPackage) this);
-		} else if (this instanceof IClassifier) {
-			((IPackage) owner).addClassifier((IClassifier) this);
+		if (owner != null) {
+			if (this instanceof IPackage) {
+				((IPackage) owner).addSubPackage((IPackage) this);
+			} else if (this instanceof IClassifier) {
+				((IPackage) owner).addClassifier((IClassifier) this);
+			}
 		}
 	}
 

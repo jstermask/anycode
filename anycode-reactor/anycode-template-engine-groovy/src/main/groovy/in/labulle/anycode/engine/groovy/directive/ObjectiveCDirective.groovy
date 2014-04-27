@@ -4,10 +4,10 @@ import in.labulle.anycode.uml.IAttribute
 import in.labulle.anycode.uml.IClassifier
 import in.labulle.anycode.uml.IOperation;
 
-class ObjectiveCDirective {
+class ObjectiveCDirective extends AnycodeDirective {
 	/**
-	 * Generates attribute's name
-	 * @param a attribute
+	 * Renders attribute's name.
+	 * @param a attribute.
 	 * @return attribute's name or datatype name if relation attribute has no specific name.
 	 */
 	def  getAttributeName(IAttribute a) {
@@ -20,10 +20,29 @@ class ObjectiveCDirective {
 		return attName
 	}
 	
+	/**
+	 * Renders attribute. Format [datatype] [attribute name];
+	 * @param a attribute.
+	 * @return attribute declaration as a GString.
+	 */
 	def attribute(IAttribute a) {
 		return """${datatype(a)} ${getAttributeName(a)};"""
 	}
 	
+	/**
+	 * Renders datatype's name. This is mainly used to render primitive datatype names automatically and apply a mapping to Objective-C types :
+	 * <ul>
+	 * 	<li>string => NSString *</li>
+	 *  <li>int => NSInteger</li>
+	 *  <li>float => CGFloat *</li>
+	 *  <li>date => NSDate *</li>
+	 *  <li>double => double</li>
+	 *  <li>[MyClass] => MyClass *</li>
+	 * </ul>
+	 * @param d classifier
+	 * @param modifier type's modifier (not used in the current implementation).
+	 * @return datatype name as a String.
+	 */
 	def getDataTypeName(IClassifier d, String modifier) {
 		def dtName = d.getName().toLowerCase()
 		if(d.isPrimitive()) {
@@ -43,6 +62,12 @@ class ObjectiveCDirective {
 		}
 	}
 	
+	/**
+	 * Renders attribute's datatype declaration. If type is multivalued, then the given collectionClassName is used as a datatype.
+	 * @param a attribute.
+	 * @param collectionClassName name of the collection class (e.g. : NSArray *).
+	 * @return datatype declaration as a GString.
+	 */
 	def datatype(IAttribute a, String collectionClassName) {
 		if(a.getDataType().isPrimitive()) {
 			return """${getDataTypeName(a.dataType, null)}"""
@@ -51,19 +76,29 @@ class ObjectiveCDirective {
 		}
 	}
 	
+	/**
+	 * Renders attribute's datatype declaration. Calls the underlying {@link #datatype(IAttribute, String)} with 'NSArray *' collection class name.
+	 * @param a attribute
+	 * @return datatype declaration as a GString.
+	 */
 	def datatype(IAttribute a) {
 		return datatype(a, 'NSArray *')
 	}
 	
 	/**
-	 *
-	 * @param op
-	 * @return
+	 * Renders operation name. 
+	 * @param op operation.
+	 * @return operation 'name' attribute.
 	 */
 	protected def  getOperationName(IOperation op) {
 		return op.getName()
 	}
 	
+	/**
+	 * Renders operation signature. format '- [(returnType)|(void)] [operation name]([params])'. Note that there is no semi colon at the end of the operation signature.
+	 * @param op operation.
+	 * @return operation signature as a GString.
+	 */
 	def operationSignature(IOperation op) {
 		def params = null
 		op.getParameters().reverseEach() { it -> params = "(${getDataTypeName(it.dataType, it.modifier)}) ${it.name}" + (params == null ? "" : " " + params)  }
@@ -71,11 +106,21 @@ class ObjectiveCDirective {
 		return """- ${op.returnType == null ? '(void)' : '('+getDataTypeName(op.returnType, op.modifier) + ')'}${getOperationName(op)}${params == null ? '' : ':' + params}"""
 	}
 	
+	/**
+	 * Renders operation implementation. format '- [(returnType)|(void)] [operation name]([params]) { }'.
+	 * @param op operation.
+	 * @return operation implementation as a GString.
+	 */
 	def operationImplementation(IOperation op) {
 		return """${operationSignature(op)} {
 		}"""
 	}
 	
+	/**
+	 * Renders automatically '@class' imports based on dependent attributes. 
+	 * @param c classifier.
+	 * @return class imports as a GString.
+	 */
 	def classImports(IClassifier c) {
 		def imports = ""
 		c.attributes.findAll({!it.dataType.primitive}).each {
