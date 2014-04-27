@@ -24,13 +24,22 @@ public interface IClassifier extends IElement {
 	List<IOperation> getOperations();
 
 	/**
-	 * 
-	 * @return a list of generalizations that can be either a list of {@link IInterface} if current classifier is an {@link IInterface} itself. Or a list of
+	 * Gets a list of generalizations that can be either a list of {@link IInterface} if current classifier is an {@link IInterface} itself. Or a list of
 	 *         {@link IClass} if current classifier is an {@link IClass} too.
+	 * @return a list of generalizations that can be either a list of {@link IInterface} if current classifier is an {@link IInterface} itself. Or a list of
+	 *         {@link IClass} if current classifier is an {@link IClass} too. Can be empty but never null.
 	 */
 	List<? extends IClassifier> getGeneralizations();
 
+	/**
+	 * Gets all the classes or interfaces that the current class depends on.
+	 * @return List of all the classes or interfaces that the current class depends on. Can be empty but never null.
+	 */
 	List<? extends IClassifier> getClientDependencies();
 
+	/**
+	 * Checks whether this classifier is primitive (int, double, float, string...)
+	 * @return true if classifier is primitive type
+	 */
 	boolean isPrimitive();
 }
