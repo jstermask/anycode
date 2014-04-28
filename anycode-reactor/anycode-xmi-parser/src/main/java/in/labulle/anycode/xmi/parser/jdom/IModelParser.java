@@ -5,22 +5,21 @@ import in.labulle.anycode.uml.impl.AModel;
 import in.labulle.anycode.xmi.parser.XmiInvalidParserException;
 
 import org.jdom2.Element;
-import org.jdom2.Namespace;
 
 public class IModelParser extends IElementParser<IModel> {
 	private static final String TAG_MODEL = "Model";
 
 
 
-	public IModelParser(Element elt, Namespace umlNamespace, Namespace xmiNamespace) {
-		super(elt, umlNamespace, xmiNamespace);
+	public IModelParser(IParserContext parserContext) {
+		super(parserContext);
 	}
 
 	public IModel parse() {
 		AModel model = new AModel();
-		for(Element elt : getElement().getChildren()) {
+		for(Element elt : getParserContext().getCurrentElement().getChildren()) {
 			try {
-				IPackageParser p = new IPackageParser(elt, getUmlNamespace(), getXmiNamespace());
+				IPackageParser p = new IPackageParser(getParserContext().clone(elt));
 				model.getPackages().add(p.parse());
 			} catch(XmiInvalidParserException e) {
 				
@@ -35,6 +34,6 @@ public class IModelParser extends IElementParser<IModel> {
 
 	@Override
 	protected boolean matches() {
-		return getModelTagName().equalsIgnoreCase(getElement().getName());
+		return getModelTagName().equalsIgnoreCase(getParserContext().getCurrentElement().getName());
 	}
 }

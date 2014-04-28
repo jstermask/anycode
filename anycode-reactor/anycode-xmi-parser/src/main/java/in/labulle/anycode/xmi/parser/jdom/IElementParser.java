@@ -4,50 +4,24 @@ import in.labulle.anycode.xmi.parser.XmiInvalidParserException;
 import in.labulle.anycode.xmi.parser.XmiParser;
 import in.labulle.anycode.xmi.parser.jdom.util.ParserUtil;
 
-import org.jdom2.Element;
-import org.jdom2.Namespace;
-
 public abstract class IElementParser<T> implements XmiParser<T> {
-	private Element element;
+	private IParserContext parserContext;
 
-	private Namespace umlNamespace;
-
-	private Namespace xmiNamespace;
-
-	public IElementParser(final Element elt, final Namespace umlNamespace, final Namespace xmiNamespace) {
-		this.element = elt;
-		this.umlNamespace = umlNamespace;
-		this.xmiNamespace = xmiNamespace;
+	public IElementParser(final IParserContext ctx) {
+		this.parserContext = ctx;
 		if (!matches()) {
-			throw new XmiInvalidParserException("Parser " + getClass().getName() + " is not valid for this element");
+			throw new XmiInvalidParserException("Parser " + getClass().getSimpleName() + " is not valid for the given element (" + getParserContext().getCurrentElement().getName() + ")");
 		}
 	}
 
 	protected abstract boolean matches();
 
-	protected Element getElement() {
-		return element;
-	}
-
-	protected Namespace getUmlNamespace() {
-		return umlNamespace;
-	}
-
-	protected Namespace getXmiNamespace() {
-		return xmiNamespace;
+	protected IParserContext getParserContext() {
+		return parserContext;
 	}
 
 	protected boolean isElementType(String typeName) {
-		return ParserUtil.getNamespacedString(getUmlNamespace(), typeName).equalsIgnoreCase(getElement().getAttributeValue("type", getXmiNamespace()));
-	}
-	
-	public IElementParser newInstance(Element e) {
-		IPackageParser p = new IPackageParser(e, getUmlNamespace(), getXmiNamespace());
-		if(p.matches()) {
-			return p;
-		} else {
-			return null;
-		}
+		return ParserUtil.getNamespacedString(getParserContext().getUmlNamespace(), typeName).equalsIgnoreCase(getParserContext().getCurrentElement().getAttributeValue("type", getParserContext().getXmiNamespace()));
 	}
 
 }
