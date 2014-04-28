@@ -1,7 +1,6 @@
 package in.labulle.anycode.xmi.parser;
 
-import in.labulle.anycode.uml.IModel;
 
-public interface XmiParser {
-	IModel parse();
+public interface XmiParser<T> {
+	T parse();
 }

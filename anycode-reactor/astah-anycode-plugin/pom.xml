@@ -404,11 +404,6 @@
 		</dependency>
 		<dependency>
 			<groupId>in.labulle.anycode</groupId>
-			<artifactId>anycode-template-engine-freemarker</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>in.labulle.anycode</groupId>
 			<artifactId>anycode-template-engine-groovy</artifactId>
 			<version>${project.version}</version>
 		</dependency>
