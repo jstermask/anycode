@@ -1,4 +1,4 @@
-package in.labulle.anycode.xmi.parser;
+package in.labulle.anycode.xmi.parser.exception;
 
 public class XmiParserException extends RuntimeException {
 

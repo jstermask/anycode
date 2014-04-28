@@ -1,4 +1,4 @@
-package in.labulle.anycode.xmi.parser.jdom;
+package in.labulle.anycode.xmi.parser.jdom.uml;
 
 import in.labulle.anycode.uml.IElement;
 
