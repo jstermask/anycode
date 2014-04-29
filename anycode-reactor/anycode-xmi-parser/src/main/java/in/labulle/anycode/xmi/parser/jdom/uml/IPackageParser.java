@@ -22,10 +22,13 @@ public class IPackageParser extends IElementParser<IPackage> {
 	}
 
 	@Override
-	protected void init(IPackage obj) {
+	protected boolean init(IPackage obj) {
 		if(obj instanceof APackage) {
 			APackage p = (APackage)obj;
+			p.setName(getParserContext().getCurrentElement().getAttributeValue("name"));
+			return true;
 		}
+		return false;
 	}
 
 

@@ -28,10 +28,12 @@ public class IModelParser extends IElementParser<IModel> {
 	}
 
 	@Override
-	protected void init(IModel obj) {
+	protected boolean init(IModel obj) {
 		if (obj instanceof AModel) {
 			AModel m = (AModel) obj;
+			return true;
 		}
+		return false;
 	}
 
 	@Override

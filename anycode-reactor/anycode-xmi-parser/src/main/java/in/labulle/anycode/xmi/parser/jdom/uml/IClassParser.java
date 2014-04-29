@@ -2,6 +2,7 @@ package in.labulle.anycode.xmi.parser.jdom.uml;
 
 import in.labulle.anycode.uml.IClass;
 import in.labulle.anycode.uml.impl.AClass;
+import in.labulle.anycode.xmi.parser.jdom.util.ParserUtil;
 
 public class IClassParser extends IElementParser<IClass> {
 
@@ -12,7 +13,7 @@ public class IClassParser extends IElementParser<IClass> {
 	}
 
 	public boolean matches(IParserContext ctx) {
-		return false;
+		return ParserUtil.valueEquals(ctx, "type", "Class");
 	}
 
 	@Override
@@ -21,10 +22,13 @@ public class IClassParser extends IElementParser<IClass> {
 	}
 
 	@Override
-	protected void init(IClass obj) {
+	protected boolean init(IClass obj) {
 		if(obj instanceof AClass) {
 			AClass c = (AClass)obj;
+			c.setName(getParserContext().getCurrentElement().getAttributeValue("name"));
+			return true;
 		}
+		return false;
 	}
 
 	@Override
