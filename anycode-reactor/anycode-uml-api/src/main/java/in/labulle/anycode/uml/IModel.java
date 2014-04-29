@@ -17,9 +17,16 @@ public interface IModel {
 	List<IClassifier> getAllClasses();
 
 	/**
-	 * Get root packages of the model. Only direct child of the UML model are returned.
+	 * Get root packages of the model. Only direct children of the UML model are returned.
 	 * 
 	 * @return root packages of the model.
 	 */
 	List<IPackage> getPackages();
+	
+	/**
+	 * Get root classes of the model. Only direct children of the UML model are returned.
+	 * 
+	 * @return root classes of the model.
+	 */
+	List<IClassifier> getClassifiers();
 }

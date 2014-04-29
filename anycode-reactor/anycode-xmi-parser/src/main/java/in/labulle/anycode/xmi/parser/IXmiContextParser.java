@@ -4,6 +4,6 @@ import in.labulle.anycode.xmi.parser.jdom.uml.IParserContext;
 
 
 public interface IXmiContextParser<T> {
-	T parse(IParserContext ctx);
+	T parse();
 	boolean matches(IParserContext ctx);
 }

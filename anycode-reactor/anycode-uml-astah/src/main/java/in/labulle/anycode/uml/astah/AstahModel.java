@@ -40,4 +40,14 @@ public class AstahModel implements IModel {
 		}
 		return packages;
 	}
+
+	public List<IClassifier> getClassifiers() {
+		List<IClassifier> packages = new ArrayList<IClassifier>();
+		for (INamedElement elt : astahModel.getOwnedElements()) {
+			if (elt instanceof com.change_vision.jude.api.inf.model.IClass) {
+				packages.add((IClassifier) AstahElement.getElement(elt));
+			}
+		}
+		return packages;
+	}
 }

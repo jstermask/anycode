@@ -32,7 +32,7 @@ public class XmiParserImpl {
 			IXmiContextParserFactory factory = new XmiContextParserFactory();
 			IParserContext ctx = new ParserContext(discoverUmlNamespace(jdomDocument), discoverXmiNamespace(jdomDocument), root);
 			IXmiContextParser<IModel> parser = (IXmiContextParser<IModel>)factory.newInstance(ctx);
-			return parser.parse(ctx);
+			return parser.parse();
 		} catch (Exception e) {
 			throw new XmiParserException(e);
 		}
