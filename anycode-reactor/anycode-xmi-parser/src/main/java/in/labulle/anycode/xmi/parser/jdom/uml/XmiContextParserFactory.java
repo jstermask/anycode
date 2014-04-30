@@ -11,7 +11,7 @@ public class XmiContextParserFactory implements IXmiContextParserFactory {
 	private static IXmiContextParserFactory instance = null;
 
 	@SuppressWarnings("unchecked")
-	public final List<Class<?>> parsersClasses = Arrays.asList((Class<?>) IModelParser.class, IPackageParser.class, IClassParser.class, IInterfaceParser.class);
+	public final List<Class<?>> parsersClasses = Arrays.asList((Class<?>) IModelParser.class, IPackageParser.class, IClassParser.class, IInterfaceParser.class, IAttributeParser.class, IAttributePrimitiveDatatypeParser.class, IRelationAttributeParser.class);
 
 	public XmiContextParserFactory() {
 

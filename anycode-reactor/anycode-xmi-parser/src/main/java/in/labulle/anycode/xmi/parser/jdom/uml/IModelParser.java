@@ -1,10 +1,15 @@
 package in.labulle.anycode.xmi.parser.jdom.uml;
 
-import in.labulle.anycode.uml.IClass;
+import java.util.Collection;
+import java.util.HashSet;
+
 import in.labulle.anycode.uml.IClassifier;
+import in.labulle.anycode.uml.IElement;
 import in.labulle.anycode.uml.IModel;
 import in.labulle.anycode.uml.IPackage;
 import in.labulle.anycode.uml.impl.AModel;
+import in.labulle.anycode.xmi.parser.IXmiContextParser;
+import in.labulle.anycode.xmi.parser.exception.XmiParserException;
 
 public class IModelParser extends IElementParser<IModel> {
 
@@ -45,5 +50,25 @@ public class IModelParser extends IElementParser<IModel> {
 			currentObj.getClassifiers().add((IClassifier) child);
 		}
 
+	}
+	
+	@Override
+	protected void completeParsing() {
+		int maxIt = 500;
+		int curIt = 0;
+		while(!getParserContext().getPostponedElements().isEmpty() || curIt < maxIt) {
+			curIt++;
+			Collection<IXmiContextParser<?>> parsers = new HashSet<IXmiContextParser<?>>(getParserContext().getPostponedElements().values());
+			for(IXmiContextParser<?> parser : parsers) {
+				parser.parse();
+			}
+		}
+		if(!getParserContext().getPostponedElements().isEmpty()) {
+			throw new XmiParserException("Those tags could never be parsed : " + getParserContext().getPostponedElements());
+		}
+	}
+	
+	protected void storeObj(IModel obj) {
+		
 	}
 }

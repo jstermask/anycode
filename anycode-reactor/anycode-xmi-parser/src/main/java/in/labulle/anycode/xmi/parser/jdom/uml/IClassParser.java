@@ -1,5 +1,6 @@
 package in.labulle.anycode.xmi.parser.jdom.uml;
 
+import in.labulle.anycode.uml.IAttribute;
 import in.labulle.anycode.uml.IClass;
 import in.labulle.anycode.uml.impl.AClass;
 import in.labulle.anycode.xmi.parser.jdom.util.ParserUtil;
@@ -33,7 +34,9 @@ public class IClassParser extends IElementParser<IClass> {
 
 	@Override
 	protected void attachChild(IClass currentObj, Object child) {
-		
+		if(child instanceof IAttribute) {
+			((AClass)currentObj).addAttribute((IAttribute)child);
+		}
 		
 	}
 

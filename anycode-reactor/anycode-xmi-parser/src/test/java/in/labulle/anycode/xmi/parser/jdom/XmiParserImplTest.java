@@ -2,6 +2,7 @@ package in.labulle.anycode.xmi.parser.jdom;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import in.labulle.anycode.uml.IClass;
 import in.labulle.anycode.uml.IClassifier;
 import in.labulle.anycode.uml.IModel;
 import in.labulle.anycode.uml.IPackage;
@@ -27,6 +28,10 @@ public class XmiParserImplTest {
 		assertEquals("anycode", p.getName());
 		List<IClassifier> classifiers = p.getClassifiers();
 		assertEquals(3, classifiers.size());
+		
+		IClass c1 = (IClass) classifiers.get(0);
+		assertEquals("Person", c1.getName());
+		assertEquals(4, c1.getAttributes().size());
 
 	}
 

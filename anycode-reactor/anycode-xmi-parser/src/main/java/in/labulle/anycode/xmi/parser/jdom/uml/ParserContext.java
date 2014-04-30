@@ -1,6 +1,7 @@
 package in.labulle.anycode.xmi.parser.jdom.uml;
 
 import in.labulle.anycode.uml.IElement;
+import in.labulle.anycode.xmi.parser.IXmiContextParser;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,17 +17,27 @@ public class ParserContext implements IParserContext {
 
 	private Element currentElement;
 
-	private final Map<String, IElement> parsedElements = new HashMap<String, IElement>();
+	private final Map<String, IElement> parsedElements;
 
-	private final Map<String, Element> postponedElements = new HashMap<String, Element>();
-	
-	
+	private final Map<String, IXmiContextParser<?>> postponedElements;
 
 	public ParserContext(Namespace umlNamespace, Namespace xmiNamespace, Element currentElement) {
 		super();
 		this.umlNamespace = umlNamespace;
 		this.xmiNamespace = xmiNamespace;
 		this.currentElement = currentElement;
+		this.parsedElements = new HashMap<String, IElement>();
+		this.postponedElements = new HashMap<String, IXmiContextParser<?>>();
+	}
+
+	private ParserContext(Namespace umlNamespace, Namespace xmiNamespace, Element currentElement, Map<String, IElement> parsedElts,
+			Map<String, IXmiContextParser<?>> postElts) {
+		super();
+		this.umlNamespace = umlNamespace;
+		this.xmiNamespace = xmiNamespace;
+		this.currentElement = currentElement;
+		this.parsedElements = parsedElts;
+		this.postponedElements = postElts;
 	}
 
 	public Namespace getUmlNamespace() {
@@ -57,12 +68,12 @@ public class ParserContext implements IParserContext {
 		return parsedElements;
 	}
 
-	public Map<String, Element> getPostponedElements() {
+	public Map<String, IXmiContextParser<?>> getPostponedElements() {
 		return postponedElements;
 	}
-	
+
 	public IParserContext clone(Element newElement) {
-		ParserContext ctx = new ParserContext(getUmlNamespace(), getXmiNamespace(), newElement);
+		ParserContext ctx = new ParserContext(getUmlNamespace(), getXmiNamespace(), newElement, this.parsedElements, this.postponedElements);
 		return ctx;
 	}
 

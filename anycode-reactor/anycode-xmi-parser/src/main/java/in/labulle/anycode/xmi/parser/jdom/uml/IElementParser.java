@@ -1,10 +1,9 @@
 package in.labulle.anycode.xmi.parser.jdom.uml;
 
-import org.jdom2.Element;
-
 import in.labulle.anycode.uml.IElement;
 import in.labulle.anycode.xmi.parser.IXmiContextParser;
-import in.labulle.anycode.xmi.parser.jdom.util.ParserUtil;
+
+import org.jdom2.Element;
 
 public abstract class IElementParser<T> implements IXmiContextParser<T> {
 	private IParserContext parserContext;
@@ -32,7 +31,12 @@ public abstract class IElementParser<T> implements IXmiContextParser<T> {
 		} else {
 			postPoneObj(obj);
 		}
+		completeParsing();
 		return obj;
+	}
+	
+	protected void completeParsing() {
+		
 	}
 
 	protected void performParse(T obj, Element elt) {
@@ -43,22 +47,25 @@ public abstract class IElementParser<T> implements IXmiContextParser<T> {
 			attachChild(obj, o);
 		}
 	}
+	
+	protected void performPostponedParse(Element elt) {
+		
+	}
 
 	protected abstract void attachChild(T currentObj, Object child);
 
 	protected void storeObj(T obj) {
-		String xmiIdAttribute = ParserUtil.getNamespacedString(getParserContext().getXmiNamespace(), "id");
-		String xmiId = getParserContext().getCurrentElement().getAttributeValue(xmiIdAttribute);
+		String xmiId = getParserContext().getCurrentElement().getAttributeValue("id", getParserContext().getXmiNamespace());
 		if (xmiId != null) {
 			getParserContext().getParsedElements().put(xmiId, (IElement) obj);
 		}
+		getParserContext().getPostponedElements().remove(xmiId);
 	}
 
 	protected void postPoneObj(T obj) {
-		String xmiIdAttribute = ParserUtil.getNamespacedString(getParserContext().getXmiNamespace(), "id");
-		String xmiId = getParserContext().getCurrentElement().getAttributeValue(xmiIdAttribute);
+		String xmiId = getParserContext().getCurrentElement().getAttributeValue("id", getParserContext().getXmiNamespace());
 		if (xmiId != null) {
-			getParserContext().getPostponedElements().put(xmiId, getParserContext().getCurrentElement());
+			getParserContext().getPostponedElements().put(xmiId, this);
 		}
 	}
 
