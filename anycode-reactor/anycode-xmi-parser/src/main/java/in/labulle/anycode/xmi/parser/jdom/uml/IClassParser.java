@@ -26,7 +26,7 @@ public class IClassParser extends IElementParser<IClass> {
 	protected boolean init(IClass obj) {
 		if(obj instanceof AClass) {
 			AClass c = (AClass)obj;
-			c.setName(getParserContext().getCurrentElement().getAttributeValue("name"));
+			c.setName(getParserContext().getElementName());
 			return true;
 		}
 		return false;

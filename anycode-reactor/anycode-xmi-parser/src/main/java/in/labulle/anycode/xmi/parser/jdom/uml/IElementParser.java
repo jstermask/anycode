@@ -8,6 +8,10 @@ import org.jdom2.Element;
 public abstract class IElementParser<T> implements IXmiContextParser<T> {
 	private IParserContext parserContext;
 
+	private IElementParser<?> parentParser;
+
+	private T umlElement;
+
 	public IElementParser(IParserContext ctx) {
 		this.parserContext = ctx;
 	}
@@ -25,49 +29,63 @@ public abstract class IElementParser<T> implements IXmiContextParser<T> {
 		boolean initDone = init(obj);
 		if (initDone) {
 			storeObj(obj);
-			for (Element sElt : getParserContext().getCurrentElement().getChildren()) {
-				performParse(obj, sElt);
-			}
 		} else {
-			postPoneObj(obj);
+			postPone();
 		}
-		completeParsing();
+		if (initDone) {
+			for (Element sElt : getParserContext().getCurrentElement().getChildren()) {
+				performChildParse(obj, sElt);
+			}
+		}
 		return obj;
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	protected void completeParsing() {
-		
+		T obj = parse();
+		Object umlElement = getParentParser().getUmlElement();
+		getParentParser().attachChild(umlElement, obj);
 	}
 
-	protected void performParse(T obj, Element elt) {
+	protected void performChildParse(T obj, Element elt) {
 		IParserContext sCtx = getParserContext().clone(elt);
 		IElementParser<?> parser = (IElementParser<?>) XmiContextParserFactory.get().newInstance(sCtx);
 		if (parser != null) {
+			parser.setParentParser(this);
 			Object o = parser.parse();
-			proceedChildAttachment(obj, o);
+			attachChild(obj, o);
 		}
-	}
-	
-	protected  void proceedChildAttachment(T currentObj, Object child) {
 
-		attachChild(currentObj, child);
 	}
 
 	protected abstract void attachChild(T currentObj, Object child);
 
 	protected void storeObj(T obj) {
-		String xmiId = getParserContext().getCurrentElement().getAttributeValue("id", getParserContext().getXmiNamespace());
+		String xmiId = getParserContext().getElementId();
 		if (xmiId != null) {
 			getParserContext().getParsedElements().put(xmiId, (IElement) obj);
 		}
 		getParserContext().getPostPonedTasks().remove(new PostPonedTask(xmiId));
 	}
 
-	protected void postPoneObj(T obj) {
-		String xmiId = getParserContext().getCurrentElement().getAttributeValue("id", getParserContext().getXmiNamespace());
+	protected void postPone() {
+		String xmiId = getParserContext().getElementId();
 		if (xmiId != null) {
-			
+			getParserContext().getPostPonedTasks().add(new PostPonedTask(xmiId, this));
 		}
+	}
+
+	@SuppressWarnings("rawtypes")
+	protected IElementParser getParentParser() {
+		return parentParser;
+	}
+
+	protected void setParentParser(@SuppressWarnings("rawtypes") IElementParser parentParser) {
+		this.parentParser = parentParser;
+	}
+
+	private T getUmlElement() {
+		return umlElement;
 	}
 
 }

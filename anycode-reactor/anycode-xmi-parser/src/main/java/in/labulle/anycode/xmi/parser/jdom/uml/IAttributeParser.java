@@ -28,8 +28,8 @@ public class IAttributeParser extends IElementParser<IAttribute> {
 	protected boolean init(IAttribute obj) {
 		if(obj instanceof AAttribute) {
 			AAttribute a = ( AAttribute)obj;
-			a.setName(getParserContext().getCurrentElement().getAttributeValue("name"));
-			a.setVisibility(Visibility.valueOf(getParserContext().getCurrentElement().getAttributeValue("visibility").toUpperCase()));
+			a.setName(getParserContext().getElementName());
+			a.setVisibility(Visibility.valueOf(getParserContext().getElementVisibility().toUpperCase()));
 			a.setCardinality(Cardinality.ONE_TO_ONE);
 			return true;
 		}

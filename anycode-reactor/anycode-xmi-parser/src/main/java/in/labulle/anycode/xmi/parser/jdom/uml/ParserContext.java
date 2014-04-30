@@ -12,7 +12,6 @@ import org.jdom2.Namespace;
 
 public class ParserContext implements IParserContext {
 
-	
 	private Namespace umlNamespace;
 
 	private Namespace xmiNamespace;
@@ -32,8 +31,7 @@ public class ParserContext implements IParserContext {
 		this.postPonedTasks = new ArrayList<PostPonedTask>();
 	}
 
-	private ParserContext(Namespace umlNamespace, Namespace xmiNamespace, Element currentElement, Map<String, IElement> parsedElts,
-			List<PostPonedTask> tasks) {
+	private ParserContext(Namespace umlNamespace, Namespace xmiNamespace, Element currentElement, Map<String, IElement> parsedElts, List<PostPonedTask> tasks) {
 		super();
 		this.umlNamespace = umlNamespace;
 		this.xmiNamespace = xmiNamespace;
@@ -79,4 +77,31 @@ public class ParserContext implements IParserContext {
 		return ctx;
 	}
 
+	public String getElementId() {
+		return getCurrentElement().getAttributeValue("id", getXmiNamespace());
+	}
+
+	public String[] getElementMemberEnd() {
+		return getCurrentElement().getAttributeValue("memberEnd").split(" ");
+	}
+
+	public String getElementName() {
+		return getCurrentElement().getAttributeValue("name");
+	}
+
+	public String getElementDataType() {
+		return getCurrentElement().getAttributeValue("type");
+	}
+
+	public String getElementVisibility() {
+		return getCurrentElement().getAttributeValue("visibility");
+	}
+
+	public String getElementHref() {
+		return getCurrentElement().getAttributeValue("href");
+	}
+
+	public boolean isElementPostPoned() {
+		return getPostPonedTasks().contains(new PostPonedTask(getElementId()));
+	}
 }

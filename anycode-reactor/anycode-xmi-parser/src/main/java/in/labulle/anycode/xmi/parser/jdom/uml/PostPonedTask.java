@@ -1,30 +1,21 @@
 package in.labulle.anycode.xmi.parser.jdom.uml;
 
-import in.labulle.anycode.uml.IElement;
 import in.labulle.anycode.xmi.parser.IXmiContextParser;
 
 public class PostPonedTask {
 	private final String xmiId;
 
-	private final IElement parent;
-
 	private final IXmiContextParser<?> parser;
 
 	public PostPonedTask(String xmiId) {
 		this.xmiId = xmiId;
-		this.parent = null;
 		this.parser = null;
 	}
 
-	public PostPonedTask(String xmiId, IElement parent, IXmiContextParser<?> parser) {
+	public PostPonedTask(String xmiId, IXmiContextParser<?> parser) {
 		super();
 		this.xmiId = xmiId;
-		this.parent = parent;
 		this.parser = parser;
-	}
-
-	public IElement getParent() {
-		return parent;
 	}
 
 	public IXmiContextParser<?> getParser() {

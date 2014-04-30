@@ -1,7 +1,9 @@
 package in.labulle.anycode.xmi.parser.jdom.uml;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 
 import org.ietf.jgss.Oid;
 
@@ -51,7 +53,13 @@ public class IModelParser extends IElementParser<IModel> {
 		if (child instanceof IClassifier) {
 			currentObj.getClassifiers().add((IClassifier) child);
 		}
-
+	}
+	
+	@Override
+	public IModel parse() {
+		IModel model = super.parse();
+		completeParsing();
+		return model;
 	}
 	
 	@Override
@@ -60,7 +68,8 @@ public class IModelParser extends IElementParser<IModel> {
 		int curIt = 0;
 		while(!getParserContext().getPostPonedTasks().isEmpty() || curIt < maxIt) {
 			curIt++;
-			for(PostPonedTask t : getParserContext().getPostPonedTasks()) {
+			List<PostPonedTask> tasks = new ArrayList<PostPonedTask>(getParserContext().getPostPonedTasks());
+			for(PostPonedTask t : tasks) {
 				t.getParser().parse();
 			}
 		}

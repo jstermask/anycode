@@ -15,4 +15,12 @@ public interface IParserContext {
 	List<PostPonedTask> getPostPonedTasks();
 	Map<String, IElement> getParsedElements();
 	IParserContext clone(Element elt);
+	String getElementId();
+	String getElementName();
+	String[] getElementMemberEnd();
+	String getElementDataType();
+	String getElementVisibility();
+	String getElementHref();
+	boolean isElementPostPoned();
+	
 }

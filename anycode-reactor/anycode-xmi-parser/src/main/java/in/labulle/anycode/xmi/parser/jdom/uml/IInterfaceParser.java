@@ -24,7 +24,7 @@ public class IInterfaceParser extends IElementParser<IInterface> {
 	protected boolean init(IInterface obj) {
 		if(obj instanceof AInterface) {
 			AInterface i = (AInterface)obj;
-			i.setName(getParserContext().getCurrentElement().getAttributeValue("name"));
+			i.setName(getParserContext().getElementName());
 			return true;
 		}
 		return false;

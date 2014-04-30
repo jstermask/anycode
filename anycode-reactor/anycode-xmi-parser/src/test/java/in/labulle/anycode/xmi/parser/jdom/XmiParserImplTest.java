@@ -28,10 +28,12 @@ public class XmiParserImplTest {
 		assertEquals("anycode", p.getName());
 		List<IClassifier> classifiers = p.getClassifiers();
 		assertEquals(3, classifiers.size());
+	
 		
 		IClass c1 = (IClass) classifiers.get(0);
 		assertEquals("Person", c1.getName());
 		assertEquals(4, c1.getAttributes().size());
+		
 
 	}
 

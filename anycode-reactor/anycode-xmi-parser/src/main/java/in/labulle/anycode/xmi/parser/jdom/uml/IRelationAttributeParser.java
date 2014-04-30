@@ -28,8 +28,8 @@ public class IRelationAttributeParser extends IElementParser<IRelationAttribute>
 	protected boolean init(IRelationAttribute obj) {
 		if(obj instanceof ARelationAttribute) {
 			ARelationAttribute a = ( ARelationAttribute)obj;
-			a.setName(getParserContext().getCurrentElement().getAttributeValue("name"));
-			a.setVisibility(Visibility.valueOf(getParserContext().getCurrentElement().getAttributeValue("visibility").toUpperCase()));
+			a.setName(getParserContext().getElementName());
+			a.setVisibility(Visibility.valueOf(getParserContext().getElementVisibility().toUpperCase()));
 			IClassifier dt = getDatatype();
 			if(dt != null) {
 				a.setDataType(dt);
@@ -48,7 +48,7 @@ public class IRelationAttributeParser extends IElementParser<IRelationAttribute>
 	}
 	
 	protected IClassifier getDatatype() {
-		return (IClassifier)getParserContext().getParsedElements().get(getParserContext().getCurrentElement().getAttributeValue("type"));
+		return (IClassifier)getParserContext().getParsedElements().get(getParserContext().getElementDataType());
 	}
 
 }

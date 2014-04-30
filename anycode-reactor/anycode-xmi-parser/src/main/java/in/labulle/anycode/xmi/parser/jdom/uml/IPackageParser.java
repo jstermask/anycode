@@ -25,7 +25,7 @@ public class IPackageParser extends IElementParser<IPackage> {
 	protected boolean init(IPackage obj) {
 		if(obj instanceof APackage) {
 			APackage p = (APackage)obj;
-			p.setName(getParserContext().getCurrentElement().getAttributeValue("name"));
+			p.setName(getParserContext().getElementName());
 			return true;
 		}
 		return false;

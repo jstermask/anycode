@@ -16,7 +16,7 @@ public class IAssociationParser extends IElementParser<IRelationAttribute[]> {
 
 	@Override
 	protected IRelationAttribute[] newInstance() {
-		String[] potentialRelationAttributeIds = getAssociationIds();
+		String[] potentialRelationAttributeIds = getParserContext().getElementMemberEnd();
 		IRelationAttribute e1 = (IRelationAttribute) getParserContext().getParsedElements().get(potentialRelationAttributeIds[0]);
 		IRelationAttribute e2 = (IRelationAttribute) getParserContext().getParsedElements().get(potentialRelationAttributeIds[0]);
 		return new IRelationAttribute[] { e1, e2 };
@@ -41,8 +41,5 @@ public class IAssociationParser extends IElementParser<IRelationAttribute[]> {
 
 	}
 
-	protected String[] getAssociationIds() {
-		return getParserContext().getCurrentElement().getAttributeValue("memberEnd").split(" ");
-	}
 
 }
