@@ -42,6 +42,7 @@ public class IAttributeParser extends IElementParser<IAttribute> {
 		if(child instanceof IClassifier) {
 			((AAttribute)currentObj).setDataType((IClassifier)child);
 		}
+		
 	}
 
 }

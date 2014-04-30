@@ -1,7 +1,11 @@
 package in.labulle.anycode.xmi.parser.jdom.uml;
 
+import in.labulle.anycode.uml.IAttribute;
 import in.labulle.anycode.uml.IInterface;
+import in.labulle.anycode.uml.IOperation;
+import in.labulle.anycode.uml.impl.AAttribute;
 import in.labulle.anycode.uml.impl.AInterface;
+import in.labulle.anycode.uml.impl.AOperation;
 import in.labulle.anycode.xmi.parser.jdom.util.ParserUtil;
 
 public class IInterfaceParser extends IElementParser<IInterface> {
@@ -32,7 +36,14 @@ public class IInterfaceParser extends IElementParser<IInterface> {
 
 	@Override
 	protected void attachChild(IInterface currentObj, Object child) {
-		
+		if(child instanceof IAttribute) {
+			((AInterface)currentObj).addAttribute((IAttribute)child);
+			((AAttribute)child).setOwner(currentObj);
+		}
+		if(child instanceof IOperation) {
+			((AInterface)currentObj).addOperation((IOperation)child);
+			((AOperation)child).setOwner(currentObj);
+		}
 		
 	}
 

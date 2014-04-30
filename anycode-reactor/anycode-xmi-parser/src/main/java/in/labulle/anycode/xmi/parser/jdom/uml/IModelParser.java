@@ -1,19 +1,13 @@
 package in.labulle.anycode.xmi.parser.jdom.uml;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-
-import org.ietf.jgss.Oid;
-
 import in.labulle.anycode.uml.IClassifier;
-import in.labulle.anycode.uml.IElement;
 import in.labulle.anycode.uml.IModel;
 import in.labulle.anycode.uml.IPackage;
 import in.labulle.anycode.uml.impl.AModel;
-import in.labulle.anycode.xmi.parser.IXmiContextParser;
 import in.labulle.anycode.xmi.parser.exception.XmiParserException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class IModelParser extends IElementParser<IModel> {
 
@@ -39,7 +33,6 @@ public class IModelParser extends IElementParser<IModel> {
 	@Override
 	protected boolean init(IModel obj) {
 		if (obj instanceof AModel) {
-			AModel m = (AModel) obj;
 			return true;
 		}
 		return false;
@@ -48,37 +41,41 @@ public class IModelParser extends IElementParser<IModel> {
 	@Override
 	protected void attachChild(IModel currentObj, Object child) {
 		if (child instanceof IPackage) {
-			currentObj.getPackages().add(((IPackage) child));
+			if (!currentObj.getPackages().contains(child)) {
+				currentObj.getPackages().add(((IPackage) child));
+			}
 		}
 		if (child instanceof IClassifier) {
-			currentObj.getClassifiers().add((IClassifier) child);
+			if (!currentObj.getClassifiers().contains(child)) {
+				currentObj.getClassifiers().add((IClassifier) child);
+			}
 		}
 	}
-	
+
 	@Override
 	public IModel parse() {
 		IModel model = super.parse();
 		completeParsing();
 		return model;
 	}
-	
+
 	@Override
 	protected void completeParsing() {
 		int maxIt = 500;
 		int curIt = 0;
-		while(!getParserContext().getPostPonedTasks().isEmpty() || curIt < maxIt) {
+		while (!getParserContext().getPostPonedTasks().isEmpty() || curIt < maxIt) {
 			curIt++;
 			List<PostPonedTask> tasks = new ArrayList<PostPonedTask>(getParserContext().getPostPonedTasks());
-			for(PostPonedTask t : tasks) {
+			for (PostPonedTask t : tasks) {
 				t.getParser().parse();
 			}
 		}
-		if(!getParserContext().getPostPonedTasks().isEmpty()) {
+		if (!getParserContext().getPostPonedTasks().isEmpty()) {
 			throw new XmiParserException("Those tags could never be parsed : " + getParserContext().getPostPonedTasks());
 		}
 	}
-	
+
 	protected void storeObj(IModel obj) {
-		
+
 	}
 }

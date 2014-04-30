@@ -2,6 +2,7 @@ package in.labulle.anycode.xmi.parser.jdom.uml;
 
 import in.labulle.anycode.uml.IClassifier;
 import in.labulle.anycode.uml.IPackage;
+import in.labulle.anycode.uml.impl.AClassifier;
 import in.labulle.anycode.uml.impl.APackage;
 import in.labulle.anycode.xmi.parser.jdom.util.ParserUtil;
 
@@ -36,9 +37,12 @@ public class IPackageParser extends IElementParser<IPackage> {
 	protected void attachChild(IPackage currentObj, Object child) {
 		if (child instanceof IPackage) {
 			currentObj.addSubPackage(((IPackage) child));
+			((APackage)child).setOwner(currentObj);
 		}
 		if (child instanceof IClassifier) {
 			currentObj.addClassifier((IClassifier) child);
+
+			((AClassifier)child).setOwner(currentObj);
 		}
 		
 	}

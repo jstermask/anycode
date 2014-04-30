@@ -28,11 +28,15 @@ public class APackage extends AElement implements IPackage {
 	}
 
 	public void addSubPackage(IPackage pack) {
-		this.subPackages.add(pack);
+		if (!this.subPackages.contains(pack)) {
+			this.subPackages.add(pack);
+		}
 	}
 
 	public void addClassifier(IClassifier cl) {
-		this.classifiers.add(cl);
+		if (!this.classifiers.contains(cl)) {
+			this.classifiers.add(cl);
+		}
 	}
 
 }
