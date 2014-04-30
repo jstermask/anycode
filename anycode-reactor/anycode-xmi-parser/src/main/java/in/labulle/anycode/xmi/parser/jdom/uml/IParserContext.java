@@ -1,8 +1,8 @@
 package in.labulle.anycode.xmi.parser.jdom.uml;
 
 import in.labulle.anycode.uml.IElement;
-import in.labulle.anycode.xmi.parser.IXmiContextParser;
 
+import java.util.List;
 import java.util.Map;
 
 import org.jdom2.Element;
@@ -12,7 +12,7 @@ public interface IParserContext {
 	Namespace getUmlNamespace();
 	Namespace getXmiNamespace();
 	Element getCurrentElement();
-	Map<String, IXmiContextParser<?>> getPostponedElements();
+	List<PostPonedTask> getPostPonedTasks();
 	Map<String, IElement> getParsedElements();
 	IParserContext clone(Element elt);
 }

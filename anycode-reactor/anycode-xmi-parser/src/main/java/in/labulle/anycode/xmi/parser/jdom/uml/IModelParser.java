@@ -3,6 +3,8 @@ package in.labulle.anycode.xmi.parser.jdom.uml;
 import java.util.Collection;
 import java.util.HashSet;
 
+import org.ietf.jgss.Oid;
+
 import in.labulle.anycode.uml.IClassifier;
 import in.labulle.anycode.uml.IElement;
 import in.labulle.anycode.uml.IModel;
@@ -56,15 +58,14 @@ public class IModelParser extends IElementParser<IModel> {
 	protected void completeParsing() {
 		int maxIt = 500;
 		int curIt = 0;
-		while(!getParserContext().getPostponedElements().isEmpty() || curIt < maxIt) {
+		while(!getParserContext().getPostPonedTasks().isEmpty() || curIt < maxIt) {
 			curIt++;
-			Collection<IXmiContextParser<?>> parsers = new HashSet<IXmiContextParser<?>>(getParserContext().getPostponedElements().values());
-			for(IXmiContextParser<?> parser : parsers) {
-				parser.parse();
+			for(PostPonedTask t : getParserContext().getPostPonedTasks()) {
+				t.getParser().parse();
 			}
 		}
-		if(!getParserContext().getPostponedElements().isEmpty()) {
-			throw new XmiParserException("Those tags could never be parsed : " + getParserContext().getPostponedElements());
+		if(!getParserContext().getPostPonedTasks().isEmpty()) {
+			throw new XmiParserException("Those tags could never be parsed : " + getParserContext().getPostPonedTasks());
 		}
 	}
 	

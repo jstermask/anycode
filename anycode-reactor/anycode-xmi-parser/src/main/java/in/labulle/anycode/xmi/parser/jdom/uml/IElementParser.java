@@ -44,12 +44,13 @@ public abstract class IElementParser<T> implements IXmiContextParser<T> {
 		IElementParser<?> parser = (IElementParser<?>) XmiContextParserFactory.get().newInstance(sCtx);
 		if (parser != null) {
 			Object o = parser.parse();
-			attachChild(obj, o);
+			proceedChildAttachment(obj, o);
 		}
 	}
 	
-	protected void performPostponedParse(Element elt) {
-		
+	protected  void proceedChildAttachment(T currentObj, Object child) {
+
+		attachChild(currentObj, child);
 	}
 
 	protected abstract void attachChild(T currentObj, Object child);
@@ -59,13 +60,13 @@ public abstract class IElementParser<T> implements IXmiContextParser<T> {
 		if (xmiId != null) {
 			getParserContext().getParsedElements().put(xmiId, (IElement) obj);
 		}
-		getParserContext().getPostponedElements().remove(xmiId);
+		getParserContext().getPostPonedTasks().remove(new PostPonedTask(xmiId));
 	}
 
 	protected void postPoneObj(T obj) {
 		String xmiId = getParserContext().getCurrentElement().getAttributeValue("id", getParserContext().getXmiNamespace());
 		if (xmiId != null) {
-			getParserContext().getPostponedElements().put(xmiId, this);
+			
 		}
 	}
 
