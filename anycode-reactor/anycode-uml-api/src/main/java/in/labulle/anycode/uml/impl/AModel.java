@@ -36,4 +36,24 @@ public class AModel implements IModel {
 		}
 	}
 
+	
+	public IClassifier findClassifierByFullyQualifiedName(final String fullyQualifiedName, final String separator) {
+		if(fullyQualifiedName == null || "".equals(fullyQualifiedName)) {
+			return null;
+		} else {	
+			for(IClassifier cl : classifiers) {
+				if(fullyQualifiedName.equalsIgnoreCase(cl.getFullyQualifiedName(separator))) {
+					return cl;
+				}
+			}
+			for(IPackage pk : packages) {
+				IClassifier cl = pk.findClassifierByFullyQualifiedName(fullyQualifiedName, separator);
+				if(cl != null) {
+					return cl;
+				}
+			}
+		}
+		return null;
+	}
+
 }

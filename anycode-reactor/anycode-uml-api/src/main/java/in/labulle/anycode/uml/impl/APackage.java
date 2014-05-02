@@ -39,4 +39,23 @@ public class APackage extends AElement implements IPackage {
 		}
 	}
 
+
+	public IClassifier findClassifierByFullyQualifiedName(String fullyQualifiedName, String separator) {
+		if(fullyQualifiedName == null || "".equals(fullyQualifiedName)) {
+			return null;
+		} else {	
+			for(IClassifier cl : classifiers) {
+				if(fullyQualifiedName.equalsIgnoreCase(cl.getFullyQualifiedName(separator))) {
+					return cl;
+				}
+			}
+			for(IPackage pk : subPackages) {
+				IClassifier cl = pk.findClassifierByFullyQualifiedName(fullyQualifiedName, separator);
+				if(cl != null) {
+					return cl;
+				}
+			}
+		}
+		return null;
+	}
 }

@@ -29,4 +29,12 @@ public interface IModel {
 	 * @return root classes of the model.
 	 */
 	List<IClassifier> getClassifiers();
+	
+	/**
+	 * Finds a classifier based on the parameter fullyQualified name and the given separator.
+	 * @param fullyQualifiedName classifier's fully qualified name.
+	 * @param separator separator.
+	 * @return a classifier or null if not classifier matches the given parameters.
+	 */
+	IClassifier findClassifierByFullyQualifiedName(String fullyQualifiedName, String separator);
 }

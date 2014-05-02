@@ -38,4 +38,12 @@ public interface IPackage extends IElement {
 	 *            classifier to add. Cannot be null as method is not supposed to be null safe.
 	 */
 	void addClassifier(IClassifier cl);
+	
+	/**
+	 * Finds a classifier based on the parameter fullyQualified name and the given separator.
+	 * @param fullyQualifiedName classifier's fully qualified name.
+	 * @param separator separator.
+	 * @return a classifier or null if not classifier matches the given parameters.
+	 */
+	IClassifier findClassifierByFullyQualifiedName(String fullyQualifiedName, String separator);
 }
