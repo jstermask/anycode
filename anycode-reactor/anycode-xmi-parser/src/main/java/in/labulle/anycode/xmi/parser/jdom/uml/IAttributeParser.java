@@ -31,6 +31,16 @@ public class IAttributeParser extends IElementParser<IAttribute> {
 			a.setName(getParserContext().getElementName());
 			a.setVisibility(Visibility.valueOf(getParserContext().getElementVisibility().toUpperCase()));
 			a.setCardinality(Cardinality.ONE_TO_ONE);
+			String typeXmiId = getParserContext().getCurrentElement().getAttributeValue("type");
+			if(typeXmiId != null) {
+				IClassifier cl = (IClassifier) getParserContext().getParsedElements().get(typeXmiId);
+				if(cl != null) {
+					a.setDataType(cl);
+					return true;
+				} else {
+					return false;
+				}
+			}
 			return true;
 		}
 		return false;
