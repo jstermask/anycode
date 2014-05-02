@@ -1,6 +1,7 @@
 package in.labulle.anycode.xmi.parser.jdom.uml;
 
 import in.labulle.anycode.uml.IClassifier;
+import in.labulle.anycode.uml.IElement;
 import in.labulle.anycode.uml.IModel;
 import in.labulle.anycode.uml.IPackage;
 import in.labulle.anycode.uml.impl.AModel;
@@ -60,14 +61,16 @@ public class IModelParser extends IElementParser<IModel> {
 	}
 
 	@Override
-	protected void completeParsing() {
+	public void completeParsing() {
 		int maxIt = 500;
 		int curIt = 0;
 		while (!getParserContext().getPostPonedTasks().isEmpty() || curIt < maxIt) {
 			curIt++;
 			List<PostPonedTask> tasks = new ArrayList<PostPonedTask>(getParserContext().getPostPonedTasks());
 			for (PostPonedTask t : tasks) {
-				t.getParser().parse();
+				if(t.getParser() instanceof IElementParser<?>) {
+					((IElementParser<?>)t.getParser()).completeParsing();
+				}
 			}
 		}
 		if (!getParserContext().getPostPonedTasks().isEmpty()) {

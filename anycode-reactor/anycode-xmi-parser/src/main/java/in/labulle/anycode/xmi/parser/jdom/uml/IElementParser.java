@@ -41,7 +41,7 @@ public abstract class IElementParser<T> implements IXmiContextParser<T> {
 	}
 
 	@SuppressWarnings("unchecked")
-	protected void completeParsing() {
+	public void completeParsing() {
 		T obj = parse();
 		Object umlElement = getParentParser().getUmlElement();
 		getParentParser().attachChild(umlElement, obj);
@@ -66,6 +66,7 @@ public abstract class IElementParser<T> implements IXmiContextParser<T> {
 			getParserContext().getParsedElements().put(xmiId, (IElement) obj);
 		}
 		getParserContext().getPostPonedTasks().remove(new PostPonedTask(xmiId));
+		setUmlElement(obj);
 	}
 
 	protected void postPone() {
@@ -86,6 +87,10 @@ public abstract class IElementParser<T> implements IXmiContextParser<T> {
 
 	private T getUmlElement() {
 		return umlElement;
+	}
+	
+	private void setUmlElement(T umlElement) {
+		this.umlElement = umlElement;
 	}
 
 }

@@ -107,7 +107,7 @@ public class ParserContext implements IParserContext {
 
 	public boolean isElementAbstract() {
 		String absStr = getCurrentElement().getAttributeValue("isAbstract");
-		if(absStr != null) {
+		if (absStr != null) {
 			Boolean b = Boolean.parseBoolean(absStr);
 			return b.booleanValue();
 		} else {
