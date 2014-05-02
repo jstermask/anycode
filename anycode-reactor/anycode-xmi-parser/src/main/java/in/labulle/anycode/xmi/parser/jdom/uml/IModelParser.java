@@ -11,7 +11,7 @@ import java.util.List;
 
 public class IModelParser extends IElementParser<IModel> {
 
-	private static final String TAG_MODEL = "Model";
+	public static final String TAG_MODEL = "Model";
 
 	public IModelParser(IParserContext ctx) {
 		super(ctx);
@@ -45,7 +45,7 @@ public class IModelParser extends IElementParser<IModel> {
 				currentObj.getPackages().add(((IPackage) child));
 			}
 		}
-		if (child instanceof IClassifier) {
+		if (child instanceof IClassifier && !((IClassifier)child).isPrimitive()) {
 			if (!currentObj.getClassifiers().contains(child)) {
 				currentObj.getClassifiers().add((IClassifier) child);
 			}

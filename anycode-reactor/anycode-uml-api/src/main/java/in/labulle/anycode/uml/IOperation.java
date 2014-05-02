@@ -19,4 +19,11 @@ public interface IOperation extends IElement {
 	 * @return List of parameters. Can be empty but never null.
 	 */
 	List<IParameter> getParameters();
+
+	/**
+	 * Checks whether operation is abstract.
+	 * 
+	 * @return true if operation is abstract.
+	 */
+	boolean isAbstract();
 }

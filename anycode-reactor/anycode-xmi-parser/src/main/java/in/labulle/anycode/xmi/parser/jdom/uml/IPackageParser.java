@@ -39,9 +39,8 @@ public class IPackageParser extends IElementParser<IPackage> {
 			currentObj.addSubPackage(((IPackage) child));
 			((APackage)child).setOwner(currentObj);
 		}
-		if (child instanceof IClassifier) {
+		if (child instanceof IClassifier && !((IClassifier)child).isPrimitive()) {
 			currentObj.addClassifier((IClassifier) child);
-
 			((AClassifier)child).setOwner(currentObj);
 		}
 		

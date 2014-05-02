@@ -11,6 +11,8 @@ public class AOperation extends AElement implements IOperation {
 
 	private IClassifier returnType;
 
+	private boolean isAbstract;
+
 	private final List<IParameter> parameters = new ArrayList<IParameter>();
 
 	public IClassifier getReturnType() {
@@ -31,6 +33,14 @@ public class AOperation extends AElement implements IOperation {
 
 	public void removeParameter(IParameter param) {
 		this.parameters.remove(param);
+	}
+
+	public boolean isAbstract() {
+		return isAbstract;
+	}
+
+	public void setAbstract(boolean isAbstract) {
+		this.isAbstract = isAbstract;
 	}
 
 }

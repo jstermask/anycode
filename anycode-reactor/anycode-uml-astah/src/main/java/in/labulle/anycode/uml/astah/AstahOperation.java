@@ -32,5 +32,9 @@ public class AstahOperation extends
 		}
 		return params;
 	}
+	
+	public boolean isAbstract() {
+		return getAstahElement().isAbstract();
+	}
 
 }

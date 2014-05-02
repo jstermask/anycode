@@ -26,7 +26,11 @@ public class IAttributePrimitiveDatatypeParser extends IElementParser<IClass> {
 			AClass c = (AClass) obj;
 			c.setPrimitive(true);
 			String href = getParserContext().getElementHref();
-			c.setName(href.substring(href.lastIndexOf("#") + 1));
+			if (href != null) {
+				c.setName(href.substring(href.lastIndexOf("#") + 1));
+			} else {
+				c.setName(getParserContext().getElementName());
+			}
 			c.setVisibility(Visibility.PUBLIC);
 			return true;
 		}

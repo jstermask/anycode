@@ -5,6 +5,7 @@ import in.labulle.anycode.uml.IClass;
 import in.labulle.anycode.uml.IOperation;
 import in.labulle.anycode.uml.impl.AAttribute;
 import in.labulle.anycode.uml.impl.AClass;
+import in.labulle.anycode.uml.impl.AOperation;
 import in.labulle.anycode.xmi.parser.jdom.util.ParserUtil;
 
 public class IClassParser extends IElementParser<IClass> {
@@ -29,6 +30,7 @@ public class IClassParser extends IElementParser<IClass> {
 		if(obj instanceof AClass) {
 			AClass c = (AClass)obj;
 			c.setName(getParserContext().getElementName());
+			c.setAbstract(getParserContext().isElementAbstract());
 			return true;
 		}
 		return false;
@@ -42,7 +44,7 @@ public class IClassParser extends IElementParser<IClass> {
 		}
 		if(child instanceof IOperation) {
 			((AClass)currentObj).addOperation((IOperation)child);
-			((AAttribute)child).setOwner(currentObj);
+			((AOperation)child).setOwner(currentObj);
 		}
 	}
 

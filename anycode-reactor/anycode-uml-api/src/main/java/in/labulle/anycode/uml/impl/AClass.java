@@ -8,6 +8,8 @@ import java.util.List;
 
 public class AClass extends AClassifier implements IClass {
 	private final List<IInterface> realizations = new ArrayList<IInterface>();
+	
+	private boolean isAbstract;
 
 	public AClass() {
 		super();
@@ -24,6 +26,14 @@ public class AClass extends AClassifier implements IClass {
 
 	public List<IInterface> getRealizations() {
 		return realizations;
+	}
+	
+	public boolean isAbstract() {
+		return isAbstract;
+	}
+	
+	public void setAbstract(boolean isAbstract) {
+		this.isAbstract = isAbstract;
 	}
 
 }

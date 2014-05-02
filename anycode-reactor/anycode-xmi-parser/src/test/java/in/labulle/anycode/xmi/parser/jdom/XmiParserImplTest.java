@@ -1,7 +1,6 @@
 package in.labulle.anycode.xmi.parser.jdom;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 import in.labulle.anycode.uml.IClass;
 import in.labulle.anycode.uml.IClassifier;
 import in.labulle.anycode.uml.IModel;
@@ -38,6 +37,14 @@ public class XmiParserImplTest {
 		String file = getClass().getResource("/shapes01.xmi").getFile();
 		XmiParserImpl parser = new XmiParserImpl(file);
 		IModel model = parser.parse();
+		
+		// Testing shape class.
+		IClass shape = (IClass) model.findClassifierByFullyQualifiedName("in.labulle.anycode.sample.core.Shape", ".");
+		assertEquals("Shape", shape.getName());
+		assertTrue(shape.isAbstract());
+		assertEquals(2, shape.getOperations().size());
+		assertEquals(0, shape.getGeneralizations().size());
+		assertEquals(1, shape.getRealizations().size());
 		
 	}
 	

@@ -104,4 +104,14 @@ public class ParserContext implements IParserContext {
 	public boolean isElementPostPoned() {
 		return getPostPonedTasks().contains(new PostPonedTask(getElementId()));
 	}
+
+	public boolean isElementAbstract() {
+		String absStr = getCurrentElement().getAttributeValue("isAbstract");
+		if(absStr != null) {
+			Boolean b = Boolean.parseBoolean(absStr);
+			return b.booleanValue();
+		} else {
+			return false;
+		}
+	}
 }

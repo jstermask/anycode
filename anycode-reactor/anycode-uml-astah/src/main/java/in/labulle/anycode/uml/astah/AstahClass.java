@@ -38,4 +38,10 @@ public class AstahClass extends
 		return gens;
 	}
 
+
+
+	public boolean isAbstract() {
+		return getAstahElement().isAbstract();
+	}
+
 }

@@ -6,6 +6,7 @@ import in.labulle.anycode.xmi.core.XmiVersion;
 import in.labulle.anycode.xmi.parser.IXmiContextParser;
 import in.labulle.anycode.xmi.parser.IXmiContextParserFactory;
 import in.labulle.anycode.xmi.parser.exception.XmiParserException;
+import in.labulle.anycode.xmi.parser.jdom.uml.IModelParser;
 import in.labulle.anycode.xmi.parser.jdom.uml.IParserContext;
 import in.labulle.anycode.xmi.parser.jdom.uml.ParserContext;
 import in.labulle.anycode.xmi.parser.jdom.uml.XmiContextParserFactory;
@@ -30,8 +31,15 @@ public class XmiParserImpl {
 			Document jdomDocument = jdomBuilder.build(xmiSource);
 			Element root = jdomDocument.getRootElement();
 			IXmiContextParserFactory factory = new XmiContextParserFactory();
-			IParserContext ctx = new ParserContext(discoverUmlNamespace(jdomDocument), discoverXmiNamespace(jdomDocument), root);
+			Namespace uml = discoverUmlNamespace(jdomDocument);
+			Namespace xmi = discoverXmiNamespace(jdomDocument);
+			IParserContext ctx = new ParserContext(uml, xmi, root);
 			IXmiContextParser<IModel> parser = (IXmiContextParser<IModel>)factory.newInstance(ctx);
+			if(parser == null) {
+				root = root.getChild(IModelParser.TAG_MODEL, uml);
+				ctx = new ParserContext(uml, xmi, root);
+				parser = (IXmiContextParser<IModel>)factory.newInstance(ctx);
+			}
 			return parser.parse();
 		} catch (Exception e) {
 			throw new XmiParserException(e);

@@ -22,4 +22,11 @@ public interface IClass extends IClassifier {
 	 * @return classes that this class extends. It might be an empty list but it will never be null.
 	 */
 	List<IClass> getGeneralizations();
+	
+	/**
+	 * Checks whether operation is abstract.
+	 * 
+	 * @return true if operation is abstract.
+	 */
+	boolean isAbstract();
 }

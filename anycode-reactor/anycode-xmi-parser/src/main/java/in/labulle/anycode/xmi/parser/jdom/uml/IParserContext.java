@@ -23,4 +23,6 @@ public interface IParserContext {
 	String getElementHref();
 	boolean isElementPostPoned();
 	
+	boolean isElementAbstract();
+	
 }

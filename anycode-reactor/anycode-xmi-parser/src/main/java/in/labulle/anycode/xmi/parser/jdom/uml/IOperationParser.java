@@ -29,6 +29,7 @@ public class IOperationParser extends IElementParser<IOperation> {
 			AOperation o = (AOperation) obj;
 			o.setName(getParserContext().getElementName());
 			o.setVisibility(Visibility.valueOf(getParserContext().getElementVisibility().toUpperCase()));
+			o.setAbstract(getParserContext().isElementAbstract());
 			o.setReturnType(getDatatype());
 			return true;
 		}
