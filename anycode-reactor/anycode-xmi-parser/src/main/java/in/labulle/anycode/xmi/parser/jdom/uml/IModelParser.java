@@ -1,7 +1,6 @@
 package in.labulle.anycode.xmi.parser.jdom.uml;
 
 import in.labulle.anycode.uml.IClassifier;
-import in.labulle.anycode.uml.IElement;
 import in.labulle.anycode.uml.IModel;
 import in.labulle.anycode.uml.IPackage;
 import in.labulle.anycode.uml.impl.AModel;
