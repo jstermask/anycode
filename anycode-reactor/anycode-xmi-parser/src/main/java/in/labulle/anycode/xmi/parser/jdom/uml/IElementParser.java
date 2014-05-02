@@ -53,7 +53,9 @@ public abstract class IElementParser<T> implements IXmiContextParser<T> {
 		if (parser != null) {
 			parser.setParentParser(this);
 			Object o = parser.parse();
-			attachChild(obj, o);
+			if(!sCtx.isElementPostPoned()) {
+				attachChild(obj, o);
+			}
 		}
 
 	}
