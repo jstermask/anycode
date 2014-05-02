@@ -14,5 +14,11 @@ public interface IParameter extends IElement {
 	 * @return classifier. Cannot be null.
 	 */
 	IClassifier getDataType();
+	
+	/**
+	 * 
+	 * @return true if this parameter is a return type parameter
+	 */
+	boolean isReturnType();
 
 }

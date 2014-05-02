@@ -3,7 +3,9 @@ package in.labulle.anycode.xmi.parser.jdom;
 import static org.junit.Assert.*;
 import in.labulle.anycode.uml.IClass;
 import in.labulle.anycode.uml.IClassifier;
+import in.labulle.anycode.uml.IInterface;
 import in.labulle.anycode.uml.IModel;
+import in.labulle.anycode.uml.IOperation;
 import in.labulle.anycode.uml.IPackage;
 import in.labulle.anycode.xmi.parser.exception.XmiParserException;
 
@@ -43,8 +45,18 @@ public class XmiParserImplTest {
 		assertEquals("Shape", shape.getName());
 		assertTrue(shape.isAbstract());
 		assertEquals(2, shape.getOperations().size());
+		
+		IOperation op1 = shape.getOperations().get(0);
+		assertEquals("getPerimeter", op1.getName());
+		assertEquals("double", op1.getReturnType().getName());
+		
+		
 		assertEquals(0, shape.getGeneralizations().size());
 		assertEquals(1, shape.getRealizations().size());
+		
+		IInterface i = (IInterface)model.findClassifierByFullyQualifiedName("in.labulle.anycode.sample.core.Drawable", ".");
+		assertEquals(i, shape.getRealizations().get(0));
+		
 		
 	}
 	

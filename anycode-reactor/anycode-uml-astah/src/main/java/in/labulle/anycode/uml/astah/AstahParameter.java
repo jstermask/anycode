@@ -12,6 +12,10 @@ public class AstahParameter extends AstahElement<com.change_vision.jude.api.inf.
 	public IClassifier getDataType() {
 		return (IClassifier) AstahElement.getElement(getAstahElement().getType());
 	}
+
+	public boolean isReturnType() {
+		return "return".equals(getAstahElement().getDirection());
+	}
 	
 	
 

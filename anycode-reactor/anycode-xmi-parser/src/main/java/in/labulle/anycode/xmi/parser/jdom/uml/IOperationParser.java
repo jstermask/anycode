@@ -38,9 +38,15 @@ public class IOperationParser extends IElementParser<IOperation> {
 
 	@Override
 	protected void attachChild(IOperation currentObj, Object child) {
+		AOperation op = (AOperation) currentObj;
 		if (child instanceof IParameter) {
-			((AOperation) currentObj).addParameter((IParameter) child);
-			((AParameter) child).setOwner(currentObj);
+			AParameter p = (AParameter) child;
+			if (p.isReturnType()) {
+				op.setReturnType(p.getDataType());
+			} else {
+				op.addParameter(p);
+				p.setOwner(currentObj);
+			}
 		}
 	}
 

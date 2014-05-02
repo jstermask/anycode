@@ -5,6 +5,8 @@ import in.labulle.anycode.uml.IParameter;
 
 public class AParameter extends AElement implements IParameter {
 	private IClassifier dataType;
+	
+	private boolean returnType = false;
 
 	public IClassifier getDataType() {
 		return dataType;
@@ -12,6 +14,14 @@ public class AParameter extends AElement implements IParameter {
 
 	public void setDataType(IClassifier dataType) {
 		this.dataType = dataType;
+	}
+
+	public boolean isReturnType() {
+		return returnType;
+	}
+	
+	public void setReturnType(boolean returnType) {
+		this.returnType = returnType;
 	}
 
 }
