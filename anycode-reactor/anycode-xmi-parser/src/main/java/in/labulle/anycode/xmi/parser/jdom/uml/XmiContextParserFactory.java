@@ -13,7 +13,7 @@ public class XmiContextParserFactory implements IXmiContextParserFactory {
 	@SuppressWarnings("unchecked")
 	public final List<Class<?>> parsersClasses = Arrays.asList((Class<?>) IModelParser.class, IPackageParser.class, IClassParser.class, IInterfaceParser.class,
 			IAttributeParser.class, IAttributePrimitiveDatatypeParser.class, IRelationAttributeParser.class, IOperationParser.class,
-			IClassRealizationParser.class, IParameterParser.class, IClassGeneralizationParser.class);
+			IClassRealizationParser.class, IParameterParser.class, IClassGeneralizationParser.class, IClientDependencyParser.class);
 
 	public XmiContextParserFactory() {
 

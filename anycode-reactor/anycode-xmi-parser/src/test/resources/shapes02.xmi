@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?><xmi:XMI xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:LocalProfile="http:///schemas/LocalProfile/_RurqYNI_EeO37pDt0aePOw/0" xmlns:default="http:///schemas/default/_Ru4esNI_EeO37pDt0aePOw/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://schema.omg.org/spec/UML/2.1.1" xmi:version="2.1" xsi:schemaLocation="http://www.eclipse.org/uml2/3.0.0/UML http://schema.omg.org/spec/UML/2.1.1 http:///schemas/LocalProfile/_RurqYNI_EeO37pDt0aePOw/0 LocalProfile.profile.xmi#_Rv8Op9I_EeO37pDt0aePOw http:///schemas/default/_Ru4esNI_EeO37pDt0aePOw/0 default.profile.xmi#_R1OXR9I_EeO37pDt0aePOw">
+  <uml:Model xmi:id="_RurDUNI_EeO37pDt0aePOw" name="shapes">
+    <eAnnotations xmi:id="_RurDUdI_EeO37pDt0aePOw" source="Objing">
+      <contents xmi:type="uml:Property" xmi:id="_RurDUtI_EeO37pDt0aePOw" name="exporterVersion">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDU9I_EeO37pDt0aePOw" value="3.0.0"/>
+      </contents>
+      <contents xmi:type="uml:Property" xmi:id="_RurDVNI_EeO37pDt0aePOw" name="isRoundTrip"/>
+      <contents xmi:type="uml:Property" xmi:id="_RurDVdI_EeO37pDt0aePOw" name="Visibility">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDVtI_EeO37pDt0aePOw" value="0"/>
+      </contents>
+    </eAnnotations>
+    <packagedElement xmi:type="uml:Package" xmi:id="_RurDV9I_EeO37pDt0aePOw" name="in">
+      <eAnnotations xmi:id="_RurDWNI_EeO37pDt0aePOw" source="Objing">
+        <contents xmi:type="uml:Property" xmi:id="_RurDWdI_EeO37pDt0aePOw" name="Visibility">
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDWtI_EeO37pDt0aePOw" value="0"/>
+        </contents>
+      </eAnnotations>
+      <packagedElement xmi:type="uml:Package" xmi:id="_RurDW9I_EeO37pDt0aePOw" name="labulle">
+        <eAnnotations xmi:id="_RurDXNI_EeO37pDt0aePOw" source="Objing">
+          <contents xmi:type="uml:Property" xmi:id="_RurDXdI_EeO37pDt0aePOw" name="Visibility">
+            <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDXtI_EeO37pDt0aePOw" value="0"/>
+          </contents>
+        </eAnnotations>
+        <packagedElement xmi:type="uml:Package" xmi:id="_RurDX9I_EeO37pDt0aePOw" name="anycode">
+          <eAnnotations xmi:id="_RurDYNI_EeO37pDt0aePOw" source="Objing">
+            <contents xmi:type="uml:Property" xmi:id="_RurDYdI_EeO37pDt0aePOw" name="Visibility">
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDYtI_EeO37pDt0aePOw" value="0"/>
+            </contents>
+          </eAnnotations>
+          <packagedElement xmi:type="uml:Package" xmi:id="_RurDY9I_EeO37pDt0aePOw" name="sample">
+            <eAnnotations xmi:id="_RurDZNI_EeO37pDt0aePOw" source="Objing">
+              <contents xmi:type="uml:Property" xmi:id="_RurDZdI_EeO37pDt0aePOw" name="Visibility">
+                <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDZtI_EeO37pDt0aePOw" value="0"/>
+              </contents>
+            </eAnnotations>
+            <packagedElement xmi:type="uml:Package" xmi:id="_RurDZ9I_EeO37pDt0aePOw" name="core">
+              <eAnnotations xmi:id="_RurDaNI_EeO37pDt0aePOw" source="Objing">
+                <contents xmi:type="uml:Property" xmi:id="_RurDadI_EeO37pDt0aePOw" name="Visibility">
+                  <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDatI_EeO37pDt0aePOw" value="0"/>
+                </contents>
+              </eAnnotations>
+              <packagedElement xmi:type="uml:Interface" xmi:id="_RurDa9I_EeO37pDt0aePOw" name="Drawable" isAbstract="true">
+                <eAnnotations xmi:id="_RurDbNI_EeO37pDt0aePOw" source="Objing">
+                  <contents xmi:type="uml:Property" xmi:id="_RurDbdI_EeO37pDt0aePOw" name="Visibility">
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDbtI_EeO37pDt0aePOw" value="0"/>
+                  </contents>
+                </eAnnotations>
+                <ownedOperation xmi:type="uml:Operation" xmi:id="_RurDb9I_EeO37pDt0aePOw" name="draw" visibility="public">
+                  <eAnnotations xmi:id="_RurDcNI_EeO37pDt0aePOw" source="Objing">
+                    <contents xmi:type="uml:Property" xmi:id="_RurDcdI_EeO37pDt0aePOw" name="Visibility">
+                      <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDctI_EeO37pDt0aePOw" value="0"/>
+                    </contents>
+                  </eAnnotations>
+                  <ownedParameter xmi:id="_RurDc9I_EeO37pDt0aePOw" name="gc" type="_RurDw9I_EeO37pDt0aePOw" isUnique="false">
+                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RurDdNI_EeO37pDt0aePOw" value="1"/>
+                    <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RurDddI_EeO37pDt0aePOw" value="1"/>
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDdtI_EeO37pDt0aePOw" value=""/>
+                  </ownedParameter>
+                </ownedOperation>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Class" xmi:id="_RurDd9I_EeO37pDt0aePOw" name="Shape" clientDependency="_RurDe9I_EeO37pDt0aePOw" isAbstract="true">
+                <eAnnotations xmi:id="_RurDeNI_EeO37pDt0aePOw" source="Objing">
+                  <contents xmi:type="uml:Property" xmi:id="_RurDedI_EeO37pDt0aePOw" name="Visibility">
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDetI_EeO37pDt0aePOw" value="0"/>
+                  </contents>
+                </eAnnotations>
+                <interfaceRealization xmi:id="_RurDe9I_EeO37pDt0aePOw" name="InterfaceRealization" supplier="_RurDa9I_EeO37pDt0aePOw" client="_RurDd9I_EeO37pDt0aePOw" contract="_RurDa9I_EeO37pDt0aePOw"/>
+                <ownedOperation xmi:type="uml:Operation" xmi:id="_RurDfNI_EeO37pDt0aePOw" name="getPerimeter" visibility="public" isAbstract="true">
+                  <eAnnotations xmi:id="_RurDfdI_EeO37pDt0aePOw" source="Objing">
+                    <contents xmi:type="uml:Property" xmi:id="_RurDftI_EeO37pDt0aePOw" name="Visibility">
+                      <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDf9I_EeO37pDt0aePOw" value="0"/>
+                    </contents>
+                  </eAnnotations>
+                  <ownedParameter xmi:id="_RurDgNI_EeO37pDt0aePOw" type="_RurD0NI_EeO37pDt0aePOw" isUnique="false" direction="return">
+                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RurDgdI_EeO37pDt0aePOw" value="1"/>
+                    <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RurDgtI_EeO37pDt0aePOw" value="1"/>
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDg9I_EeO37pDt0aePOw" value=""/>
+                  </ownedParameter>
+                </ownedOperation>
+                <ownedOperation xmi:type="uml:Operation" xmi:id="_RurDhNI_EeO37pDt0aePOw" name="getSurfaceArea" visibility="public" isAbstract="true">
+                  <eAnnotations xmi:id="_RurDhdI_EeO37pDt0aePOw" source="Objing">
+                    <contents xmi:type="uml:Property" xmi:id="_RurDhtI_EeO37pDt0aePOw" name="Visibility">
+                      <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDh9I_EeO37pDt0aePOw" value="0"/>
+                    </contents>
+                  </eAnnotations>
+                  <ownedParameter xmi:id="_RurDiNI_EeO37pDt0aePOw" type="_RurD0NI_EeO37pDt0aePOw" isUnique="false" direction="return">
+                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RurDidI_EeO37pDt0aePOw" value="1"/>
+                    <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RurDitI_EeO37pDt0aePOw" value="1"/>
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDi9I_EeO37pDt0aePOw" value=""/>
+                  </ownedParameter>
+                </ownedOperation>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Class" xmi:id="_RurDjNI_EeO37pDt0aePOw" name="Circle">
+                <eAnnotations xmi:id="_RurDjdI_EeO37pDt0aePOw" source="Objing">
+                  <contents xmi:type="uml:Property" xmi:id="_RurDjtI_EeO37pDt0aePOw" name="Visibility">
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDj9I_EeO37pDt0aePOw" value="0"/>
+                  </contents>
+                </eAnnotations>
+                <generalization xmi:type="uml:Generalization" xmi:id="_RurDkNI_EeO37pDt0aePOw" general="_RurDd9I_EeO37pDt0aePOw"/>
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_RurDkdI_EeO37pDt0aePOw" name="center" visibility="private" type="_RurDstI_EeO37pDt0aePOw" isUnique="false">
+                  <eAnnotations xmi:id="_RurDktI_EeO37pDt0aePOw" source="Objing">
+                    <contents xmi:type="uml:Property" xmi:id="_RurDk9I_EeO37pDt0aePOw" name="Visibility">
+                      <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDlNI_EeO37pDt0aePOw" value="2"/>
+                    </contents>
+                    <contents xmi:type="uml:Property" xmi:id="_RurDldI_EeO37pDt0aePOw" name="AccessMode">
+                      <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDltI_EeO37pDt0aePOw" value="read_write"/>
+                    </contents>
+                  </eAnnotations>
+                </ownedAttribute>
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_RurDl9I_EeO37pDt0aePOw" name="radius" visibility="private" type="_RurD0NI_EeO37pDt0aePOw" isUnique="false">
+                  <eAnnotations xmi:id="_RurDmNI_EeO37pDt0aePOw" source="Objing">
+                    <contents xmi:type="uml:Property" xmi:id="_RurDmdI_EeO37pDt0aePOw" name="Visibility">
+                      <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDmtI_EeO37pDt0aePOw" value="2"/>
+                    </contents>
+                    <contents xmi:type="uml:Property" xmi:id="_RurDm9I_EeO37pDt0aePOw" name="AccessMode">
+                      <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDnNI_EeO37pDt0aePOw" value="read_write"/>
+                    </contents>
+                  </eAnnotations>
+                </ownedAttribute>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Class" xmi:id="_RurDndI_EeO37pDt0aePOw" name="Polygon">
+                <eAnnotations xmi:id="_RurDntI_EeO37pDt0aePOw" source="Objing">
+                  <contents xmi:type="uml:Property" xmi:id="_RurDn9I_EeO37pDt0aePOw" name="Visibility">
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDoNI_EeO37pDt0aePOw" value="0"/>
+                  </contents>
+                </eAnnotations>
+                <generalization xmi:type="uml:Generalization" xmi:id="_RurDodI_EeO37pDt0aePOw" general="_RurDd9I_EeO37pDt0aePOw"/>
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_RurDotI_EeO37pDt0aePOw" name="points" visibility="private" type="_RurDstI_EeO37pDt0aePOw" aggregation="shared" association="_RurDqtI_EeO37pDt0aePOw">
+                  <eAnnotations xmi:id="_RurDo9I_EeO37pDt0aePOw" source="Objing">
+                    <contents xmi:type="uml:Property" xmi:id="_RurDpNI_EeO37pDt0aePOw" name="Visibility">
+                      <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDpdI_EeO37pDt0aePOw" value="2"/>
+                    </contents>
+                    <contents xmi:type="uml:Property" xmi:id="_RurDptI_EeO37pDt0aePOw" name="AccessMode">
+                      <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDp9I_EeO37pDt0aePOw" value="read_write"/>
+                    </contents>
+                  </eAnnotations>
+                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RurDqNI_EeO37pDt0aePOw" value="*"/>
+                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RurDqdI_EeO37pDt0aePOw"/>
+                </ownedAttribute>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Association" xmi:id="_RurDqtI_EeO37pDt0aePOw" memberEnd="_RurDotI_EeO37pDt0aePOw _RurDq9I_EeO37pDt0aePOw">
+                <ownedEnd xmi:type="uml:Property" xmi:id="_RurDq9I_EeO37pDt0aePOw" visibility="public" type="_RurDndI_EeO37pDt0aePOw" association="_RurDqtI_EeO37pDt0aePOw">
+                  <eAnnotations xmi:id="_RurDrNI_EeO37pDt0aePOw" source="Objing">
+                    <contents xmi:type="uml:Property" xmi:id="_RurDrdI_EeO37pDt0aePOw" name="Visibility">
+                      <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDrtI_EeO37pDt0aePOw" value="0"/>
+                    </contents>
+                    <contents xmi:type="uml:Property" xmi:id="_RurDr9I_EeO37pDt0aePOw" name="AccessMode">
+                      <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDsNI_EeO37pDt0aePOw" value="read_write"/>
+                    </contents>
+                  </eAnnotations>
+                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RurDsdI_EeO37pDt0aePOw"/>
+                </ownedEnd>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Class" xmi:id="_RurDstI_EeO37pDt0aePOw" name="Point" clientDependency="_RurDwtI_EeO37pDt0aePOw">
+                <eAnnotations xmi:id="_RurDs9I_EeO37pDt0aePOw" source="Objing">
+                  <contents xmi:type="uml:Property" xmi:id="_RurDtNI_EeO37pDt0aePOw" name="Visibility">
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDtdI_EeO37pDt0aePOw" value="0"/>
+                  </contents>
+                </eAnnotations>
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_RurDttI_EeO37pDt0aePOw" name="x" visibility="private" isUnique="false">
+                  <eAnnotations xmi:id="_RurDt9I_EeO37pDt0aePOw" source="Objing">
+                    <contents xmi:type="uml:Property" xmi:id="_RurDuNI_EeO37pDt0aePOw" name="Visibility">
+                      <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDudI_EeO37pDt0aePOw" value="2"/>
+                    </contents>
+                    <contents xmi:type="uml:Property" xmi:id="_RurDutI_EeO37pDt0aePOw" name="AccessMode">
+                      <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDu9I_EeO37pDt0aePOw" value="read_write"/>
+                    </contents>
+                  </eAnnotations>
+                  <type xmi:type="uml:PrimitiveType" href="http://schema.omg.org/spec/UML/2.1.1/uml.xml#Integer"/>
+                </ownedAttribute>
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_RurDvNI_EeO37pDt0aePOw" name="y" visibility="private" isUnique="false">
+                  <eAnnotations xmi:id="_RurDvdI_EeO37pDt0aePOw" source="Objing">
+                    <contents xmi:type="uml:Property" xmi:id="_RurDvtI_EeO37pDt0aePOw" name="Visibility">
+                      <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDv9I_EeO37pDt0aePOw" value="2"/>
+                    </contents>
+                    <contents xmi:type="uml:Property" xmi:id="_RurDwNI_EeO37pDt0aePOw" name="AccessMode">
+                      <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDwdI_EeO37pDt0aePOw" value="read_write"/>
+                    </contents>
+                  </eAnnotations>
+                  <type xmi:type="uml:PrimitiveType" href="http://schema.omg.org/spec/UML/2.1.1/uml.xml#Integer"/>
+                </ownedAttribute>
+                <interfaceRealization xmi:id="_RurDwtI_EeO37pDt0aePOw" name="InterfaceRealization" supplier="_RurDa9I_EeO37pDt0aePOw" client="_RurDstI_EeO37pDt0aePOw" contract="_RurDa9I_EeO37pDt0aePOw"/>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Interface" xmi:id="_RurDw9I_EeO37pDt0aePOw" name="GraphicContext" isAbstract="true">
+                <eAnnotations xmi:id="_RurDxNI_EeO37pDt0aePOw" source="Objing">
+                  <contents xmi:type="uml:Property" xmi:id="_RurDxdI_EeO37pDt0aePOw" name="Visibility">
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDxtI_EeO37pDt0aePOw" value="0"/>
+                  </contents>
+                </eAnnotations>
+              </packagedElement>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Package" xmi:id="_RurDx9I_EeO37pDt0aePOw" name="service">
+              <eAnnotations xmi:id="_RurDyNI_EeO37pDt0aePOw" source="Objing">
+                <contents xmi:type="uml:Property" xmi:id="_RurDydI_EeO37pDt0aePOw" name="Visibility">
+                  <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDytI_EeO37pDt0aePOw" value="0"/>
+                </contents>
+              </eAnnotations>
+              <packagedElement xmi:type="uml:Class" xmi:id="_RurDy9I_EeO37pDt0aePOw" name="ShapeService" clientDependency="_RurDz9I_EeO37pDt0aePOw">
+                <eAnnotations xmi:id="_RurDzNI_EeO37pDt0aePOw" source="Objing">
+                  <contents xmi:type="uml:Property" xmi:id="_RurDzdI_EeO37pDt0aePOw" name="Visibility">
+                    <defaultValue xmi:type="uml:LiteralString" xmi:id="_RurDztI_EeO37pDt0aePOw" value="0"/>
+                  </contents>
+                </eAnnotations>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Dependency" xmi:id="_RurDz9I_EeO37pDt0aePOw" name="" supplier="_RurDd9I_EeO37pDt0aePOw" client="_RurDy9I_EeO37pDt0aePOw"/>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_RurD0NI_EeO37pDt0aePOw" name="double"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:applyingPackage="_RurDUNI_EeO37pDt0aePOw" xmi:id="_R64TUNI_EeO37pDt0aePOw">
+      <eAnnotations xmi:id="_R64TUdI_EeO37pDt0aePOw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="LocalProfile.profile.xmi#_Rv8Op9I_EeO37pDt0aePOw"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" xmi:applyingPackage="_R64TUNI_EeO37pDt0aePOw" href="LocalProfile.profile.xmi#_Rv8OoNI_EeO37pDt0aePOw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:applyingPackage="_RurDUNI_EeO37pDt0aePOw" xmi:id="_R67WoNI_EeO37pDt0aePOw">
+      <eAnnotations xmi:id="_R67WodI_EeO37pDt0aePOw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="default.profile.xmi#_R1OXR9I_EeO37pDt0aePOw"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" xmi:applyingPackage="_R67WoNI_EeO37pDt0aePOw" href="default.profile.xmi#_R1OXQNI_EeO37pDt0aePOw"/>
+    </profileApplication>
+  </uml:Model>
+  <LocalProfile:Entity xmi:id="_R69L0NI_EeO37pDt0aePOw" base_Classifier="_RurDd9I_EeO37pDt0aePOw"/>
+  <default:process xmi:id="_R69L0dI_EeO37pDt0aePOw" base_Classifier="_RurDd9I_EeO37pDt0aePOw"/>
+  <LocalProfile:Entity xmi:id="_R69y4NI_EeO37pDt0aePOw" base_Classifier="_RurDjNI_EeO37pDt0aePOw"/>
+  <LocalProfile:Entity xmi:id="_R69y4dI_EeO37pDt0aePOw" base_Classifier="_RurDndI_EeO37pDt0aePOw"/>
+  <LocalProfile:Entity xmi:id="_R69y4tI_EeO37pDt0aePOw" base_Classifier="_RurDstI_EeO37pDt0aePOw"/>
+  <LocalProfile:Service xmi:id="_R69y49I_EeO37pDt0aePOw" base_Classifier="_RurDy9I_EeO37pDt0aePOw"/>
+</xmi:XMI>

@@ -80,6 +80,12 @@ public class XmiParserImplTest {
 		assertEquals(point, a1.getDataType());
 		
 		assertEquals(2, point.getAttributes().size());
+		
+		
+		IClass shapeService = (IClass) model.findClassifierByFullyQualifiedName("in.labulle.anycode.sample.service.ShapeService", ".");
+		assertEquals(shape, shapeService.getClientDependencies().get(0));
+		
+		
 
 	}
 

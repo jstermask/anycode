@@ -54,7 +54,7 @@ public class AstahClassifier extends
 		return gens;
 	}
 
-	public List<? extends IClassifier> getClientDependencies() {
+	public List<IClassifier> getClientDependencies() {
 		List<IClassifier> deps = new ArrayList<IClassifier>();
 		for(IDependency dep : getAstahElement().getClientDependencies()) {
 			deps.add((IClassifier)AstahElement.getElement(dep.getSupplier()));

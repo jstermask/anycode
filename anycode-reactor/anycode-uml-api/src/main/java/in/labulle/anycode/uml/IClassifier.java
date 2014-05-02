@@ -35,7 +35,7 @@ public interface IClassifier extends IElement {
 	 * Gets all the classes or interfaces that the current class depends on.
 	 * @return List of all the classes or interfaces that the current class depends on. Can be empty but never null.
 	 */
-	List<? extends IClassifier> getClientDependencies();
+	List<IClassifier> getClientDependencies();
 
 	/**
 	 * Checks whether this classifier is primitive (int, double, float, string...)
