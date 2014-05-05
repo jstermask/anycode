@@ -18,7 +18,7 @@ public class ModelCodeGenerator extends ReportCodeGenerator {
 	 * log.
 	 */
 	private static final Logger LOG = LoggerFactory
-			.getLogger(ClassifierCodeGenerator.class);
+			.getLogger(ModelCodeGenerator.class);
 
 	public void generateCode(IModel model, List<ITemplate> templates) {
 		List<ITemplate> tps = TemplateUtils.getTemplateByScope(templates,

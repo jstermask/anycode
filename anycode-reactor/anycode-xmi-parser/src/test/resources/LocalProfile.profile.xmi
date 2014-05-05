@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4dTHINQqEeOPGo6Ivs04fA" name="LocalProfile" metaclassReference="_4dTHLNQqEeOPGo6Ivs04fA">
+  <eAnnotations xmi:id="_4dTHIdQqEeOPGo6Ivs04fA" source="Objing">
+    <contents xmi:type="uml:Property" xmi:id="_4dTHItQqEeOPGo6Ivs04fA" name="Module">
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_4dTHI9QqEeOPGo6Ivs04fA" value="baf81457-cc14-4581-9304-227e8049dde7"/>
+    </contents>
+    <contents xmi:type="uml:Property" xmi:id="_4dTHJNQqEeOPGo6Ivs04fA" name="ID">
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_4dTHJdQqEeOPGo6Ivs04fA" value="ba333648-d823-4db8-85ee-944586e8be98"/>
+    </contents>
+  </eAnnotations>
+  <eAnnotations xmi:id="_4dTHJtQqEeOPGo6Ivs04fA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_4dTHJ9QqEeOPGo6Ivs04fA" name="LocalProfile" nsURI="http:///schemas/LocalProfile/_4cZvxNQqEeOPGo6Ivs04fA/0" nsPrefix="LocalProfile">
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_4dTHKNQqEeOPGo6Ivs04fA" name="Entity">
+        <eAnnotations xmi:id="_4dTHKdQqEeOPGo6Ivs04fA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_4dTHLdQqEeOPGo6Ivs04fA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_4dTHKtQqEeOPGo6Ivs04fA" name="base_Classifier" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Classifier"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_4dTHLNQqEeOPGo6Ivs04fA">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Classifier"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_4dTHLdQqEeOPGo6Ivs04fA" name="Entity">
+    <eAnnotations xmi:id="_4dTHLtQqEeOPGo6Ivs04fA" source="Objing">
+      <contents xmi:type="uml:Property" xmi:id="_4dTHL9QqEeOPGo6Ivs04fA" name="ID">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_4dTHMNQqEeOPGo6Ivs04fA" value="9cd27c5c-b6d9-405e-b60d-6690e50d9179"/>
+      </contents>
+      <contents xmi:type="uml:Property" xmi:id="_4dTHMdQqEeOPGo6Ivs04fA" name="Label">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_4dTHMtQqEeOPGo6Ivs04fA" value="Entity"/>
+      </contents>
+      <contents xmi:type="uml:Property" xmi:id="_4dTHM9QqEeOPGo6Ivs04fA" name="BaseClass">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_4dTHNNQqEeOPGo6Ivs04fA" value="Classifier"/>
+      </contents>
+    </eAnnotations>
+    <ownedAttribute xmi:id="_4dTHNdQqEeOPGo6Ivs04fA" name="base_Classifier" association="_4dTHNtQqEeOPGo6Ivs04fA">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Classifier"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_4dTHNtQqEeOPGo6Ivs04fA" name="Classifier_Entity" memberEnd="_4dTHN9QqEeOPGo6Ivs04fA _4dTHNdQqEeOPGo6Ivs04fA">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_4dTHN9QqEeOPGo6Ivs04fA" name="extension_Entity" type="_4dTHLdQqEeOPGo6Ivs04fA" aggregation="composite" association="_4dTHNtQqEeOPGo6Ivs04fA"/>
+  </packagedElement>
+</uml:Profile>

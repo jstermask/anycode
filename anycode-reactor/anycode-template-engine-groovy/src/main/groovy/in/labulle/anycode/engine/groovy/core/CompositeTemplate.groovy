@@ -100,4 +100,8 @@ class CompositeTemplate implements ITemplate {
 	public TemplateScope getScope() {
 		return this.scope
 	}
+
+	public String toString() {
+		return "Template ["+ this.scope +"] : " + name
+	}
 }

@@ -12,7 +12,7 @@ public class TemplateUtils {
 	public static List<ITemplate> getTemplateByScope(List<ITemplate> tps, TemplateScope scope) {
 		List<ITemplate> tpstemps = new ArrayList<ITemplate>(tps);
 		for(ITemplate tp : tps) {
-			if(tp.getScope().equals(scope)) {
+			if(!tp.getScope().equals(scope)) {
 				tpstemps.remove(tp);
 			}
 		}

@@ -5,6 +5,7 @@ import in.labulle.anycode.engine.core.IMacro;
 import in.labulle.anycode.engine.core.ITemplate;
 import in.labulle.anycode.engine.core.TemplateScope;
 import in.labulle.anycode.engine.exception.TemplateRuntimeException;
+import in.labulle.anycode.engine.service.handler.ClassifierCodeGenerator;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -13,8 +14,16 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public abstract class AbstractDirectoryTemplateRepository implements
-		ITemplateRepository {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public abstract class AbstractDirectoryTemplateRepository implements ITemplateRepository {
+	/**
+	 * log.
+	 */
+	private static final Logger LOG = LoggerFactory
+			.getLogger(AbstractDirectoryTemplateRepository.class);
+	
 	private String path;
 	private List<ICodeGenerationArtifact> codeGenerationArtifacts;
 
@@ -39,25 +48,23 @@ public abstract class AbstractDirectoryTemplateRepository implements
 	}
 
 	protected void loadTemplates(File dir, TemplateScope scope) {
-		List<String> fileNames = Arrays.asList(dir
-				.list(getTemplateFilenameFilter(scope)));
+		List<String> fileNames = Arrays.asList(dir.list(getTemplateFilenameFilter(scope)));
 		List<String> files = Arrays.asList(dir.list(getTemplateFilter(scope)));
 		Collections.sort(fileNames);
 		Collections.sort(files);
 		for (int i = 0; i < fileNames.size(); i++) {
 			try {
 				if (files.size() > i) {
-					ITemplate t = buildTemplate(path + File.separator
-							+ fileNames.get(i),
-							path + File.separator + files.get(i), scope);
+					ITemplate t = buildTemplate(path + File.separator + fileNames.get(i), path + File.separator + files.get(i), scope);
 					codeGenerationArtifacts.add(t);
+					if(LOG.isDebugEnabled()) {
+						LOG.debug("Template built : " + t);
+					}
 				} else {
-					throw new TemplateRuntimeException(
-							"There are more filenames templates than content templates");
+					throw new TemplateRuntimeException("There are more filenames templates than content templates");
 				}
 			} catch (Exception e) {
-				TemplateRuntimeException ee = new TemplateRuntimeException(
-						"Error parsing template " + fileNames.get(i), e);
+				TemplateRuntimeException ee = new TemplateRuntimeException("Error parsing template " + fileNames.get(i), e);
 				throw ee;
 			}
 		}
@@ -74,8 +81,7 @@ public abstract class AbstractDirectoryTemplateRepository implements
 	public static FilenameFilter getTemplateFilenameFilter(final TemplateScope scope) {
 		return new FilenameFilter() {
 			public boolean accept(File dir, String name) {
-				return (name.indexOf(ITemplate.NAME_SUFFIX + "."
-						+ scope.getExtension()) != -1);
+				return (name.indexOf(ITemplate.NAME_SUFFIX + "." + scope.getExtension()) != -1);
 			}
 		};
 	}
@@ -83,8 +89,7 @@ public abstract class AbstractDirectoryTemplateRepository implements
 	public static FilenameFilter getTemplateFilter(final TemplateScope scope) {
 		return new FilenameFilter() {
 			public boolean accept(File dir, String name) {
-				return (name.indexOf(ITemplate.CONTENT_SUFFIX + "."
-						+ scope.getExtension()) != -1);
+				return (name.indexOf(ITemplate.CONTENT_SUFFIX + "." + scope.getExtension()) != -1);
 			}
 		};
 	}
@@ -92,14 +97,12 @@ public abstract class AbstractDirectoryTemplateRepository implements
 	public static FilenameFilter getMacroFilter() {
 		return new FilenameFilter() {
 			public boolean accept(File dir, String name) {
-				return (name.indexOf(ITemplate.DIRECTIVE_SUFFIX + "."
-						+ ITemplate.MDA_OVERWRITE_EXTENSION) != -1);
+				return (name.indexOf(ITemplate.DIRECTIVE_SUFFIX + "." + ITemplate.MDA_OVERWRITE_EXTENSION) != -1);
 			}
 		};
 	}
 
-	protected abstract ITemplate buildTemplate(String nameTemplatePath,
-			String contentTemplatePath, TemplateScope scope);
+	protected abstract ITemplate buildTemplate(String nameTemplatePath, String contentTemplatePath, TemplateScope scope);
 
 	protected abstract IMacro buildMacro(String macroFilePath);
 }
