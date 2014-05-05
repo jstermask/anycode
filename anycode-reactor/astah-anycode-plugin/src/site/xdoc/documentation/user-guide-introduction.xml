@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<head>
+		<title>User guide</title>
+	</head>
+	<body>
+		<section name="Introduction">
+			<subsection name="What is anycode ?">
+				<p>
+					Anycode is a code generation plugin for Astah* modeling
+					software.
+					It
+					exports UML models, packages, classes to text files thanks to
+					customizable
+					templates written in Groovy language.
+				</p>
+			</subsection>
+			<subsection name="Why an Astah* Plugin ?">
+				<p>
+					Astah* is a user friendly UML modeling software, that enables to
+					design domain models efficiently. Moreover, it provides a free
+					(community) version as well as a free
+					SDK to extend it. Finally,
+					even if XMI format is exported by most UML softwares, it is now
+					well known that there is no actual standard as each vendor provides
+					its own XMI representation. As a consequence, generating code from
+					XMI files exported from any UML tool would be a nightmare to
+					implement.
+				</p>
+				<p>
+					Those are the reasons why anycode is targetted to Astah* through
+					a plugin. 
+				</p>
+			</subsection>
+			<subsection name="How it works ?">
+				<p>The main objective of this plugin is to make code generation customizable, and easy.</p>
+			</subsection>
+			<subsection name="How to proceed ?">
+			</subsection>
+		</section>
+	</body>
+</document>
+
+
+
+
+
+
+
