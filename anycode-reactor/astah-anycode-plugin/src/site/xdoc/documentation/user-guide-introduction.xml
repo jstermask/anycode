@@ -1,36 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 	<head>
 		<title>User guide</title>
 	</head>
 	<body>
 		<section name="Introduction">
 			<subsection name="What is anycode ?">
-				<p>
-					Anycode is a code generation plugin for Astah* modeling
-					software.
-					It
-					exports UML models, packages, classes to text files thanks to
-					customizable
-					templates written in Groovy language.
+				<p> Anycode is a code generation plugin for Astah* modeling software. It exports UML models, packages, classes to any text files thanks to
+					customizable templates written in Groovy language. It is designed in such a way that it does not depend on any target programming language. In
+					other words, it's up to you to generate any source files, or even documentation.
+				</p>
+				<p> It also provides a "directive" mechanism, i.e. : a set of functions that can be called from a template and that address code generation tasks.
+					Some directives are provided out of the box but you can also define your own libraries.
 				</p>
 			</subsection>
 			<subsection name="Why an Astah* Plugin ?">
-				<p>
-					Astah* is a user friendly UML modeling software, that enables to
-					design domain models efficiently. Moreover, it provides a free
-					(community) version as well as a free
-					SDK to extend it. Finally,
-					even if XMI format is exported by most UML softwares, it is now
-					well known that there is no actual standard as each vendor provides
-					its own XMI representation. As a consequence, generating code from
-					XMI files exported from any UML tool would be a nightmare to
-					implement.
-				</p>
-				<p>
-					Those are the reasons why anycode is targetted to Astah* through
-					a plugin. 
+				<p> Astah* is a user friendly UML modeling software, that enables to design domain models efficiently. Moreover, it provides a free community
+					version as well as a free SDK to extend it. Astah* user interface keeps very simple to use. Anycode tries to adopt the same objective
 				</p>
 			</subsection>
 			<subsection name="How it works ?">
@@ -41,10 +27,3 @@
 		</section>
 	</body>
 </document>
-
-
-
-
-
-
-
