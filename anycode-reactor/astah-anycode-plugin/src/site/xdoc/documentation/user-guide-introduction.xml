@@ -15,17 +15,56 @@
 				</p>
 			</subsection>
 			<subsection name="Why an Astah* Plugin ?">
-				<p> Astah* is a user friendly and lightweight UML tool, that enables to design domain models <b>easily</b>. Moreover, it provides a
-					<b>free</b> community version as well as a free SDK to extend it, based on Maven projects, thus making it a <b>highly customizable</b> software.
+				<p>
+					Astah* is a user friendly and lightweight UML tool, that enables to design domain models
+					<b>easily</b>
+					. Moreover, it provides a
+					<b>free</b>
+					community version as well as a free SDK to extend it, based on Maven projects, thus making it a
+					<b>highly customizable</b>
+					software.
 				</p>
-				<p> Anycode aims to achieve the same goal toward code generation and these are the reasons why it is released as a plugin. </p>
-
+				<p> Anycode aims to achieve the same goals toward code generation and these are the reasons why it is released as an Astah* plugin.</p>
 			</subsection>
 			<subsection name="How it works ?">
-				<p>Code generation have to be free, easy to configure and highly customizable. </p>
+				<p>Anycode will ask you 3 things before generating source code :</p>
+				<ul>
+					<li>What is your UML model ? To answer this question, you just have to design packages, classes, interfaces through one or more UML Class
+						diagrams.
+					</li>
+					<li>Where are your Groovy templates located ?</li>
+					<li>Where do you want to generate your output files ?</li>
+				</ul>
+				<p>Once all the above is setup, you can perform as many code generations as you want, and modify your model and your templates "live". Indeed, one
+					of the advantages of Anycode is that code generation supports hot modifications.
+				</p>
+				<p>Behind the scene, anycode leans on several loosely coupled components :</p>
 				<p class="center">
 					<img class="img-polaroid" src="../images/architecture.png" />
 				</p>
+				<ul>
+					<li>
+						<b>Plugin GUI</b>
+						is responsible for getting user input (namely 2 directories) and giving feedback about code generation process.
+					</li>
+					<li>
+						<b>Template Engine API</b>
+						is an abstract API for generating template based source code. It launches template rendering but remains independent from the actual
+						implementation.
+					</li>
+					<li>
+						<b>Template Engine Groovy impl.</b>
+						is the actual template engine implementation.
+					</li>
+					<li>
+						<b>UML API</b>
+						exposes UML Model.
+					</li>
+					<li>
+						<b>UML API Astah impl.</b>
+						wraps Astah API. It enables to use Astah API indirectly, so that anycode is not tightly coupled with astah implementation.
+					</li>
+				</ul>
 			</subsection>
 			<subsection name="How to proceed ?">
 			</subsection>
