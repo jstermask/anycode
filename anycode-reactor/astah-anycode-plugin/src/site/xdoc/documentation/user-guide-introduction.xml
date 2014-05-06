@@ -23,6 +23,9 @@
 			</subsection>
 			<subsection name="How it works ?">
 				<p>Code generation have to be free, easy to configure and highly customizable. </p>
+				<p class="center">
+					<img class="img-polaroid" src="../images/architecture.png" />
+				</p>
 			</subsection>
 			<subsection name="How to proceed ?">
 			</subsection>
