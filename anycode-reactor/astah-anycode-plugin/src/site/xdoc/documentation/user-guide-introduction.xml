@@ -10,17 +10,19 @@
 					customizable templates written in Groovy language. It is designed in such a way that it does not depend on any target programming language. In
 					other words, it's up to you to generate any source files, or even documentation.
 				</p>
-				<p> It also provides a "directive" mechanism, i.e. : a set of functions that can be called from a template and that address code generation tasks.
-					Some directives are provided out of the box but you can also define your own libraries.
+				<p> It also provides a "directive" mechanism, i.e. : a set of functions that can be called from a template and that performs specific code
+					generation tasks. Some of them are provided out of the box (Java, JPA, Objective-C) but you can also define your own libraries.
 				</p>
 			</subsection>
 			<subsection name="Why an Astah* Plugin ?">
-				<p> Astah* is a user friendly UML modeling software, that enables to design domain models efficiently. Moreover, it provides a free community
-					version as well as a free SDK to extend it. Astah* user interface keeps very simple to use. Anycode tries to adopt the same objective
+				<p> Astah* is a user friendly and lightweight UML tool, that enables to design domain models <b>easily</b>. Moreover, it provides a
+					<b>free</b> community version as well as a free SDK to extend it, based on Maven projects, thus making it a <b>highly customizable</b> software.
 				</p>
+				<p> Anycode aims to achieve the same goal toward code generation and these are the reasons why it is released as a plugin. </p>
+
 			</subsection>
 			<subsection name="How it works ?">
-				<p>The main objective of this plugin is to make code generation customizable, and easy.</p>
+				<p>Code generation have to be free, easy to configure and highly customizable. </p>
 			</subsection>
 			<subsection name="How to proceed ?">
 			</subsection>
