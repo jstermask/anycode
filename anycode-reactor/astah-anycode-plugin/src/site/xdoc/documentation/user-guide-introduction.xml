@@ -10,7 +10,7 @@
 					customizable templates written in Groovy language. It is designed in such a way that it does not depend on any target programming language. In
 					other words, it's up to you to generate any source files, or even documentation.
 				</p>
-				<p> It also provides a "directive" mechanism, i.e. : a set of functions that can be called from a template and that performs specific code
+				<p> It also provides a "directive" mechanism, i.e. : a set of functions that can be called from a template and that perform specific code
 					generation tasks. Some of them are provided out of the box (Java, JPA, Objective-C) but you can also define your own libraries.
 				</p>
 			</subsection>
@@ -27,21 +27,20 @@
 				<p> Anycode aims to achieve the same goals toward code generation and these are the reasons why it is released as an Astah* plugin.</p>
 			</subsection>
 			<subsection name="How it works ?">
-				<p>Anycode will ask you 3 things before generating source code :</p>
+				<p class="center">
+					<img class="img-polaroid" src="../images/architecture.png" width="600" />
+				</p>
+				<p>3 steps are needed before generating source code :</p>
 				<ul>
-					<li>What is your UML model ? To answer this question, you just have to design packages, classes, interfaces through one or more UML Class
-						diagrams.
-					</li>
-					<li>Where are your Groovy templates located ?</li>
-					<li>Where do you want to generate your output files ?</li>
+					<li>Design a model through UML Diagrams.</li>
+					<li>Create templates using groovy scripting language and tell the plugin where they are</li>
+					<li>Tell the plugin where to export target source code.</li>
 				</ul>
-				<p>Once all the above is setup, you can perform as many code generations as you want, and modify your model and your templates "live". Indeed, one
-					of the advantages of Anycode is that code generation supports hot modifications.
+				<p>Once these steps are achieved, you can perform as many code generations as you want, and modify your model and your templates "live". Indeed, one
+					of the advantages of Anycode is that it supports hot code replacement.
 				</p>
 				<p>Behind the scene, anycode leans on several loosely coupled components :</p>
-				<p class="center">
-					<img class="img-polaroid" src="../images/architecture.png" />
-				</p>
+				
 				<ul>
 					<li>
 						<b>Plugin GUI</b>
@@ -49,24 +48,25 @@
 					</li>
 					<li>
 						<b>Template Engine API</b>
-						is an abstract API for generating template based source code. It launches template rendering but remains independent from the actual
-						implementation.
+						is an abstract API for generating template based source code. It launches rendering but remains independent from the actual
+						engine implementation.
 					</li>
 					<li>
 						<b>Template Engine Groovy impl.</b>
-						is the actual template engine implementation.
+						is the actual template engine implementation, based on Groovy.
 					</li>
 					<li>
 						<b>UML API</b>
-						exposes UML Model.
+						exposes UML Model through a simple API.
 					</li>
 					<li>
 						<b>UML API Astah impl.</b>
-						wraps Astah API. It enables to use Astah API indirectly, so that anycode is not tightly coupled with astah implementation.
+						wraps Astah API. It enables to use Astah API indirectly, so that anycode is not tightly coupled with Astah implementation.
 					</li>
 				</ul>
 			</subsection>
 			<subsection name="How to proceed ?">
+				<p>Anycode is based on custom templates. This means that you will have to write a few lines of code, and comply with specific naming conventions if you </p>
 			</subsection>
 		</section>
 	</body>
