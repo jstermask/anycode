@@ -19,19 +19,20 @@
 			<dt><a href="templating-guide.html">2. Templating guide</a></dt>
 			<dd>
 				<dl>
-					<dt><a href="templating-guide.html#s1">2.1. Template overview</a></dt>
+					<dt><a href="templating-guide.html#s1">2.1. Template File structuce</a></dt>
 					<dd>
 						<dl>
-							<dt><a href="templating-guide.html#s11">2.1.1 Template structure</a></dt>
-							<dt><a href="templating-guide.html#s12">2.1.2. Template programming language</a></dt>
-							<dt><a href="templating-guide.html#s13">2.1.3. Template context</a></dt>
+							<dt><a href="templating-guide.html#s11">2.1.1. Naming convention</a></dt>
+							<dt><a href="templating-guide.html#s12">2.1.2. Scripting language</a></dt>
+							<dt><a href="templating-guide.html#s13">2.1.3. Choosing the right scope</a></dt>
 						</dl>
 					</dd>
-					<dt><a href="templating-guide.html#s12">1.2. Code generation process</a></dt>	
+					<dt><a href="templating-guide.html#s2">2.2. Template context</a></dt>	
+					<dt><a href="templating-guide.html#s3">2.3. Directives</a></dt>	
 					<dd>
 						<dl>
-							<dt><a href="templating-guide.html#s121">1.2.1. Conditional rendering</a></dt>
-							<dt><a href="templating-guide.html#s122">1.2.2. Override mechanism</a></dt>
+							<dt><a href="templating-guide.html#s31">1.2.1. Naming convention</a></dt>
+							<dt><a href="templating-guide.html#s32">1.2.2. Built-in directives</a></dt>
 						</dl>
 					</dd>
 				</dl>
@@ -47,10 +48,9 @@
 					<dt><a href="language.html#s26">2.6. Dependencies</a></dt>
 					<dt><a href="language.html#s27">2.7. Inheritance</a></dt>
 					<dt><a href="language.html#s28">2.8. Stereotypes</a></dt>
-					<dt><a href="language.html#s29">2.9. User directives</a></dt>
 				</dl>
 			</dd>
-			<dt><a href="../directives/directives.html">3. Built-in Directives</a></dt>
+			<dt><a href="../directives/directives.html">3. Built-in Directives API</a></dt>
 		</dl>
 	</body>
 </document>

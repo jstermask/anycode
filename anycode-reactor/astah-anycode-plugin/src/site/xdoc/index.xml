@@ -47,8 +47,8 @@
 					<p class="justify">
 						Write as many templates as you need. A template consists in 2 <b>groovy</b> files that let you customize
 						both the name and
-						the content of target files. It receives a UML
-						class as parameter so
+						the content of target files. <b><span style="color:red">NEW!</span></b> It receives a UML
+						<b>model</b> or each class as parameter so
 						that you can turn it into text.
 					</p>
 					<p>
@@ -61,7 +61,7 @@
 						<img alt="Generate code" class="process-img anime" src="images/code.png" />
 					</p>
 					<p class="center process-step">Generate any code</p>
-					<p class="justify">Code generation process iterates over each UML class and
+					<p class="justify">Code generation process iterates over UML model and each UML class and
 						each custom template. Any textual language can be generated !
 						To make code generation faster and easier, you can take advantage of
 						built-in functions and macros.
@@ -72,6 +72,6 @@
 					</p>
 				</div>
 			</div>
-	    <div class="news newsWhite">1.2.0_GA released !<br/><img src="images/groovy.png" style="height:55px;" /></div>
+	    <div class="news newsWhite">1.3.0_GA released !<br/><img src="images/groovy.png" style="height:55px;" /><br/><a href="about/news.html">Release Note</a></div>
 	</body>
 </document>

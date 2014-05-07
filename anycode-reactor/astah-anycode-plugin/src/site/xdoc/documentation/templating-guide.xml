@@ -7,10 +7,11 @@
 		<h1>2. Templating Guide</h1>
 		<a name="s1"></a>
 		<section name="2.1. Template File structure">
+			<a name="s11"></a>
 			<subsection name="2.1.1. Naming convention">
 			<p>A template is a parameterized "document" that will be turned into text file thanks to a template engine.
 			</p>
-			<p>In anycode, a template is actually a set of 2 files that describe both <b>the path (name)</b> of the file to be generated and <b>its content</b>. Those files must be created
+			<p>In anycode, it is actually a set of 2 files that describe both <b>the path (name)</b> of the file to be generated and <b>its content</b>. They must be created
 				altogether in the same directory and must comply with the following naming convention:
 			</p>
 			<table class="table table-bordered">
@@ -51,6 +52,7 @@
 				<img class="img-polaroid" src="../images/template-structure.png" />
 			</p>
 			</subsection>
+			<a name="s12"></a>
 			<subsection name="2.1.2. Scripting Language">
 			<p>Before 1.2.0, Anycode used to rely on freemarker language as template engine. Although that language is powerful and reusable thanks to
 				directive mechanism, it was not so easy to learn for end users nor to test automatically (unit tests). In order to extend the tool, a decision
@@ -84,8 +86,8 @@ ${java.classifierSignature(c)} {
 			<p>Several variables are used here : "c", "java"... These will be explained in Template context section.</p>
 			</subsection>
 			
-		
-				<subsection name="2.1.3. Choosing the right scope">
+			<a name="s13"></a>
+			<subsection name="2.1.3. Choosing the right scope">
 					<p>Needs for code generation can be different from one developer to another. Some will want to generate their classes to a specific language, some
 					other will prefer to generate a document for the whole model. They will therefore need to manipulate the model itself or only one of its classifiers.</p>
 					<p>Depending on file's extension name, a template can process either a classifier or the whole UML model :</p>
@@ -102,8 +104,9 @@ ${java.classifierSignature(c)} {
 					</ul>
 				</subsection>
 			</section>
+			<a name="s2"></a>
 			<section name="2.2. Template context">
-				<p> To be rendered to a file, a template always receives a context as a parameter. It's a set of variables that you can call from the template:
+				<p> To generate files, template engine always passes a context to templates. It's a set of variables that you can call from the template:
 				</p>
 				<table class="table table-bordered">
 					<tr>
@@ -163,49 +166,107 @@ ${java.classifierSignature(c)} {
 					<i>Tutorials section</i>
 					.
 				</p>
-				<p>Context exposes UML model to templates directly, as variables. This makes code generation straightforward. 
-				However, if your template is sophisticated and you have repetitive tasks to perform, it might be worth declaring reusable functions that could reduce template boilerplate code.
-				This is where directives come into play.</p>
 			</section>
+			<a name="s3"></a>
 			<section name="2.3. Directives">
-				<subsection name="2.3.1. Built-in directives">
-				</subsection>
-				<subsection name="2.3.2. Custom directives">
-					<h4>2.3.2.1. Naming conventions</h4>
-				</subsection>
-			</section>
-		<a name="s12"></a>
-		<section name="Code generation process">
-			<p> By default, if you haven't created at least one template, nothing will be generated at all, as a template represents the minimum piece of
-				transformation of your model. If you create one, the later will automatically be passed each of your classes. In other words, the process is a
-				kind of cartesian product between UML Classes and custom templates as it iterates on each UML Class, and for each one, it iterates on each
-				template found in the directory you configure.
-			</p>
-			<p class="center">
-				<img class="img-polaroid" width="800px" src="../images/code-generation-process.png" />
-			</p>
-			<p>
-				Fortunately, it's possible to narrow a template to only specific classes. For further details about this, please see
-				<i>Conditional Rendering section</i>
-				of this guide.
-			</p>
-			<a name="s121"></a>
-			<subsection name="Conditional rendering">
-				<p>As we said before, code generation process generates each class with each template by default. So you may wonder how you can do to write a
-					template that will generate DAO classes, and service classes that only matches a subset of all the classes you modeled.
+				<p>Templates use UML model directly, through variables. This makes code generation straightforward. </p>
+				<p>However, their size will grow a lot if you don't have a way to reuse some functions. 
+					Fortunately you can write custom "directives" in separate files and call their functions directly from your templates. This section will tell you how to do that.
+				</p>
+				<a name="s31"></a>
+				<subsection name="2.3.1. Naming Convention">
+				<p>
+				A Directive a just a <b>Groovy class</b>, saved in the template directory (directory templates are stored), and whose filename follows a specific naming convention : <b>[myCode]<i>-directive.mda</i></b>.
+				This class is detected and processed by anycode, i.e. : an instance of the class is available in your template with "myCode" variable name.
 				</p>
 				<p>
-					In fact, all you have to do is to code a
-					<code>&lt;% if([condition]) { [template] } %&gt;</code>
-					condition in
-					<code>-content</code>
-					template that surrounds all the template. As a consequence, if this condition is not matched, template output content will be empty. Code
-					generation process will then ignore source code generation and won't write any output file.
+				Let's take an example : suppose you need to generate a PHP attribute of a class as well as its getters and setters. You can then write all the code in the directive as 
+				you can see below.
 				</p>
-				<p>A very common condition is to check a class' stereotype. For instance, you could define an &lt;&lt;Entity&gt;&gt; stereotype in Astah, write a
-					persistence class template surrounded by a condition to ensure that class must have this stereotype in order to be generated. 
-				</p>
-			</subsection>
-		</section>
+				<code><b>myPhp-directive.mda</b></code>
+				<source>
+import in.labulle.anycode.uml.*;
+
+class PhpDirective {
+	def attribute(IAttribute a) {
+		return """private var \$${a.name};"""
+	}
+	
+	def getter(IAttribute a) {
+		return """public function get${capitalize(a.name)}() {
+			return \$this->${a.name};
+		}"""
+	}
+	
+	def setter(IAttribute a) {
+		return """pblic function set${capitalize(a.name)}(\$aValue) {
+			\$this->${a.name} = \$aValue;
+		}"""
+	}
+	
+	def capitalize(String s) {
+		return s[0].toUpperCase() + s.substring(1)
+	}
+}
+				</source>
+<p>The above class is a Directive. This is a regular Groovy Class that imports Anycode API and that helps generating variable, getter and setter from a UML Attribute. There is no specific constraint regarding the class' name or its methods.
+The only important thing to remember is to import the required dependencies (like any groovy class) and make sure that they are in Astah's classpath.
+</p>
+<p>Now, let's see how to use this directive in our template, thus reducing its code and improving its readability :</p>
+				<code><b>yetanothertemplate-name.mda</b></code>
+				<source>
+${targetDir}/${c.name}.php
+				</source> 
+				<code><b>yetanothertemplate-content.mda</b></code>
+				<source>
+&lt;?php
+class ${c.name} {
+	&lt;&#37; c.attributes.each() { &#37;&gt;
+		${myPhp.attribute(it)} 
+		${myPhp.getter(it)} 
+		${myPhp.setter(it)} 
+	&lt;&#37; } &#37;&gt;	
+}
+?&gt;</source>
+				<p>And the result below with a simple Person class with 3 attributes :</p>
+				
+				<code><b>Person.php</b></code>
+<source>
+&lt;?php
+class Person {
+private var $firstname;
+public function getFirstname() {
+	return $this->firstname;
+}
+	
+public function setFirstname($aFirstname) {
+	$this->firstname = $aFirstname;
+}
+
+private var $lastname;
+public function getLastname() {
+	return $this->lastname;
+}
+	
+public function setLastname($aLastname) {
+	$this->lastname = $aLastname;
+}
+
+private var $birthdate;
+public function getBirthdate() {
+	return $this->birthdate;
+}
+	
+public function setBirthdate($aBirthdate) {
+	$this->birthdate = $aBirthdate;
+}
+}
+?&gt;</source>
+				</subsection>
+				<a name="s32"></a>			
+				<subsection name="2.3.2. Built-in directives">
+				<p>anycode provides a few directives out of the box for Java, JPA/Hibernate/Spring-Data, Objective-C (limited support). Please read <a href="../directives/directives.html">Directives API</a>for further details.</p>
+				</subsection>
+			</section>
 	</body>
 </document>
