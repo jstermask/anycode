@@ -6,11 +6,11 @@
 	<body>
 		<h1>2. Templating Guide</h1>
 		<a name="s1"></a>
-		<section name="2.1. Naming conventions">
-			<subsection name="2.1.1. File structure">
-			<p> A template is a parameterized document that will be turned into text file thanks to a template engine.
+		<section name="2.1. Template File structure">
+			<subsection name="2.1.1. Naming convention">
+			<p>A template is a parameterized "document" that will be turned into text file thanks to a template engine.
 			</p>
-			<p>For anycode, a template is set of 2 files that describe both the name of the file to be generated and its content. Those files must be created
+			<p>In anycode, a template is actually a set of 2 files that describe both <b>the path (name)</b> of the file to be generated and <b>its content</b>. Those files must be created
 				altogether in the same directory and must comply with the following naming convention:
 			</p>
 			<table class="table table-bordered">
@@ -51,7 +51,22 @@
 				<img class="img-polaroid" src="../images/template-structure.png" />
 			</p>
 			</subsection>
-			<p>Let's show an example of a template that generates a java class. This template will be made up of 2 files :</p>
+			<subsection name="2.1.2. Scripting Language">
+			<p>Before 1.2.0, Anycode used to rely on freemarker language as template engine. Although that language is powerful and reusable thanks to
+				directive mechanism, it was not so easy to learn for end users nor to test automatically (unit tests). In order to extend the tool, a decision
+				was made to switch from Freemarker to Groovy, as it is closer to the well known JSP syntax, and Directives can be unit tested like any
+				Groovy Class.
+			</p>
+			<p>
+				So starting from Anycode 1.2.0, we'll rely only on Groovy templating engine. The latter is used
+				<i>as is</i>
+				. As a consequence, learning its syntax is a prerequisite to using the plugin.
+			</p>
+			<p>
+				For more information on how to write templates with Groovy, please see
+				<a href="http://groovy.codehaus.org/Groovy+Templates" target="_blank">Groovy Templates manual</a>
+			</p>
+			<p>The example below shows a template that generates a java class. It is made up of 2 files :</p>
 			<b>MyTemplate-name.mda</b>
 			<source>${targetDir}/${c.getFullyQualifiedName("/")}.java</source>
 			<b>MyTemplate-content.mda</b>
@@ -66,9 +81,12 @@ ${java.classifierSignature(c)} {
 		${java.setter(it)} 
 	&lt;% } %&gt; 
 } </source>
-			<p>Don't worry about template's content. This will be explained later in the document.</p>
-			<subsection name="2.1.2. Choosing the right scope">
-				<p>Code generation needs can be different from one developer to another. Some will want to generate their classes to a specific language, some
+			<p>Several variables are used here : "c", "java"... These will be explained in Template context section.</p>
+			</subsection>
+			
+		
+				<subsection name="2.1.3. Choosing the right scope">
+					<p>Needs for code generation can be different from one developer to another. Some will want to generate their classes to a specific language, some
 					other will prefer to generate a document for the whole model. They will therefore need to manipulate the model itself or only one of its classifiers.</p>
 					<p>Depending on file's extension name, a template can process either a classifier or the whole UML model :</p>
 					<ul>
@@ -84,7 +102,7 @@ ${java.classifierSignature(c)} {
 					</ul>
 				</subsection>
 			</section>
-			<section name="2.2. Template context parameters">
+			<section name="2.2. Template context">
 				<p> To be rendered to a file, a template always receives a context as a parameter. It's a set of variables that you can call from the template:
 				</p>
 				<table class="table table-bordered">
@@ -145,32 +163,17 @@ ${java.classifierSignature(c)} {
 					<i>Tutorials section</i>
 					.
 				</p>
+				<p>Context exposes UML model to templates directly, as variables. This makes code generation straightforward. 
+				However, if your template is sophisticated and you have repetitive tasks to perform, it might be worth declaring reusable functions that could reduce template boilerplate code.
+				This is where directives come into play.</p>
 			</section>
-		<section name="2.4. Template Context"></section>
-		<a name="s1"></a>
-		<section name="2. Template overview">
-			<a name="s112"></a>
-			<subsection name="Template Programming language">
-				<p>Before 1.2.0, Anycode used to rely on freemarker language as template engine. Although that language is powerful and reusable thanks to
-					directive mechanism, it was not so easy to learn for end users nor to test automatically (unit tests). In order to extend the tool, a decision
-					was made to switch from Freemarker to Groovy, as the latter is closer to the well known JSP syntax, and Directives can be unit tested like any
-					Groovy Class.
-				</p>
-				<p>
-					So starting from Anycode 1.2.0, we'll rely only on Groovy templates engine. The latter is used
-					<i>as is</i>
-					. As a consequence, learning its syntax is a prerequisite to using the plugin.
-				</p>
-				<p>
-					For more information on how to write templates with Groovy, please see
-					<a href="http://groovy.codehaus.org/Groovy+Templates" target="_blank">Groovy Templates manual</a>
-				</p>
-			</subsection>
-			<a name="s113"></a>
-			<subsection name="Template Context">
-				
-			</subsection>
-		</section>
+			<section name="2.3. Directives">
+				<subsection name="2.3.1. Built-in directives">
+				</subsection>
+				<subsection name="2.3.2. Custom directives">
+					<h4>2.3.2.1. Naming conventions</h4>
+				</subsection>
+			</section>
 		<a name="s12"></a>
 		<section name="Code generation process">
 			<p> By default, if you haven't created at least one template, nothing will be generated at all, as a template represents the minimum piece of
