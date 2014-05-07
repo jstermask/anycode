@@ -4,54 +4,151 @@
 		<title>Templating guide</title>
 	</head>
 	<body>
-		<h1>Templating Guide</h1>
-		<a name="s11"></a>
-		<section name="Template overview">
+		<h1>2. Templating Guide</h1>
+		<a name="s1"></a>
+		<section name="2.1. Naming conventions">
+			<subsection name="2.1.1. File structure">
 			<p> A template is a parameterized document that will be turned into text file thanks to a template engine.
 			</p>
-			<a name="s111"></a>
-			<subsection name="Template structure">
-				<p>For anycode, a template is set of 2 files that describe both the name of the file to be generated and its content. Those files must be created
-					altogether in the same directory and must comply with the following naming convention:
+			<p>For anycode, a template is set of 2 files that describe both the name of the file to be generated and its content. Those files must be created
+				altogether in the same directory and must comply with the following naming convention:
+			</p>
+			<table class="table table-bordered">
+				<tr>
+					<th>Prefix</th>
+					<th>Suffix</th>
+					<th>Extension</th>
+					<th>Description</th>
+					<th>Example</th>
+				</tr>
+				<tr>
+					<td>Any valid filename</td>
+					<td>-name</td>
+					<td>.mda or .mdm</td>
+					<td>Template that is responsible for generating source code file's path
+					</td>
+					<td>foo-name.mda</td>
+				</tr>
+				<tr>
+					<td>Any valid filename</td>
+					<td>-content</td>
+					<td>.mda or .mdm</td>
+					<td>Template that is responsible for generating source code content
+					</td>
+					<td>foo-content.mda</td>
+				</tr>
+			</table>
+			<p>
+				2 files
+				<i>foo</i>
+				-name.mda and
+				<i>foo</i>
+				-content.mda compose one template identified as
+				<i>foo</i>
+				template.
+			</p>
+			<p class="center">
+				<img class="img-polaroid" src="../images/template-structure.png" />
+			</p>
+			</subsection>
+			<p>Let's show an example of a template that generates a java class. This template will be made up of 2 files :</p>
+			<b>MyTemplate-name.mda</b>
+			<source>${targetDir}/${c.getFullyQualifiedName("/")}.java</source>
+			<b>MyTemplate-content.mda</b>
+			<source>package ${c.owner.getFullyQualifiedName(".")}; 
+${java.classifierSignature(c)} { 
+	&lt;% def atts = c.attributes %&gt; 
+	&lt;% atts.each() {%&gt; 
+		${java.attribute(it)} 
+	&lt;% } %&gt; 
+	&lt;% atts.each() { %&gt; 
+		${java.getter(it)} 
+		${java.setter(it)} 
+	&lt;% } %&gt; 
+} </source>
+			<p>Don't worry about template's content. This will be explained later in the document.</p>
+			<subsection name="2.1.2. Choosing the right scope">
+				<p>Code generation needs can be different from one developer to another. Some will want to generate their classes to a specific language, some
+					other will prefer to generate a document for the whole model. They will therefore need to manipulate the model itself or only one of its classifiers.</p>
+					<p>Depending on file's extension name, a template can process either a classifier or the whole UML model :</p>
+					<ul>
+						<li>
+							<b>*.mdm</b>
+							extension : template will take the UML Model as a parameter. It means that it will be called only once and will generate only one single file.
+						</li>
+						<li>
+							<b>*.mda</b>
+							extension : template will take each classifier (class or interface) as a parameter. It means that it will be called as many times as there are
+							classifiers in the model.
+						</li>
+					</ul>
+				</subsection>
+			</section>
+			<section name="2.2. Template context parameters">
+				<p> To be rendered to a file, a template always receives a context as a parameter. It's a set of variables that you can call from the template:
 				</p>
 				<table class="table table-bordered">
 					<tr>
-						<th>Prefix</th>
-						<th>Suffix</th>
-						<th>Extension</th>
+						<th>Parameter name</th>
+						<th>Available for scope</th>
 						<th>Description</th>
-						<th>Example</th>
+						<th>Type</th>
 					</tr>
 					<tr>
-						<td>Any valid filename</td>
-						<td>-name</td>
-						<td>.mda</td>
-						<td>Template that is responsible for generating source code file's path
+						<td>m</td>
+						<td>Model scope (*.mdm) only</td>
+						<td>Anycode model instance. 
 						</td>
-						<td>foo-name.mda</td>
+						<td>
+							in.labulle.anycode.uml.IModel (from
+							<a href="../api/anycode-uml-api/apidocs/index.html" target="_blank">Anycode UML API</a>
+							)
+						</td>
 					</tr>
 					<tr>
-						<td>Any valid filename</td>
-						<td>-content</td>
-						<td>.mda</td>
-						<td>Template that is responsible for generating source code content
+						<td>c</td>
+						<td>Classifier scope (*.mda) only</td>
+						<td>Anycode class instance. This variable will help you generate most of the content of your source code.
 						</td>
-						<td>foo-content.mda</td>
+						<td>
+							in.labulle.anycode.uml.IClassifier (from
+							<a href="../api/anycode-uml-api/apidocs/index.html" target="_blank">Anycode UML API</a>
+							)
+						</td>
+					</tr>
+					<tr>
+						<td>targetDir</td>
+						<td>any scope</td>
+						<td>Target directory that you chose from anycode configuration panel. This will be useful to build the name of the generated file (its path).
+						</td>
+						<td>java.lang.String</td>
+					</tr>
+					<tr>
+						<td>templateDir</td>
+						<td>any scope</td>
+						<td>Template directory that you chose from anycode configuration panel. This is where you saved your template(s).
+						</td>
+						<td>java.lang.String</td>
 					</tr>
 				</table>
 				<p>
-					2 files
-					<i>foo</i>
-					-name.mda and
-					<i>foo</i>
-					-content.mda compose one template identified as
-					<i>foo</i>
-					template.
+					<b>NOTE</b>
+					: IClassifier and IModel is an interface provided by
+					<a href="../api/anycode-uml-api/apidocs/index.html" target="_blank">Anycode UML API</a>
+					whose javadoc is available online
+					<a href="../api/anycode-uml-api/apidocs/index.html" target="_blank">here</a>
+					. It represents a class designed in Astah and wraps it so that it is even easier to use in templates. From the template, you can therefore access a
+					UML Class information, its name, package, attributes, operations, relations, stereotypes... To sum up, you can have access to (almost?) anything
+					you designed in your diagram. And the good news is that Anycode API is quite easy to use. For practical examples, please see
+					<i>Language reference section</i>
+					of this guide and also
+					<i>Tutorials section</i>
+					.
 				</p>
-				<p class="center">
-					<img class="img-polaroid" src="../images/template-structure.png" />
-				</p>
-			</subsection>
+			</section>
+		<section name="2.4. Template Context"></section>
+		<a name="s1"></a>
+		<section name="2. Template overview">
 			<a name="s112"></a>
 			<subsection name="Template Programming language">
 				<p>Before 1.2.0, Anycode used to rely on freemarker language as template engine. Although that language is powerful and reusable thanks to
@@ -71,48 +168,7 @@
 			</subsection>
 			<a name="s113"></a>
 			<subsection name="Template Context">
-				<p> To render to a file, a template always receives a context as a parameter. It's a set of 3 variables that you can call from the template:
-				</p>
-				<table class="table table-bordered">
-					<tr>
-						<th>Parameter name</th>
-						<th>Description</th>
-						<th>Type</th>
-					</tr>
-					<tr>
-						<td>c</td>
-						<td>Anycode class instance. This variable will help you generate most of the content of your source code.
-						</td>
-						<td>
-							in.labulle.anycode.uml.IClass (from
-							<a href="../api/anycode-uml-api/apidocs/index.html" target="_blank">Anycode UML API</a>
-							)
-						</td>
-					</tr>
-					<tr>
-						<td>targetDir</td>
-						<td>Target directory that you chose from anycode configuration panel. This will be useful to build the name of the generated file (its path).
-						</td>
-						<td>java.lang.String</td>
-					</tr>
-					<tr>
-						<td>templateDir</td>
-						<td>Template directory that you chose from anycode configuration panel. This is where you saved your template(s).
-						</td>
-						<td>java.lang.String</td>
-					</tr>
-				</table>
-				<p>
-					<b>NOTE</b>
-					: IClass is an interface provided by
-					<a href="../api/anycode-uml-api/apidocs/index.html" target="_blank">Anycode UML API</a>
-					whose javadoc is available online
-					<a href="../api/anycode-uml-api/apidocs/index.html" target="_blank">here</a>
-					. It represents a class designed in Astah and wraps it so that it is even easier to use in templates. From the template, you can therefore access
-					a UML Class information, its name, package, attributes, operations, relations, stereotypes... To sum up, you can have access to (almost?)
-					anything you designed in your diagram. And the good news is that Anycode API is quite easy to use. For practical examples, please see
-					<i>Language reference section</i> of this guide and also <i>Tutorials section</i>. 
-				</p>
+				
 			</subsection>
 		</section>
 		<a name="s12"></a>
@@ -143,8 +199,8 @@
 					template that surrounds all the template. As a consequence, if this condition is not matched, template output content will be empty. Code
 					generation process will then ignore source code generation and won't write any output file.
 				</p>
-				<p>A very common condition is to check a class' stereotype. For instance, you could define an &lt;&lt;Entity&gt;&gt; stereotype in Astah, write
-					a persistence class template surrounded by a condition to ensure that class must have this stereotype in order to be generated. 
+				<p>A very common condition is to check a class' stereotype. For instance, you could define an &lt;&lt;Entity&gt;&gt; stereotype in Astah, write a
+					persistence class template surrounded by a condition to ensure that class must have this stereotype in order to be generated. 
 				</p>
 			</subsection>
 		</section>

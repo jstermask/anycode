@@ -1,73 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 	<head>
-		<title>User guide</title>
+		<title>Introduction</title>
 	</head>
 	<body>
-		<section name="Introduction">
-			<subsection name="What is anycode ?">
-				<p> Anycode is a code generation plugin for Astah* modeling software. It exports UML models, packages, classes to any text files thanks to
-					customizable templates written in Groovy language. It is designed in such a way that it does not depend on any target programming language. In
-					other words, it's up to you to generate any source files, or even documentation.
-				</p>
-				<p> It also provides a "directive" mechanism, i.e. : a set of functions that can be called from a template and that perform specific code
-					generation tasks. Some of them are provided out of the box (Java, JPA, Objective-C) but you can also define your own libraries.
-				</p>
-			</subsection>
-			<subsection name="Why an Astah* Plugin ?">
-				<p>
-					Astah* is a user friendly and lightweight UML tool, that enables to design domain models
-					<b>easily</b>
-					. Moreover, it provides a
-					<b>free</b>
-					community version as well as a free SDK to extend it, based on Maven projects, thus making it a
-					<b>highly customizable</b>
-					software.
-				</p>
-				<p> Anycode aims to achieve the same goals toward code generation and these are the reasons why it is released as an Astah* plugin.</p>
-			</subsection>
-			<subsection name="How it works ?">
-				<p class="center">
-					<img class="img-polaroid" src="../images/architecture.png" width="600" />
-				</p>
-				<p>3 steps are needed before generating source code :</p>
-				<ul>
-					<li>Design a model through UML Diagrams.</li>
-					<li>Create templates using groovy scripting language and tell the plugin where they are</li>
-					<li>Tell the plugin where to export target source code.</li>
-				</ul>
-				<p>Once these steps are achieved, you can perform as many code generations as you want, and modify your model and your templates "live". Indeed, one
-					of the advantages of Anycode is that it supports hot code replacement.
-				</p>
-				<p>Behind the scene, anycode leans on several loosely coupled components :</p>
-				
-				<ul>
-					<li>
-						<b>Plugin GUI</b>
-						is responsible for getting user input (namely 2 directories) and giving feedback about code generation process.
-					</li>
-					<li>
-						<b>Template Engine API</b>
-						is an abstract API for generating template based source code. It launches rendering but remains independent from the actual
-						engine implementation.
-					</li>
-					<li>
-						<b>Template Engine Groovy impl.</b>
-						is the actual template engine implementation, based on Groovy.
-					</li>
-					<li>
-						<b>UML API</b>
-						exposes UML Model through a simple API.
-					</li>
-					<li>
-						<b>UML API Astah impl.</b>
-						wraps Astah API. It enables to use Astah API indirectly, so that anycode is not tightly coupled with Astah implementation.
-					</li>
-				</ul>
-			</subsection>
-			<subsection name="How to proceed ?">
-				<p>Anycode is based on custom templates. This means that you will have to write a few lines of code, and comply with specific naming conventions if you </p>
-			</subsection>
+		<h1>1. Introduction</h1>
+		<a name="s1"></a>
+		<section name="1.1. What is anycode ?">
+			<p> Anycode is a code generation plugin for Astah* modeling software. It exports UML models, packages, classes to any text files thanks to
+				customizable templates written in Groovy language. It is designed in such a way that it does not depend on any target programming language. In
+				other words, it's up to you to generate any source files, or even documentation.
+			</p>
+			<p> It also provides a "directive" mechanism, i.e. : a set of functions that can be called from a template and that perform specific code
+				generation tasks. Some of them are provided out of the box (Java, JPA, Objective-C) but you can also define your own libraries.
+			</p>
+		</section>
+		<a name="s2"></a>
+		<section name="1.2. Why an Astah* Plugin ?">
+			<p>
+				Astah* is a user friendly and lightweight UML tool, that enables to design domain models
+				<b>easily</b>
+				. Moreover, it provides a
+				<b>free</b>
+				community version as well as a free SDK to extend it, based on Maven projects, thus making it a
+				<b>highly customizable</b>
+				software.
+			</p>
+			<p> Anycode aims to achieve the same goals toward code generation and these are the reasons why it is released as an Astah* plugin.</p>
+		</section>
+		<a name="s3"></a>		
+		<section name="1.3. How does it works ?">
+			<p class="center">
+				<img class="img-polaroid" src="../images/architecture.png" width="600" />
+			</p>
+			<p>3 steps are needed before generating source code :</p>
+			<ul>
+				<li>Design a model through UML Diagrams.</li>
+				<li>Create templates using groovy scripting language and tell the plugin where they are</li>
+				<li>Tell the plugin where to export target source code.</li>
+			</ul>
+			<p>Once these steps are achieved, you can perform as many code generations as you want, and modify your model and your templates "live". Indeed,
+				one of the advantages of Anycode is that it supports hot code replacement.
+			</p>
+			<p>Behind the scene, anycode leans on several loosely coupled components :</p>
+			<ul>
+				<li>
+					<b>Plugin GUI</b>
+					is responsible for getting user input (namely 2 directories) and giving feedback about code generation process.
+				</li>
+				<li>
+					<b>Template Engine API</b>
+					is an abstract API for generating template based source code. It launches rendering but remains independent from the actual engine
+					implementation.
+				</li>
+				<li>
+					<b>Template Engine Groovy impl.</b>
+					is the actual template engine implementation, based on Groovy.
+				</li>
+				<li>
+					<b>UML API</b>
+					exposes UML Model through a simple API.
+				</li>
+				<li>
+					<b>UML API Astah impl.</b>
+					wraps Astah API. It enables to use Astah API indirectly, so that anycode is not tightly coupled with Astah implementation.
+				</li>
+			</ul>
+		</section>
+		<a name="s4"></a>
+		<section name="1.4. How to proceed ?">
+			<p> The main topic to get familiar with is how to write templates with Groovy and anycode UML API. To do that the best is to read the Templating
+				Guide and follow tutorials.
+			</p>
 		</section>
 	</body>
 </document>
