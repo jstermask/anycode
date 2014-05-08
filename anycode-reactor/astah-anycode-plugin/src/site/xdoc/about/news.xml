@@ -7,6 +7,15 @@
 	</head>
 	<body>
 		<section name="Recent news">
+			<h3>2014, May 8th - astah-anycode-plugin-1.3.0_GA</h3>
+			<p>This release includes the following :</p>
+			<ul>
+				<li>Templates are now associated with a scope through a specific naming convention. This enables to decide whether a template will generate sources for each UML classifier or for the Model itself. </li>
+				<li>Bug fixes</li>	
+				<li>Updated documentation</li>	
+			</ul>
+			
+			<p>Anycode documentation for UML API and Directives have been completed.</p>
 			<h3>2014, April 27th - Site Updated</h3>
 			<p>Anycode documentation for UML API and Directives have been completed.</p>
 			<h3>2014, March 23rd - astah-anycode-plugin-1.2.0_GA</h3>
