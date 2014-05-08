@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>in.labulle.anycode</groupId>
 		<artifactId>anycode-reactor</artifactId>
-		<version>1.2.1-SNAPSHOT</version>
+		<version>1.3.0_GA</version>
 	</parent>
 	<artifactId>anycode-template-engine-groovy</artifactId>
 	<dependencies>
@@ -16,7 +16,7 @@
 		<dependency>
 			<groupId>in.labulle.anycode</groupId>
 			<artifactId>anycode-template-engine</artifactId>
-			<version>1.2.1-SNAPSHOT</version>
+			<version>1.3.0_GA</version>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.groovy</groupId>
