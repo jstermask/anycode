@@ -4,14 +4,9 @@
 	<parent>
 		<groupId>in.labulle.anycode</groupId>
 		<artifactId>anycode-reactor</artifactId>
-		<version>1.3.0_GA</version>
+		<version>1.3.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>anycode-uml-astah</artifactId>
-	<properties>
-		<astah.version>6.7</astah.version>
-		<astah.edition>community,uml,pro</astah.edition>
-		<astahPath>${env.ASTAH_API_HOME}</astahPath>
-	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -29,7 +24,7 @@
 		<dependency>
 			<groupId>in.labulle.anycode</groupId>
 			<artifactId>anycode-uml-api</artifactId>
-			<version>1.3.0_GA</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>

@@ -5,22 +5,19 @@
 		<bundle.symbolicName>in.labulle.anycode.astah.plugin</bundle.symbolicName>
 		<bundle.namespace>in.labulle.anycode.astah.plugin</bundle.namespace>
 		<plugin.install>true</plugin.install>
-		<astah.version>6.7</astah.version>
-		<astah.edition>community,uml,pro</astah.edition>
-		<astahPath>${env.ASTAH_API_HOME}</astahPath>
 	</properties>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>astah-anycode-plugin</artifactId>
 	<parent>
 		<groupId>in.labulle.anycode</groupId>
 		<artifactId>anycode-reactor</artifactId>
-		<version>1.3.0_GA</version>
+		<version>1.3.1-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
 	
 	<name>AnyCode plugin for Astah*</name>
 	<description>Code generation plugin for Astah* Community</description>
-	<version>1.3.0_GA</version>
+	<version>${project.parent.version}</version>
 	<packaging>jar</packaging>
 	<inceptionYear>2013</inceptionYear>
 	<url>http://anycode.labulle.in</url>

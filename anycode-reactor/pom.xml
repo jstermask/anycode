@@ -1,9 +1,15 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	<properties>
+		<astah.version>7.0</astah.version>
+		<astah.edition>community,uml,pro</astah.edition>
+		<!--<astahPath>${env.ASTAH_API_HOME}</astahPath>-->
+		<astahPath>/Applications/astah community/astah community.app/Contents/Java</astahPath>
+	</properties>
 	<groupId>in.labulle.anycode</groupId>
 	<artifactId>anycode-reactor</artifactId>
-	<version>1.3.0_GA</version>
+	<version>1.3.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
 		<module>anycode-maven-skin</module>
@@ -13,7 +19,7 @@
 		<module>anycode-template-engine-groovy</module>
 		<module>anycode-uml-astah</module>
 		<module>anycode-xmi-parser</module>
-	</modules>
+  </modules>
 
 	<dependencyManagement>
 		<dependencies>

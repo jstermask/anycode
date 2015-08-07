@@ -49,7 +49,11 @@ public class AstahClassifier extends
 	public List<? extends IClassifier> getGeneralizations() {
 		List<IClassifier> gens = new ArrayList<IClassifier>();
 		for(IGeneralization gen : getAstahElement().getGeneralizations()) {
-			gens.add(new AstahClassifier(gen.getSubType()));
+			gens.add(new AstahClassifier(gen.getSuperType()));
+			if(LOG.isDebugEnabled()) {
+				LOG.debug(getAstahElement().getName() + " supertype is " + gen.getSuperType().getName());
+				LOG.debug(getAstahElement().getName() + " subtype is " + gen.getSubType().getName());
+			}
 		}
 		return gens;
 	}
