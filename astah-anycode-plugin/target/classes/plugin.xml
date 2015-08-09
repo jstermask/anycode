@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<plugin>   
-   <extension point="com.change_vision.astah.ui.view">
-        <view
-            id="in.labulle.anycode.astah.plugin.generator.ui.tab.CodeConfigurationTabView"
-            type="extraTab"
-            class="in.labulle.anycode.astah.plugin.generator.ui.tab.CodeConfigurationTabView" />
-   </extension>
-</plugin>

@@ -1,1 +1,0 @@
-${targetDir}/${  packageName?replace(".","/") }/${className}.java

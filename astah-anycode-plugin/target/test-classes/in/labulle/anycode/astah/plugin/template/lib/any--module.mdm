@@ -1,3 +1,0 @@
-<#macro test>
-	this is test macro that is now imported automatically !!!!
-</#macro>
