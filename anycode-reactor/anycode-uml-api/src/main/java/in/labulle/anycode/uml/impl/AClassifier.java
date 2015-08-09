@@ -13,6 +13,8 @@ public class AClassifier extends AElement implements IClassifier {
 	private final List<? extends IClassifier> generalizations = new ArrayList<IClassifier>();
 	private final List<IClassifier> clientDependencies = new ArrayList<IClassifier>();
 	private boolean primitive;
+	private boolean leaf;
+	private boolean active;
 
 	public AClassifier() {
 		super();
@@ -60,5 +62,21 @@ public class AClassifier extends AElement implements IClassifier {
 
 	public boolean isPrimitive() {
 		return primitive;
+	}
+
+	public boolean isLeaf() {
+		return leaf;
+	}
+
+	public void setLeaf(boolean leaf) {
+		this.leaf = leaf;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 }

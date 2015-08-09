@@ -70,6 +70,8 @@ public class AstahClassifier extends
 		return getAstahElement().isPrimitiveType();
 	}
 
+	public boolean isLeaf() {return getAstahElement().isLeaf() ;}
 
+	public boolean isActive() {return getAstahElement().isActive();}
 
 }

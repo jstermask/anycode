@@ -39,4 +39,17 @@ public class AstahAttribute extends
 		return (IClassifier) AstahElement.getElement(getAstahElement().getType());
 	}
 
+	public String getInitialValue() { return getAstahElement().getInitialValue();}
+
+	public String getTypeModifier() {
+		return getAstahElement().getTypeModifier();
+	}
+
+	public boolean isStatic() {
+		return getAstahElement().isStatic();
+	}
+
+	public boolean isDerived() {
+		return getAstahElement().isDerived();
+	}
 }

@@ -44,4 +44,6 @@ public class AstahClass extends
 		return getAstahElement().isAbstract();
 	}
 
+
+
 }

@@ -42,4 +42,16 @@ public interface IClassifier extends IElement {
 	 * @return true if classifier is primitive type
 	 */
 	boolean isPrimitive();
+
+	/**
+	 *
+	 * @return true if classifier is leaf
+	 */
+	boolean isLeaf();
+
+	/**
+	 *
+	 * @return true if classifier is active
+	 */
+	boolean isActive();
 }

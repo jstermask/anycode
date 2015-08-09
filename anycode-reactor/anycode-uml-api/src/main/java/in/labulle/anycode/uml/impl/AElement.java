@@ -19,7 +19,9 @@ public class AElement implements IElement {
 
 	private String modifier;
 
-	private String documentation;
+	private String definition;
+
+	private boolean readOnly;
 
 	private final Set<IStereotype> stereotypes = new HashSet<IStereotype>();
 
@@ -34,6 +36,14 @@ public class AElement implements IElement {
 
 	public String getName() {
 		return name;
+	}
+
+	public String getDefinition() {
+		return this.definition;
+	}
+
+	public void setDefinition(final String definition) {
+		this.definition = definition;
 	}
 
 	public void setName(String name) {
@@ -68,7 +78,7 @@ public class AElement implements IElement {
 	}
 
 	public String getFullyQualifiedName(String separator) {
-		StringBuffer buf = new StringBuffer(getName());
+		StringBuilder buf = new StringBuilder(getName());
 		IElement owner = getOwner();
 		while (owner != null) {
 			buf.insert(0, owner.getName() + separator);
@@ -89,15 +99,23 @@ public class AElement implements IElement {
 		return modifier;
 	}
 
+	public boolean isReadOnly() {
+		return readOnly;
+	}
+
+	public void setReadOnly(boolean readOnly) {
+		this.readOnly = readOnly;
+	}
+
 	public void setModifier(String modifier) {
 		this.modifier = modifier;
 	}
 
 	public String getDocumentation() {
-		return documentation;
+		return getDefinition();
 	}
 
 	public void setDocumentation(String documentation) {
-		this.documentation = documentation;
+		setDefinition(documentation);
 	}
 }

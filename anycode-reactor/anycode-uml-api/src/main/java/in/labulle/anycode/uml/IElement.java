@@ -21,7 +21,7 @@ public interface IElement {
 	 * 
 	 * @return documentation.
 	 */
-	String getDocumentation();
+	String getDefinition();
 
 	/**
 	 * Element's owner. This can be null if element has no owner (root package for instance)
@@ -71,4 +71,10 @@ public interface IElement {
 	 * @return element's modifier.
 	 */
 	String getModifier();
+
+	/**
+	 * Getter for attribute's readonly
+	 * @return true if attribute is readonly
+	 */
+	boolean isReadOnly();
 }

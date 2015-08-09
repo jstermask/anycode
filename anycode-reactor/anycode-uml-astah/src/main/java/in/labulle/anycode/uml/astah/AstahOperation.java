@@ -24,6 +24,10 @@ public class AstahOperation extends
 		return (IClassifier) AstahElement.getElement(getAstahElement().getReturnType());
 	}
 
+	public String getTypeModifier() {
+		return getAstahElement().getTypeModifier();
+	}
+
 	public List<IParameter> getParameters() {
 		List<IParameter> params = new ArrayList<IParameter>();
 		for (com.change_vision.jude.api.inf.model.IParameter param : getAstahElement()
@@ -35,6 +39,14 @@ public class AstahOperation extends
 	
 	public boolean isAbstract() {
 		return getAstahElement().isAbstract();
+	}
+
+	public boolean isLeaf() {
+		return getAstahElement().isLeaf();
+	}
+
+	public boolean isStatic() {
+		return getAstahElement().isStatic();
 	}
 
 }

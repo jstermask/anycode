@@ -88,12 +88,26 @@ public abstract class AstahElement<T extends com.change_vision.jude.api.inf.mode
 	public String getModifier() {
 		return astahElement.getTypeModifier();
 	}
-	
+
+	/**
+	 * Use #getDefinition() instead.
+	 * @return definition.
+	 */
+	@Deprecated
 	public String getDocumentation() {
+		return getDefinition();
+	}
+
+	public String getDefinition() {
 		if(getAstahElement() instanceof INamedElement) {
 			return ((INamedElement)getAstahElement()).getDefinition();
 		} else {
 			return "";
 		}
 	}
+
+	public boolean isReadOnly() { return getAstahElement().isReadOnly();}
+
+
+
 }

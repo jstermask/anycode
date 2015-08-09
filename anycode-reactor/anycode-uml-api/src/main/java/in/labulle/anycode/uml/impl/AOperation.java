@@ -13,6 +13,14 @@ public class AOperation extends AElement implements IOperation {
 
 	private boolean isAbstract;
 
+	private String typeModifier;
+
+	private boolean leaf;
+
+	private boolean isStatic;
+
+
+
 	private final List<IParameter> parameters = new ArrayList<IParameter>();
 
 	public IClassifier getReturnType() {
@@ -43,4 +51,28 @@ public class AOperation extends AElement implements IOperation {
 		this.isAbstract = isAbstract;
 	}
 
+
+	public String getTypeModifier() {
+		return typeModifier;
+	}
+
+	public void setTypeModifier(String typeModifier) {
+		this.typeModifier = typeModifier;
+	}
+
+	public boolean isLeaf() {
+		return leaf;
+	}
+
+	public void setLeaf(boolean leaf) {
+		this.leaf = leaf;
+	}
+
+	public boolean isStatic() {
+		return isStatic;
+	}
+
+	public void setStatic(boolean isStatic) {
+		this.isStatic = isStatic;
+	}
 }

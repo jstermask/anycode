@@ -21,4 +21,10 @@ public interface IParameter extends IElement {
 	 */
 	boolean isReturnType();
 
+	/**
+	 * Getter for type modifier
+	 * @return type modifier
+	 */
+	String getTypeModifier();
+
 }

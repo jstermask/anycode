@@ -8,6 +8,8 @@ public class AParameter extends AElement implements IParameter {
 	
 	private boolean returnType = false;
 
+	private String typeModifier;
+
 	public IClassifier getDataType() {
 		return dataType;
 	}
@@ -24,4 +26,11 @@ public class AParameter extends AElement implements IParameter {
 		this.returnType = returnType;
 	}
 
+	public String getTypeModifier() {
+		return typeModifier;
+	}
+
+	public void setTypeModifier(String typeModifier) {
+		this.typeModifier = typeModifier;
+	}
 }
