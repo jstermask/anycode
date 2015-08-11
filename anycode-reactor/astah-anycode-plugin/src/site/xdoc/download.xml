@@ -12,18 +12,13 @@
 			</p>
 		</section>
 		<section name="How to install ?">
-			<p>First install the plugin by copying the jar in Astah* plugins
-				directory.
+			<p>Run Astah* Community/Pro and install the plugin from Astah menu. Check that the plugin is enabled
 			</p>
-			<p class="pcenter">
-				<img alt="Plugin directory" class="screenshot" src="images/image08.png" />
-			</p>
-			<p>Run Astah* Community/Pro and check that the plugin is enabled</p>
 			<p class="pcenter">
 				<img alt="Plugin list in Astah" class="screenshot" src="images/image07.png" />
 			</p>
 			<p>
-				Once installed, anycode menu appears in “Tools” option menu.
+				Once installed, anycode menu appears when opening a class diagram.
 			</p>
 			<p class="pcenter">
 				<img alt="anycode menu" class="screenshot" src="images/image02.png" />
