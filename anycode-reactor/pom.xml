@@ -6,6 +6,7 @@
 		<astah.edition>community,uml,pro</astah.edition>
 		<!--<astahPath>${env.ASTAH_API_HOME}</astahPath>-->
 		<astahPath>/Applications/astah community/astah community.app/Contents/Java</astahPath>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<groupId>in.labulle.anycode</groupId>
 	<artifactId>anycode-reactor</artifactId>

@@ -2,6 +2,8 @@ package in.labulle.anycode.engine.log.impl;
 
 import in.labulle.anycode.engine.log.ICodeGenerationEvent;
 import in.labulle.anycode.engine.log.ICodeGenerationLog;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -9,6 +11,8 @@ import java.util.List;
 import java.util.Observable;
 
 public class CodeGenerationLog extends Observable implements ICodeGenerationLog {
+	private static final Logger LOG = LoggerFactory.getLogger(CodeGenerationLog.class);
+
 	private final List<ICodeGenerationEvent> entries = new ArrayList<ICodeGenerationEvent>();
 	private Integer numberOfachievedGenerations;
 
@@ -42,11 +46,20 @@ public class CodeGenerationLog extends Observable implements ICodeGenerationLog 
 	}
 
 	public Integer getProgress() {
-		return (int) Math.round((numberOfachievedGenerations * 1.0 / numberOfGenerations * 1.0) * 100.0);
+		Integer progress = 0;
+		if(numberOfachievedGenerations >= numberOfGenerations && numberOfachievedGenerations > 0) {
+			progress = 100;
+		} else {
+			progress = (int) Math.round((numberOfachievedGenerations * 1.0 / numberOfGenerations * 1.0) * 100.0);
+		}
+		if(LOG.isDebugEnabled()) {
+			LOG.debug(numberOfachievedGenerations + "/" + numberOfGenerations + " => " + progress);
+		}
+		return progress;
 	}
 
 	public void progress() {
-		numberOfachievedGenerations++;
+		++numberOfachievedGenerations;
 	}
 
 	private void notifyEvent(ICodeGenerationEvent evt) {

@@ -26,8 +26,8 @@ public class ClassifierCodeGenerator extends ReportCodeGenerator {
 		List<ITemplate> tps = TemplateUtils.getTemplateByScope(templates, TemplateScope.CLASSIFIER);
 		for (IClassifier aClass : classes) {
 			for (ITemplate aTemplate : tps) {
-				generate(aClass, aTemplate);
 				getCodeGenerationLog().progress();
+				generate(aClass, aTemplate);
 			}
 		}
 	}

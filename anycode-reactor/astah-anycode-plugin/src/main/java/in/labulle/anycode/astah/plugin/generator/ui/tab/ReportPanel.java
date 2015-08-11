@@ -7,6 +7,8 @@ import in.labulle.anycode.engine.log.ICodeGenerationEvent;
 import in.labulle.anycode.engine.log.ICodeGenerationLog;
 import in.labulle.anycode.engine.osgi.BundleUtils;
 import in.labulle.anycode.engine.osgi.ImageBundle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -32,6 +34,8 @@ import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
 
 public class ReportPanel extends JPanel implements Observer {
+	private static final Logger LOG = LoggerFactory.getLogger(ReportPanel.class);
+
 	private CodeGenerationLogTableModel codeGenerationLogTableModel;
 
 	private JProgressBar progressBar;
@@ -107,8 +111,12 @@ public class ReportPanel extends JPanel implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		ICodeGenerationLog log = (ICodeGenerationLog) o;
-		this.progressBar.setValue(log.getProgress());
-		this.progressBar.setString(log.getProgress() + "%");
+		Integer progress = log.getProgress();
+		if(LOG.isDebugEnabled()) {
+			LOG.debug("Progress: " + progress);
+		}
+		this.progressBar.setValue(progress);
+		this.progressBar.setString(progress + "%");
 		this.report.repaint();
 	}
 
