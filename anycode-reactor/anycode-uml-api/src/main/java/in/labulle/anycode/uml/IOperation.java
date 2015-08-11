@@ -45,5 +45,11 @@ public interface IOperation extends IElement {
 	 */
 	boolean isStatic();
 
+	/**
+	 * getter for constraints
+	 * @return list of constraints
+	 */
+	List<String> getConstraints();
+
 
 }

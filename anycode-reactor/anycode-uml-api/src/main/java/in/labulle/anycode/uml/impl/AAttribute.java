@@ -4,6 +4,9 @@ import in.labulle.anycode.uml.Cardinality;
 import in.labulle.anycode.uml.IAttribute;
 import in.labulle.anycode.uml.IClassifier;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AAttribute extends AElement implements IAttribute {
 	private IClassifier dataType;
 
@@ -16,6 +19,8 @@ public class AAttribute extends AElement implements IAttribute {
 	private boolean isStatic;
 
 	private boolean derived;
+
+	private final List<String> constraints = new ArrayList<String>();
 
 	public AAttribute() {
 		super();
@@ -75,5 +80,16 @@ public class AAttribute extends AElement implements IAttribute {
 
 	public void setDerived(boolean derived) {
 		this.derived = derived;
+	}
+
+	public List<String> getConstraints() {
+		return constraints;
+	}
+
+	public void addConstraint(final String c) {
+		this.constraints.add(c);
+	}
+	public void removeConstraint(final String c) {
+		this.constraints.remove(c);
 	}
 }

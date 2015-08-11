@@ -11,6 +11,8 @@ public class APackage extends AElement implements IPackage {
 
 	private final List<IClassifier> classifiers = new ArrayList<IClassifier>();
 
+	private final List<String> constraints = new ArrayList<String>();
+
 	public APackage() {
 		super();
 	}
@@ -57,5 +59,16 @@ public class APackage extends AElement implements IPackage {
 			}
 		}
 		return null;
+	}
+
+	public List<String> getConstraints() {
+		return constraints;
+	}
+
+	public void addConstraint(final String c) {
+		this.constraints.add(c);
+	}
+	public void removeConstraint(final String c) {
+		this.constraints.remove(c);
 	}
 }

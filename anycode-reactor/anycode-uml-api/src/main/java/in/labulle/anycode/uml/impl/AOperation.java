@@ -19,6 +19,8 @@ public class AOperation extends AElement implements IOperation {
 
 	private boolean isStatic;
 
+	private final List<String> constraints = new ArrayList<String>();
+
 
 
 	private final List<IParameter> parameters = new ArrayList<IParameter>();
@@ -74,5 +76,16 @@ public class AOperation extends AElement implements IOperation {
 
 	public void setStatic(boolean isStatic) {
 		this.isStatic = isStatic;
+	}
+
+	public List<String> getConstraints() {
+		return constraints;
+	}
+
+	public void addConstraint(final String c) {
+		this.constraints.add(c);
+	}
+	public void removeConstraint(final String c) {
+		this.constraints.remove(c);
 	}
 }

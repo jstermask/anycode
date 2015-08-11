@@ -1,5 +1,7 @@
 package in.labulle.anycode.uml;
 
+import java.util.List;
+
 /**
  * UML attribute.
  * 
@@ -54,6 +56,11 @@ public interface IAttribute extends IElement {
 	 */
 	boolean isDerived();
 
+	/**
+	 * getter for constraints
+	 * @return list of constraints
+	 */
+	List<String> getConstraints();
 
 
 

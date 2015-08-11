@@ -1,5 +1,6 @@
 package in.labulle.anycode.uml.astah;
 
+import com.change_vision.jude.api.inf.model.IConstraint;
 import in.labulle.anycode.uml.IAttribute;
 import in.labulle.anycode.uml.IClassifier;
 import in.labulle.anycode.uml.IOperation;
@@ -74,4 +75,12 @@ public class AstahClassifier extends
 
 	public boolean isActive() {return getAstahElement().isActive();}
 
+
+	public List<String> getConstraints() {
+		List<String> constraints = new ArrayList<String>(5);
+		for(IConstraint c : getAstahElement().getConstraints()) {
+			constraints.add(c.getName());
+		}
+		return constraints;
+	}
 }

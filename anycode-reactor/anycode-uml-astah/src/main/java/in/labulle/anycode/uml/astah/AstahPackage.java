@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.change_vision.jude.api.inf.model.IClass;
+import com.change_vision.jude.api.inf.model.IConstraint;
 import com.change_vision.jude.api.inf.model.INamedElement;
 
 import in.labulle.anycode.uml.IClassifier;
@@ -64,4 +65,11 @@ public class AstahPackage extends
 		return null;
 	}
 
+	public List<String> getConstraints() {
+		List<String> constraints = new ArrayList<String>(5);
+		for(IConstraint c : getAstahElement().getConstraints()) {
+			constraints.add(c.getName());
+		}
+		return constraints;
+	}
 }

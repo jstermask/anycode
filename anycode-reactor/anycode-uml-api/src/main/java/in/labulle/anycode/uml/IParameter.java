@@ -1,5 +1,7 @@
 package in.labulle.anycode.uml;
 
+import java.util.List;
+
 /**
  * UML parameter for operations.
  * 
@@ -27,4 +29,9 @@ public interface IParameter extends IElement {
 	 */
 	String getTypeModifier();
 
+	/**
+	 * getter for constraints
+	 * @return list of constraints
+	 */
+	List<String> getConstraints();
 }

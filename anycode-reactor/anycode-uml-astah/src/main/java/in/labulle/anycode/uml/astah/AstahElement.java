@@ -6,6 +6,7 @@ import in.labulle.anycode.uml.Visibility;
 import in.labulle.anycode.uml.impl.AStereotype;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.change_vision.jude.api.inf.model.IClass;
@@ -107,7 +108,5 @@ public abstract class AstahElement<T extends com.change_vision.jude.api.inf.mode
 	}
 
 	public boolean isReadOnly() { return getAstahElement().isReadOnly();}
-
-
-
+	
 }

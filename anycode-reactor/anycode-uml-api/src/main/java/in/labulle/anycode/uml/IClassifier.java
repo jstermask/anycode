@@ -54,4 +54,10 @@ public interface IClassifier extends IElement {
 	 * @return true if classifier is active
 	 */
 	boolean isActive();
+
+	/**
+	 * getter for constraints
+	 * @return list of constraints
+	 */
+	List<String> getConstraints();
 }

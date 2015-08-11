@@ -1,5 +1,6 @@
 package in.labulle.anycode.uml.astah;
 
+import com.change_vision.jude.api.inf.model.IConstraint;
 import in.labulle.anycode.uml.IClassifier;
 import in.labulle.anycode.uml.IOperation;
 import in.labulle.anycode.uml.IParameter;
@@ -47,6 +48,14 @@ public class AstahOperation extends
 
 	public boolean isStatic() {
 		return getAstahElement().isStatic();
+	}
+
+	public List<String> getConstraints() {
+		List<String> constraints = new ArrayList<String>(5);
+		for(IConstraint c : getAstahElement().getConstraints()) {
+			constraints.add(c.getName());
+		}
+		return constraints;
 	}
 
 }

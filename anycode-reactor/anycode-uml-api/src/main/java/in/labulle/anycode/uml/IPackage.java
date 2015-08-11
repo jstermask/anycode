@@ -46,4 +46,10 @@ public interface IPackage extends IElement {
 	 * @return a classifier or null if not classifier matches the given parameters.
 	 */
 	IClassifier findClassifierByFullyQualifiedName(String fullyQualifiedName, String separator);
+
+	/**
+	 * getter for constraints
+	 * @return list of constraints
+	 */
+	List<String> getConstraints();
 }

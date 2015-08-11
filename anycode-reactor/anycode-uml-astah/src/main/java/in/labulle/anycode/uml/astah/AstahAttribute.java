@@ -1,5 +1,6 @@
 package in.labulle.anycode.uml.astah;
 
+import com.change_vision.jude.api.inf.model.IConstraint;
 import in.labulle.anycode.repository.astah.ModelException;
 import in.labulle.anycode.uml.Cardinality;
 import in.labulle.anycode.uml.IAttribute;
@@ -7,6 +8,9 @@ import in.labulle.anycode.uml.IClassifier;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AstahAttribute extends
 		AstahElement<com.change_vision.jude.api.inf.model.IAttribute> implements
@@ -51,5 +55,13 @@ public class AstahAttribute extends
 
 	public boolean isDerived() {
 		return getAstahElement().isDerived();
+	}
+
+	public List<String> getConstraints() {
+		List<String> constraints = new ArrayList<String>(5);
+		for(IConstraint c : getAstahElement().getConstraints()) {
+			constraints.add(c.getName());
+		}
+		return constraints;
 	}
 }

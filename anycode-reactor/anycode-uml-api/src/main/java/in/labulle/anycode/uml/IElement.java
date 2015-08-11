@@ -1,5 +1,6 @@
 package in.labulle.anycode.uml;
 
+
 import java.util.Set;
 
 /**
@@ -77,4 +78,6 @@ public interface IElement {
 	 * @return true if attribute is readonly
 	 */
 	boolean isReadOnly();
+
+
 }

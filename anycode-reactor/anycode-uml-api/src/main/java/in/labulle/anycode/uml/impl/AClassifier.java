@@ -12,6 +12,8 @@ public class AClassifier extends AElement implements IClassifier {
 	private final List<IOperation> operations = new ArrayList<IOperation>();
 	private final List<? extends IClassifier> generalizations = new ArrayList<IClassifier>();
 	private final List<IClassifier> clientDependencies = new ArrayList<IClassifier>();
+	private final List<String> constraints = new ArrayList<String>();
+
 	private boolean primitive;
 	private boolean leaf;
 	private boolean active;
@@ -79,4 +81,17 @@ public class AClassifier extends AElement implements IClassifier {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+
+	public List<String> getConstraints() {
+		return constraints;
+	}
+
+	public void addConstraint(final String c) {
+		this.constraints.add(c);
+	}
+	public void removeConstraint(final String c) {
+		this.constraints.remove(c);
+	}
+
+
 }
