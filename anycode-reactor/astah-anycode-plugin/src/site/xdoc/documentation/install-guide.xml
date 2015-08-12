@@ -8,7 +8,7 @@
 		<h1>Installation Guide</h1>
 		<section name="Prerequisites">
 			<p>
-				You must have Astah Community/Pro 6.7 or later already installed on your
+				You must have Astah Community/Pro 7 or later already installed on your
 				computer. Please go to
 				<a target="_blank" href="http://astah.net">Astah website</a>
 				to set it up.
@@ -24,12 +24,8 @@
 						<a target="_blank" href="http://sourceforge.net/projects/anycode">Sourceforge Project Page</a>.
 					</li>
 					<li>
-						Move or copy the downloaded .jar file in the "plugins" folder
-						under Astah Installation folder.
-					</li>
-					<li>
-						Run Astah and click on Help &gt; Plugin list... Plugin should appear
-						on the list with a valid state and it should be enabled.
+						Run Astah and click on Help &gt; Plugin list... Install the download jar. Plugin should appear
+						on the list with a valid state but shouldn't be enabled yet. Restart Astah*.
 					</li>
 					<li>
 						Done. Now create a project or open an existing one. any&lt;code/&gt;

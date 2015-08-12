@@ -8,7 +8,7 @@
 	<body>
 		<section name="Recent news">
 			<h3>2015, August 11th - astah-anycode-plugin-1.3.1_GA</h3>
-			<p>This release includes the following (details can be found on <a href="https://bitbucket.org/jjbcarreno/anycode/issues?version=1.3.1_GA&sort=id">Issue Tracker</a> :</p>
+			<p>This release includes the following (details can be found on <a href="https://bitbucket.org/jjbcarreno/anycode/issues?version=1.3.1_GA&amp;sort=id">Issue Tracker</a> :</p>
 			<ul>
 				<li>Support for Astah 7</li>
 				<li>BUG #10 : Inheritance is now fixed</li>
