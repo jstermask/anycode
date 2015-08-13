@@ -18,9 +18,6 @@ public class AstahClass extends
 
 	public AstahClass(com.change_vision.jude.api.inf.model.IClass astahElt) {
 		super(astahElt);
-		if(LOG.isDebugEnabled()) {
-			LOG.debug("New class :" + astahElt.getName());
-		}
 	}
 
 

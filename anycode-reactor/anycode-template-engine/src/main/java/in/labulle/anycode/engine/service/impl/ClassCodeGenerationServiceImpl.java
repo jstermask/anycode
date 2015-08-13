@@ -80,10 +80,6 @@ public class ClassCodeGenerationServiceImpl implements ICodeGenerationService {
 		List<ITemplate> templates = TemplateUtils.getTemplates(arts);
 		List<IMacro> macros = TemplateUtils.getMacros(arts);
 		addMacros(macros, config);
-		if (LOG.isDebugEnabled()) {
-			LOG.debug("Number of templates : " + templates.size());
-		}
-
 		List<ICodeGenerator> generators = newCodeGenerators(config);
 		if (codeGenerationReport != null) {
 			int maxGenerations = 0;
@@ -97,7 +93,9 @@ public class ClassCodeGenerationServiceImpl implements ICodeGenerationService {
 		for(ICodeGenerator gen : generators) {
 			gen.generateCode(model, templates);
 		}
-		
+		if (LOG.isDebugEnabled()) {
+			LOG.debug("Code generation done !");
+		}
 	}
 
 

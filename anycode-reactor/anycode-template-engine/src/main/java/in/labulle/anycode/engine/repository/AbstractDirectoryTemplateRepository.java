@@ -58,7 +58,7 @@ public abstract class AbstractDirectoryTemplateRepository implements ITemplateRe
 					ITemplate t = buildTemplate(path + File.separator + fileNames.get(i), path + File.separator + files.get(i), scope);
 					codeGenerationArtifacts.add(t);
 					if(LOG.isDebugEnabled()) {
-						LOG.debug("Template built : " + t);
+						LOG.debug("Template found : " + t);
 					}
 				} else {
 					throw new TemplateRuntimeException("There are more filenames templates than content templates");
@@ -75,6 +75,9 @@ public abstract class AbstractDirectoryTemplateRepository implements ITemplateRe
 		for (int i = 0; i < files.size(); i++) {
 			IMacro m = buildMacro(path + File.separator + files.get(i));
 			this.codeGenerationArtifacts.add(m);
+			if(LOG.isDebugEnabled()) {
+				LOG.debug("Macro found : " + m.getName());
+			}
 		}
 	}
 

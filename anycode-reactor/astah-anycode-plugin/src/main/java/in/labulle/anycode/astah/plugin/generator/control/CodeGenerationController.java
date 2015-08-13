@@ -27,15 +27,9 @@ public class CodeGenerationController implements IController<ICodeGenerationCont
 
     public void generateCode() {
         try {
-            if (LOG.isDebugEnabled()) {
-                LOG.debug("starting generateCode()");
-            }
             getContext().getLog().reset();
             CodeGenerationTask t = newTaskInstance();
             t.execute();
-            if (LOG.isDebugEnabled()) {
-                LOG.debug("end generateCode()");
-            }
         } catch (IOException e) {
             throw new AnycodeRuntimeException(e);
         }

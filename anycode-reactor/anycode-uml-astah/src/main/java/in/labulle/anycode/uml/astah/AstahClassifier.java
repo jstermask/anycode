@@ -21,9 +21,6 @@ public class AstahClassifier extends
 
 	public AstahClassifier(com.change_vision.jude.api.inf.model.IClass astahElt) {
 		super(astahElt);
-		if(LOG.isDebugEnabled()) {
-			LOG.debug("New class :" + astahElt.getName());
-		}
 	}
 
 	public List<IAttribute> getAttributes() {
@@ -51,10 +48,6 @@ public class AstahClassifier extends
 		List<IClassifier> gens = new ArrayList<IClassifier>();
 		for(IGeneralization gen : getAstahElement().getGeneralizations()) {
 			gens.add(new AstahClassifier(gen.getSuperType()));
-			if(LOG.isDebugEnabled()) {
-				LOG.debug(getAstahElement().getName() + " supertype is " + gen.getSuperType().getName());
-				LOG.debug(getAstahElement().getName() + " subtype is " + gen.getSubType().getName());
-			}
 		}
 		return gens;
 	}

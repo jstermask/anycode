@@ -18,17 +18,11 @@ public class CodeGenerationTask extends SwingWorker<Integer, String> {
 		this.codeGenerationService = service;
 		this.templatePath = templatePath;
 		this.outputPath = outputPath;
-		if(LOG.isDebugEnabled()) {
-			LOG.debug("Task created");
-		}
 	}
 
 	@Override
 	protected Integer doInBackground() {
 		try {
-		    if(LOG.isDebugEnabled()) {
-		        LOG.debug("doInBackground");
-		    }
 			setProgress(0);
 			codeGenerationService.generateCode(templatePath, outputPath);
 			return 100;
