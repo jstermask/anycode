@@ -1,4 +1,6 @@
-package in.labulle.anycode.engine.groovy.core;
+package in.labulle.anycode.engine.groovy.core
+
+import in.labulle.anycode.uml.impl.AInterface;
 
 import static org.junit.Assert.*
 import in.labulle.anycode.engine.groovy.directive.JavaDirective
@@ -14,6 +16,25 @@ import org.junit.Test
 class JavaDirectiveTest {
 	
 	def java = new JavaDirective()
+
+	public void testSignature() {
+		AClass cl = new AClass()
+		cl.setName("AbstractBook")
+		cl.setAbstract(true);
+
+		AClass pcl = new AClass()
+		pcl.setName("Item")
+		pcl.setAbstract(true);
+		cl.getGeneralizations().add(pcl);
+
+		AInterface callable = new AInterface();
+		callable.setName("Serializable")
+		cl.getRealizations().add(callable);
+
+		assertEquals("public abstract class AbstractBook extends Item implements Serializable", java.classifierSignature(cl))
+
+
+	}
 
 	@Test
 	public void testGetAttributeName() {
@@ -66,10 +87,15 @@ class JavaDirectiveTest {
 
 		cl = new AClass()
 		cl.setPrimitive(true)
+		cl.setName("Integer")
+		att.setDataType(cl)
+		assertEquals("Integer", java.datatype(att).toString())
+
+		cl = new AClass()
+		cl.setPrimitive(true)
 		cl.setName("integer")
 		att.setDataType(cl)
-
-		assertEquals("Integer", java.datatype(att).toString())
+		assertEquals("integer", java.datatype(att).toString())
 	}
 
 	@Test
@@ -78,7 +104,7 @@ class JavaDirectiveTest {
 		att.setName("myAttribute")
 		att.setCardinality(Cardinality.ONE_TO_ONE)
 		AClass cl = new AClass()
-		cl.setName("integer")
+		cl.setName("Integer")
 		cl.setPrimitive(true)
 		att.setDataType(cl)
 		assertEquals("public final Integer getMyAttribute() {\n\t\t\treturn this.myAttribute;\n\t\t}", java.getter(att).toString())
@@ -90,7 +116,7 @@ class JavaDirectiveTest {
 		att.setName("myAttribute")
 		att.setCardinality(Cardinality.ONE_TO_ONE)
 		AClass cl = new AClass()
-		cl.setName("integer")
+		cl.setName("Integer")
 		cl.setPrimitive(true)
 		att.setDataType(cl)
 		
@@ -104,7 +130,7 @@ class JavaDirectiveTest {
 		op.setVisibility(Visibility.PUBLIC)
 		AParameter p1 = new AParameter()
 		AClass cl1 = new AClass()
-		cl1.setName("integer")
+		cl1.setName("Integer")
 		cl1.setPrimitive(true)
 		p1.setName("x")
 		p1.setDataType(cl1)
@@ -113,7 +139,7 @@ class JavaDirectiveTest {
 
 		p1 = new AParameter()
 		cl1 = new AClass()
-		cl1.setName("string")
+		cl1.setName("String")
 		cl1.setPrimitive(true)
 		p1.setName("testParamText")
 		p1.setDataType(cl1)
@@ -125,5 +151,50 @@ class JavaDirectiveTest {
 		assertEquals("public void calculate(final Integer x, final String testParamText)", java.operationSignature(op).toString())
 		assertEquals("public void calculate(final Integer x, final String testParamText) {\n\t\t}", java.operationImplementation(op).toString())
 		
+	}
+
+	@Test
+	public void testVoidOperation() {
+		AOperation op = new AOperation()
+		AClass voidClass = new AClass();
+		voidClass.setName("void");
+		voidClass.setPrimitive(true);
+		op.setReturnType(voidClass);
+		op.setName("calculate")
+		op.setVisibility(Visibility.PUBLIC)
+		AParameter p1 = new AParameter()
+		AClass cl1 = new AClass()
+		cl1.setName("Integer")
+		cl1.setPrimitive(true)
+		p1.setName("x")
+		p1.setDataType(cl1)
+		p1.setVisibility(Visibility.PUBLIC)
+		op.addParameter(p1)
+
+		p1 = new AParameter()
+		cl1 = new AClass()
+		cl1.setName("String")
+		cl1.setPrimitive(true)
+		p1.setName("testParamText")
+		p1.setDataType(cl1)
+		p1.setVisibility(Visibility.PUBLIC)
+		op.addParameter(p1)
+
+		assertEquals("public void calculate(final Integer x, final String testParamText)", java.operationSignature(op).toString())
+		assertEquals("public void calculate(final Integer x, final String testParamText) {\n\t\t}", java.operationImplementation(op).toString())
+
+	}
+
+	@Test
+	public void testNoParamOperation() {
+		AOperation op = new AOperation()
+		AClass voidClass = new AClass();
+		voidClass.setName("void");
+		voidClass.setPrimitive(true);
+		op.setReturnType(voidClass);
+		op.setName("recalculate")
+		op.setVisibility(Visibility.PUBLIC)
+		assertEquals("public void recalculate()", java.operationSignature(op).toString())
+
 	}
 }

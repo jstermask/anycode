@@ -38,7 +38,8 @@ class JavaDirective extends AnycodeDirective {
 	private def classSignature(IClass c) {
 		def generalizations = generalizations(c)
 		def realizations = realizations(c)
-		return """public class ${c.name} ${generalizations != null ? 'extends '+ generalizations : ''}  ${realizations != null ? 'implements '+ realizations : ''}"""
+		def abstractTxt = (c.isAbstract() ? " abstract " : " ")
+		return """public""" + abstractTxt + """class ${c.name} ${generalizations != null ? 'extends '+ generalizations : ''}  ${realizations != null ? 'implements '+ realizations : ''}"""
 	}
 
 	/**
@@ -108,7 +109,7 @@ class JavaDirective extends AnycodeDirective {
 	 * @return String with datatype name. 
 	 */
 	public def getDataTypeName(IClassifier c, String modifier) {
-		def dt = (c.isPrimitive() ? c.getName().capitalize() : c.getName())
+		def dt = c.getName()
 		if(modifier != null) {
 			dt += modifier
 		}
@@ -178,7 +179,9 @@ class JavaDirective extends AnycodeDirective {
 	def  operationSignature(IOperation op) {
 		def params = null
 		op.getParameters().reverseEach() { it -> params = "final ${getDataTypeName(it.dataType, it.modifier)} ${it.name}" + (params == null ? "" : ", " + params)  }
-
+		if(params == null) {
+			params = ""
+		}
 		return """${op.visibility.toString().toLowerCase()} ${op.returnType == null ? 'void' : getDataTypeName(op.returnType, op.modifier)} ${getOperationName(op)}(${params})"""
 	}
 

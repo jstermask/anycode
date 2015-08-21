@@ -11,7 +11,7 @@
 	<parent>
 		<groupId>in.labulle.anycode</groupId>
 		<artifactId>anycode-reactor</artifactId>
-		<version>1.3.1_GA</version>
+		<version>1.3.2_GA</version>
 		<relativePath>..</relativePath>
 	</parent>
 	

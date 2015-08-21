@@ -30,7 +30,7 @@ public class AstahClass extends
 	public List<IInterface> getRealizations() {
 		List<IInterface> gens = new ArrayList<IInterface>();
 		for(IRealization gen : getAstahElement().getClientRealizations()) {
-			gens.add(new AstahInterface((com.change_vision.jude.api.inf.model.IClass)gen.getClient()));
+			gens.add(new AstahInterface((com.change_vision.jude.api.inf.model.IClass)gen.getSupplier()));
 		}
 		return gens;
 	}
