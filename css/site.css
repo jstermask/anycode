@@ -1,0 +1,129 @@
+@import url(http://fonts.googleapis.com/css?family=PT+Sans+Caption:700);
+
+/* General classes */
+.right {
+	text-align: right;
+}
+
+.center {
+	text-align: center;
+}
+
+.justify {
+	text-align: justify;
+}
+
+/* Logo anycode */
+.anycode-logo {
+	font-family: monospace;
+	color: #aaa;
+	font-weight: bold;
+}
+
+.anycode-logo em {
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	color: #9b0;
+}
+
+/* Jumbotron panel */
+#panel {
+	width: 1000px;
+	height: 450px;
+	margin-left: -50px;
+	margin-right: -50px;
+	padding: 20px 0px 20px 0px;
+	box-shadow: 3px 3px 10px #333;
+	background: #adba8f; /* Old browsers */
+	background: -moz-linear-gradient(left, #adba8f 0%, #e4efb9 50%, #adba8f 100%);
+	/* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%, #adba8f),
+		color-stop(50%, #e4efb9), color-stop(100%, #adba8f));
+	/* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left, #adba8f 0%, #e4efb9 50%, #adba8f 100%);
+	/* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left, #adba8f 0%, #e4efb9 50%, #adba8f 100%);
+	/* Opera 11.10+ */
+	background: -ms-linear-gradient(left, #adba8f 0%, #e4efb9 50%, #adba8f 100%);
+	/* IE10+ */
+	background: linear-gradient(to right, #adba8f 0%, #e4efb9 50%, #adba8f 100%);
+	/* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(      startColorstr='#adba8f',
+		endColorstr='#adba8f', GradientType=1); /* IE6-9 */
+}
+
+#panel div {
+	margin: 20px 80px 20px 80px;
+	background-image: url(../images/astah-screenshot.png);
+	background-size: 570px 410px;
+	height: 410px;
+	background-repeat: no-repeat;
+	width: 80%;
+}
+
+#panel .slogan {
+	padding-top: 180px;
+	font-size: 36px;
+	font-weight: bold;
+	font-family: 'PT Sans Caption', sans-serif;
+	color: black;
+}
+
+.row .span3 p {
+	margin: 0px 20px 0px 20px;
+}
+
+/* Download button */
+#downloadButton {
+	margin: 70px 0px 30px 0px;
+}
+
+/* Process */
+.process-title {
+	font-size: 1.5em;
+	padding: 15px 0px 10px 0px;
+}
+
+.process-img {
+	padding: 5px;
+	height: 150px;
+}
+
+.process-step {
+	font-weight: bold;
+	margin-bottom: 4px;
+}
+
+.anime {
+	-webkit-transition: -webkit-transform 0.4s ease-in-out;
+	/* Utilis� pour la transition sur chrome et safari */
+	-moz-transition: -moz-transform 0.4s ease-in-out;
+	/* Utilis� pour la transition sur Firefox */
+	transition: transform 0.4s ease-in-out;
+	color: #ccc;
+}
+
+.anime:hover {
+	-webkit-transform: scale(1.2) rotate(-10deg);
+	/* Agrandissement de la photo � l'�chelle 1.4 et rotation de -10 degr�s */
+	-moz-transform: scale(1.2) rotate(-10deg);
+	-o-transform: scale(1.2) rotate(-10deg);
+	transform: scale(1.2) rotate(-10deg);
+	border: solid 0px #ddd;
+	color: #555;
+}
+
+
+
+.anime:hover:after {
+	content: attr(description);
+}
+
+.newsWhite, .newsWhite a {
+	color: #4090b0;
+}
+.newsWhite {
+	background: linear-gradient(to bottom, rgba(240, 240, 240, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(240, 240, 240, 1) 75%, rgba(200, 200, 200, 1) 100%);
+	text-shadow: -1px -1px 3px rgba(0, 0, 0, 0.4);
+}
